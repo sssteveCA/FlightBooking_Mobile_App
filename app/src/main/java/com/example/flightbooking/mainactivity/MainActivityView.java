@@ -1,6 +1,7 @@
 package com.example.flightbooking.mainactivity;
 
 import android.content.Context;
+import android.view.View;
 import android.widget.ProgressBar;
 
 import androidx.fragment.app.Fragment;
@@ -17,6 +18,7 @@ public class MainActivityView {
 
     public MainActivityView(MainActivity ma){
         this.ma = ma;
+
     }
 
     public void setFragment(Fragment fragment){
@@ -33,4 +35,11 @@ public class MainActivityView {
         }
         ft.commit();
     }
+
+    public void setProgressBar(int visibility){
+        if(visibility == View.VISIBLE || visibility == View.INVISIBLE || visibility == View.GONE)
+            this.pb.setVisibility(visibility);
+    }
+
+    public ProgressBar getProgressBar(){return this.pb;}
 }
