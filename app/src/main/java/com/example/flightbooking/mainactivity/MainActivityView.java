@@ -1,6 +1,7 @@
 package com.example.flightbooking.mainactivity;
 
 import android.content.Context;
+import android.widget.ProgressBar;
 
 import androidx.fragment.app.Fragment;
 import androidx.fragment.app.FragmentManager;
@@ -12,6 +13,7 @@ import com.example.flightbooking.R;
 public class MainActivityView {
 
     private MainActivity ma;
+    private ProgressBar pb;
 
     public MainActivityView(MainActivity ma){
         this.ma = ma;

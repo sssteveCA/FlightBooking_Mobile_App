@@ -15,7 +15,7 @@ public class Connection {
     public static boolean checkInternet(Context ctx){
         ConnectivityManager cm = (ConnectivityManager) ctx.getSystemService(Context.CONNECTIVITY_SERVICE);
         NetworkInfo ni = cm.getActiveNetworkInfo();
-        boolean connected = ni.isConnected();
+        boolean connected = ni != null && ni.isConnected();
         return connected;
     }
 }
