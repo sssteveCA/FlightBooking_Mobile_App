@@ -1,6 +1,7 @@
 package com.example.flightbooking.mainactivity;
 
 import android.content.Context;
+import android.view.View;
 
 import androidx.fragment.app.Fragment;
 
@@ -22,6 +23,7 @@ public class MainActivityController {
      * Set the fragment after check the application status
      */
     public void setView(){
+        this.mav.setProgressBar(View.VISIBLE);
         boolean connected = this.mam.getConnectionStatus();
         if(connected){
 
@@ -29,5 +31,6 @@ public class MainActivityController {
         else{
             this.mav.setFragment(new NoConnectionFragment());
         }
+        this.mav.setProgressBar(View.GONE);
     }
 }

@@ -27,7 +27,12 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
     public void retryClick() {
         //NoConnection fragment Retry button clicked
         Log.i("MainActivity","retryClick");
+        this.run();
     }
+
+    /***
+     *
+     */
 
     /***
      * Execute MainActivity MVC classes
