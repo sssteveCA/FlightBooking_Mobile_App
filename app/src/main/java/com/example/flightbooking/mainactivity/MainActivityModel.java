@@ -6,18 +6,21 @@ import com.example.flightbooking.common.Connection;
 
 public class MainActivityModel {
 
-    public MainActivityModel(){
+    private Context ctx;
+    private boolean connected;
 
+    public MainActivityModel(Context ctx){
+        this.ctx = ctx;
     }
 
     /***
      *
      *  Check if phone is connected to internet
-     * @param ctx
      * @return boolean
      */
-    public boolean getConnectionStatus(Context ctx){
+    public boolean getConnectionStatus(){
         //return Connection.checkInternet();
-        return Connection.checkInternet(ctx);
+        this.connected = Connection.checkInternet(this.ctx);
+        return this.connected;
     }
 }
