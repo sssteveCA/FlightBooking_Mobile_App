@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
 import android.util.Log;
+import android.view.View;
 
 import com.example.flightbooking.mainactivity.MainActivityController;
 import com.example.flightbooking.mainactivity.MainActivityModel;
@@ -27,7 +28,9 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
     public void retryClick() {
         //NoConnection fragment Retry button clicked
         Log.i("MainActivity","retryClick");
-        this.run();
+        this.mav.removeFragment();
+        this.mav.setProgressBar(View.VISIBLE);
+        this.mac.setView();
     }
 
     /***
@@ -40,6 +43,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
     private void run(){
         this.mam = new MainActivityModel(this);
         this.mav = new MainActivityView(this);
+        this.mav.setProgressBar(View.VISIBLE);
         this.mac = new MainActivityController(this.mam,this.mav);
         this.mac.setView();
     }

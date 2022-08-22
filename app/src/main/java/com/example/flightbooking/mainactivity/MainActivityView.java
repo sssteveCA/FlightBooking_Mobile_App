@@ -26,19 +26,19 @@ public class MainActivityView {
 
     }
 
-    public void removeFragment(Fragment fragment){
+    public void removeFragment(){
         FragmentManager fm = this.ma.getSupportFragmentManager();
         Fragment current_fragment = fm.findFragmentById(R.id.main_activity_fragment_container);
         if(current_fragment != null){
             //Container has already a fragment
             FragmentTransaction ft = fm.beginTransaction();
             ft.setReorderingAllowed(true);
-            ft.remove(fragment);
+            ft.remove(current_fragment);
             ft.commit();
         }
     }
 
-    public void setFragment(Fragment fragment){
+    public void updateFragment(Fragment fragment){
         FragmentManager fm = this.ma.getSupportFragmentManager();
         Fragment current_fragment = fm.findFragmentById(R.id.main_activity_fragment_container);
         FragmentTransaction ft = fm.beginTransaction();

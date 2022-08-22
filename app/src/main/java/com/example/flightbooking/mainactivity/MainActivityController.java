@@ -23,14 +23,14 @@ public class MainActivityController {
      * Set the fragment after check the application status
      */
     public void setView(){
-        this.mav.setProgressBar(View.VISIBLE);
         boolean connected = this.mam.getConnectionStatus();
+        this.mav.setProgressBar(View.GONE);
         if(connected){
 
         }//if(connected){
         else{
-            this.mav.setFragment(new NoConnectionFragment());
+            this.mav.updateFragment(new NoConnectionFragment());
         }
-        this.mav.setProgressBar(View.GONE);
+
     }
 }
