@@ -12,6 +12,7 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.TextView;
 
+import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 
 /**
@@ -19,7 +20,7 @@ import com.example.flightbooking.R;
  * Use the {@link NoConnectionFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NoConnectionFragment extends Fragment {
+public class NoConnectionFragment extends Fragment implements View.OnClickListener {
 
     public interface RetryListener{
         //When retry button is pressed
@@ -77,11 +78,25 @@ public class NoConnectionFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_no_connection, container, false);
         tv_1 = view.findViewById(R.id.no_conn_frag_tv_1);
         bt_1 = view.findViewById(R.id.no_conn_frag_bt_1);
+        bt_1.setOnClickListener(this);
         return view;
     }
 
     @Override
     public void onAttach(@NonNull Activity activity) {
         super.onAttach(activity);
+        this.retryListener = (MainActivity)activity;
+    }
+
+    @Override
+    public void onClick(View view) {
+        int id = view.getId();
+        switch(id){
+            case R.id.no_conn_frag_bt_1:
+                this.retryListener.retryClick();
+                break;
+            default:
+                break;
+        }
     }
 }
