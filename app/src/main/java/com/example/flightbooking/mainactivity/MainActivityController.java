@@ -12,7 +12,7 @@ public class MainActivityController {
     private MainActivityModel mam;
     private MainActivityView mav;
 
-    public MainActivityController(Context ctx, MainActivityModel mam, MainActivityView mav){
+    public MainActivityController(MainActivityModel mam, MainActivityView mav){
         this.ctx = ctx;
         this.mam = mam;
         this.mav = mav;
@@ -21,7 +21,7 @@ public class MainActivityController {
     /***
      * Set the fragment after check the application status
      */
-    private void SetView(){
+    public void setView(){
         boolean connected = this.mam.getConnectionStatus();
         if(connected){
 

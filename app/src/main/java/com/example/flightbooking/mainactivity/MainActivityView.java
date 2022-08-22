@@ -11,11 +11,9 @@ import com.example.flightbooking.R;
 
 public class MainActivityView {
 
-    private Context ctx;
     private MainActivity ma;
 
-    public MainActivityView(Context ctx, MainActivity ma){
-        this.ctx = ctx;
+    public MainActivityView(MainActivity ma){
         this.ma = ma;
     }
 
