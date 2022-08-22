@@ -27,7 +27,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
     @Override
     public void retryClick() {
         //NoConnection fragment Retry button clicked
-        Log.i("MainActivity","retryClick");
+        //Log.i("MainActivity","retryClick");
         this.mav.removeFragment();
         this.mav.setProgressBar(View.VISIBLE);
         this.mac.setView();

@@ -1,6 +1,7 @@
 package com.example.flightbooking.mainactivity;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 
 import androidx.fragment.app.Fragment;
@@ -24,6 +25,7 @@ public class MainActivityController {
      */
     public void setView(){
         boolean connected = this.mam.getConnectionStatus();
+        //Log.d("MainActivityController","setView conncted => "+connected);
         this.mav.setProgressBar(View.GONE);
         if(connected){
 

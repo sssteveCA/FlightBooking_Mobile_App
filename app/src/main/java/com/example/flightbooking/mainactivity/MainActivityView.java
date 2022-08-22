@@ -23,6 +23,7 @@ public class MainActivityView {
 
     public MainActivityView(MainActivity ma){
         this.ma = ma;
+        this.pb = this.ma.findViewById(R.id.main_activity_pb);
 
     }
 
