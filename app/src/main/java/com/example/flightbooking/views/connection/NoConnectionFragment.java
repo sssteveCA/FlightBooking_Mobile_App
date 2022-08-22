@@ -1,12 +1,16 @@
 package com.example.flightbooking.views.connection;
 
+import android.app.Activity;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.flightbooking.R;
 
@@ -16,6 +20,15 @@ import com.example.flightbooking.R;
  * create an instance of this fragment.
  */
 public class NoConnectionFragment extends Fragment {
+
+    public interface RetryListener{
+        //When retry button is pressed
+        public void retryClick();
+    }
+
+    public RetryListener retryListener;
+    private TextView tv_1;
+    private Button bt_1;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +74,14 @@ public class NoConnectionFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_no_connection, container, false);
+        View view = inflater.inflate(R.layout.fragment_no_connection, container, false);
+        tv_1 = view.findViewById(R.id.no_conn_frag_tv_1);
+        bt_1 = view.findViewById(R.id.no_conn_frag_bt_1);
+        return view;
+    }
+
+    @Override
+    public void onAttach(@NonNull Activity activity) {
+        super.onAttach(activity);
     }
 }
