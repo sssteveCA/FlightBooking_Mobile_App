@@ -1,13 +1,16 @@
 package com.example.flightbooking.fragments.mainmenu;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.TextView;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
+import com.example.flightbooking.R;
 import com.example.flightbooking.models.MenuItem;
 
 import java.util.List;
@@ -24,7 +27,19 @@ public class MainMenuAdapter extends ArrayAdapter<MenuItem> {
     }
 
     public View optimizeView(int pos, View convertView, ViewGroup parent){
-
+        ViewHolder vh = null;
+        if(convertView == null){
+            LayoutInflater inf = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            convertView = inf.inflate(R.layout.row,null);
+            vh = new ViewHolder();
+            vh.label = convertView.findViewById(R.id.main_menu_item_tv);
+            convertView.setTag(vh);
+        }//if(convertView == null){
+        else{
+            MenuItem mi = getItem(pos);
+            vh.label.setText(mi.getLabel());
+        }
+        return convertView;
     }
 
     private class ViewHolder{
