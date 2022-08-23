@@ -1,4 +1,4 @@
-package com.example.flightbooking.views.connection;
+package com.example.flightbooking.fragments.noconnection;
 
 import android.app.Activity;
 import android.os.Bundle;

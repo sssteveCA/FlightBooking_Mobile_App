@@ -3,13 +3,12 @@ package com.example.flightbooking;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 
 import com.example.flightbooking.mainactivity.MainActivityController;
 import com.example.flightbooking.mainactivity.MainActivityModel;
 import com.example.flightbooking.mainactivity.MainActivityView;
-import com.example.flightbooking.views.connection.NoConnectionFragment;
+import com.example.flightbooking.fragments.noconnection.NoConnectionFragment;
 
 public class MainActivity extends AppCompatActivity implements NoConnectionFragment.RetryListener {
 

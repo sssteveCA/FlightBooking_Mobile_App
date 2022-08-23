@@ -1,12 +1,9 @@
 package com.example.flightbooking.mainactivity;
 
 import android.content.Context;
-import android.util.Log;
 import android.view.View;
 
-import androidx.fragment.app.Fragment;
-
-import com.example.flightbooking.views.connection.NoConnectionFragment;
+import com.example.flightbooking.fragments.noconnection.NoConnectionFragment;
 
 public class MainActivityController {
 
