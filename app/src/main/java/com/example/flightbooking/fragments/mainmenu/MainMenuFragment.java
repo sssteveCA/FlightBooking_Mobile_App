@@ -67,6 +67,7 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        Log.i("MainMenuFragment","onCreateView");
         View view = inflater.inflate(R.layout.fragment_main_menu, container, false);
         Button bt_1 = view.findViewById(R.id.main_menu_frag_bt_1);
         ListView lv_1 = view.findViewById(R.id.main_menu_frag_lv_1);
