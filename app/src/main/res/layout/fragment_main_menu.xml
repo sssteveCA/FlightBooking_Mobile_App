@@ -23,6 +23,9 @@
             android:layout_height="wrap_content"
             android:layout_marginLeft="100dp"
             android:layout_marginRight="100dp"
-            android:text="APRI MENU" />
+            android:backgroundTint="#009688"
+            android:text="APRI MENU"
+            android:theme="bl"
+            app:rippleColor="@color/black" />
     </LinearLayout>
 </FrameLayout>
