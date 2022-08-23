@@ -71,6 +71,8 @@ public class MainMenuFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_main_menu, container, false);
         this.bt_1 = view.findViewById(R.id.main_menu_frag_bt_1);
         this.lv_1 = view.findViewById(R.id.main_menu_frag_lv_1);
+        this.mmm = new MainMenuModel(getActivity());
+        this.mmm.setMenu(); //Set ArrayList to create the ListView
         return view;
     }
 }

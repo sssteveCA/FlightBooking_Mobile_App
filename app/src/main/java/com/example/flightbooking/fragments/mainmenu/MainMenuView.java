@@ -1,6 +1,7 @@
 package com.example.flightbooking.fragments.mainmenu;
 
 import android.view.View;
+import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
@@ -8,15 +9,20 @@ import java.util.HashMap;
 
 public class MainMenuView {
 
-    private HashMap<String, View> widgets; //Widgets used in MainMenu
+    private Button showHide;
+    private ListView menuView;
 
-    public MainMenuView(){
-
+    public MainMenuView(ListView menuView, Button showHide){
+        this.menuView = menuView;
+        this.showHide = showHide;
     }
 
-    public HashMap<String, View> getWidgets(){return this.widgets;}
+    public Button getShowHide(){return this.showHide;}
+    public ListView getMenu(){return this.menuView;}
 
-    public void setWidgets(HashMap<String, View> widgets){this.widgets = widgets;}
+    public void setShowHide(Button show_hide){this.showHide = show_hide;}
+    public void setMenuView(ListView menuView){this.menuView = menuView;}
+
 
     public void setListView(ArrayList<String> items){
 

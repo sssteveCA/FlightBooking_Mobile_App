@@ -4,6 +4,7 @@ import android.content.Context;
 import android.widget.ListView;
 
 import com.example.flightbooking.common.Connection;
+import com.example.flightbooking.models.MenuItem;
 
 import java.util.ArrayList;
 import java.util.Arrays;
@@ -20,7 +21,7 @@ public class MainMenuModel {
     };
 
     private Context ctx;
-    private ArrayList<String> menuItems;
+    private ArrayList<MenuItem> menuItems;
     private boolean logged; //select menu to show(not logged menu or logged menu)
 
     public MainMenuModel(Context ctx){
@@ -28,7 +29,7 @@ public class MainMenuModel {
         this.menuItems = new ArrayList<>();
     }
 
-    public ArrayList<String> getMenuItems(){return this.menuItems;}
+    public ArrayList<MenuItem> getMenuItems(){return this.menuItems;}
     public boolean isLogged(){return this.logged;}
 
     public void setLogged(boolean logged){this.logged = logged;}
@@ -38,13 +39,19 @@ public class MainMenuModel {
      */
     public void setMenu(){
         this.menuItems.clear();
-        this.menuItems.addAll(Arrays.asList(MainMenuModel.globalItems));
+        for(String label: MainMenuModel.globalItems){
+            MenuItem mi = new MenuItem(label);
+            this.menuItems.add(mi);
+        }
         boolean connected = Connection.checkInternet(this.ctx);
         if(connected){
 
         }
         else{
-            this.menuItems.addAll(Arrays.asList(MainMenuModel.globalItems));
+            for(String label: MainMenuModel.notLoggedItems){
+                MenuItem mi = new MenuItem(label);
+                this.menuItems.add(mi);
+            }
         }
     }
 

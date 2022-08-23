@@ -23,7 +23,7 @@ public class MainMenuAdapter extends ArrayAdapter<MenuItem> {
     @NonNull
     @Override
     public View getView(int position, @Nullable View convertView, @NonNull ViewGroup parent) {
-        return super.getView(position, convertView, parent);
+        return optimizeView(position, convertView, parent);
     }
 
     public View optimizeView(int pos, View convertView, ViewGroup parent){
