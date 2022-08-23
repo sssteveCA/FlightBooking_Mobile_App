@@ -8,6 +8,7 @@
         android:id="@+id/main_menu_item_tv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:background="@drawable/menu_border"
         android:gravity="center"
         android:padding="10sp"
         android:text="TextView"
