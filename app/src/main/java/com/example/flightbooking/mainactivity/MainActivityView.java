@@ -21,7 +21,7 @@ public class MainActivityView {
     private MainActivity ma;
     private ProgressBar pb;
 
-    public MainActivityView(ProgressBar pb){
+    public MainActivityView(MainActivity ma, ProgressBar pb){
         this.ma = ma;
         this.pb = pb;
 
@@ -30,9 +30,9 @@ public class MainActivityView {
     public ProgressBar getPb(){return this.pb;}
     public void setPb(ProgressBar pb){this.pb = pb;}
 
-    public void removeFragment(){
+    public void removeFragment(int container){
         FragmentManager fm = this.ma.getSupportFragmentManager();
-        Fragment current_fragment = fm.findFragmentById(R.id.main_activity_fragment_container);
+        Fragment current_fragment = fm.findFragmentById(container);
         if(current_fragment != null){
             //Container has already a fragment
             FragmentTransaction ft = fm.beginTransaction();

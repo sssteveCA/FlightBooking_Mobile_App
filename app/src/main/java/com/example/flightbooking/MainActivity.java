@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
         setContentView(R.layout.activity_main);
         this.mam = new MainActivityModel(this);
         ProgressBar pb = findViewById(R.id.main_activity_pb);
-        this.mav = new MainActivityView(pb);
+        this.mav = new MainActivityView(this,pb);
         this.mav.getPb().setVisibility(View.VISIBLE);
         this.setView();
     }
@@ -31,7 +31,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
     public void retryClick() {
         //NoConnection fragment Retry button clicked
         //Log.i("MainActivity","retryClick");
-        this.mav.removeFragment();
+        this.mav.removeFragment(R.id.main_activity_fragment_container);
         this.mav.getPb().setVisibility(View.VISIBLE);
         this.setView();
     }
