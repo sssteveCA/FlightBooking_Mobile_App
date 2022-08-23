@@ -36,9 +36,10 @@ public class MainMenuAdapter extends ArrayAdapter<MenuItem> {
             convertView.setTag(vh);
         }//if(convertView == null){
         else{
-            MenuItem mi = getItem(pos);
-            vh.label.setText(mi.getLabel());
+            vh = (ViewHolder)convertView.getTag();
         }
+        MenuItem mi = getItem(pos);
+        vh.label.setText(mi.getLabel());
         return convertView;
     }
 

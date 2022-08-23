@@ -25,7 +25,6 @@
             android:layout_marginRight="100dp"
             android:backgroundTint="#009688"
             android:text="APRI IL MENU"
-            android:theme="bl"
             app:rippleColor="@color/black" />
     </LinearLayout>
 </FrameLayout>
