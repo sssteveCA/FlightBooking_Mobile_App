@@ -28,8 +28,8 @@ public class NoConnectionFragment extends Fragment implements View.OnClickListen
     }
 
     public RetryListener retryListener;
-    private TextView tv_1;
-    private Button bt_1;
+    private TextView tv_error;
+    private Button bt_retry;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -76,9 +76,9 @@ public class NoConnectionFragment extends Fragment implements View.OnClickListen
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_no_connection, container, false);
-        tv_1 = view.findViewById(R.id.no_conn_frag_tv_1);
-        bt_1 = view.findViewById(R.id.no_conn_frag_bt_1);
-        bt_1.setOnClickListener(this);
+        tv_error = view.findViewById(R.id.no_conn_frag_tv_1);
+        bt_retry = view.findViewById(R.id.no_conn_frag_bt_1);
+        bt_retry.setOnClickListener(this);
         return view;
     }
 

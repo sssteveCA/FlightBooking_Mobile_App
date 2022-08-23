@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.ListView;
 
 import com.example.flightbooking.R;
 
@@ -16,6 +18,11 @@ import com.example.flightbooking.R;
  * create an instance of this fragment.
  */
 public class MainMenuFragment extends Fragment {
+
+    private MainMenuModel mmm;
+    private MainMenuView mmv;
+    private ListView lv_1; //Menu items ListView
+    private Button bt_1; //Button to open or close the main menu
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +68,9 @@ public class MainMenuFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_main_menu, container, false);
+        View view = inflater.inflate(R.layout.fragment_main_menu, container, false);
+        this.bt_1 = view.findViewById(R.id.main_menu_frag_bt_1);
+        this.lv_1 = view.findViewById(R.id.main_menu_frag_lv_1);
+        return view;
     }
 }
