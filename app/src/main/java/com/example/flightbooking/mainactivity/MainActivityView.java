@@ -21,11 +21,14 @@ public class MainActivityView {
     private MainActivity ma;
     private ProgressBar pb;
 
-    public MainActivityView(MainActivity ma){
+    public MainActivityView(ProgressBar pb){
         this.ma = ma;
-        this.pb = this.ma.findViewById(R.id.main_activity_pb);
+        this.pb = pb;
 
     }
+
+    public ProgressBar getPb(){return this.pb;}
+    public void setPb(ProgressBar pb){this.pb = pb;}
 
     public void removeFragment(){
         FragmentManager fm = this.ma.getSupportFragmentManager();
@@ -39,25 +42,19 @@ public class MainActivityView {
         }
     }
 
-    public void updateFragment(Fragment fragment){
+    public void updateFragment(int container, Fragment fragment){
         FragmentManager fm = this.ma.getSupportFragmentManager();
-        Fragment current_fragment = fm.findFragmentById(R.id.main_activity_fragment_container);
+        Fragment current_fragment = fm.findFragmentById(container);
         FragmentTransaction ft = fm.beginTransaction();
         ft.setReorderingAllowed(true);
         if(current_fragment != null){
             //Container has already a fragment
-            ft.add(R.id.main_activity_fragment_container,fragment,null);
+            ft.add(container,fragment,null);
         }//if(current_fragment != null){
         else{
-            ft.replace(R.id.main_activity_fragment_container,fragment,null);
+            ft.replace(container,fragment,null);
         }
         ft.commit();
     }
 
-    public void setProgressBar(int visibility){
-        if(visibility == View.VISIBLE || visibility == View.INVISIBLE || visibility == View.GONE)
-            this.pb.setVisibility(visibility);
-    }
-
-    public ProgressBar getProgressBar(){return this.pb;}
 }
