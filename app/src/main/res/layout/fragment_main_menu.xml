@@ -27,6 +27,8 @@
             android:id="@+id/main_menu_frag_bt_1"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
+            android:layout_marginLeft="100dp"
+            android:layout_marginRight="100dp"
             android:backgroundTint="#009688"
             android:text="APRI IL MENU"
             android:textColor="#000000"
