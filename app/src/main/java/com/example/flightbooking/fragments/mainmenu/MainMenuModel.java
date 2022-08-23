@@ -11,6 +11,9 @@ import java.util.Arrays;
 
 public class MainMenuModel {
 
+    public static final int MENU_HIDDEN = 0;
+    public static final int MENU_SHOWN = 1;
+
     //These items are present in any case(if user is logged or not)
     private static final String[] globalItems = {
             "Home","Chi siamo","News","Contatti"
@@ -23,6 +26,7 @@ public class MainMenuModel {
     private Context ctx;
     private ArrayList<MenuItem> menuItems;
     private boolean logged; //select menu to show(not logged menu or logged menu)
+    private int menuStatus; //Status of menu (hidden or expaned)
 
     public MainMenuModel(Context ctx){
         this.ctx = ctx;
@@ -30,9 +34,11 @@ public class MainMenuModel {
     }
 
     public ArrayList<MenuItem> getMenuItems(){return this.menuItems;}
+    public int getMenuStatus(){return this.menuStatus;}
     public boolean isLogged(){return this.logged;}
 
     public void setLogged(boolean logged){this.logged = logged;}
+    public void setMenuStatus(int menuStatus){this.menuStatus = menuStatus;}
 
     /**
      * Set the menu items list for non logged users

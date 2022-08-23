@@ -17,12 +17,10 @@ import com.example.flightbooking.R;
  * Use the {@link MainMenuFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainMenuFragment extends Fragment {
+public class MainMenuFragment extends Fragment implements View.OnClickListener{
 
     private MainMenuModel mmm;
     private MainMenuView mmv;
-    private ListView lv_1; //Menu items ListView
-    private Button bt_1; //Button to open or close the main menu
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -69,10 +67,23 @@ public class MainMenuFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_main_menu, container, false);
-        this.bt_1 = view.findViewById(R.id.main_menu_frag_bt_1);
-        this.lv_1 = view.findViewById(R.id.main_menu_frag_lv_1);
+        Button bt_1 = view.findViewById(R.id.main_menu_frag_bt_1);
+        ListView lv_1 = view.findViewById(R.id.main_menu_frag_lv_1);
         this.mmm = new MainMenuModel(getActivity());
         this.mmm.setMenu(); //Set ArrayList to create the ListView
+        MainMenuAdapter mma = new MainMenuAdapter(getActivity(),R.layout.row,this.mmm.getMenuItems());
+        this.mmv = new MainMenuView(lv_1,bt_1);
+        this.mmv.getMenu().setAdapter(mma);
         return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
+            case R.id.main_menu_frag_bt_1:
+                break;
+            default:
+                break;
+        }
     }
 }
