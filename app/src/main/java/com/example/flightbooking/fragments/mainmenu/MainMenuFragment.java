@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -71,19 +72,40 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener{
         ListView lv_1 = view.findViewById(R.id.main_menu_frag_lv_1);
         this.mmm = new MainMenuModel(getActivity());
         this.mmm.setMenu(); //Set ArrayList to create the ListView
+        this.mmm.setMenuStatus(MainMenuModel.MENU_HIDDEN);
         MainMenuAdapter mma = new MainMenuAdapter(getActivity(),R.layout.row,this.mmm.getMenuItems());
         this.mmv = new MainMenuView(lv_1,bt_1);
         this.mmv.getMenu().setAdapter(mma);
+        this.mmv.getShowHide().setOnClickListener(this);
         return view;
     }
 
     @Override
     public void onClick(View view) {
+        Log.i("MainMenuFragment","Bt Show Hide click");
         switch(view.getId()){
             case R.id.main_menu_frag_bt_1:
+                this.changeMenuVisibility();
                 break;
             default:
                 break;
+        }
+    }
+
+    /**
+     * Change menu visibility (show/hide) on button click
+     */
+    public void changeMenuVisibility(){
+        int status = this.mmm.getMenuStatus();
+        if(status == MainMenuModel.MENU_HIDDEN){
+            this.mmm.setMenuStatus(MainMenuModel.MENU_SHOWN);
+            this.mmv.getMenu().setVisibility(View.VISIBLE);
+            this.mmv.getShowHide().setText("Chiudi il menu");
+        }//if(status == MainMenuModel.MENU_HIDDEN){
+        else{
+            this.mmm.setMenuStatus(MainMenuModel.MENU_HIDDEN);
+            this.mmv.getMenu().setVisibility(View.GONE);
+            this.mmv.getShowHide().setText("Apri il menu");
         }
     }
 }
