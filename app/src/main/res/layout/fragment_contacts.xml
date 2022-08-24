@@ -11,9 +11,9 @@
         android:layout_height="match_parent">
 
         <TextView
-            android:id="@+id/cont_frag_tv_header"
+            android:id="@+id/frag_cont_tv_header"
             android:layout_width="0dp"
-            android:layout_height="40dp"
+            android:layout_height="wrap_content"
             android:layout_marginTop="30dp"
             android:gravity="center"
             android:text="CONTATTI"
@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/cont_frag_tv_from"
+            android:id="@+id/frag_cont_tv_from"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -34,10 +34,10 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cont_frag_tv_header" />
+            app:layout_constraintTop_toBottomOf="@+id/frag_cont_tv_header" />
 
         <EditText
-            android:id="@+id/editTextTextEmailAddress"
+            android:id="@+id/frag_cont_et_from"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -47,10 +47,10 @@
             android:inputType="textEmailAddress"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cont_frag_tv_from" />
+            app:layout_constraintTop_toBottomOf="@+id/frag_cont_tv_from" />
 
         <TextView
-            android:id="@+id/cont_frag_tv_subject"
+            android:id="@+id/frag_cont_tv_subject"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -60,10 +60,10 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextEmailAddress" />
+            app:layout_constraintTop_toBottomOf="@+id/frag_cont_et_from" />
 
         <EditText
-            android:id="@+id/editTextTextPersonName"
+            android:id="@+id/frag_cont_et_subject"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -73,10 +73,10 @@
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cont_frag_tv_subject" />
+            app:layout_constraintTop_toBottomOf="@+id/frag_cont_tv_subject" />
 
         <TextView
-            android:id="@+id/cont_frag_tv_message"
+            android:id="@+id/frag_cont_tv_message"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -86,10 +86,10 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName" />
+            app:layout_constraintTop_toBottomOf="@+id/frag_cont_et_subject" />
 
         <EditText
-            android:id="@+id/cont_frag_et_message"
+            android:id="@+id/frag_cont_et_message"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -102,31 +102,31 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cont_frag_tv_message" />
+            app:layout_constraintTop_toBottomOf="@+id/frag_cont_tv_message" />
 
         <Button
-            android:id="@+id/cont_frag_bt_send"
+            android:id="@+id/frag_cont_bt_send"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="52dp"
+            android:layout_marginStart="60dp"
             android:layout_marginTop="40dp"
             android:backgroundTint="#2196F3"
             android:padding="15dp"
             android:text="Invia"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cont_frag_et_message" />
+            app:layout_constraintTop_toBottomOf="@+id/frag_cont_et_message" />
 
         <Button
-            android:id="@+id/button2"
+            android:id="@+id/frag_cont_bt_reset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="60dp"
-            android:backgroundTint="#FF1100"
+            android:backgroundTint="#F44336"
             android:padding="15sp"
             android:text="Annulla"
             app:layout_constraintEnd_toEndOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/cont_frag_et_message" />
+            app:layout_constraintTop_toBottomOf="@+id/frag_cont_et_message" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>
 
