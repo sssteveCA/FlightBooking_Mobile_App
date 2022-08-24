@@ -3,6 +3,8 @@
   <component name="DesignSurface">
     <option name="filePathToZoomLevelMap">
       <map>
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/FlightBooking/app/src/main/res/drawable/android_background.xml" value="0.105" />
+        <entry key="..\:/Users/Acer/AndroidStudioProjects/FlightBooking/app/src/main/res/drawable/ic_launcher_background.xml" value="0.105" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/FlightBooking/app/src/main/res/drawable/menu_border.xml" value="0.1365" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/FlightBooking/app/src/main/res/layout/activity_main.xml" value="0.19" />
         <entry key="..\:/Users/Acer/AndroidStudioProjects/FlightBooking/app/src/main/res/layout/fragment_about_us.xml" value="0.2" />

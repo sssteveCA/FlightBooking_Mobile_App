@@ -11,26 +11,26 @@
         android:layout_height="match_parent"
         android:orientation="vertical">
 
-        <LinearLayout
+        <ImageView
+            android:id="@+id/imageView2"
             android:layout_width="match_parent"
-            android:layout_height="match_parent"
-            android:orientation="vertical">
+            android:layout_height="wrap_content"
+            android:src="@drawable/flightbookinglogo" />
 
-            <TextView
-                android:id="@+id/textView2"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:inputType="textMultiLine"
-                android:text="Flight Booking è un sito dove è possibile organizzare una vacanza in modo completo.
+        <TextView
+            android:id="@+id/textView2"
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:inputType="textMultiLine"
+            android:text="Flight Booking è un sito dove è possibile organizzare una vacanza in modo completo.
 
 Permette di prenotare uno o più voli con una compagnia aerea a propria scelta, oltre ad avere la possibilità di prenotare anche un soggiorno in albergo e una macchina a noleggio.
 
 Infine ti consente anche di rimanere aggiornato sull'andamento dei prezzi delle compagnie aeree, occasionali sconti, eventi, informazioni sulla disponibilità delle tratte aeree e molto altro ancora.
 
 Se vuoi maggiori informazioni o hai dei dubbi puoi richiedere assistenza nella pagina dei Contatti"
-                android:textSize="18sp"
-                android:textStyle="bold" />
+            android:textSize="18sp"
+            android:textStyle="bold" />
 
-        </LinearLayout>
     </LinearLayout>
 </FrameLayout>
