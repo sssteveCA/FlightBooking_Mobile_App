@@ -40,15 +40,33 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
      */
     public void setFragment(String label){
         boolean require_connection = this.mam.isConnectionRequired(label);
-        boolean connected = this.mam.getConnectionStatus();
-        //Log.d("MainActivityController","setView conncted => "+connected);
-        if(connected){
+        if(require_connection){
+            //For this item internet is required
+            boolean connected = this.mam.getConnectionStatus();
+            if(connected){
 
-        }//if(connected){
+            }//if(connected){
+            else{
+                this.mav.updateFragment(R.id.main_menu_fragment_container, new MainMenuFragment());
+                this.mav.updateFragment(R.id.main_activity_fragment_container, new NoConnectionFragment());
+            }
+        }//if(require_connection){
         else{
-            this.mav.updateFragment(R.id.main_menu_fragment_container, new MainMenuFragment());
-            this.mav.updateFragment(R.id.main_activity_fragment_container, new NoConnectionFragment());
-        }
+            if(label.equalsIgnoreCase("Chi siamo")){
+
+            }
+            else if(label.equalsIgnoreCase("Contatti")){
+
+            }
+            else if(label.equalsIgnoreCase("Login")){
+
+            }
+            else if(label.equalsIgnoreCase("Registrati")){
+
+            }
+        }//else di if(require_connection){
+
+
 
     }
 
