@@ -13,6 +13,7 @@ import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.flightbooking.R;
+import com.example.flightbooking.models.MenuItem;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -82,8 +83,10 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener, 
         return view;
     }
 
+    //View.OnClickListener
     @Override
     public void onClick(View view) {
+
         switch(view.getId()){
             case R.id.main_menu_frag_bt_1:
                 this.changeMenuVisibility();
@@ -110,8 +113,11 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener, 
         }
     }
 
+    //AdapterView.OnItemClickListener
     @Override
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
+        MenuItem mi = (MenuItem) adapterView.getItemAtPosition(i);
+        String label = mi.getLabel();
+        Log.i("MainMenuFragment","onItemClick label => "+label);
     }
 }

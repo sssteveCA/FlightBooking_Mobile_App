@@ -27,18 +27,22 @@ public class MainMenuModel {
     private ArrayList<MenuItem> menuItems;
     private boolean logged; //select menu to show(not logged menu or logged menu)
     private int menuStatus; //Status of menu (hidden or expaned)
+    private String lastLabelClicked; //Last menu item label clicked
 
     public MainMenuModel(Context ctx){
         this.ctx = ctx;
         this.menuItems = new ArrayList<>();
+        this.lastLabelClicked = MainMenuModel.globalItems[0]; //Trigger menu item 'Home' click
     }
 
     public ArrayList<MenuItem> getMenuItems(){return this.menuItems;}
     public int getMenuStatus(){return this.menuStatus;}
     public boolean isLogged(){return this.logged;}
+    public String getLastLabelClicked(){return this.lastLabelClicked;}
 
     public void setLogged(boolean logged){this.logged = logged;}
     public void setMenuStatus(int menuStatus){this.menuStatus = menuStatus;}
+    public void setLastLabelClicked(String lastLabelClicked){this.lastLabelClicked = lastLabelClicked;}
 
     /**
      * Set the menu items list for non logged users
