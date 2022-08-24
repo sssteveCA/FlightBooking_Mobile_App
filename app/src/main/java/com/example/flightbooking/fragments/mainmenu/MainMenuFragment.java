@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
@@ -18,7 +19,7 @@ import com.example.flightbooking.R;
  * Use the {@link MainMenuFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainMenuFragment extends Fragment implements View.OnClickListener{
+public class MainMenuFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener{
 
     private MainMenuModel mmm;
     private MainMenuView mmv;
@@ -77,6 +78,7 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener{
         this.mmv = new MainMenuView(lv_1,bt_1);
         this.mmv.getMenu().setAdapter(mma);
         this.mmv.getShowHide().setOnClickListener(this);
+        this.mmv.getMenu().setOnItemClickListener(this);
         return view;
     }
 
@@ -106,5 +108,10 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener{
             this.mmv.getMenu().setVisibility(View.GONE);
             this.mmv.getShowHide().setText("Apri il menu");
         }
+    }
+
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+
     }
 }
