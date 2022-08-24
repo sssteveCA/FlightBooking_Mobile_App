@@ -1,7 +1,9 @@
 package com.example.flightbooking.fragments.mainmenu;
 
+import android.app.Activity;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -12,6 +14,7 @@ import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
+import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.models.MenuItem;
 
@@ -22,8 +25,14 @@ import com.example.flightbooking.models.MenuItem;
  */
 public class MainMenuFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener{
 
+    //When user click on main menu item
+    public interface OnMainMenuItemClick{
+        public void mainMenuItemClick(String label);
+    }
+
     private MainMenuModel mmm;
     private MainMenuView mmv;
+    public OnMainMenuItemClick itemClickListener = null;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -54,6 +63,13 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener, 
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(@NonNull Activity activity) {
+        super.onAttach(activity);
+        this.itemClickListener = (MainActivity)activity;
+
     }
 
     @Override
@@ -119,5 +135,6 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener, 
         MenuItem mi = (MenuItem) adapterView.getItemAtPosition(i);
         String label = mi.getLabel();
         Log.i("MainMenuFragment","onItemClick label => "+label);
+        this.itemClickListener.mainMenuItemClick(label);
     }
 }

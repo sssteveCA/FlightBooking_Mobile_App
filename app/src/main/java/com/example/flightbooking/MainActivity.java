@@ -3,6 +3,7 @@ package com.example.flightbooking;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -11,7 +12,7 @@ import com.example.flightbooking.mainactivity.MainActivityModel;
 import com.example.flightbooking.mainactivity.MainActivityView;
 import com.example.flightbooking.fragments.noconnection.NoConnectionFragment;
 
-public class MainActivity extends AppCompatActivity implements NoConnectionFragment.RetryListener {
+public class MainActivity extends AppCompatActivity implements NoConnectionFragment.RetryListener, MainMenuFragment.OnMainMenuItemClick {
 
     private MainActivityModel mam;
     private MainActivityView mav;
@@ -51,5 +52,11 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
             this.mav.updateFragment(R.id.main_activity_fragment_container, new NoConnectionFragment());
         }
 
+    }
+
+    //MainMenuFragment.OnMainMenuItemClick
+    @Override
+    public void mainMenuItemClick(String label) {
+        Log.i("MainActivity","mainMenuItemClick => "+label);
     }
 }
