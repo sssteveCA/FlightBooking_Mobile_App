@@ -24,8 +24,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
         this.mam = new MainActivityModel(this);
         ProgressBar pb = findViewById(R.id.main_activity_pb);
         this.mav = new MainActivityView(this,pb);
-        this.mav.getPb().setVisibility(View.VISIBLE);
-        this.setView();
+        this.setFragment(null);
     }
 
     @Override
@@ -33,17 +32,16 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
         //NoConnection fragment Retry button clicked
         //Log.i("MainActivity","retryClick");
         this.mav.removeFragment(R.id.main_activity_fragment_container);
-        this.mav.getPb().setVisibility(View.VISIBLE);
-        this.setView();
+        this.setFragment(null);
     }
 
     /**
      * Set the fragment after check the application status
      */
-    public void setView(){
+    public void setFragment(String label){
+        boolean require_connection = this.mam.isConnectionRequired(label);
         boolean connected = this.mam.getConnectionStatus();
         //Log.d("MainActivityController","setView conncted => "+connected);
-        this.mav.getPb().setVisibility(View.GONE);
         if(connected){
 
         }//if(connected){
@@ -57,6 +55,6 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
     //MainMenuFragment.OnMainMenuItemClick
     @Override
     public void mainMenuItemClick(String label) {
-        Log.i("MainActivity","mainMenuItemClick => "+label);
+
     }
 }

@@ -134,7 +134,6 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener, 
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         MenuItem mi = (MenuItem) adapterView.getItemAtPosition(i);
         String label = mi.getLabel();
-        Log.i("MainMenuFragment","onItemClick label => "+label);
         this.itemClickListener.mainMenuItemClick(label);
     }
 }

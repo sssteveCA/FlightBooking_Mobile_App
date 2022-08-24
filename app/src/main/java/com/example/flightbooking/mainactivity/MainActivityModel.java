@@ -4,6 +4,10 @@ import android.content.Context;
 
 import com.example.flightbooking.common.Connection;
 
+import java.util.Arrays;
+import java.util.List;
+import java.util.Locale;
+
 public class MainActivityModel {
 
     private Context ctx;
@@ -22,5 +26,18 @@ public class MainActivityModel {
         //return Connection.checkInternet();
         this.connected = Connection.checkInternet(this.ctx);
         return this.connected;
+    }
+
+    /**
+     * Check if particular menu item by label require internet connection
+     */
+    public boolean isConnectionRequired(String label){
+        boolean required = false;
+        List internetItems = Arrays.asList("home","news"); //Label items that require internet
+        String lcLabel = label.toLowerCase(); //Convert all character to lower case for insensitive comparison
+        if(internetItems.contains(lcLabel)){
+            required = true;
+        }
+        return required;
     }
 }
