@@ -112,7 +112,7 @@ public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickL
     }
 
     /**
-     * Change menu visibility (show/hide) on button click
+     * Change menu visibility (show/hide)
      */
     public void changeMenuVisibility(){
         int status = this.mmnlm.getMenuStatus();
@@ -133,6 +133,7 @@ public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickL
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         MenuItem mi = (MenuItem) adapterView.getItemAtPosition(i);
         String label = mi.getLabel();
+        this.changeMenuVisibility();
         this.itemClickListener.mainMenuItemClick(label);
     }
 }
