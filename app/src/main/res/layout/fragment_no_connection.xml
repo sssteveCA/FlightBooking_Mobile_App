@@ -24,7 +24,7 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <Button
-            android:id="@+id/no_conn_frag_bt_1"
+            android:id="@+id/no_conn_frag_bt_retry"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="30dp"

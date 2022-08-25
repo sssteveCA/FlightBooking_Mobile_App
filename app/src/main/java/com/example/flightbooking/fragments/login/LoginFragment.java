@@ -7,6 +7,9 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.CheckBox;
+import android.widget.EditText;
 
 import com.example.flightbooking.R;
 
@@ -15,7 +18,10 @@ import com.example.flightbooking.R;
  * Use the {@link LoginFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LoginFragment extends Fragment {
+public class LoginFragment extends Fragment implements View.OnClickListener {
+
+    private LoginFragmentModel lfm;
+    private LoginFragmentView lfv;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +67,26 @@ public class LoginFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_login, container, false);
+        View view = inflater.inflate(R.layout.fragment_login, container, false);
+        EditText et_username = view.findViewById(R.id.frag_login_et_username);
+        EditText et_password = view.findViewById(R.id.frag_login_et_password);
+        CheckBox cb_show_pass = view.findViewById(R.id.frag_login_cb_show_pass);
+        Button bt_login = view.findViewById(R.id.frag_login_bt_login);
+        Button bt_reset = view.findViewById(R.id.frag_login_bt_reset);
+        this.lfv = new LoginFragmentView(et_username,et_password,cb_show_pass,bt_login,bt_reset);
+        this.lfv.getBtLogin().setOnClickListener(this);
+        this.lfv.getBtReset().setOnClickListener(this);
+        return view;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
+            case R.id.frag_login_bt_login:
+                break;
+            case R.id.frag_login_bt_reset:
+                this.lfv.resetAll();
+                break;
+        }
     }
 }

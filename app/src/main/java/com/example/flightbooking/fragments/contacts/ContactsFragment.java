@@ -85,8 +85,7 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
             case R.id.frag_cont_bt_send:
                 break;
             case R.id.frag_cont_bt_reset:
-                break;
-            default:
+                this.cfv.resetAll();
                 break;
         }
     }

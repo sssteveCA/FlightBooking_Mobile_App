@@ -77,7 +77,7 @@ public class NoConnectionFragment extends Fragment implements View.OnClickListen
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_no_connection, container, false);
         tv_error = view.findViewById(R.id.no_conn_frag_tv_1);
-        bt_retry = view.findViewById(R.id.no_conn_frag_bt_1);
+        bt_retry = view.findViewById(R.id.no_conn_frag_bt_retry);
         bt_retry.setOnClickListener(this);
         return view;
     }
@@ -92,10 +92,8 @@ public class NoConnectionFragment extends Fragment implements View.OnClickListen
     public void onClick(View view) {
         int id = view.getId();
         switch(id){
-            case R.id.no_conn_frag_bt_1:
+            case R.id.no_conn_frag_bt_retry:
                 this.retryListener.retryClick();
-                break;
-            default:
                 break;
         }
     }
