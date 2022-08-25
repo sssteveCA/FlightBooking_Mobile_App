@@ -17,4 +17,19 @@ public class ContactsFragmentView {
         this.bt_send = bt_send;
         this.bt_reset = bt_reset;
     }
+
+    public EditText getEtFrom(){return this.et_from;}
+    public EditText getEtSubject(){return this.et_subject;}
+    public EditText getEtMessage(){return this.et_message;}
+    public Button getBtSend(){return this.bt_send;}
+    public Button getBtReset(){return this.bt_reset;}
+
+    /**
+     * Clear all Contacts EditText values
+     */
+    public void resetAll(){
+        this.et_from.setText("");
+        this.et_subject.setText("");
+        this.et_message.setText("");
+    }
 }
