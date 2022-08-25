@@ -34,6 +34,26 @@ public class MainActivityModel {
     }
 
     /**
+     * Get the menu item fragment package clicked by the user
+     * @param label
+     * @return
+     */
+    public String getMenuItemFragmentPackage(String label){
+        String pkg = "";
+        if(label.equalsIgnoreCase("Home"))
+            pkg = "";
+        else if(label.equalsIgnoreCase("Chi siamo"))
+            pkg = "com.example.flightbooking.fragments.aboutus.AboutUsFragment";
+        else if(label.equalsIgnoreCase("Contatti"))
+            pkg = "com.example.flightbooking.fragments.contacts.ContactsFragment";
+        else if(label.equalsIgnoreCase("Login"))
+            pkg = "com.example.flightbooking.fragments.login.LoginFragment";
+        else if(label.equalsIgnoreCase("Registrati"))
+            pkg = "com.example.flightbooking.fragments.subscribe.SubscribeFragment";
+        return pkg;
+    }
+
+    /**
      * Check if particular menu item by label require internet connection
      */
     public boolean isConnectionRequired(String label){

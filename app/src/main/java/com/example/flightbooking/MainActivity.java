@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
         this.mam = new MainActivityModel(this);
         ProgressBar pb = findViewById(R.id.main_activity_pb);
         this.mav = new MainActivityView(this,pb);
-        this.setFragment("Home");
+        this.setFragments("Home");
     }
 
     @Override
@@ -30,19 +30,19 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
         //NoConnection fragment Retry button clicked
         //Log.i("MainActivity","retryClick");
         this.mav.removeFragment(R.id.main_activity_fragment_container);
-        this.setFragment("Home");
+        this.setFragments("Home");
     }
 
     /**
      * Set the fragment after check the application status
      */
-    public void setFragment(String label){
+    public void setFragments(String label){
         boolean userLogged = this.mam.isUserLogged();
         if(userLogged){
             //User is logged with its account
         }//if(userLogged){
         {
-
+            this.mav.updateFragment(R.id.main_menu_fragment_container, new MainMenuNotLoggedFragment());
         }
         boolean require_connection = this.mam.isConnectionRequired(label);
         if(require_connection){
@@ -52,23 +52,12 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
 
             }//if(connected){
             else{
-                this.mav.updateFragment(R.id.main_menu_fragment_container, new MainMenuNotLoggedFragment());
+
                 this.mav.updateFragment(R.id.main_activity_fragment_container, new NoConnectionFragment());
             }
         }//if(require_connection){
         else{
-            if(label.equalsIgnoreCase("Chi siamo")){
 
-            }
-            else if(label.equalsIgnoreCase("Contatti")){
-
-            }
-            else if(label.equalsIgnoreCase("Login")){
-
-            }
-            else if(label.equalsIgnoreCase("Registrati")){
-
-            }
         }//else di if(require_connection){
 
 
