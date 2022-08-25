@@ -22,7 +22,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
         this.mam = new MainActivityModel(this);
         ProgressBar pb = findViewById(R.id.main_activity_pb);
         this.mav = new MainActivityView(this,pb);
-        this.setFragment(null);
+        this.setFragment("Home");
     }
 
     @Override
@@ -30,13 +30,20 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
         //NoConnection fragment Retry button clicked
         //Log.i("MainActivity","retryClick");
         this.mav.removeFragment(R.id.main_activity_fragment_container);
-        this.setFragment(null);
+        this.setFragment("Home");
     }
 
     /**
      * Set the fragment after check the application status
      */
     public void setFragment(String label){
+        boolean userLogged = this.mam.isUserLogged();
+        if(userLogged){
+            //User is logged with its account
+        }//if(userLogged){
+        {
+
+        }
         boolean require_connection = this.mam.isConnectionRequired(label);
         if(require_connection){
             //For this item internet is required

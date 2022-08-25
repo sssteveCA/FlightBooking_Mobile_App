@@ -11,10 +11,16 @@ public class MainActivityModel {
 
     private Context ctx;
     private boolean connected;
+    private boolean userLogged; //Check if user is logged
 
     public MainActivityModel(Context ctx){
+
         this.ctx = ctx;
+        this.connected = false;
+        this.userLogged = false;
     }
+
+    public boolean isUserLogged(){return this.userLogged;}
 
     /***
      *
@@ -39,4 +45,6 @@ public class MainActivityModel {
         else
             return true;
     }
+
+
 }
