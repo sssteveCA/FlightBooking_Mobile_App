@@ -29,8 +29,8 @@ public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickL
         public void mainMenuItemClick(String label);
     }
 
-    private MainMenuNotLoggedModel mmm;
-    private MainMenuNotLoggedView mmv;
+    private MainMenuNotLoggedModel mmnlm;
+    private MainMenuNotLoggedView mmnlv;
     public OnMainMenuItemClick itemClickListener = null;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -87,14 +87,14 @@ public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickL
         View view = inflater.inflate(R.layout.fragment_main_menu_not_logged, container, false);
         Button bt_1 = view.findViewById(R.id.main_menu_frag_bt_1);
         ListView lv_1 = view.findViewById(R.id.main_menu_frag_lv_1);
-        this.mmm = new MainMenuNotLoggedModel(getActivity());
-        this.mmm.setMenu(); //Set ArrayList to create the ListView
-        this.mmm.setMenuStatus(MainMenuNotLoggedModel.MENU_HIDDEN);
-        MainMenuNotLoggedAdapter mma = new MainMenuNotLoggedAdapter(getActivity(),R.layout.row,this.mmm.getMenuItems());
-        this.mmv = new MainMenuNotLoggedView(lv_1,bt_1);
-        this.mmv.getMenu().setAdapter(mma);
-        this.mmv.getShowHide().setOnClickListener(this);
-        this.mmv.getMenu().setOnItemClickListener(this);
+        this.mmnlm = new MainMenuNotLoggedModel(getActivity());
+        this.mmnlm.setMenu(); //Set ArrayList to create the ListView
+        this.mmnlm.setMenuStatus(MainMenuNotLoggedModel.MENU_HIDDEN);
+        MainMenuNotLoggedAdapter mma = new MainMenuNotLoggedAdapter(getActivity(),R.layout.row,this.mmnlm.getMenuItems());
+        this.mmnlv = new MainMenuNotLoggedView(lv_1,bt_1);
+        this.mmnlv.getMenu().setAdapter(mma);
+        this.mmnlv.getShowHide().setOnClickListener(this);
+        this.mmnlv.getMenu().setOnItemClickListener(this);
         return view;
     }
 
@@ -115,16 +115,16 @@ public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickL
      * Change menu visibility (show/hide) on button click
      */
     public void changeMenuVisibility(){
-        int status = this.mmm.getMenuStatus();
+        int status = this.mmnlm.getMenuStatus();
         if(status == MainMenuNotLoggedModel.MENU_HIDDEN){
-            this.mmm.setMenuStatus(MainMenuNotLoggedModel.MENU_SHOWN);
-            this.mmv.getMenu().setVisibility(View.VISIBLE);
-            this.mmv.getShowHide().setText("Chiudi il menu");
+            this.mmnlm.setMenuStatus(MainMenuNotLoggedModel.MENU_SHOWN);
+            this.mmnlv.getMenu().setVisibility(View.VISIBLE);
+            this.mmnlv.getShowHide().setText("Chiudi il menu");
         }//if(status == MainMenuModel.MENU_HIDDEN){
         else{
-            this.mmm.setMenuStatus(MainMenuNotLoggedModel.MENU_HIDDEN);
-            this.mmv.getMenu().setVisibility(View.GONE);
-            this.mmv.getShowHide().setText("Apri il menu");
+            this.mmnlm.setMenuStatus(MainMenuNotLoggedModel.MENU_HIDDEN);
+            this.mmnlv.getMenu().setVisibility(View.GONE);
+            this.mmnlv.getShowHide().setText("Apri il menu");
         }
     }
 
