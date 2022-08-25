@@ -22,14 +22,14 @@ import com.example.flightbooking.R;
  */
 public class NoConnectionFragment extends Fragment implements View.OnClickListener {
 
+    NoConnectionFragmentView ncfv;
+
     public interface RetryListener{
         //When retry button is pressed
         public void retryClick();
     }
 
     public RetryListener retryListener;
-    private TextView tv_error;
-    private Button bt_retry;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -76,9 +76,9 @@ public class NoConnectionFragment extends Fragment implements View.OnClickListen
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_no_connection, container, false);
-        tv_error = view.findViewById(R.id.no_conn_frag_tv_1);
-        bt_retry = view.findViewById(R.id.no_conn_frag_bt_retry);
-        bt_retry.setOnClickListener(this);
+        Button bt_retry = view.findViewById(R.id.no_conn_frag_bt_retry);
+        this.ncfv = new NoConnectionFragmentView(bt_retry);
+        this.ncfv.getBtRetry().setOnClickListener(this);
         return view;
     }
 
