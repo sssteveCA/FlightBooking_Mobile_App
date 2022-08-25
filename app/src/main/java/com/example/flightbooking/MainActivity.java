@@ -52,7 +52,6 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
 
             }//if(connected){
             else{
-
                 this.mav.updateFragment(R.id.main_activity_fragment_container, new NoConnectionFragment());
             }
         }//if(require_connection){

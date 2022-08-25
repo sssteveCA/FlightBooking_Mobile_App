@@ -41,7 +41,7 @@ public class MainActivityModel {
     public String getMenuItemFragmentPackage(String label){
         String pkg = "";
         if(label.equalsIgnoreCase("Home"))
-            pkg = "";
+            pkg = "com.example.flightbooking.fragments.home.HomeFragment";
         else if(label.equalsIgnoreCase("Chi siamo"))
             pkg = "com.example.flightbooking.fragments.aboutus.AboutUsFragment";
         else if(label.equalsIgnoreCase("Contatti"))
