@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.EditText;
 
 import com.example.flightbooking.R;
 
@@ -15,7 +17,10 @@ import com.example.flightbooking.R;
  * Use the {@link ContactsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class ContactsFragment extends Fragment {
+public class ContactsFragment extends Fragment implements View.OnClickListener {
+
+    ContactsFragmentModel cfm;
+    ContactsFragmentView cfv;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +66,28 @@ public class ContactsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_contacts, container, false);
+        View view = inflater.inflate(R.layout.fragment_contacts, container, false);
+        EditText et_from = view.findViewById(R.id.frag_cont_et_from);
+        EditText et_subject = view.findViewById(R.id.frag_cont_et_subject);
+        EditText et_message = view.findViewById(R.id.frag_cont_et_message);
+        Button bt_send = view.findViewById(R.id.frag_cont_bt_send);
+        Button bt_reset = view.findViewById(R.id.frag_cont_bt_reset);
+        this.cfv = new ContactsFragmentView(et_from,et_subject,et_message,bt_send,bt_reset);
+        this.cfv.getBtSend().setOnClickListener(this);
+        this.cfv.getBtReset().setOnClickListener(this);
+        return view;
+    }
+
+    //View.OnClickListener
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
+            case R.id.frag_cont_bt_send:
+                break;
+            case R.id.frag_cont_bt_reset:
+                break;
+            default:
+                break;
+        }
     }
 }
