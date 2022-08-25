@@ -33,4 +33,15 @@ public class SubscribeFragmentView {
     public CheckBox getCbShowPass(){return this.cb_show_pass;}
     public Button getBtSubscribe(){return this.bt_subscribe;}
     public Button getBtReset(){return this.bt_reset;}
+
+    /**
+     * Clear all Subscribe EditText values
+     */
+    public void resetAll(){
+        this.et_username.setText("");
+        this.et_email_address.setText("");
+        this.et_email_address_conf.setText("");
+        this.et_password.setText("");
+        this.et_password_conf.setText("");
+    }
 }
