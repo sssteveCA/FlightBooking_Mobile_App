@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.CheckBox;
+import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import com.example.flightbooking.R;
@@ -18,7 +19,7 @@ import com.example.flightbooking.R;
  * Use the {@link LoginFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class LoginFragment extends Fragment implements View.OnClickListener {
+public class LoginFragment extends Fragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
     private LoginFragmentModel lfm;
     private LoginFragmentView lfv;
@@ -76,9 +77,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
         this.lfv = new LoginFragmentView(et_username,et_password,cb_show_pass,bt_login,bt_reset);
         this.lfv.getBtLogin().setOnClickListener(this);
         this.lfv.getBtReset().setOnClickListener(this);
+        this.lfv.getCbShowPass().setOnCheckedChangeListener(this);
         return view;
     }
 
+    //View.OnClickListener
     @Override
     public void onClick(View view) {
         switch(view.getId()){
@@ -86,6 +89,15 @@ public class LoginFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.frag_login_bt_reset:
                 this.lfv.resetAll();
+                break;
+        }
+    }
+
+    //CompoundButton.OnCheckedChangeListener
+    @Override
+    public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
+        switch(compoundButton.getId()){
+            case R.id.frag_login_cb_show_pass:
                 break;
         }
     }
