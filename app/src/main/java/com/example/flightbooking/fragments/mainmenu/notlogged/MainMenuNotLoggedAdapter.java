@@ -1,4 +1,4 @@
-package com.example.flightbooking.fragments.mainmenu;
+package com.example.flightbooking.fragments.mainmenu.notlogged;
 
 import android.content.Context;
 import android.view.LayoutInflater;
@@ -15,8 +15,8 @@ import com.example.flightbooking.models.MenuItem;
 
 import java.util.List;
 
-public class MainMenuAdapter extends ArrayAdapter<MenuItem> {
-    public MainMenuAdapter(@NonNull Context context, int resource, @NonNull List<MenuItem> objects) {
+public class MainMenuNotLoggedAdapter extends ArrayAdapter<MenuItem> {
+    public MainMenuNotLoggedAdapter(@NonNull Context context, int resource, @NonNull List<MenuItem> objects) {
         super(context, resource, objects);
     }
 

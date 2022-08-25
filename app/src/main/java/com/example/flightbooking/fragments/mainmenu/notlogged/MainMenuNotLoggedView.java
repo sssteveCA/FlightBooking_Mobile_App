@@ -1,18 +1,16 @@
-package com.example.flightbooking.fragments.mainmenu;
+package com.example.flightbooking.fragments.mainmenu.notlogged;
 
-import android.view.View;
 import android.widget.Button;
 import android.widget.ListView;
 
 import java.util.ArrayList;
-import java.util.HashMap;
 
-public class MainMenuView {
+public class MainMenuNotLoggedView {
 
     private Button showHide;
     private ListView menuView;
 
-    public MainMenuView(ListView menuView, Button showHide){
+    public MainMenuNotLoggedView(ListView menuView, Button showHide){
         this.menuView = menuView;
         this.showHide = showHide;
     }

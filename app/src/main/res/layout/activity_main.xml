@@ -23,7 +23,7 @@
 
     <androidx.fragment.app.FragmentContainerView
         android:id="@+id/main_menu_fragment_container"
-        android:name="com.example.flightbooking.fragments.mainmenu.MainMenuFragment"
+        android:name="com.example.flightbooking.fragments.mainmenu.notlogged.MainMenuNotLoggedFragment"
         android:layout_width="fill_parent"
         android:layout_height="wrap_content"
         app:layout_constraintBottom_toTopOf="@+id/main_activity_fragment_container"

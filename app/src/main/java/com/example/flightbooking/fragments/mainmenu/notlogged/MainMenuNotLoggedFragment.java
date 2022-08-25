@@ -1,4 +1,4 @@
-package com.example.flightbooking.fragments.mainmenu;
+package com.example.flightbooking.fragments.mainmenu.notlogged;
 
 import android.app.Activity;
 import android.os.Bundle;
@@ -6,7 +6,6 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -20,18 +19,18 @@ import com.example.flightbooking.models.MenuItem;
 
 /**
  * A simple {@link Fragment} subclass.
- * Use the {@link MainMenuFragment#newInstance} factory method to
+ * Use the {@link MainMenuNotLoggedFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainMenuFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener{
+public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener{
 
     //When user click on main menu item
     public interface OnMainMenuItemClick{
         public void mainMenuItemClick(String label);
     }
 
-    private MainMenuModel mmm;
-    private MainMenuView mmv;
+    private MainMenuNotLoggedModel mmm;
+    private MainMenuNotLoggedView mmv;
     public OnMainMenuItemClick itemClickListener = null;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -43,7 +42,7 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener, 
     private String mParam1;
     private String mParam2;
 
-    public MainMenuFragment() {
+    public MainMenuNotLoggedFragment() {
         // Required empty public constructor
     }
 
@@ -56,8 +55,8 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener, 
      * @return A new instance of fragment MainMenuFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static MainMenuFragment newInstance(String param1, String param2) {
-        MainMenuFragment fragment = new MainMenuFragment();
+    public static MainMenuNotLoggedFragment newInstance(String param1, String param2) {
+        MainMenuNotLoggedFragment fragment = new MainMenuNotLoggedFragment();
         Bundle args = new Bundle();
         args.putString(ARG_PARAM1, param1);
         args.putString(ARG_PARAM2, param2);
@@ -85,14 +84,14 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener, 
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        View view = inflater.inflate(R.layout.fragment_main_menu, container, false);
+        View view = inflater.inflate(R.layout.fragment_main_menu_not_logged, container, false);
         Button bt_1 = view.findViewById(R.id.main_menu_frag_bt_1);
         ListView lv_1 = view.findViewById(R.id.main_menu_frag_lv_1);
-        this.mmm = new MainMenuModel(getActivity());
+        this.mmm = new MainMenuNotLoggedModel(getActivity());
         this.mmm.setMenu(); //Set ArrayList to create the ListView
-        this.mmm.setMenuStatus(MainMenuModel.MENU_HIDDEN);
-        MainMenuAdapter mma = new MainMenuAdapter(getActivity(),R.layout.row,this.mmm.getMenuItems());
-        this.mmv = new MainMenuView(lv_1,bt_1);
+        this.mmm.setMenuStatus(MainMenuNotLoggedModel.MENU_HIDDEN);
+        MainMenuNotLoggedAdapter mma = new MainMenuNotLoggedAdapter(getActivity(),R.layout.row,this.mmm.getMenuItems());
+        this.mmv = new MainMenuNotLoggedView(lv_1,bt_1);
         this.mmv.getMenu().setAdapter(mma);
         this.mmv.getShowHide().setOnClickListener(this);
         this.mmv.getMenu().setOnItemClickListener(this);
@@ -117,13 +116,13 @@ public class MainMenuFragment extends Fragment implements View.OnClickListener, 
      */
     public void changeMenuVisibility(){
         int status = this.mmm.getMenuStatus();
-        if(status == MainMenuModel.MENU_HIDDEN){
-            this.mmm.setMenuStatus(MainMenuModel.MENU_SHOWN);
+        if(status == MainMenuNotLoggedModel.MENU_HIDDEN){
+            this.mmm.setMenuStatus(MainMenuNotLoggedModel.MENU_SHOWN);
             this.mmv.getMenu().setVisibility(View.VISIBLE);
             this.mmv.getShowHide().setText("Chiudi il menu");
         }//if(status == MainMenuModel.MENU_HIDDEN){
         else{
-            this.mmm.setMenuStatus(MainMenuModel.MENU_HIDDEN);
+            this.mmm.setMenuStatus(MainMenuNotLoggedModel.MENU_HIDDEN);
             this.mmv.getMenu().setVisibility(View.GONE);
             this.mmv.getShowHide().setText("Apri il menu");
         }

@@ -1,15 +1,13 @@
-package com.example.flightbooking.fragments.mainmenu;
+package com.example.flightbooking.fragments.mainmenu.notlogged;
 
 import android.content.Context;
-import android.widget.ListView;
 
 import com.example.flightbooking.common.Connection;
 import com.example.flightbooking.models.MenuItem;
 
 import java.util.ArrayList;
-import java.util.Arrays;
 
-public class MainMenuModel {
+public class MainMenuNotLoggedModel {
 
     public static final int MENU_HIDDEN = 0;
     public static final int MENU_SHOWN = 1;
@@ -29,10 +27,10 @@ public class MainMenuModel {
     private int menuStatus; //Status of menu (hidden or expaned)
     private String lastLabelClicked; //Last menu item label clicked
 
-    public MainMenuModel(Context ctx){
+    public MainMenuNotLoggedModel(Context ctx){
         this.ctx = ctx;
         this.menuItems = new ArrayList<>();
-        this.lastLabelClicked = MainMenuModel.globalItems[0]; //Trigger menu item 'Home' click
+        this.lastLabelClicked = MainMenuNotLoggedModel.globalItems[0]; //Trigger menu item 'Home' click
     }
 
     public ArrayList<MenuItem> getMenuItems(){return this.menuItems;}
@@ -49,7 +47,7 @@ public class MainMenuModel {
      */
     public void setMenu(){
         this.menuItems.clear();
-        for(String label: MainMenuModel.globalItems){
+        for(String label: MainMenuNotLoggedModel.globalItems){
             MenuItem mi = new MenuItem(label);
             this.menuItems.add(mi);
         }
@@ -58,7 +56,7 @@ public class MainMenuModel {
 
         }
         else{
-            for(String label: MainMenuModel.notLoggedItems){
+            for(String label: MainMenuNotLoggedModel.notLoggedItems){
                 MenuItem mi = new MenuItem(label);
                 this.menuItems.add(mi);
             }

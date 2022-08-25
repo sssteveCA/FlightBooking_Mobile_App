@@ -3,16 +3,14 @@ package com.example.flightbooking;
 import androidx.appcompat.app.AppCompatActivity;
 
 import android.os.Bundle;
-import android.util.Log;
-import android.view.View;
 import android.widget.ProgressBar;
 
-import com.example.flightbooking.fragments.mainmenu.MainMenuFragment;
+import com.example.flightbooking.fragments.mainmenu.notlogged.MainMenuNotLoggedFragment;
 import com.example.flightbooking.mainactivity.MainActivityModel;
 import com.example.flightbooking.mainactivity.MainActivityView;
 import com.example.flightbooking.fragments.noconnection.NoConnectionFragment;
 
-public class MainActivity extends AppCompatActivity implements NoConnectionFragment.RetryListener, MainMenuFragment.OnMainMenuItemClick {
+public class MainActivity extends AppCompatActivity implements NoConnectionFragment.RetryListener, MainMenuNotLoggedFragment.OnMainMenuItemClick {
 
     private MainActivityModel mam;
     private MainActivityView mav;
@@ -47,7 +45,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
 
             }//if(connected){
             else{
-                this.mav.updateFragment(R.id.main_menu_fragment_container, new MainMenuFragment());
+                this.mav.updateFragment(R.id.main_menu_fragment_container, new MainMenuNotLoggedFragment());
                 this.mav.updateFragment(R.id.main_activity_fragment_container, new NoConnectionFragment());
             }
         }//if(require_connection){
