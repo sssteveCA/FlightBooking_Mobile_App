@@ -44,6 +44,8 @@ public class MainActivityModel {
             pkg = "com.example.flightbooking.fragments.home.HomeFragment";
         else if(label.equalsIgnoreCase("Chi siamo"))
             pkg = "com.example.flightbooking.fragments.aboutus.AboutUsFragment";
+        else if(label.equalsIgnoreCase("News"))
+            pkg = "com.example.flightbooking.fragments.news.NewsFragment";
         else if(label.equalsIgnoreCase("Contatti"))
             pkg = "com.example.flightbooking.fragments.contacts.ContactsFragment";
         else if(label.equalsIgnoreCase("Login"))
