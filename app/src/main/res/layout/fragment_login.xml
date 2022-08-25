@@ -80,24 +80,36 @@
             android:id="@+id/frag_login_bt_login"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
+            android:layout_marginStart="52dp"
             android:layout_marginTop="40dp"
             android:backgroundTint="#2196F3"
             android:padding="15dp"
             android:text="Login"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frag_login_et_password" />
+            app:layout_constraintTop_toBottomOf="@+id/frag_login_cb_show_pass" />
 
         <Button
             android:id="@+id/frag_login_bt_reset"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
             android:layout_marginTop="40dp"
-            android:layout_marginEnd="60dp"
+            android:layout_marginEnd="52dp"
             android:backgroundTint="#F44336"
             android:padding="15dp"
             android:text="Annulla"
             app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frag_login_cb_show_pass" />
+
+        <CheckBox
+            android:id="@+id/frag_login_cb_show_pass"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginStart="20dp"
+            android:layout_marginTop="10dp"
+            android:layout_marginEnd="20dp"
+            android:text="Mostra password"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/frag_login_et_password" />
 
     </androidx.constraintlayout.widget.ConstraintLayout>

@@ -169,7 +169,7 @@
                 android:padding="15dp"
                 android:text="Registrati"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_subsc_et_password_conf" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_subsc_cb_show_pass" />
 
             <Button
                 android:id="@+id/frag_subsc_bt_reset"
@@ -181,6 +181,18 @@
                 android:padding="15dp"
                 android:text="Annulla"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frag_subsc_cb_show_pass" />
+
+            <CheckBox
+                android:id="@+id/frag_subsc_cb_show_pass"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:text="Mostra password"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/frag_subsc_et_password_conf" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
