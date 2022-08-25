@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
         this.mam = new MainActivityModel(this);
         ProgressBar pb = findViewById(R.id.main_activity_pb);
         this.mav = new MainActivityView(this,pb);
+        this.setMenu();
         this.setFragments("Home");
     }
 
@@ -41,14 +42,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
      * Set the fragment after check the application status
      */
     public void setFragments(String label){
-        boolean userLogged = this.mam.isUserLogged();
-         Fragment fragment;
-        if(userLogged){
-            //User is logged with its account
-        }//if(userLogged){
-        else{
-            this.mav.updateFragment(R.id.main_menu_fragment_container, new MainMenuNotLoggedFragment());
-        }
+        Fragment fragment;
         String fragment_pkg = this.mam.getMenuItemFragmentPackage(label);
         try {
             //Create fragment instance by string package
@@ -77,12 +71,24 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
         } catch (InstantiationException e) {
             e.printStackTrace();
         }
+    }
 
+    /**
+     * Set the main menu (logged or not logged menu
+     */
+    public void setMenu(){
+        boolean userLogged = this.mam.isUserLogged();
+        if(userLogged){
+            //User is logged with its account
+        }//if(userLogged){
+        else{
+            this.mav.updateFragment(R.id.main_menu_fragment_container, new MainMenuNotLoggedFragment());
+        }
     }
 
     //MainMenuFragment.OnMainMenuItemClick
     @Override
     public void mainMenuItemClick(String label) {
-
+        this.setFragments(label);
     }
 }
