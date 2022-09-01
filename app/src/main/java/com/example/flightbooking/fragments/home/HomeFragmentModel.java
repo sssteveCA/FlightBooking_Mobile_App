@@ -21,7 +21,7 @@ public class HomeFragmentModel {
 
     public interface GetCountryAirports{
         public void getCountryAirportsResponse(List<String> airports);
-        public void getCountryAirports(String message);
+        public void getCountryAirportsError(String message);
     }
 
     public final static int FLIGHTTYPE_ROUNDTRIP = 0;
@@ -72,6 +72,10 @@ public class HomeFragmentModel {
         });
     }
 
+    /**
+     * Perform the HTTP request to get the countries list
+     * @param gc
+     */
     public void getCountries(GetCountries gc){
         this.hfc.getHfi().countries().enqueue(new Callback<List<String>>() {
             @Override
@@ -94,6 +98,29 @@ public class HomeFragmentModel {
                 gc.countriesError(t.getMessage());
             }
         });
+    }
 
+    public void getCountryAirports(String country, GetCountryAirports gca){
+        this.hfc.getHfi().airports_search(country).enqueue(new Callback<List<String>>() {
+            @Override
+            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+                if(response.isSuccessful()){
+                    List<String> airports = response.body();
+                    gca.getCountryAirportsResponse(airports);
+                }
+                else{
+                    try {
+                        String errorBody = response.errorBody().string();
+                        gca.getCountryAirportsError(errorBody);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<List<String>> call, Throwable t) {
+                gca.getCountryAirportsError(t.getMessage());
+            }
+        });
     }
 }

@@ -129,6 +129,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Radi
                 Log.e("HomeFragment","dataRequest getCompanies error => "+message);
             }
         });
+        this.hfm.getCountries(new HomeFragmentModel.GetCountries() {
+            @Override
+            public void countriesResponse(List<String> countries) {
+                Log.d("HomeFragment","dataRequest getCountries response => "+countries);
+            }
+            @Override
+            public void countriesError(String message) {
+                Log.d("HomeFragment","dataRequest getCountries error =>  "+message);
+            }
+        });
     }
 
     //View.OnClickListener
