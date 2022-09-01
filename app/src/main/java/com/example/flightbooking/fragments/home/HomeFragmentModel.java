@@ -28,6 +28,7 @@ public class HomeFragmentModel {
     public final static int FLIGHTTYPE_ONEWAY = 1;
 
     private int selected_flight_type;
+    private String sel_country; //Countries selected for view airports list
     private HomeFragmentClient hfc;
 
     public HomeFragmentModel(){
@@ -37,6 +38,7 @@ public class HomeFragmentModel {
     }
 
     public int getSelectedFlightType(){return this.selected_flight_type;}
+    public String getSelCountry(){return this.sel_country;}
 
     public void setSelectedFlightType(int flight_type){
         if(flight_type != FLIGHTTYPE_ROUNDTRIP && flight_type != FLIGHTTYPE_ONEWAY)
@@ -44,6 +46,7 @@ public class HomeFragmentModel {
         else
             this.selected_flight_type = flight_type;
     }
+    public void setSelCountry(String sel_country){this.sel_country = sel_country;}
 
     /**
      * Perform the HTTP request to get the companies list
