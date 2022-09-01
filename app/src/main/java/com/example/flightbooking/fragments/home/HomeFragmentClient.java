@@ -23,9 +23,12 @@ public class HomeFragmentClient
     }
 
     private Retrofit retrofit;
-    public HomeFragmentInterface hfi;
+    private HomeFragmentInterface hfi;
     public HomeFragmentClient(){
         this.retrofit = new Retrofit.Builder().baseUrl(Globals.BASE_URL).build();
         this.hfi = this.retrofit.create(HomeFragmentInterface.class);
     }
+
+    public HomeFragmentInterface getHfi(){return this.hfi;}
+
 }

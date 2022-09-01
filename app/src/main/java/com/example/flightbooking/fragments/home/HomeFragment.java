@@ -18,6 +18,7 @@ import com.example.flightbooking.exception.MissingValuesException;
 
 import java.util.AbstractMap;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -25,7 +26,7 @@ import java.util.Map;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
+public class HomeFragment extends Fragment implements View.OnClickListener, RadioGroup.OnCheckedChangeListener, HomeFragmentModel.GetCompanies {
 
     private HomeFragmentModel hfm;
     private HomeFragmentView hfv;
@@ -129,5 +130,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Radi
             this.hfm.setSelectedFlightType(HomeFragmentModel.FLIGHTTYPE_ROUNDTRIP);
         }
         this.hfv.setFlightTypeViews(this.hfm.getSelectedFlightType());
+    }
+
+    //HomeFragmentModel.GetCompanies
+    @Override
+    public void companiesResponse(List<String> companies) {
+
+    }
+
+    //HomeFragmentModel.GetCompanies
+    @Override
+    public void companiesError(String message) {
+
     }
 }
