@@ -78,7 +78,6 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Radi
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         this.hfm = new HomeFragmentModel();
-
         try {
             this.hfv = new HomeFragmentView(this.menuItemsMap(view));
             //Check the roundtrip radio button for default
@@ -88,6 +87,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Radi
             e.printStackTrace();
         }
         return view;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        this.dataRequest();
     }
 
     private Map<String, View> menuItemsMap(View v){
@@ -117,11 +122,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Radi
         this.hfm.getCompanies(new HomeFragmentModel.GetCompanies() {
             @Override
             public void companiesResponse(List<String> companies) {
-                Log.d("HomeFragment","dataRequest getCompanies => "+companies);
+                Log.d("HomeFragment","dataRequest getCompanies response => "+companies);
             }
             @Override
             public void companiesError(String message) {
-
+                Log.e("HomeFragment","dataRequest getCompanies error => "+message);
             }
         });
     }
