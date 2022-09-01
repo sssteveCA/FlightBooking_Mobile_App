@@ -24,7 +24,7 @@ import java.util.Map;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment {
+public class HomeFragment extends Fragment implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
 
     private HomeFragmentModel hfm;
     private HomeFragmentView hfv;
@@ -76,6 +76,9 @@ public class HomeFragment extends Fragment {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         try {
             this.hfv = new HomeFragmentView(this.menuItemsMap(view));
+            //Check the roundtrip radio button for default
+            this.hfv.getRgFlightTypes().check(R.id.frag_home_rb_roundtrip);
+            this.hfv.getRgFlightTypes().setOnCheckedChangeListener(this);
         } catch (MissingValuesException e) {
             e.printStackTrace();
         }
@@ -99,5 +102,20 @@ public class HomeFragment extends Fragment {
                 new AbstractMap.SimpleImmutableEntry<>("search", (Button)v.findViewById(R.id.frag_home_bt_search))
         );
         return homeItems;
+    }
+
+    //View.OnClickListener
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
+            case R.id.frag_home_bt_search:
+                break;
+        }
+    }
+
+    //RadioGroup.OnCheckedChangeListener
+    @Override
+    public void onCheckedChanged(RadioGroup radioGroup, int i) {
+
     }
 }
