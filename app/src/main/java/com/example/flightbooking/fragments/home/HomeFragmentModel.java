@@ -1,9 +1,5 @@
 package com.example.flightbooking.fragments.home;
 
-import com.example.flightbooking.common.RequestCallbacks;
-
-import org.json.JSONObject;
-
 import java.io.IOException;
 import java.util.List;
 
