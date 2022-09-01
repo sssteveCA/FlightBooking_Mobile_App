@@ -14,6 +14,16 @@ public class HomeFragmentModel {
         public void companiesError(String message);
     }
 
+    public interface GetCountries{
+        public void countriesResponse(List<String> countries);
+        public void countriesError(String message);
+    }
+
+    public interface GetCountryAirports{
+        public void getCountryAirportsResponse(List<String> airports);
+        public void getCountryAirports(String message);
+    }
+
     public final static int FLIGHTTYPE_ROUNDTRIP = 0;
     public final static int FLIGHTTYPE_ONEWAY = 1;
 
@@ -60,5 +70,9 @@ public class HomeFragmentModel {
                 gc.companiesError(t.getMessage());
             }
         });
+    }
+
+    public void getCountries(){
+
     }
 }
