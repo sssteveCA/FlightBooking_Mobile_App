@@ -99,13 +99,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Radi
 
     /**
      * Create an ArrayAdapter from list
-     * @param spinner
      * @param items
      * @return
      */
-    private ArrayAdapter<String> arrayAdapterFromList(int spinner, List<String> items){
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),spinner,items);
-        adapter.setDropDownViewResource(spinner);
+    private ArrayAdapter<String> arrayAdapterFromList(List<String> items){
+        Log.i("HomeFragment", "arrayAdapterFromList begin ");
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,items);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         return adapter;
     }
 
@@ -135,21 +135,23 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Radi
     }
 
     private void airportsRequest(String country, int flight_type){
+        Log.i("HomeFragment", "airportsRequest begin");
         HomeFragmentModel hfm_temp = this.hfm;
         HomeFragmentView hfv_temp = this.hfv;
         HomeFragment hf_temp = this;
+        Log.i("HomeFragment", "airportsRequest pre request");
         hfm_temp.getCountryAirports(country, new HomeFragmentModel.GetCountryAirports() {
             @Override
             public void getCountryAirportsResponse(List<String> airports) {
-                Log.d("HomeFragment","dataRequest getCountryAirports response => "+airports);
+                Log.d("HomeFragment","airportsRequest getCountryAirports response => "+airports);
                 if(flight_type == HomeFragmentModel.AIRPORTS_REQUEST_DEPARTURE){
                     //edit the spinner with departure airports list
-                    ArrayAdapter<String> airportsAdapter = hf_temp.arrayAdapterFromList(R.id.frag_home_sp_dep_airport,airports);
+                    ArrayAdapter<String> airportsAdapter = hf_temp.arrayAdapterFromList(airports);
                     hfv_temp.getSpDepAirport().setAdapter(airportsAdapter);
                 }
                 else{
                     //edit the spinner with arrival airports list
-                    ArrayAdapter<String> airportsAdapter = hf_temp.arrayAdapterFromList(R.id.frag_home_sp_arr_airport,airports);
+                    ArrayAdapter<String> airportsAdapter = hf_temp.arrayAdapterFromList(airports);
                     hfv_temp.getSpArrAirport().setAdapter(airportsAdapter);
                 }
             }
@@ -161,15 +163,17 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Radi
     }
 
     private void companiesRequest(){
+        Log.i("HomeFragment","companiesRequest begin");
         HomeFragmentModel hfm_temp = this.hfm;
         HomeFragmentView hfv_temp = this.hfv;
         HomeFragment hf_temp = this;
         hfm_temp.getCompanies(new HomeFragmentModel.GetCompanies() {
             @Override
             public void companiesResponse(List<String> companies) {
-                Log.d("HomeFragment","dataRequest getCompanies response => "+companies);
-                ArrayAdapter<String> companiesAdapter = hf_temp.arrayAdapterFromList(R.id.frag_home_sp_companies, companies);
+                Log.d("HomeFragment","companiesRequest getCompanies response => "+companies);
+                ArrayAdapter<String> companiesAdapter = hf_temp.arrayAdapterFromList(companies);
                 hfv_temp.getSpCompanies().setAdapter(companiesAdapter);
+                Log.d("HomeFragment","companiesRequest getCompanies response after setAdapter ");
             }
             @Override
             public void companiesError(String message) {
@@ -190,12 +194,13 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Radi
         hfm_temp.getCountries(new HomeFragmentModel.GetCountries() {
             @Override
             public void countriesResponse(List<String> countries) {
-                Log.d("HomeFragment","dataRequest getCountries response => "+countries);
-                ArrayAdapter<String> countriesAdapter = hf_temp.arrayAdapterFromList(R.id.frag_home_sp_dep_country,countries);
+                Log.d("HomeFragment","countriesRequest getCountries response => "+countries);
+                ArrayAdapter<String> countriesAdapter = hf_temp.arrayAdapterFromList(countries);
                 hfv_temp.getSpDepCountry().setAdapter(countriesAdapter);
                 hfv_temp.getSpArrCountry().setAdapter(countriesAdapter);
                 int index = countries.indexOf(country);
                 String country = countries.get(index);
+                Log.d("HomeFragment","countriesRequest getCountries country => "+country);
                 hf_temp.airportsRequest(country,R.id.frag_home_sp_dep_airport);
                 hf_temp.airportsRequest(country,R.id.frag_home_sp_arr_airport);
             }
