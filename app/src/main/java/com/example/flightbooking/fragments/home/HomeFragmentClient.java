@@ -6,6 +6,7 @@ import java.util.List;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
+import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.GET;
 import retrofit2.http.Query;
 
@@ -25,7 +26,10 @@ public class HomeFragmentClient
     private Retrofit retrofit;
     private HomeFragmentInterface hfi;
     public HomeFragmentClient(){
-        this.retrofit = new Retrofit.Builder().baseUrl(Globals.BASE_URL).build();
+        this.retrofit = new Retrofit.Builder()
+                .baseUrl(Globals.BASE_URL)
+                .addConverterFactory(GsonConverterFactory.create())
+                .build();
         this.hfi = this.retrofit.create(HomeFragmentInterface.class);
     }
 
