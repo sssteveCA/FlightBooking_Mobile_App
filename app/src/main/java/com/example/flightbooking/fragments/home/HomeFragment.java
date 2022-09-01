@@ -11,6 +11,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.flightbooking.R;
 import com.example.flightbooking.exception.MissingValuesException;
@@ -96,7 +97,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Radi
                 new AbstractMap.SimpleImmutableEntry<>("arr_country", (Spinner)v.findViewById(R.id.frag_home_sp_arr_country)),
                 new AbstractMap.SimpleImmutableEntry<>("arr_airport", (Spinner)v.findViewById(R.id.frag_home_sp_arr_airport)),
                 new AbstractMap.SimpleImmutableEntry<>("out_date", (EditText) v.findViewById(R.id.frag_home_et_out_date)),
-                new AbstractMap.SimpleImmutableEntry<>("ret_date", (EditText)v.findViewById(R.id.frag_home_et_ret_date)),
+                new AbstractMap.SimpleImmutableEntry<>("ret_date_tv", (TextView)v.findViewById(R.id.frag_home_tv_ret_date)),
+                new AbstractMap.SimpleImmutableEntry<>("ret_date_et", (EditText)v.findViewById(R.id.frag_home_et_ret_date)),
                 new AbstractMap.SimpleImmutableEntry<>("adults", (EditText)v.findViewById(R.id.frag_home_et_adults)),
                 new AbstractMap.SimpleImmutableEntry<>("teenagers", (EditText)v.findViewById(R.id.frag_home_et_teenagers)),
                 new AbstractMap.SimpleImmutableEntry<>("childrens", (EditText)v.findViewById(R.id.frag_home_et_childrens)),

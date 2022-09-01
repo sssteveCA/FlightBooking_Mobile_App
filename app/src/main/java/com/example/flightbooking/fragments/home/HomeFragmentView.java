@@ -5,6 +5,7 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
+import android.widget.TextView;
 
 import com.example.flightbooking.exception.MissingValuesException;
 
@@ -15,11 +16,12 @@ public class HomeFragmentView {
 
     private RadioGroup rg_flight_types;
     private Spinner sp_companies, sp_dep_country, sp_dep_airport, sp_arr_country, sp_arr_airport;
+    private TextView tv_ret_date;
     private EditText et_out_date, et_ret_date, et_adults, et_teenagers, et_childrens, et_newborns;
     private Button bt_search;
 
     private static String[] itemsName = {
-            "flight_types","companies","dep_country","dep_airport","arr_country","arr_airport","out_date","ret_date",
+            "flight_types","companies","dep_country","dep_airport","arr_country","arr_airport","out_date",           "ret_date_tv","ret_date_et",
             "adults","teenagers","childrens","newborns","search"
     };
 
@@ -34,6 +36,7 @@ public class HomeFragmentView {
     public Spinner getSpArrCountry(){return this.sp_arr_country;}
     public Spinner getSpArrAirport(){return this.sp_companies;}
     public EditText getEtOutDate(){return this.et_out_date;}
+    public TextView getTvRetDate(){return this.tv_ret_date;}
     public EditText getEtRetDate(){return this.et_ret_date;}
     public EditText getEtAdults(){return this.et_adults;}
     public EditText getEtTeenagers(){return this.et_teenagers;}
@@ -59,7 +62,8 @@ public class HomeFragmentView {
         this.sp_arr_country = (Spinner) items.get("arr_country");
         this.sp_arr_airport = (Spinner) items.get("arr_airport");
         this.et_out_date = (EditText) items.get("out_date");
-        this.et_ret_date = (EditText) items.get("ret_date");
+        this.tv_ret_date = (TextView) items.get("ret_date_tv");
+        this.et_ret_date = (EditText) items.get("ret_date_et");
         this.et_adults = (EditText) items.get("adults");
         this.et_teenagers = (EditText) items.get("teenagers");
         this.et_childrens = (EditText) items.get("childrens");
@@ -74,9 +78,11 @@ public class HomeFragmentView {
      */
     public void setFlightTypeViews(int flight_type){
         if(flight_type == HomeFragmentModel.FLIGHTTYPE_ROUNDTRIP){
+            this.tv_ret_date.setVisibility(View.VISIBLE);
             this.et_ret_date.setVisibility(View.VISIBLE);
         }
         else{
+            this.tv_ret_date.setVisibility(View.GONE);
             this.et_ret_date.setVisibility(View.GONE);
         }
     }
