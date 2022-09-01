@@ -18,4 +18,5 @@ public class Connection {
         boolean connected = ni != null && ni.isConnected();
         return connected;
     }
+
 }

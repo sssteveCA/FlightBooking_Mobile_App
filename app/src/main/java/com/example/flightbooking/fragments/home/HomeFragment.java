@@ -76,7 +76,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Radi
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        this.hfm = new HomeFragmentModel();
+        this.hfm = new HomeFragmentModel(this);
 
         try {
             this.hfv = new HomeFragmentView(this.menuItemsMap(view));
