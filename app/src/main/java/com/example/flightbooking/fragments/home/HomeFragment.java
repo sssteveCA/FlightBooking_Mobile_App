@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
@@ -18,7 +19,6 @@ import com.example.flightbooking.R;
 import com.example.flightbooking.exception.MissingValuesException;
 
 import java.util.AbstractMap;
-import java.util.HashMap;
 import java.util.List;
 import java.util.Map;
 
@@ -31,6 +31,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Radi
 
     private HomeFragmentModel hfm;
     private HomeFragmentView hfv;
+    private String initialCountry = "Austria";
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -92,9 +93,27 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Radi
     @Override
     public void onResume() {
         super.onResume();
-        this.dataRequest();
+        this.companiesRequest();
+        this.countriesRequest(this.initialCountry);
     }
 
+    /**
+     * Create an ArrayAdapter from list
+     * @param spinner
+     * @param items
+     * @return
+     */
+    private ArrayAdapter<String> arrayAdapterFromList(int spinner, List<String> items){
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),spinner,items);
+        adapter.setDropDownViewResource(spinner);
+        return adapter;
+    }
+
+    /**
+     * Create a Map with Home Fragment views reference
+     * @param v
+     * @return
+     */
     private Map<String, View> menuItemsMap(View v){
         Map<String, View> homeItems = Map.ofEntries(
                 new AbstractMap.SimpleImmutableEntry<>("flight_types", (RadioGroup)v.findViewById(R.id.frag_home_rg_flight_types)),
@@ -115,36 +134,70 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Radi
         return homeItems;
     }
 
-    /**
-     * Perform initial HTTP requests to obtain data for this fragment
-     */
-    public void dataRequest(){
+    private void airportsRequest(String country, int flight_type){
         HomeFragmentModel hfm_temp = this.hfm;
+        HomeFragmentView hfv_temp = this.hfv;
+        HomeFragment hf_temp = this;
+        hfm_temp.getCountryAirports(country, new HomeFragmentModel.GetCountryAirports() {
+            @Override
+            public void getCountryAirportsResponse(List<String> airports) {
+                Log.d("HomeFragment","dataRequest getCountryAirports response => "+airports);
+                if(flight_type == HomeFragmentModel.AIRPORTS_REQUEST_DEPARTURE){
+                    //edit the spinner with departure airports list
+                    ArrayAdapter<String> airportsAdapter = hf_temp.arrayAdapterFromList(R.id.frag_home_sp_dep_airport,airports);
+                    hfv_temp.getSpDepAirport().setAdapter(airportsAdapter);
+                }
+                else{
+                    //edit the spinner with arrival airports list
+                    ArrayAdapter<String> airportsAdapter = hf_temp.arrayAdapterFromList(R.id.frag_home_sp_arr_airport,airports);
+                    hfv_temp.getSpArrAirport().setAdapter(airportsAdapter);
+                }
+            }
+            @Override
+            public void getCountryAirportsError(String message) {
+                Log.e("HomeFragment","dataRequest getCountryAirports error => "+message);
+            }
+        });
+    }
+
+    private void companiesRequest(){
+        HomeFragmentModel hfm_temp = this.hfm;
+        HomeFragmentView hfv_temp = this.hfv;
+        HomeFragment hf_temp = this;
         hfm_temp.getCompanies(new HomeFragmentModel.GetCompanies() {
             @Override
             public void companiesResponse(List<String> companies) {
                 Log.d("HomeFragment","dataRequest getCompanies response => "+companies);
+                ArrayAdapter<String> companiesAdapter = hf_temp.arrayAdapterFromList(R.id.frag_home_sp_companies, companies);
+                hfv_temp.getSpCompanies().setAdapter(companiesAdapter);
             }
             @Override
             public void companiesError(String message) {
                 Log.e("HomeFragment","dataRequest getCompanies error => "+message);
             }
         });
+    }
+
+
+    /**
+     * Get the countries list and airports list for specified country
+     * @param country
+     */
+    private void countriesRequest(String country){
+        HomeFragmentModel hfm_temp = this.hfm;
+        HomeFragmentView hfv_temp = this.hfv;
+        HomeFragment hf_temp = this;
         hfm_temp.getCountries(new HomeFragmentModel.GetCountries() {
             @Override
             public void countriesResponse(List<String> countries) {
                 Log.d("HomeFragment","dataRequest getCountries response => "+countries);
-                String country = countries.get(0);
-                hfm_temp.getCountryAirports(country, new HomeFragmentModel.GetCountryAirports() {
-                    @Override
-                    public void getCountryAirportsResponse(List<String> airports) {
-                        Log.d("HomeFragment","dataRequest getCountryAirports response => "+airports);
-                    }
-                    @Override
-                    public void getCountryAirportsError(String message) {
-                        Log.e("HomeFragment","dataRequest getCountryAirports error => "+message);
-                    }
-                });
+                ArrayAdapter<String> countriesAdapter = hf_temp.arrayAdapterFromList(R.id.frag_home_sp_dep_country,countries);
+                hfv_temp.getSpDepCountry().setAdapter(countriesAdapter);
+                hfv_temp.getSpArrCountry().setAdapter(countriesAdapter);
+                int index = countries.indexOf(country);
+                String country = countries.get(index);
+                hf_temp.airportsRequest(country,R.id.frag_home_sp_dep_airport);
+                hf_temp.airportsRequest(country,R.id.frag_home_sp_arr_airport);
             }
             @Override
             public void countriesError(String message) {

@@ -32,6 +32,8 @@ public class HomeFragmentModel {
 
     public final static int FLIGHTTYPE_ROUNDTRIP = 0;
     public final static int FLIGHTTYPE_ONEWAY = 1;
+    public final static int AIRPORTS_REQUEST_DEPARTURE = 0;
+    public final static int AIRPORTS_REQUEST_ARRIVAL = 1;
 
     private int selected_flight_type;
     private String sel_country; //Countries selected for view airports list
