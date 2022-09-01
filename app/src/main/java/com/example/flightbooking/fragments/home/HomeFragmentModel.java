@@ -72,7 +72,28 @@ public class HomeFragmentModel {
         });
     }
 
-    public void getCountries(){
+    public void getCountries(GetCountries gc){
+        this.hfc.getHfi().countries().enqueue(new Callback<List<String>>() {
+            @Override
+            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+                if(response.isSuccessful()){
+                    List<String> countries = response.body();
+                    gc.countriesResponse(countries);
+                }
+                else{
+                    try {
+                        String errorBody = response.errorBody().string();
+                        gc.countriesError(errorBody);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<List<String>> call, Throwable t) {
+                gc.countriesError(t.getMessage());
+            }
+        });
 
     }
 }
