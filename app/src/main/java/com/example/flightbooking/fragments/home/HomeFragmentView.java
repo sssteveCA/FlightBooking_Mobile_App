@@ -26,6 +26,20 @@ public class HomeFragmentView {
         this.assignItems(items);
     }
 
+    public RadioGroup getRgFlightTypes(){return this.rg_flight_types;}
+    public Spinner getSpCompanies(){return this.sp_companies;}
+    public Spinner getSpDepCountry(){return this.sp_dep_country;}
+    public Spinner getSpDepAirport(){return this.sp_dep_airport;}
+    public Spinner getSpArrCountry(){return this.sp_arr_country;}
+    public Spinner getSpArrAirport(){return this.sp_companies;}
+    public EditText getEtOutDate(){return this.et_out_date;}
+    public EditText getEtRetDate(){return this.et_ret_date;}
+    public EditText getEtAdults(){return this.et_adults;}
+    public EditText getEtTeenagers(){return this.et_teenagers;}
+    public EditText getEtChildrens(){return this.et_childrens;}
+    public EditText getEtNewborns(){return this.et_newborns;}
+    public Button getBtSearch(){return this.bt_search;}
+
     /**
      * Assign values from hashmap to properties
      * @param items
