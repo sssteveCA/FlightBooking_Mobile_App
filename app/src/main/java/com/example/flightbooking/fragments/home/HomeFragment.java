@@ -201,8 +201,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Radi
                 int index = countries.indexOf(country);
                 String country = countries.get(index);
                 Log.d("HomeFragment","countriesRequest getCountries country => "+country);
-                hf_temp.airportsRequest(country,R.id.frag_home_sp_dep_airport);
-                hf_temp.airportsRequest(country,R.id.frag_home_sp_arr_airport);
+                hf_temp.airportsRequest(country,HomeFragmentModel.AIRPORTS_REQUEST_DEPARTURE);
+                hf_temp.airportsRequest(country,HomeFragmentModel.AIRPORTS_REQUEST_ARRIVAL);
             }
             @Override
             public void countriesError(String message) {

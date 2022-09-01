@@ -21,7 +21,7 @@ public class HomeFragmentView {
     private Button bt_search;
 
     private static String[] itemsName = {
-            "flight_types","companies","dep_country","dep_airport","arr_country","arr_airport","out_date",           "ret_date_tv","ret_date_et",
+            "flight_types","companies","dep_country","dep_airport","arr_country","arr_airport","out_date","ret_date_tv","ret_date_et",
             "adults","teenagers","childrens","newborns","search"
     };
 
@@ -34,7 +34,7 @@ public class HomeFragmentView {
     public Spinner getSpDepCountry(){return this.sp_dep_country;}
     public Spinner getSpDepAirport(){return this.sp_dep_airport;}
     public Spinner getSpArrCountry(){return this.sp_arr_country;}
-    public Spinner getSpArrAirport(){return this.sp_companies;}
+    public Spinner getSpArrAirport(){return this.sp_arr_airport;}
     public EditText getEtOutDate(){return this.et_out_date;}
     public TextView getTvRetDate(){return this.tv_ret_date;}
     public EditText getEtRetDate(){return this.et_ret_date;}
