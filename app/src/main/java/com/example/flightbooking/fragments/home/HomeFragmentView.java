@@ -67,4 +67,17 @@ public class HomeFragmentView {
         this.bt_search = (Button) items.get("search");
 
     }
+
+    /**
+     * Show the proper views for the selected flight type
+     * @param flight_type
+     */
+    public void setFlightTypeViews(int flight_type){
+        if(flight_type == HomeFragmentModel.FLIGHTTYPE_ROUNDTRIP){
+            this.et_ret_date.setVisibility(View.VISIBLE);
+        }
+        else{
+            this.et_ret_date.setVisibility(View.GONE);
+        }
+    }
 }

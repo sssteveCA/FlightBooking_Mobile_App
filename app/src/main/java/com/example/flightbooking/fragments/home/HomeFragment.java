@@ -74,6 +74,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Radi
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        this.hfm = new HomeFragmentModel();
+
         try {
             this.hfv = new HomeFragmentView(this.menuItemsMap(view));
             //Check the roundtrip radio button for default
@@ -116,6 +118,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Radi
     //RadioGroup.OnCheckedChangeListener
     @Override
     public void onCheckedChanged(RadioGroup radioGroup, int i) {
-
+        if(i == R.id.frag_home_rb_oneway){
+            //Oneway flight selected
+            this.hfm.setSelectedFlightType(HomeFragmentModel.FLIGHTTYPE_ONEWAY);
+        }
+        else{
+            //Roundtrip flight selected
+            this.hfm.setSelectedFlightType(HomeFragmentModel.FLIGHTTYPE_ROUNDTRIP);
+        }
+        this.hfv.setFlightTypeViews(this.hfm.getSelectedFlightType());
     }
 }
