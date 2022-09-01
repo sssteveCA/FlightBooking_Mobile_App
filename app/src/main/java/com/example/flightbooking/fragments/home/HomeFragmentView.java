@@ -9,6 +9,7 @@ import android.widget.Spinner;
 import com.example.flightbooking.exception.MissingValuesException;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class HomeFragmentView {
 
@@ -22,7 +23,7 @@ public class HomeFragmentView {
             "adults","teenagers","childrens","newborns","search"
     };
 
-    public HomeFragmentView(HashMap<String, View> items) throws MissingValuesException {
+    public HomeFragmentView(Map<String, View> items) throws MissingValuesException {
         this.assignItems(items);
     }
 
@@ -44,7 +45,7 @@ public class HomeFragmentView {
      * Assign values from hashmap to properties
      * @param items
      */
-    private void assignItems(HashMap<String, View> items) throws MissingValuesException {
+    private void assignItems(Map<String, View> items) throws MissingValuesException {
         //Check if all views are prensent in hashmap
         for(String item: HomeFragmentView.itemsName){
             if(!items.containsKey(item)){

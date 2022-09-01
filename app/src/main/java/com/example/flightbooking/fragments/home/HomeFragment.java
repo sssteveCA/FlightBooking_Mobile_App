@@ -7,13 +7,16 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 
 import com.example.flightbooking.R;
+import com.example.flightbooking.exception.MissingValuesException;
 
 import java.util.AbstractMap;
+import java.util.HashMap;
 import java.util.Map;
 
 /**
@@ -22,6 +25,9 @@ import java.util.Map;
  * create an instance of this fragment.
  */
 public class HomeFragment extends Fragment {
+
+    private HomeFragmentModel hfm;
+    private HomeFragmentView hfv;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -68,7 +74,11 @@ public class HomeFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-
+        try {
+            this.hfv = new HomeFragmentView(this.menuItemsMap(view));
+        } catch (MissingValuesException e) {
+            e.printStackTrace();
+        }
         return view;
     }
 
@@ -85,7 +95,8 @@ public class HomeFragment extends Fragment {
                 new AbstractMap.SimpleImmutableEntry<>("adults", (EditText)v.findViewById(R.id.frag_home_et_adults)),
                 new AbstractMap.SimpleImmutableEntry<>("teenagers", (EditText)v.findViewById(R.id.frag_home_et_teenagers)),
                 new AbstractMap.SimpleImmutableEntry<>("childrens", (EditText)v.findViewById(R.id.frag_home_et_childrens)),
-                new AbstractMap.SimpleImmutableEntry<>("newborns", (EditText)v.findViewById(R.id.frag_home_et_newborns))
+                new AbstractMap.SimpleImmutableEntry<>("newborns", (EditText)v.findViewById(R.id.frag_home_et_newborns)),
+                new AbstractMap.SimpleImmutableEntry<>("search", (Button)v.findViewById(R.id.frag_home_bt_search))
         );
         return homeItems;
     }
