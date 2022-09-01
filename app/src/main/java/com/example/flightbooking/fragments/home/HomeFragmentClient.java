@@ -1,6 +1,7 @@
 package com.example.flightbooking.fragments.home;
 
 import com.example.flightbooking.common.Globals;
+import com.google.gson.JsonObject;
 
 import java.util.List;
 
@@ -14,7 +15,7 @@ public class HomeFragmentClient
 {
     public interface HomeFragmentInterface{
         @GET("/airportsearch")
-        Call<List<String>> airports_search(@Query("country") String country);
+        Call<JsonObject> airports_search(@Query("country") String country);
 
         @GET("/flightsearch")
         Call<List<String>> countries();

@@ -116,10 +116,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Radi
     }
 
     /**
-     * Perform HTTP requests to obtain data for this fragment
+     * Perform initial HTTP requests to obtain data for this fragment
      */
     public void dataRequest(){
-        this.hfm.getCompanies(new HomeFragmentModel.GetCompanies() {
+        HomeFragmentModel hfm_temp = this.hfm;
+        hfm_temp.getCompanies(new HomeFragmentModel.GetCompanies() {
             @Override
             public void companiesResponse(List<String> companies) {
                 Log.d("HomeFragment","dataRequest getCompanies response => "+companies);
@@ -129,10 +130,21 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Radi
                 Log.e("HomeFragment","dataRequest getCompanies error => "+message);
             }
         });
-        this.hfm.getCountries(new HomeFragmentModel.GetCountries() {
+        hfm_temp.getCountries(new HomeFragmentModel.GetCountries() {
             @Override
             public void countriesResponse(List<String> countries) {
                 Log.d("HomeFragment","dataRequest getCountries response => "+countries);
+                String country = countries.get(0);
+                hfm_temp.getCountryAirports(country, new HomeFragmentModel.GetCountryAirports() {
+                    @Override
+                    public void getCountryAirportsResponse(List<String> airports) {
+                        Log.d("HomeFragment","dataRequest getCountryAirports response => "+airports);
+                    }
+                    @Override
+                    public void getCountryAirportsError(String message) {
+                        Log.e("HomeFragment","dataRequest getCountryAirports error => "+message);
+                    }
+                });
             }
             @Override
             public void countriesError(String message) {

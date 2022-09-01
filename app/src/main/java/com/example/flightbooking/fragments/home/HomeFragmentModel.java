@@ -1,7 +1,13 @@
 package com.example.flightbooking.fragments.home;
 
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -104,12 +110,18 @@ public class HomeFragmentModel {
     }
 
     public void getCountryAirports(String country, GetCountryAirports gca){
-        this.hfc.getHfi().airports_search(country).enqueue(new Callback<List<String>>() {
+        this.hfc.getHfi().airports_search(country).enqueue(new Callback<JsonObject>() {
             @Override
-            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if(response.isSuccessful()){
-                    List<String> airports = response.body();
-                    gca.getCountryAirportsResponse(airports);
+                    JsonObject airports = response.body();
+                    LinkedList<String> airports_name = new LinkedList<String>();
+                    //Loop over the JsonObject to put all keys in LinkedList
+                    Set<Map.Entry<String, JsonElement>> entries = airports.entrySet();
+                    for(Map.Entry<String, JsonElement> entry: entries){
+                        airports_name.add(entry.getKey());
+                    }
+                    gca.getCountryAirportsResponse(airports_name);
                 }
                 else{
                     try {
@@ -121,7 +133,7 @@ public class HomeFragmentModel {
                 }
             }
             @Override
-            public void onFailure(Call<List<String>> call, Throwable t) {
+            public void onFailure(Call<JsonObject> call, Throwable t) {
                 gca.getCountryAirportsError(t.getMessage());
             }
         });
