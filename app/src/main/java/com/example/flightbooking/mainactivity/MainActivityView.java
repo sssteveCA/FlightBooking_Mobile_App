@@ -49,10 +49,10 @@ public class MainActivityView {
         ft.setReorderingAllowed(true);
         if(current_fragment != null){
             //Container has already a fragment
-            ft.add(container,fragment,null);
+            ft.replace(container,fragment,null);
         }//if(current_fragment != null){
         else{
-            ft.replace(container,fragment,null);
+            ft.add(container,fragment,null);
         }
         ft.commit();
     }

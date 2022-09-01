@@ -4,6 +4,7 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
+import android.util.Log;
 import android.widget.ProgressBar;
 
 import com.example.flightbooking.fragments.mainmenu.notlogged.MainMenuNotLoggedFragment;
@@ -52,6 +53,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
                 //For this item internet is required
                 boolean connected = this.mam.getConnectionStatus();
                 if(connected){
+                    Log.i("MainActivity","setFragments connection connected");
                     this.mav.updateFragment(R.id.main_activity_fragment_container, (Fragment)frag_constr.newInstance());
                 }//if(connected){
                 else{
