@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -26,7 +27,7 @@ import java.util.Map;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment implements View.OnClickListener, RadioGroup.OnCheckedChangeListener, HomeFragmentModel.GetCompanies {
+public class HomeFragment extends Fragment implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
 
     private HomeFragmentModel hfm;
     private HomeFragmentView hfv;
@@ -76,7 +77,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Radi
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
-        this.hfm = new HomeFragmentModel(this);
+        this.hfm = new HomeFragmentModel();
 
         try {
             this.hfv = new HomeFragmentView(this.menuItemsMap(view));
@@ -109,6 +110,22 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Radi
         return homeItems;
     }
 
+    /**
+     * Perform HTTP requests to obtain data for this fragment
+     */
+    public void dataRequest(){
+        this.hfm.getCompanies(new HomeFragmentModel.GetCompanies() {
+            @Override
+            public void companiesResponse(List<String> companies) {
+                Log.d("HomeFragment","dataRequest getCompanies => "+companies);
+            }
+            @Override
+            public void companiesError(String message) {
+
+            }
+        });
+    }
+
     //View.OnClickListener
     @Override
     public void onClick(View view) {
@@ -132,15 +149,4 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Radi
         this.hfv.setFlightTypeViews(this.hfm.getSelectedFlightType());
     }
 
-    //HomeFragmentModel.GetCompanies
-    @Override
-    public void companiesResponse(List<String> companies) {
-
-    }
-
-    //HomeFragmentModel.GetCompanies
-    @Override
-    public void companiesError(String message) {
-
-    }
 }
