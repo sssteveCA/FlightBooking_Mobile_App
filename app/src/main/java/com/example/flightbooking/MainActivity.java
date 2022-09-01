@@ -42,7 +42,6 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
      * Set the fragment after check the application status
      */
     public void setFragments(String label){
-        Fragment fragment;
         String fragment_pkg = this.mam.getMenuItemFragmentPackage(label);
         try {
             //Create fragment instance by string package

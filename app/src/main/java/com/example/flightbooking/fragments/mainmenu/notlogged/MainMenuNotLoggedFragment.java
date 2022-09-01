@@ -134,6 +134,7 @@ public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickL
         MenuItem mi = (MenuItem) adapterView.getItemAtPosition(i);
         String label = mi.getLabel();
         this.changeMenuVisibility();
+        this.mmnlm.setLastLabelClicked(label);
         this.itemClickListener.mainMenuItemClick(label);
     }
 }
