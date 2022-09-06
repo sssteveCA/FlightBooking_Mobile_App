@@ -32,7 +32,7 @@ import java.util.Map;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment implements View.OnClickListener, ChipGroup.OnCheckedChangeListener {
+public class HomeFragment extends Fragment implements View.OnClickListener, ChipGroup.OnCheckedChangeListener{
 
     private HomeFragmentModel hfm;
     private HomeFragmentView hfv;
@@ -91,6 +91,8 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Chip
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ChipGroup cg_type = view.findViewById(R.id.frag_home_cg_type);
         this.hfv = new HomeFragmentView(this.ma_ref,cg_type);
+        this.hfv.getCgType().setSelectionRequired(true);
+        this.hfv.getCgType().setSingleSelection(true);
         this.hfv.getCgType().setOnCheckedChangeListener(this);
         return view;
     }
@@ -115,12 +117,16 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Chip
     public void onCheckedChanged(ChipGroup group, int checkedId) {
         switch(checkedId){
             case R.id.frag_home_chip_flights:
+                Log.i("HomeFragment","chip flights checked");
                 break;
             case R.id.frag_home_chip_crent:
+                Log.i("HomeFragment","chip car rental checked");
                 break;
             case R.id.frag_home_chip_hotel:
+                Log.i("HomeFragment","chip hotel checked");
                 break;
             case R.id.frag_home_chip_events:
+                Log.i("HomeFragment","chip events checked");
                 break;
         }
     }

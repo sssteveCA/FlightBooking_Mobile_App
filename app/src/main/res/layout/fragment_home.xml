@@ -27,24 +27,29 @@
                 android:id="@+id/frag_home_chip_flights"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:checkable="true"
+                android:checked="true"
                 android:text="VOLI" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/frag_home_chip_crent"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:checkable="true"
                 android:text="AUTONOLEGGIO" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/frag_home_chip_hotel"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:checkable="true"
                 android:text="HOTEL" />
 
             <com.google.android.material.chip.Chip
                 android:id="@+id/frag_home_chip_events"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
+                android:checkable="true"
                 android:text="EVENTI" />
         </com.google.android.material.chip.ChipGroup>
 
