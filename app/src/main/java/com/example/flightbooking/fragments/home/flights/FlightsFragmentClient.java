@@ -1,6 +1,8 @@
 package com.example.flightbooking.fragments.home.flights;
 
 import com.example.flightbooking.common.Globals;
+import com.example.flightbooking.models.FlightPrice;
+import com.example.flightbooking.models.FlightSearch;
 import com.google.gson.JsonObject;
 
 import java.util.List;
@@ -8,7 +10,9 @@ import java.util.List;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Body;
 import retrofit2.http.GET;
+import retrofit2.http.POST;
 import retrofit2.http.Query;
 
 public class FlightsFragmentClient
@@ -22,6 +26,10 @@ public class FlightsFragmentClient
 
         @GET("/companieslist")
         Call<List<String>> companies();
+
+        @POST("/flightsearch")
+        Call<FlightPrice> getFlightPrice(@Body FlightSearch fs);
+
     }
 
     private Retrofit retrofit;
