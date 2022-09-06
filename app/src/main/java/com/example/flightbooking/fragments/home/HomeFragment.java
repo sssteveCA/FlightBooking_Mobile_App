@@ -20,7 +20,10 @@ import android.widget.TextView;
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.exception.MissingValuesException;
+import com.example.flightbooking.fragments.home.carrental.CarRentalFragment;
+import com.example.flightbooking.fragments.home.events.EventsFragment;
 import com.example.flightbooking.fragments.home.flights.FlightsFragment;
+import com.example.flightbooking.fragments.home.hotel.HotelFragment;
 import com.google.android.material.chip.ChipGroup;
 
 import java.util.AbstractMap;
@@ -32,7 +35,7 @@ import java.util.Map;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment implements View.OnClickListener, ChipGroup.OnCheckedChangeListener{
+public class HomeFragment extends Fragment implements ChipGroup.OnCheckedChangeListener{
 
     private HomeFragmentModel hfm;
     private HomeFragmentView hfv;
@@ -100,16 +103,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Chip
     @Override
     public void onResume() {
         super.onResume();
-        this.hfv.updateFragment(R.id.frag_home_fragment_container, new FlightsFragment());
-    }
-
-
-    //View.OnClickListener
-    @Override
-    public void onClick(View view) {
-        switch(view.getId()){
-
-        }
+        this.hfv.updateFragment(new FlightsFragment());
     }
 
     //ChipGroup.OnCheckedChangeListener
@@ -118,15 +112,19 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Chip
         switch(checkedId){
             case R.id.frag_home_chip_flights:
                 Log.i("HomeFragment","chip flights checked");
+                this.hfv.updateFragment(new FlightsFragment());
                 break;
             case R.id.frag_home_chip_crent:
                 Log.i("HomeFragment","chip car rental checked");
+                this.hfv.updateFragment(new CarRentalFragment());
                 break;
             case R.id.frag_home_chip_hotel:
                 Log.i("HomeFragment","chip hotel checked");
+                this.hfv.updateFragment(new HotelFragment());
                 break;
             case R.id.frag_home_chip_events:
                 Log.i("HomeFragment","chip events checked");
+                this.hfv.updateFragment(new EventsFragment());
                 break;
         }
     }

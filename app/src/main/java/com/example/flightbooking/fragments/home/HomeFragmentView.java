@@ -12,6 +12,7 @@ import androidx.fragment.app.FragmentManager;
 import androidx.fragment.app.FragmentTransaction;
 
 import com.example.flightbooking.MainActivity;
+import com.example.flightbooking.R;
 import com.example.flightbooking.exception.MissingValuesException;
 import com.google.android.material.chip.ChipGroup;
 
@@ -35,28 +36,27 @@ public class HomeFragmentView {
      * @param container
      * @param fragment
      */
-    public void updateFragment(int container, Fragment fragment){
+    public void updateFragment(Fragment fragment){
         FragmentManager fm = this.ma.getSupportFragmentManager();
-        Fragment current_fragment = fm.findFragmentById(container);
+        Fragment current_fragment = fm.findFragmentById(R.id.frag_home_fragment_container);
         FragmentTransaction ft = fm.beginTransaction();
         ft.setReorderingAllowed(true);
         if(current_fragment != null){
             //Container has already a fragment
-            ft.replace(container,fragment,null);
+            ft.replace(R.id.frag_home_fragment_container,fragment,null);
         }//if(current_fragment != null){
         else{
-            ft.add(container,fragment,null);
+            ft.add(R.id.frag_home_fragment_container,fragment,null);
         }
         ft.commit();
     }
 
     /**
      * Remove the current fragment inside the fragment container in HomeFragment
-     * @param container
      */
-    public void removeFragment(int container){
+    public void removeFragment(){
         FragmentManager fm = this.ma.getSupportFragmentManager();
-        Fragment current_fragment = fm.findFragmentById(container);
+        Fragment current_fragment = fm.findFragmentById(R.id.frag_home_fragment_container);
         if(current_fragment != null){
             //Container has already a fragment
             FragmentTransaction ft = fm.beginTransaction();
