@@ -18,6 +18,7 @@ import android.widget.TextView;
 
 import com.example.flightbooking.R;
 import com.example.flightbooking.exception.MissingValuesException;
+import com.example.flightbooking.models.FlightSearch;
 
 import java.util.AbstractMap;
 import java.util.List;
@@ -213,6 +214,35 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
                 Log.d("FlightsFragment","dataRequest getCountries error =>  "+message);
             }
         });
+    }
+
+    /**
+     * Se the body for flightsearch POST request
+     * @return
+     */
+    private FlightSearch setFlightSearchBody(){
+        FlightSearch fs = new FlightSearch();
+        if(this.ffv.getRgFlightTypes().getCheckedRadioButtonId() == R.id.frag_flights_rb_oneway)
+           fs.flight_type = "oneway";
+        else
+            fs.flight_type = "roundtrip";
+        fs.company_name = this.ffv.getSpCompanies().getSelectedItem().toString();
+        fs.from_country = this.ffv.getSpDepCountry().getSelectedItem().toString();
+        fs.from_airport = this.ffv.getSpDepAirport().getSelectedItem().toString();
+        fs.to_country = this.ffv.getSpArrCountry().getSelectedItem().toString();
+        fs.to_airport = this.ffv.getSpArrAirport().getSelectedItem().toString();
+        if(fs.flight_type == "oneway") {
+            fs.oneway_date = this.ffv.getEtOutDate().getText().toString();
+        }
+        else{
+            fs.roundtrip_start_date = this.ffv.getEtOutDate().getText().toString();
+            fs.roundtrip_end_date = this.ffv.getEtRetDate().getText().toString();
+        }
+        fs.adults = Integer.valueOf(this.ffv.getEtAdults().getText().toString());
+        fs.teenagers = Integer.valueOf(this.ffv.getEtTeenagers().getText().toString());
+        fs.children = Integer.valueOf(this.ffv.getEtChildrens().getText().toString());
+        fs.newborns = Integer.valueOf(this.ffv.getEtNewborns().getText().toString());
+        return fs;
     }
 
     //View.OnClickListener
