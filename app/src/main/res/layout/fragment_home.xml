@@ -47,7 +47,8 @@
                 android:text="EVENTI" />
         </com.google.android.material.chip.ChipGroup>
 
-        <FrameLayout
+        <androidx.fragment.app.FragmentContainerView
+            android:id="@+id/home_frag_fragment_container"
             android:layout_width="409dp"
             android:layout_height="661dp"
             android:layout_marginTop="20dp"
@@ -55,6 +56,6 @@
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/frag_home_cg_type">
 
-        </FrameLayout>
+        </androidx.fragment.app.FragmentContainerView>
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>

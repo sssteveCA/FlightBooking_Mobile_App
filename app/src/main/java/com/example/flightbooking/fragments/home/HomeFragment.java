@@ -15,6 +15,7 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.exception.MissingValuesException;
 
@@ -31,6 +32,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
 
     private HomeFragmentModel hfm;
     private HomeFragmentView hfv;
+    private MainActivity ma_ref; //Useful for execute fragment operations inside this fragment
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
