@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -91,6 +92,7 @@ public class NoConnectionFragment extends Fragment implements View.OnClickListen
         int id = view.getId();
         switch(id){
             case R.id.no_conn_frag_bt_retry:
+                Log.i("NoConnectionFragment","onClick label => "+this.label);
                 this.retryListener.retryClick(this.label);
                 break;
         }
