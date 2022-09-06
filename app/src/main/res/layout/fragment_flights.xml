@@ -17,11 +17,11 @@
             android:paddingBottom="60dp">
 
             <TextView
-                android:id="@+id/frag_home_tv_header"
+                android:id="@+id/frag_flights_tv_header"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
-                android:text="BENVENUTO"
+                android:text="VOLI"
                 android:textAlignment="center"
                 android:textSize="22sp"
                 android:textStyle="bold"
@@ -30,7 +30,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <RadioGroup
-                android:id="@+id/frag_home_rg_flight_types"
+                android:id="@+id/frag_flights_rg_flight_types"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -40,24 +40,24 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_home_tv_header">
+                app:layout_constraintTop_toBottomOf="@+id/frag_flights_tv_header">
 
                 <RadioButton
-                    android:id="@+id/frag_home_rb_roundtrip"
+                    android:id="@+id/frag_flights_rb_roundtrip"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
                     android:paddingEnd="20sp"
                     android:text="Andata e ritorno" />
 
                 <RadioButton
-                    android:id="@+id/frag_home_rb_oneway"
+                    android:id="@+id/frag_flights_rb_oneway"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:text="Solo andata" />
             </RadioGroup>
 
             <TextView
-                android:id="@+id/frag_home_tv_companies"
+                android:id="@+id/frag_flights_tv_companies"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -66,10 +66,10 @@
                 android:text="Compagnia aerea"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_home_rg_flight_types" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_flights_rg_flight_types" />
 
             <Spinner
-                android:id="@+id/frag_home_sp_companies"
+                android:id="@+id/frag_flights_sp_companies"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -78,10 +78,10 @@
                 android:padding="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_home_tv_companies" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_flights_tv_companies" />
 
             <TextView
-                android:id="@+id/frag_home_tv_dep_country"
+                android:id="@+id/frag_flights_tv_dep_country"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -90,10 +90,10 @@
                 android:text="Paese di partenza"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_home_sp_companies" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_flights_sp_companies" />
 
             <Spinner
-                android:id="@+id/frag_home_sp_dep_country"
+                android:id="@+id/frag_flights_sp_dep_country"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -102,10 +102,10 @@
                 android:padding="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_home_tv_dep_country" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_flights_tv_dep_country" />
 
             <TextView
-                android:id="@+id/frag_home_tv_dep_airport"
+                android:id="@+id/frag_flights_tv_dep_airport"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -114,10 +114,10 @@
                 android:text="Aereoporto di partenza"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_home_sp_dep_country" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_flights_sp_dep_country" />
 
             <Spinner
-                android:id="@+id/frag_home_sp_dep_airport"
+                android:id="@+id/frag_flights_sp_dep_airport"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -126,10 +126,10 @@
                 android:padding="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_home_tv_dep_airport" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_flights_tv_dep_airport" />
 
             <TextView
-                android:id="@+id/frag_home_tv_arr_country"
+                android:id="@+id/frag_flights_tv_arr_country"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -138,10 +138,10 @@
                 android:text="Paese di destinazione"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_home_sp_dep_airport" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_flights_sp_dep_airport" />
 
             <Spinner
-                android:id="@+id/frag_home_sp_arr_country"
+                android:id="@+id/frag_flights_sp_arr_country"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -150,10 +150,10 @@
                 android:padding="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_home_tv_arr_country" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_flights_tv_arr_country" />
 
             <TextView
-                android:id="@+id/frag_home_tv_arr_airport"
+                android:id="@+id/frag_flights_tv_arr_airport"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -162,10 +162,10 @@
                 android:text="Paese di destinazione"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_home_sp_arr_country" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_flights_sp_arr_country" />
 
             <Spinner
-                android:id="@+id/frag_home_sp_arr_airport"
+                android:id="@+id/frag_flights_sp_arr_airport"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -174,10 +174,10 @@
                 android:padding="20sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_home_tv_arr_airport" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_flights_tv_arr_airport" />
 
             <TextView
-                android:id="@+id/frag_home_tv_out_date"
+                android:id="@+id/frag_flights_tv_out_date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -186,10 +186,10 @@
                 android:text="Andata"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_home_sp_arr_airport" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_flights_sp_arr_airport" />
 
             <EditText
-                android:id="@+id/frag_home_et_out_date"
+                android:id="@+id/frag_flights_et_out_date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -199,10 +199,10 @@
                 android:inputType="date"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_home_tv_out_date" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_flights_tv_out_date" />
 
             <TextView
-                android:id="@+id/frag_home_tv_ret_date"
+                android:id="@+id/frag_flights_tv_ret_date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -211,10 +211,10 @@
                 android:text="Ritorno"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_home_et_out_date" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_flights_et_out_date" />
 
             <EditText
-                android:id="@+id/frag_home_et_ret_date"
+                android:id="@+id/frag_flights_et_ret_date"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -224,10 +224,10 @@
                 android:inputType="date"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_home_tv_ret_date" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_flights_tv_ret_date" />
 
             <TextView
-                android:id="@+id/frag_home_tv_adults"
+                android:id="@+id/frag_flights_tv_adults"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -236,10 +236,10 @@
                 android:text="Adulti"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_home_et_ret_date" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_flights_et_ret_date" />
 
             <EditText
-                android:id="@+id/frag_home_et_adults"
+                android:id="@+id/frag_flights_et_adults"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -249,10 +249,10 @@
                 android:inputType="number"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_home_tv_adults" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_flights_tv_adults" />
 
             <TextView
-                android:id="@+id/frag_home_tv_teenagers"
+                android:id="@+id/frag_flights_tv_teenagers"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -261,10 +261,10 @@
                 android:text="Adolescenti"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_home_et_adults" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_flights_et_adults" />
 
             <EditText
-                android:id="@+id/frag_home_et_teenagers"
+                android:id="@+id/frag_flights_et_teenagers"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -274,10 +274,10 @@
                 android:inputType="number"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_home_tv_teenagers" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_flights_tv_teenagers" />
 
             <TextView
-                android:id="@+id/frag_home_tv_childrens"
+                android:id="@+id/frag_flights_tv_childrens"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -286,10 +286,10 @@
                 android:text="Bambini"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_home_et_teenagers" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_flights_et_teenagers" />
 
             <EditText
-                android:id="@+id/frag_home_et_childrens"
+                android:id="@+id/frag_flights_et_childrens"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -299,10 +299,10 @@
                 android:inputType="number"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_home_tv_childrens" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_flights_tv_childrens" />
 
             <TextView
-                android:id="@+id/frag_home_tv_newborns"
+                android:id="@+id/frag_flights_tv_newborns"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -311,10 +311,10 @@
                 android:text="Neonati"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_home_et_childrens" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_flights_et_childrens" />
 
             <EditText
-                android:id="@+id/frag_home_et_newborns"
+                android:id="@+id/frag_flights_et_newborns"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -324,10 +324,10 @@
                 android:inputType="number"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_home_tv_newborns" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_flights_tv_newborns" />
 
             <Button
-                android:id="@+id/frag_home_bt_search"
+                android:id="@+id/frag_flights_bt_search"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -337,7 +337,7 @@
                 android:text="CERCA"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_home_et_newborns" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_flights_et_newborns" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
