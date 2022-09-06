@@ -8,6 +8,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -27,7 +28,7 @@ import java.util.Map;
  * Use the {@link FlightsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FlightsFragment extends Fragment implements View.OnClickListener, RadioGroup.OnCheckedChangeListener {
+public class FlightsFragment extends Fragment implements View.OnClickListener, RadioGroup.OnCheckedChangeListener, AdapterView.OnItemSelectedListener {
 
     private FlightsFragmentModel ffm;
     private FlightsFragmentView ffv;
@@ -83,6 +84,8 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
             //Check the roundtrip radio button for default
             this.ffv.getRgFlightTypes().check(R.id.frag_flights_rb_roundtrip);
             this.ffv.getRgFlightTypes().setOnCheckedChangeListener(this);
+            this.ffv.getSpDepCountry().setOnItemSelectedListener(this);
+            this.ffv.getSpArrCountry().setOnItemSelectedListener(this);
         } catch (MissingValuesException e) {
             e.printStackTrace();
         }
@@ -233,5 +236,24 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
             this.ffm.setSelectedFlightType(FlightsFragmentModel.FLIGHTTYPE_ROUNDTRIP);
         }
         this.ffv.setFlightTypeViews(this.ffm.getSelectedFlightType());
+    }
+
+    //AdapterView.OnItemSelectedListener
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        if(view == this.ffv.getSpDepCountry()){
+          //Item selected from country departure spinner
+            Log.d("FlightsFragment", "onItemSelectedListener departure country");
+        }
+        else if(view == this.ffv.getSpArrCountry()){
+            //Item selected from country arrival spinner
+            Log.d("FlightsFragment", "onItemSelectedListener arrival country");
+        }
+        String country = (String)adapterView.getItemAtPosition(i);
+        Log.d("FlightsFragment", "onItemSelectedListener country => "+country);
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
     }
 }

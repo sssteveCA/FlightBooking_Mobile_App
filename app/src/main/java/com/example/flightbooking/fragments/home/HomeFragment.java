@@ -114,7 +114,14 @@ public class HomeFragment extends Fragment implements View.OnClickListener, Chip
     @Override
     public void onCheckedChanged(ChipGroup group, int checkedId) {
         switch(checkedId){
-
+            case R.id.frag_home_chip_flights:
+                break;
+            case R.id.frag_home_chip_crent:
+                break;
+            case R.id.frag_home_chip_hotel:
+                break;
+            case R.id.frag_home_chip_events:
+                break;
         }
     }
 }
