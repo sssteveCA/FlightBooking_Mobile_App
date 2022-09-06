@@ -48,7 +48,7 @@
         </com.google.android.material.chip.ChipGroup>
 
         <androidx.fragment.app.FragmentContainerView
-            android:id="@+id/home_frag_fragment_container"
+            android:id="@+id/frag_home_fragment_container"
             android:layout_width="409dp"
             android:layout_height="661dp"
             android:layout_marginTop="20dp"

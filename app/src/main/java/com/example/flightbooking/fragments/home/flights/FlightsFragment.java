@@ -17,9 +17,6 @@ import android.widget.TextView;
 
 import com.example.flightbooking.R;
 import com.example.flightbooking.exception.MissingValuesException;
-import com.example.flightbooking.fragments.home.HomeFragment;
-import com.example.flightbooking.fragments.home.HomeFragmentModel;
-import com.example.flightbooking.fragments.home.HomeFragmentView;
 
 import java.util.AbstractMap;
 import java.util.List;
@@ -79,7 +76,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        View view = inflater.inflate(R.layout.fragment_home, container, false);
+        View view = inflater.inflate(R.layout.fragment_flights, container, false);
         this.ffm = new FlightsFragmentModel();
         try {
             this.ffv = new FlightsFragmentView(this.menuItemsMap(view));
@@ -229,11 +226,11 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     public void onCheckedChanged(RadioGroup radioGroup, int i) {
         if(i == R.id.frag_flights_rb_oneway){
             //Oneway flight selected
-            this.ffm.setSelectedFlightType(HomeFragmentModel.FLIGHTTYPE_ONEWAY);
+            this.ffm.setSelectedFlightType(FlightsFragmentModel.FLIGHTTYPE_ONEWAY);
         }
         else{
             //Roundtrip flight selected
-            this.ffm.setSelectedFlightType(HomeFragmentModel.FLIGHTTYPE_ROUNDTRIP);
+            this.ffm.setSelectedFlightType(FlightsFragmentModel.FLIGHTTYPE_ROUNDTRIP);
         }
         this.ffv.setFlightTypeViews(this.ffm.getSelectedFlightType());
     }

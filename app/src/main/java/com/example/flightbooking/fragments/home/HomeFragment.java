@@ -1,7 +1,9 @@
 package com.example.flightbooking.fragments.home;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -18,6 +20,8 @@ import android.widget.TextView;
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.exception.MissingValuesException;
+import com.example.flightbooking.fragments.home.flights.FlightsFragment;
+import com.google.android.material.chip.ChipGroup;
 
 import java.util.AbstractMap;
 import java.util.List;
@@ -66,6 +70,12 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.ma_ref = (MainActivity) context;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -79,12 +89,15 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_home, container, false);
+        ChipGroup cg_type = view.findViewById(R.id.frag_home_cg_type);
+        this.hfv = new HomeFragmentView(this.ma_ref,cg_type);
         return view;
     }
 
     @Override
     public void onResume() {
         super.onResume();
+        this.hfv.updateFragment(R.id.frag_home_fragment_container, new FlightsFragment());
     }
 
 
