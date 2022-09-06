@@ -32,7 +32,7 @@ import java.util.Map;
  * Use the {@link HomeFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HomeFragment extends Fragment implements View.OnClickListener {
+public class HomeFragment extends Fragment implements View.OnClickListener, ChipGroup.OnCheckedChangeListener {
 
     private HomeFragmentModel hfm;
     private HomeFragmentView hfv;
@@ -91,6 +91,7 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         View view = inflater.inflate(R.layout.fragment_home, container, false);
         ChipGroup cg_type = view.findViewById(R.id.frag_home_cg_type);
         this.hfv = new HomeFragmentView(this.ma_ref,cg_type);
+        this.hfv.getCgType().setOnCheckedChangeListener(this);
         return view;
     }
 
@@ -109,4 +110,11 @@ public class HomeFragment extends Fragment implements View.OnClickListener {
         }
     }
 
+    //ChipGroup.OnCheckedChangeListener
+    @Override
+    public void onCheckedChanged(ChipGroup group, int checkedId) {
+        switch(checkedId){
+
+        }
+    }
 }
