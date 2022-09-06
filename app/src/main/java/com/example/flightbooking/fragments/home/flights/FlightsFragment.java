@@ -84,7 +84,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
         try {
             this.ffv = new FlightsFragmentView(this.menuItemsMap(view));
             //Check the roundtrip radio button for default
-            this.ffv.getRgFlightTypes().check(R.id.frag_home_rb_roundtrip);
+            this.ffv.getRgFlightTypes().check(R.id.frag_flights_rb_roundtrip);
             this.ffv.getRgFlightTypes().setOnCheckedChangeListener(this);
         } catch (MissingValuesException e) {
             e.printStackTrace();
@@ -118,20 +118,20 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
      */
     private Map<String, View> menuItemsMap(View v){
         Map<String, View> flightsItems = Map.ofEntries(
-                new AbstractMap.SimpleImmutableEntry<>("flight_types", (RadioGroup)v.findViewById(R.id.frag_home_rg_flight_types)),
-                new AbstractMap.SimpleImmutableEntry<>("companies",(Spinner)v.findViewById(R.id.frag_home_sp_companies)),
-                new AbstractMap.SimpleImmutableEntry<>("dep_country", (Spinner)v.findViewById(R.id.frag_home_sp_dep_country)),
-                new AbstractMap.SimpleImmutableEntry<>("dep_airport", (Spinner)v.findViewById(R.id.frag_home_sp_dep_airport)),
-                new AbstractMap.SimpleImmutableEntry<>("arr_country", (Spinner)v.findViewById(R.id.frag_home_sp_arr_country)),
-                new AbstractMap.SimpleImmutableEntry<>("arr_airport", (Spinner)v.findViewById(R.id.frag_home_sp_arr_airport)),
-                new AbstractMap.SimpleImmutableEntry<>("out_date", (EditText) v.findViewById(R.id.frag_home_et_out_date)),
-                new AbstractMap.SimpleImmutableEntry<>("ret_date_tv", (TextView)v.findViewById(R.id.frag_home_tv_ret_date)),
-                new AbstractMap.SimpleImmutableEntry<>("ret_date_et", (EditText)v.findViewById(R.id.frag_home_et_ret_date)),
-                new AbstractMap.SimpleImmutableEntry<>("adults", (EditText)v.findViewById(R.id.frag_home_et_adults)),
-                new AbstractMap.SimpleImmutableEntry<>("teenagers", (EditText)v.findViewById(R.id.frag_home_et_teenagers)),
-                new AbstractMap.SimpleImmutableEntry<>("childrens", (EditText)v.findViewById(R.id.frag_home_et_childrens)),
-                new AbstractMap.SimpleImmutableEntry<>("newborns", (EditText)v.findViewById(R.id.frag_home_et_newborns)),
-                new AbstractMap.SimpleImmutableEntry<>("search", (Button)v.findViewById(R.id.frag_home_bt_search))
+                new AbstractMap.SimpleImmutableEntry<>("flight_types", (RadioGroup)v.findViewById(R.id.frag_flights_rg_flight_types)),
+                new AbstractMap.SimpleImmutableEntry<>("companies",(Spinner)v.findViewById(R.id.frag_flights_sp_companies)),
+                new AbstractMap.SimpleImmutableEntry<>("dep_country", (Spinner)v.findViewById(R.id.frag_flights_sp_dep_country)),
+                new AbstractMap.SimpleImmutableEntry<>("dep_airport", (Spinner)v.findViewById(R.id.frag_flights_sp_dep_airport)),
+                new AbstractMap.SimpleImmutableEntry<>("arr_country", (Spinner)v.findViewById(R.id.frag_flights_sp_arr_country)),
+                new AbstractMap.SimpleImmutableEntry<>("arr_airport", (Spinner)v.findViewById(R.id.frag_flights_sp_arr_airport)),
+                new AbstractMap.SimpleImmutableEntry<>("out_date", (EditText) v.findViewById(R.id.frag_flights_et_out_date)),
+                new AbstractMap.SimpleImmutableEntry<>("ret_date_tv", (TextView)v.findViewById(R.id.frag_flights_tv_ret_date)),
+                new AbstractMap.SimpleImmutableEntry<>("ret_date_et", (EditText)v.findViewById(R.id.frag_flights_et_ret_date)),
+                new AbstractMap.SimpleImmutableEntry<>("adults", (EditText)v.findViewById(R.id.frag_flights_et_adults)),
+                new AbstractMap.SimpleImmutableEntry<>("teenagers", (EditText)v.findViewById(R.id.frag_flights_et_teenagers)),
+                new AbstractMap.SimpleImmutableEntry<>("childrens", (EditText)v.findViewById(R.id.frag_flights_et_childrens)),
+                new AbstractMap.SimpleImmutableEntry<>("newborns", (EditText)v.findViewById(R.id.frag_flights_et_newborns)),
+                new AbstractMap.SimpleImmutableEntry<>("search", (Button)v.findViewById(R.id.frag_flights_bt_search))
         );
         return flightsItems;
     }
@@ -219,7 +219,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     @Override
     public void onClick(View view) {
         switch(view.getId()){
-            case R.id.frag_home_bt_search:
+            case R.id.frag_flights_bt_search:
                 break;
         }
     }
@@ -227,7 +227,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     //RadioGroup.OnCheckedChangeListener
     @Override
     public void onCheckedChanged(RadioGroup radioGroup, int i) {
-        if(i == R.id.frag_home_rb_oneway){
+        if(i == R.id.frag_flights_rb_oneway){
             //Oneway flight selected
             this.ffm.setSelectedFlightType(HomeFragmentModel.FLIGHTTYPE_ONEWAY);
         }
