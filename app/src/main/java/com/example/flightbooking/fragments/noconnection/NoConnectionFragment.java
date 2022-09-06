@@ -22,11 +22,12 @@ import com.example.flightbooking.R;
  */
 public class NoConnectionFragment extends Fragment implements View.OnClickListener {
 
-    NoConnectionFragmentView ncfv;
+    private NoConnectionFragmentView ncfv;
+    private String label; //Last menu item clicked
 
     public interface RetryListener{
         //When retry button is pressed
-        public void retryClick();
+        public void retryClick(String label);
     }
 
     public RetryListener retryListener;
@@ -48,16 +49,14 @@ public class NoConnectionFragment extends Fragment implements View.OnClickListen
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param label The label of menu item clicked.
      * @return A new instance of fragment NoConnectionFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static NoConnectionFragment newInstance(String param1, String param2) {
+    public static NoConnectionFragment newInstance(String label) {
         NoConnectionFragment fragment = new NoConnectionFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putString("label", label);
         fragment.setArguments(args);
         return fragment;
     }
@@ -66,8 +65,7 @@ public class NoConnectionFragment extends Fragment implements View.OnClickListen
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            this.label = getArguments().getString("label");
         }
     }
 
@@ -93,7 +91,7 @@ public class NoConnectionFragment extends Fragment implements View.OnClickListen
         int id = view.getId();
         switch(id){
             case R.id.no_conn_frag_bt_retry:
-                this.retryListener.retryClick();
+                this.retryListener.retryClick(this.label);
                 break;
         }
     }

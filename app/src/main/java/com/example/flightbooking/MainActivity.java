@@ -32,11 +32,11 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
     }
 
     @Override
-    public void retryClick() {
+    public void retryClick(String label) {
         //NoConnection fragment Retry button clicked
         //Log.i("MainActivity","retryClick");
         this.mav.removeFragment(R.id.main_activity_fragment_container);
-        this.setFragments("Home");
+        this.setFragments(label);
     }
 
     /**
