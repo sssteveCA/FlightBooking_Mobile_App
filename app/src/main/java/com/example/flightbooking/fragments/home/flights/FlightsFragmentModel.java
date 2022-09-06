@@ -1,6 +1,5 @@
 package com.example.flightbooking.fragments.home.flights;
 
-import com.example.flightbooking.fragments.home.HomeFragmentClient;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
@@ -38,11 +37,11 @@ public class FlightsFragmentModel {
 
     private int selected_flight_type;
     private String sel_country; //Countries selected for view airports list
-    private HomeFragmentClient hfc;
+    private FlightsFragmentClient ffc;
 
     public FlightsFragmentModel(){
         this.selected_flight_type = FLIGHTTYPE_ROUNDTRIP;
-        this.hfc = new HomeFragmentClient();
+        this.ffc = new FlightsFragmentClient();
 
     }
 
@@ -61,7 +60,7 @@ public class FlightsFragmentModel {
      * Perform the HTTP request to get the companies list
      */
     public void getCompanies(GetCompanies gc){
-        this.hfc.getHfi().companies().enqueue(new Callback<List<String>>() {
+        this.ffc.getFfi().companies().enqueue(new Callback<List<String>>() {
             @Override
             public void onResponse(Call<List<String>> call, Response<List<String>> response) {
                 if(response.isSuccessful()){
@@ -89,7 +88,7 @@ public class FlightsFragmentModel {
      * @param gc
      */
     public void getCountries(GetCountries gc){
-        this.hfc.getHfi().countries().enqueue(new Callback<List<String>>() {
+        this.ffc.getFfi().countries().enqueue(new Callback<List<String>>() {
             @Override
             public void onResponse(Call<List<String>> call, Response<List<String>> response) {
                 if(response.isSuccessful()){
@@ -113,7 +112,7 @@ public class FlightsFragmentModel {
     }
 
     public void getCountryAirports(String country, GetCountryAirports gca){
-        this.hfc.getHfi().airports_search(country).enqueue(new Callback<JsonObject>() {
+        this.ffc.getFfi().airports_search(country).enqueue(new Callback<JsonObject>() {
             @Override
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if(response.isSuccessful()){

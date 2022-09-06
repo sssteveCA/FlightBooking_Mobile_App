@@ -13,7 +13,7 @@ import retrofit2.http.Query;
 
 public class FlightsFragmentClient
 {
-    public interface HomeFragmentInterface{
+    public interface FlightsFragmentInterface{
         @GET("/airportsearch")
         Call<JsonObject> airports_search(@Query("country") String country);
 
@@ -25,15 +25,15 @@ public class FlightsFragmentClient
     }
 
     private Retrofit retrofit;
-    private HomeFragmentInterface hfi;
+    private FlightsFragmentInterface ffi;
     public FlightsFragmentClient(){
         this.retrofit = new Retrofit.Builder()
                 .baseUrl(Globals.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
-        this.hfi = this.retrofit.create(HomeFragmentInterface.class);
+        this.ffi = this.retrofit.create(FlightsFragmentInterface.class);
     }
 
-    public HomeFragmentInterface getHfi(){return this.hfi;}
+    public FlightsFragmentInterface getFfi(){return this.ffi;}
 
 }
