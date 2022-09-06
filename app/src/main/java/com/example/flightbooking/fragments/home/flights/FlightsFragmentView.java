@@ -77,7 +77,7 @@ public class FlightsFragmentView {
      * @param flight_type
      */
     public void setFlightTypeViews(int flight_type){
-        if(flight_type == HomeFragmentModel.FLIGHTTYPE_ROUNDTRIP){
+        if(flight_type == FlightsFragmentModel.FLIGHTTYPE_ROUNDTRIP){
             this.tv_ret_date.setVisibility(View.VISIBLE);
             this.et_ret_date.setVisibility(View.VISIBLE);
         }
