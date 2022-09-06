@@ -241,16 +241,17 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     //AdapterView.OnItemSelectedListener
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        if(view == this.ffv.getSpDepCountry()){
-          //Item selected from country departure spinner
-            Log.d("FlightsFragment", "onItemSelectedListener departure country");
-        }
-        else if(view == this.ffv.getSpArrCountry()){
-            //Item selected from country arrival spinner
-            Log.d("FlightsFragment", "onItemSelectedListener arrival country");
-        }
         String country = (String)adapterView.getItemAtPosition(i);
-        Log.d("FlightsFragment", "onItemSelectedListener country => "+country);
+        if(adapterView == this.ffv.getSpDepCountry()){
+          //Item selected from country departure spinner
+            int flight_type = FlightsFragmentModel.AIRPORTS_REQUEST_DEPARTURE;
+            this.airportsRequest(country,flight_type);
+        }
+        else if(adapterView == this.ffv.getSpArrCountry()){
+            //Item selected from country arrival spinner
+            int flight_type = FlightsFragmentModel.AIRPORTS_REQUEST_ARRIVAL;
+            this.airportsRequest(country,flight_type);
+        }
     }
 
     @Override
