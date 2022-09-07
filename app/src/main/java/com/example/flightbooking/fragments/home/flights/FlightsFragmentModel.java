@@ -1,9 +1,14 @@
 package com.example.flightbooking.fragments.home.flights;
 
+import android.util.Log;
+
+import com.example.flightbooking.models.FlightSearch;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
+import java.lang.reflect.Field;
+import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -55,6 +60,23 @@ public class FlightsFragmentModel {
             this.selected_flight_type = flight_type;
     }
     public void setSelCountry(String sel_country){this.sel_country = sel_country;}
+
+    private boolean flightSearchValid(FlightSearch fs){
+        try{
+            Class<?> flightsearch = fs.getClass();
+            Field[] fields = flightsearch.getDeclaredFields();
+            for(Field field: fields){
+                String field_name = field.getName();
+                Log.i("FlightFragmentModel","field name => "+field_name);
+                Object field_val = field.get(fs);
+                Log.i("FlightFragmentModel","field val => "+field_val.toString());
+            }
+        }catch (IllegalAccessException e) {
+            e.printStackTrace();
+            return false;
+        }
+        return true;
+    }
 
     /**
      * Perform the HTTP request to get the companies list
@@ -111,6 +133,11 @@ public class FlightsFragmentModel {
         });
     }
 
+    /**
+     * Perform the HTTP request to get the airports list for specific country
+     * @param country
+     * @param gca
+     */
     public void getCountryAirports(String country, GetCountryAirports gca){
         this.ffc.getFfi().airports_search(country).enqueue(new Callback<JsonObject>() {
             @Override
