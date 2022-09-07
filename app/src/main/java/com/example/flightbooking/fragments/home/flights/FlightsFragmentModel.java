@@ -62,17 +62,24 @@ public class FlightsFragmentModel {
     }
     public void setSelCountry(String sel_country){this.sel_country = sel_country;}
 
+    /**
+     * Check if FlightSearch properties pass the validation
+     * @param fs
+     * @return
+     */
     private boolean flightSearchValid(FlightSearch fs){
         try{
             Class<?> flightsearch = fs.getClass();
             Field[] fields = flightsearch.getDeclaredFields();
             for(Field field: fields){
                 if(field != null){
-                    String field_name = field.getName();
-                    Log.i("FlightFragmentModel","field name => "+field_name);
                     Object field_val = field.get(fs);
                     if(field_val != null){
                         String val_str = field_val.toString();
+                        if(val_str != ""){
+                            //No class properties can be empty
+                        }//if(val_str != ""){
+                        else return false;
                         Log.i("FlightFragmentModel","field val => "+field_val);
                     }//if(field_val != null){
                 }
