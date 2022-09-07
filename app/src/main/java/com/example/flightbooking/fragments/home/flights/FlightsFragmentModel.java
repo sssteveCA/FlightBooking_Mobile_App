@@ -78,7 +78,7 @@ public class FlightsFragmentModel {
     private boolean flightSearchFieldValid(Field field, FlightSearch fs) throws IllegalAccessException {
         //List of fields that must match date pattern
         ArrayList<String> date_fields = new ArrayList<>(Arrays.asList("oneway_date","roundtrip_start_date","roundtrip_end_date"));
-        Log.i("FlightFragmentModel","date fields => "+date_fields);
+        ArrayList<String> number_fields = new ArrayList<>(Arrays.asList("adults","teenagers","children","newborns"));
         Object field_val = field.get(fs);
         if(field_val != null){
             String val_str = field_val.toString();
@@ -89,6 +89,10 @@ public class FlightsFragmentModel {
                 if(date_fields.contains(field_name)){
                     //Current field looped is date field
                     if(!RegEx.patternMatches(RegEx.PATTERN_DATE,val_str))return false;
+                }
+                else if(number_fields.contains(field_name)){
+                    //Current field looped is number field
+                    if(!RegEx.patternMatches(RegEx.PATTERN_NUMBER,val_str))return false;
                 }
             }//if(val_str != ""){
             else return false;
