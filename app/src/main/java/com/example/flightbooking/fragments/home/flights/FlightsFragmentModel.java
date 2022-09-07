@@ -2,12 +2,15 @@ package com.example.flightbooking.fragments.home.flights;
 
 import android.util.Log;
 
+import com.example.flightbooking.common.RegEx;
 import com.example.flightbooking.models.FlightSearch;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.lang.reflect.Field;
+import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
@@ -68,21 +71,27 @@ public class FlightsFragmentModel {
      * @return
      */
     private boolean flightSearchValid(FlightSearch fs){
+        //List of fields that must match date pattern
+        ArrayList<String> date_fields = new ArrayList<>(Arrays.asList("oneway_date","roundtrip_start_date","roundtrip_end_date"));
+        Log.i("FlightFragmentModel","date fields => "+date_fields);
         try{
             Class<?> flightsearch = fs.getClass();
             Field[] fields = flightsearch.getDeclaredFields();
             for(Field field: fields){
-                if(field != null){
-                    Object field_val = field.get(fs);
-                    if(field_val != null){
-                        String val_str = field_val.toString();
-                        if(val_str != ""){
-                            //No class properties can be empty
-                        }//if(val_str != ""){
-                        else return false;
-                        Log.i("FlightFragmentModel","field val => "+field_val);
-                    }//if(field_val != null){
-                }
+                Object field_val = field.get(fs);
+                if(field_val != null){
+                    String val_str = field_val.toString();
+                    if(val_str != ""){
+                        //No class properties can be empty
+                        String field_name = field.getName();
+                        if(date_fields.contains(field_name)){
+                            //Current field looped is date field
+                            if(!RegEx.patternMatches(RegEx.PATTERN_DATE,val_str))return false;
+                        }
+                    }//if(val_str != ""){
+                    else return false;
+                    Log.i("FlightFragmentModel","field val => "+field_val);
+                }//if(field_val != null){
             }//for(Field field: fields){
         }catch (IllegalAccessException e) {
             e.printStackTrace();
