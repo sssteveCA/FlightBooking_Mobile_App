@@ -66,32 +66,43 @@ public class FlightsFragmentModel {
     public void setSelCountry(String sel_country){this.sel_country = sel_country;}
 
     /**
+     * Check if single property passes the validation
+     * @param field
+     * @param fs
+     * @return
+     */
+    private boolean flightSearchFieldValid(Field field, FlightSearch fs) throws IllegalAccessException {
+        //List of fields that must match date pattern
+        ArrayList<String> date_fields = new ArrayList<>(Arrays.asList("oneway_date","roundtrip_start_date","roundtrip_end_date"));
+        Log.i("FlightFragmentModel","date fields => "+date_fields);
+        Object field_val = field.get(fs);
+        if(field_val != null){
+            String val_str = field_val.toString();
+            if(val_str != ""){
+                //No class properties can be empty
+                String field_name = field.getName();
+                if(date_fields.contains(field_name)){
+                    //Current field looped is date field
+                    if(!RegEx.patternMatches(RegEx.PATTERN_DATE,val_str))return false;
+                }
+            }//if(val_str != ""){
+            else return false;
+            Log.i("FlightFragmentModel","field val => "+field_val);
+        }//if(field_val != null){
+        return true;
+    }
+
+    /**
      * Check if FlightSearch properties pass the validation
      * @param fs
      * @return
      */
     private boolean flightSearchValid(FlightSearch fs){
-        //List of fields that must match date pattern
-        ArrayList<String> date_fields = new ArrayList<>(Arrays.asList("oneway_date","roundtrip_start_date","roundtrip_end_date"));
-        Log.i("FlightFragmentModel","date fields => "+date_fields);
         try{
             Class<?> flightsearch = fs.getClass();
             Field[] fields = flightsearch.getDeclaredFields();
             for(Field field: fields){
-                Object field_val = field.get(fs);
-                if(field_val != null){
-                    String val_str = field_val.toString();
-                    if(val_str != ""){
-                        //No class properties can be empty
-                        String field_name = field.getName();
-                        if(date_fields.contains(field_name)){
-                            //Current field looped is date field
-                            if(!RegEx.patternMatches(RegEx.PATTERN_DATE,val_str))return false;
-                        }
-                    }//if(val_str != ""){
-                    else return false;
-                    Log.i("FlightFragmentModel","field val => "+field_val);
-                }//if(field_val != null){
+                if(!this.flightSearchFieldValid(field,fs))return false;
             }//for(Field field: fields){
         }catch (IllegalAccessException e) {
             e.printStackTrace();
