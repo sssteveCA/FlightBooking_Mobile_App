@@ -12,6 +12,7 @@ import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
+import java.util.Objects;
 import java.util.Set;
 
 import retrofit2.Call;
@@ -70,8 +71,10 @@ public class FlightsFragmentModel {
                     String field_name = field.getName();
                     Log.i("FlightFragmentModel","field name => "+field_name);
                     Object field_val = field.get(fs);
-                    assert field_val != null;
-                    Log.i("FlightFragmentModel","field val => "+field_val.toString());
+                    if(field_val != null){
+                        String val_str = field_val.toString();
+                        Log.i("FlightFragmentModel","field val => "+field_val);
+                    }//if(field_val != null){
                 }
             }//for(Field field: fields){
         }catch (IllegalAccessException e) {
