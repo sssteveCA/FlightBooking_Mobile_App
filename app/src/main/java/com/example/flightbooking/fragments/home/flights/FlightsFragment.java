@@ -250,6 +250,8 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.frag_flights_bt_search:
+                FlightSearch fs = this.setFlightSearchBody();
+                this.ffm.flightTicketPreview(fs);
                 break;
         }
     }

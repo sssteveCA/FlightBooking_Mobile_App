@@ -79,6 +79,20 @@ public class FlightsFragmentModel {
     }
 
     /**
+     * Perform the HTTP request to get the flight ticket preview information
+     * @param fs
+     */
+    public void flightTicketPreview(FlightSearch fs){
+        boolean valid = this.flightSearchValid(fs);
+        if(valid){
+            //Provied input data are valid
+        }
+        else{
+            //One or more inputs are not valid
+        }
+    }
+
+    /**
      * Perform the HTTP request to get the companies list
      */
     public void getCompanies(GetCompanies gc){
