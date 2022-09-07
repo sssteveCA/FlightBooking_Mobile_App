@@ -85,6 +85,7 @@ public class FlightsFragmentModel {
             if(val_str != ""){
                 //No class properties can be empty
                 String field_name = field.getName();
+                Log.i("FlightFragmentModel","field name => "+field_name);
                 if(date_fields.contains(field_name)){
                     //Current field looped is date field
                     if(!RegEx.patternMatches(RegEx.PATTERN_DATE,val_str))return false;
