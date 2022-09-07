@@ -17,7 +17,9 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.flightbooking.R;
+import com.example.flightbooking.dialogs.MessageDialog;
 import com.example.flightbooking.exception.MissingValuesException;
+import com.example.flightbooking.models.FlightInfo;
 import com.example.flightbooking.models.FlightSearch;
 
 import java.util.AbstractMap;
@@ -252,7 +254,16 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
         switch(view.getId()){
             case R.id.frag_flights_bt_search:
                 FlightSearch fs = this.setFlightSearchBody();
-                this.ffm.flightTicketPreview(fs);
+                this.ffm.flightTicketPreview(fs, new FlightsFragmentModel.GetFlightInfo() {
+                    @Override
+                    public void getTicketPreviewResponse(FlightInfo fp) {
+                      Log.i("FlightsFragment","getTicketPreviewResponse");
+                    }
+                    @Override
+                    public void getTicketPreviewError(String message) {
+                        MessageDialog md = new MessageDialog(getActivity(),"Errore",message);
+                    }
+                });
                 break;
         }
     }

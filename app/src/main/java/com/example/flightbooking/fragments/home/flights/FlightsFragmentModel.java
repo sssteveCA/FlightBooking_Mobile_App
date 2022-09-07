@@ -119,13 +119,15 @@ public class FlightsFragmentModel {
      * Perform the HTTP request to get the flight ticket preview information
      * @param fs
      */
-    public void flightTicketPreview(FlightSearch fs){
+    public void flightTicketPreview(FlightSearch fs,GetFlightInfo gfi){
         boolean valid = this.flightSearchValid(fs);
         if(valid){
             //Provied input data are valid
+            gfi.getTicketPreviewResponse(null);
         }
         else{
             //One or more inputs are not valid
+            gfi.getTicketPreviewError("Uno o più dati non sono nel formato corretto, riprova");
         }
     }
 
