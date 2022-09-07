@@ -12,7 +12,8 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:paddingBottom="60dp">
 
             <TextView
                 android:id="@+id/frag_hotel_header"
@@ -26,6 +27,109 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <EditText
+                android:id="@+id/frag_hotel_et_hotel"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                android:ems="10"
+                android:hint="Scegli la città in cui vuoi avere l'albergo"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frag_hotel_header" />
+
+            <TextView
+                android:id="@+id/frag_hotel_tv_check_in"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                android:text="Check in"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frag_hotel_et_hotel" />
+
+            <EditText
+                android:id="@+id/frag_hotel_et_check_in"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:ems="10"
+                android:inputType="date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frag_hotel_tv_check_in" />
+
+            <TextView
+                android:id="@+id/frag_hotel_tv_check_out"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                android:text="Check out"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frag_hotel_et_check_in" />
+
+            <EditText
+                android:id="@+id/frag_hotel_et_check_out"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:ems="10"
+                android:inputType="date"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frag_hotel_tv_check_out" />
+
+            <TextView
+                android:id="@+id/frag_hotel_tv_guests_and_rooms"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                android:text="Ospiti e camere"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frag_hotel_et_check_out" />
+
+            <EditText
+                android:id="@+id/editTextTextPersonName2"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="10dp"
+                android:layout_marginEnd="20dp"
+                android:ems="10"
+                android:inputType="textPersonName"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frag_hotel_tv_guests_and_rooms" />
+
+            <Button
+                android:id="@+id/frag_hotel_bt_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="#F44336"
+                android:padding="15dp"
+                android:text="Cerca"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/editTextTextPersonName2" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </FrameLayout>
