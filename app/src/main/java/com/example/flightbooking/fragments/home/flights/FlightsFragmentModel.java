@@ -66,11 +66,14 @@ public class FlightsFragmentModel {
             Class<?> flightsearch = fs.getClass();
             Field[] fields = flightsearch.getDeclaredFields();
             for(Field field: fields){
-                String field_name = field.getName();
-                Log.i("FlightFragmentModel","field name => "+field_name);
-                Object field_val = field.get(fs);
-                Log.i("FlightFragmentModel","field val => "+field_val.toString());
-            }
+                if(field != null){
+                    String field_name = field.getName();
+                    Log.i("FlightFragmentModel","field name => "+field_name);
+                    Object field_val = field.get(fs);
+                    assert field_val != null;
+                    Log.i("FlightFragmentModel","field val => "+field_val.toString());
+                }
+            }//for(Field field: fields){
         }catch (IllegalAccessException e) {
             e.printStackTrace();
             return false;

@@ -87,6 +87,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
             this.ffv.getRgFlightTypes().setOnCheckedChangeListener(this);
             this.ffv.getSpDepCountry().setOnItemSelectedListener(this);
             this.ffv.getSpArrCountry().setOnItemSelectedListener(this);
+            this.ffv.getBtSearch().setOnClickListener(this);
         } catch (MissingValuesException e) {
             e.printStackTrace();
         }
