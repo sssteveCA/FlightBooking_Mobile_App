@@ -1,7 +1,7 @@
 package com.example.flightbooking.fragments.home.flights;
 
 import com.example.flightbooking.common.Globals;
-import com.example.flightbooking.models.FlightPrice;
+import com.example.flightbooking.models.FlightInfo;
 import com.example.flightbooking.models.FlightSearch;
 import com.google.gson.JsonObject;
 
@@ -28,7 +28,7 @@ public class FlightsFragmentClient
         Call<List<String>> companies();
 
         @POST("/flightsearch")
-        Call<FlightPrice> getFlightPrice(@Body FlightSearch fs);
+        Call<FlightInfo> getFlightPrice(@Body FlightSearch fs);
 
     }
 

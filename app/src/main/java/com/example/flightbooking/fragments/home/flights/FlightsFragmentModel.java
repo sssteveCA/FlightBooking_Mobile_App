@@ -3,6 +3,7 @@ package com.example.flightbooking.fragments.home.flights;
 import android.util.Log;
 
 import com.example.flightbooking.common.RegEx;
+import com.example.flightbooking.models.FlightInfo;
 import com.example.flightbooking.models.FlightSearch;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
@@ -11,11 +12,9 @@ import java.io.IOException;
 import java.lang.reflect.Field;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
-import java.util.Objects;
 import java.util.Set;
 
 import retrofit2.Call;
@@ -37,6 +36,11 @@ public class FlightsFragmentModel {
     public interface GetCountryAirports{
         public void getCountryAirportsResponse(List<String> airports);
         public void getCountryAirportsError(String message);
+    }
+
+    public interface GetFlightInfo{
+        public void getTicketPreviewResponse(FlightInfo fp);
+        public void getTicketPreviewError(String message);
     }
 
     public final static int FLIGHTTYPE_ROUNDTRIP = 0;
