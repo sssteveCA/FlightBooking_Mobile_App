@@ -279,11 +279,9 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
                 });
                 break;
             case R.id.frag_flights_et_out_date:
-                Log.i("FlightsFragment","et out date click");
                 this.showDatePickerDialog(this.ffv.getEtOutDate().getText().toString(), FlightsFragmentModel.EditTextsDate.OUTDATE);
                 break;
             case R.id.frag_flights_et_ret_date:
-                Log.i("FlightsFragment","et ret date click");
                 this.showDatePickerDialog(this.ffv.getEtRetDate().getText().toString(), FlightsFragmentModel.EditTextsDate.RETDATE);
                 break;
         }
@@ -326,7 +324,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     //DatePicker.DialogDate
     @Override
     public void getDate(String date, FlightsFragmentModel.EditTextsDate editTextsDate) {
-        Log.d("FlightsFragment","getDate => "+date);
+        //Log.d("FlightsFragment","getDate => "+date);
         if(editTextsDate == FlightsFragmentModel.EditTextsDate.OUTDATE)
             this.ffv.getEtOutDate().setText(date);
         else
