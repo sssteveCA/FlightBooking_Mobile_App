@@ -326,5 +326,6 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     //DatePicker.DialogDate
     @Override
     public void getDate(String date) {
+        Log.d("FlightsFragment","getDate => "+date);
     }
 }
