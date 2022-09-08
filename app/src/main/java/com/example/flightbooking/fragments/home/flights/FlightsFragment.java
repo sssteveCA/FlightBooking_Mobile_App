@@ -89,6 +89,8 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
             this.ffv.getRgFlightTypes().setOnCheckedChangeListener(this);
             this.ffv.getSpDepCountry().setOnItemSelectedListener(this);
             this.ffv.getSpArrCountry().setOnItemSelectedListener(this);
+            this.ffv.getEtOutDate().setOnClickListener(this);
+            this.ffv.getEtRetDate().setOnClickListener(this);
             this.ffv.getBtSearch().setOnClickListener(this);
         } catch (MissingValuesException e) {
             e.printStackTrace();
@@ -264,6 +266,12 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
                         MessageDialog md = new MessageDialog(getActivity(),"Errore",message);
                     }
                 });
+                break;
+            case R.id.frag_flights_et_out_date:
+                Log.i("FlightsFragment","et out date click");
+                break;
+            case R.id.frag_flights_et_ret_date:
+                Log.i("FlightsFragment","et ret date click");
                 break;
         }
     }
