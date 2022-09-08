@@ -8,13 +8,26 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
+import java.util.Calendar;
+
 public class DatePicker extends DialogFragment implements DatePickerDialog.OnDateSetListener {
+
+    private int year;
+    private int month;
+    private int day;
+
+    public int getYear(){return this.year;}
+    public int getMonth(){return this.month;}
+    public int getDay(){return this.day;}
 
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-
-        return super.onCreateDialog(savedInstanceState);
+        final Calendar cal = Calendar.getInstance();
+        this.year = cal.get(Calendar.YEAR);
+        this.month = cal.get(Calendar.MONTH);
+        this.day = cal.get(Calendar.YEAR);
+        return new DatePickerDialog(requireContext(),this,this.year,this.month,this.day);
     }
 
     @Override
