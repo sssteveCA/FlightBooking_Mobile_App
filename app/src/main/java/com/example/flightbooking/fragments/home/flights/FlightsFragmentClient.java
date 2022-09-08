@@ -27,7 +27,7 @@ public class FlightsFragmentClient
         @GET("/companieslist")
         Call<List<String>> companies();
 
-        @POST("/flightsearch")
+        @POST("/flightprice")
         Call<FlightInfo> getFlightPrice(@Body FlightSearch fs);
 
     }
