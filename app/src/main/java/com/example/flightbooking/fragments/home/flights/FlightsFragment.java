@@ -256,8 +256,8 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
      * Show a date picker dialog and pass the date inserted from EditText if exists
      * @param inputDate
      */
-    private void showDatePickerDialog(String inputDate){
-        DialogFragment df = new DatePicker(inputDate,this);
+    private void showDatePickerDialog(String inputDate, FlightsFragmentModel.EditTextsDate etd){
+        DialogFragment df = new DatePicker(inputDate,this, etd);
         df.show(getActivity().getSupportFragmentManager(),"DatePickerDialog");
     }
 
@@ -280,11 +280,11 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
                 break;
             case R.id.frag_flights_et_out_date:
                 Log.i("FlightsFragment","et out date click");
-                this.showDatePickerDialog(this.ffv.getEtOutDate().getText().toString());
+                this.showDatePickerDialog(this.ffv.getEtOutDate().getText().toString(), FlightsFragmentModel.EditTextsDate.OUTDATE);
                 break;
             case R.id.frag_flights_et_ret_date:
                 Log.i("FlightsFragment","et ret date click");
-                this.showDatePickerDialog(this.ffv.getEtRetDate().getText().toString());
+                this.showDatePickerDialog(this.ffv.getEtRetDate().getText().toString(), FlightsFragmentModel.EditTextsDate.RETDATE);
                 break;
         }
     }
@@ -325,7 +325,11 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
 
     //DatePicker.DialogDate
     @Override
-    public void getDate(String date) {
+    public void getDate(String date, FlightsFragmentModel.EditTextsDate editTextsDate) {
         Log.d("FlightsFragment","getDate => "+date);
+        if(editTextsDate == FlightsFragmentModel.EditTextsDate.OUTDATE)
+            this.ffv.getEtOutDate().setText(date);
+        else
+            this.ffv.getEtRetDate().setText(date);
     }
 }

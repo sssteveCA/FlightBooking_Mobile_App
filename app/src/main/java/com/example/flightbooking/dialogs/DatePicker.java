@@ -11,6 +11,7 @@ import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
 
 import com.example.flightbooking.common.RegEx;
+import com.example.flightbooking.fragments.home.flights.FlightsFragmentModel;
 
 import java.util.Calendar;
 import java.util.regex.Matcher;
@@ -19,7 +20,7 @@ import java.util.regex.Pattern;
 public class DatePicker extends DialogFragment implements DatePickerDialog.OnDateSetListener {
 
     public interface DialogDate{
-        public void getDate(String date);
+        public void getDate(String date, FlightsFragmentModel.EditTextsDate editTextsDate);
     }
 
     public DialogDate dd;
@@ -27,10 +28,12 @@ public class DatePicker extends DialogFragment implements DatePickerDialog.OnDat
     private Integer month;
     private Integer day;
     private String inputDate;
+    private FlightsFragmentModel.EditTextsDate etd;
 
-    public DatePicker(String inputDate, DialogDate dd){
+    public DatePicker(String inputDate, DialogDate dd, FlightsFragmentModel.EditTextsDate etd){
         this.inputDate = inputDate;
         this.dd = dd;
+        this.etd = etd;
     }
 
     public int getYear(){return this.year;}
@@ -52,7 +55,7 @@ public class DatePicker extends DialogFragment implements DatePickerDialog.OnDat
         String day = (i2 < 10) ? "0" + i2 : String.valueOf(i2);
         String date = i+"-"+month+"-"+day;
         Log.d("DatePicker","onDateSet date => "+date);
-        this.dd.getDate(date);
+        this.dd.getDate(date,etd);
     }
 
     /**
