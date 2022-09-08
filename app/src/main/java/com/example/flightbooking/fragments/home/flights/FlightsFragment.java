@@ -2,6 +2,7 @@ package com.example.flightbooking.fragments.home.flights;
 
 import android.os.Bundle;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -17,6 +18,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.flightbooking.R;
+import com.example.flightbooking.dialogs.DatePicker;
 import com.example.flightbooking.dialogs.MessageDialog;
 import com.example.flightbooking.exception.MissingValuesException;
 import com.example.flightbooking.models.FlightInfo;
@@ -250,6 +252,15 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
         return fs;
     }
 
+    /**
+     * Show a date picker dialog and pass the date inserted from EditText if exists
+     * @param inputDate
+     */
+    private void showDatePickerDialog(String inputDate){
+        DialogFragment df = new DatePicker(inputDate);
+        df.show(getActivity().getSupportFragmentManager(),"DatePickerDialog");
+    }
+
     //View.OnClickListener
     @Override
     public void onClick(View view) {
@@ -269,9 +280,11 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
                 break;
             case R.id.frag_flights_et_out_date:
                 Log.i("FlightsFragment","et out date click");
+                this.showDatePickerDialog(this.ffv.getEtOutDate().getText().toString());
                 break;
             case R.id.frag_flights_et_ret_date:
                 Log.i("FlightsFragment","et ret date click");
+                this.showDatePickerDialog(this.ffv.getEtRetDate().getText().toString());
                 break;
         }
     }

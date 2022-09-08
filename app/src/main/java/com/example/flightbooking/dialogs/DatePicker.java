@@ -15,10 +15,17 @@ public class DatePicker extends DialogFragment implements DatePickerDialog.OnDat
     private int year;
     private int month;
     private int day;
+    private String inputDate;
+
+    public DatePicker(String inputDate){
+        this.inputDate = inputDate;
+    }
 
     public int getYear(){return this.year;}
     public int getMonth(){return this.month;}
     public int getDay(){return this.day;}
+    public String getInputDate(){return this.inputDate;}
+
 
     @NonNull
     @Override
