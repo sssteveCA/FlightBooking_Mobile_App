@@ -13,6 +13,7 @@ import androidx.fragment.app.DialogFragment;
 import com.example.flightbooking.common.RegEx;
 import com.example.flightbooking.fragments.home.flights.FlightsFragmentModel;
 
+import java.util.Arrays;
 import java.util.Calendar;
 import java.util.regex.Matcher;
 import java.util.regex.Pattern;
@@ -32,6 +33,7 @@ public class DatePicker extends DialogFragment implements DatePickerDialog.OnDat
 
     public DatePicker(String inputDate, DialogDate dd, FlightsFragmentModel.EditTextsDate etd){
         this.inputDate = inputDate;
+        Log.d("DatePicker","DatePicker constructor date => "+this.inputDate);
         this.dd = dd;
         this.etd = etd;
     }
@@ -71,10 +73,7 @@ public class DatePicker extends DialogFragment implements DatePickerDialog.OnDat
                 valid_date = true;
         }//if(this.inputDate != null && !this.inputDate.isEmpty()){
         if(valid_date){
-            String[] date_args = this.inputDate.split("-");
-            this.year = Integer.valueOf(date_args[0]);
-            this.month = Integer.valueOf(date_args[1]);
-            this.year = Integer.valueOf(date_args[2]);
+            this.setEditTextDate();
         }//if(valid_date){
         else{
             final Calendar cal = Calendar.getInstance();
@@ -82,5 +81,20 @@ public class DatePicker extends DialogFragment implements DatePickerDialog.OnDat
             this.month = cal.get(Calendar.MONTH);
             this.day = cal.get(Calendar.DAY_OF_MONTH);
         }
+    }
+
+    /**
+     * If there is a valid date from EditText, use that when date picker dialog is opened
+     */
+    private void setEditTextDate(){
+        String[] date_args = this.inputDate.split("-");
+        Log.d("DatePicker","DatePicker setDate date_args => "+ Arrays.toString(date_args));
+        this.year = Integer.valueOf(date_args[0]);
+        if(date_args[1].startsWith("0"))
+            date_args[1] = date_args[1].substring(1);
+        this.month = Integer.valueOf(date_args[1]);
+        if(date_args[2].startsWith("0"))
+            date_args[2] = date_args[2].substring(2);
+        this.day = Integer.valueOf(date_args[2]);
     }
 }
