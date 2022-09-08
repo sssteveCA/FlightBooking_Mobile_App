@@ -132,7 +132,17 @@ public class FlightsFragmentModel {
         boolean valid = this.flightSearchValid(fs);
         if(valid){
             //Provied input data are valid
-            gfi.getTicketPreviewResponse(null);
+            this.ffc.getFfi().getFlightPrice(fs).enqueue(new Callback<FlightInfo>() {
+                @Override
+                public void onResponse(Call<FlightInfo> call, Response<FlightInfo> response) {
+                    gfi.getTicketPreviewResponse(null);
+                }
+
+                @Override
+                public void onFailure(Call<FlightInfo> call, Throwable t) {
+                    gfi.getTicketPreviewError("Errore durante l'esecuzione della richiesta");
+                }
+            });
         }
         else{
             //One or more inputs are not valid
