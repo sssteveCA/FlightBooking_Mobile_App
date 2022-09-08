@@ -33,7 +33,7 @@ import java.util.Map;
  * Use the {@link FlightsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class FlightsFragment extends Fragment implements View.OnClickListener, RadioGroup.OnCheckedChangeListener, AdapterView.OnItemSelectedListener {
+public class FlightsFragment extends Fragment implements View.OnClickListener, RadioGroup.OnCheckedChangeListener, AdapterView.OnItemSelectedListener, DatePicker.DialogDate {
 
     private FlightsFragmentModel ffm;
     private FlightsFragmentView ffv;
@@ -257,7 +257,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
      * @param inputDate
      */
     private void showDatePickerDialog(String inputDate){
-        DialogFragment df = new DatePicker(inputDate);
+        DialogFragment df = new DatePicker(inputDate,this);
         df.show(getActivity().getSupportFragmentManager(),"DatePickerDialog");
     }
 
@@ -321,5 +321,10 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
 
     @Override
     public void onNothingSelected(AdapterView<?> adapterView) {
+    }
+
+    //DatePicker.DialogDate
+    @Override
+    public void getDate(String date) {
     }
 }
