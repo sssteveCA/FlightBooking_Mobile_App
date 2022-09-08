@@ -144,7 +144,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
         return flightsItems;
     }
 
-    private void airportsRequest(String country, int flight_type){
+    private void airportsRequest(String country, FlightsFragmentModel.AirportsRequest ar){
         Log.i("FlightsFragment", "airportsRequest begin");
         FlightsFragmentModel ffm_temp = this.ffm;
         FlightsFragmentView ffv_temp = this.ffv;
@@ -154,7 +154,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
             @Override
             public void getCountryAirportsResponse(List<String> airports) {
                 Log.d("FlightsFragment","airportsRequest getCountryAirports response => "+airports);
-                if(flight_type == FlightsFragmentModel.AIRPORTS_REQUEST_DEPARTURE){
+                if(ar == FlightsFragmentModel.AirportsRequest.DEPARTURE){
                     //edit the spinner with departure airports list
                     ArrayAdapter<String> airportsAdapter = ff_temp.arrayAdapterFromList(airports);
                     ffv_temp.getSpDepAirport().setAdapter(airportsAdapter);
@@ -213,8 +213,8 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
                 int index = countries.indexOf(country);
                 String country = countries.get(index);
                 Log.d("FlightsFragment","countriesRequest getCountries country => "+country);
-                ff_temp.airportsRequest(country,FlightsFragmentModel.AIRPORTS_REQUEST_DEPARTURE);
-                ff_temp.airportsRequest(country,FlightsFragmentModel.AIRPORTS_REQUEST_ARRIVAL);
+                ff_temp.airportsRequest(country,FlightsFragmentModel.AirportsRequest.DEPARTURE);
+                ff_temp.airportsRequest(country,FlightsFragmentModel.AirportsRequest.ARRIVAL);
             }
             @Override
             public void countriesError(String message) {
@@ -294,11 +294,11 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     public void onCheckedChanged(RadioGroup radioGroup, int i) {
         if(i == R.id.frag_flights_rb_oneway){
             //Oneway flight selected
-            this.ffm.setSelectedFlightType(FlightsFragmentModel.FLIGHTTYPE_ONEWAY);
+            this.ffm.setSelectedFlightType(FlightsFragmentModel.FlightTypes.ONEWAY);
         }
         else{
             //Roundtrip flight selected
-            this.ffm.setSelectedFlightType(FlightsFragmentModel.FLIGHTTYPE_ROUNDTRIP);
+            this.ffm.setSelectedFlightType(FlightsFragmentModel.FlightTypes.ROUNDTRIP);
         }
         this.ffv.setFlightTypeViews(this.ffm.getSelectedFlightType());
     }
@@ -309,12 +309,12 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
         String country = (String)adapterView.getItemAtPosition(i);
         if(adapterView == this.ffv.getSpDepCountry()){
           //Item selected from country departure spinner
-            int flight_type = FlightsFragmentModel.AIRPORTS_REQUEST_DEPARTURE;
+            FlightsFragmentModel.AirportsRequest flight_type = FlightsFragmentModel.AirportsRequest.DEPARTURE;
             this.airportsRequest(country,flight_type);
         }
         else if(adapterView == this.ffv.getSpArrCountry()){
             //Item selected from country arrival spinner
-            int flight_type = FlightsFragmentModel.AIRPORTS_REQUEST_ARRIVAL;
+            FlightsFragmentModel.AirportsRequest flight_type = FlightsFragmentModel.AirportsRequest.ARRIVAL;
             this.airportsRequest(country,flight_type);
         }
     }

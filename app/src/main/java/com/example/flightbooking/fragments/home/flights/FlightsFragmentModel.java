@@ -43,11 +43,6 @@ public class FlightsFragmentModel {
         public void getTicketPreviewError(String message);
     }
 
-    public final static int FLIGHTTYPE_ROUNDTRIP = 0;
-    public final static int FLIGHTTYPE_ONEWAY = 1;
-    public final static int AIRPORTS_REQUEST_DEPARTURE = 0;
-    public final static int AIRPORTS_REQUEST_ARRIVAL = 1;
-
     public enum FlightTypes{
         ROUNDTRIP, ONEWAY
     }
@@ -60,24 +55,21 @@ public class FlightsFragmentModel {
         OUTDATE, RETDATE
     }
 
-    private int selected_flight_type;
+    private FlightTypes selected_flight_type;
     private String sel_country; //Countries selected for view airports list
     private FlightsFragmentClient ffc;
 
     public FlightsFragmentModel(){
-        this.selected_flight_type = FLIGHTTYPE_ROUNDTRIP;
+        this.selected_flight_type = FlightTypes.ROUNDTRIP;
         this.ffc = new FlightsFragmentClient();
 
     }
 
-    public int getSelectedFlightType(){return this.selected_flight_type;}
+    public FlightTypes getSelectedFlightType(){return this.selected_flight_type;}
     public String getSelCountry(){return this.sel_country;}
 
-    public void setSelectedFlightType(int flight_type){
-        if(flight_type != FLIGHTTYPE_ROUNDTRIP && flight_type != FLIGHTTYPE_ONEWAY)
-            this.selected_flight_type = FLIGHTTYPE_ROUNDTRIP;
-        else
-            this.selected_flight_type = flight_type;
+    public void setSelectedFlightType(FlightTypes ft){
+       this.selected_flight_type = ft;
     }
     public void setSelCountry(String sel_country){this.sel_country = sel_country;}
 
