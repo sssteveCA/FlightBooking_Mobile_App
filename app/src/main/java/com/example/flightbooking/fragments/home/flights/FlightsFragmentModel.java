@@ -48,6 +48,18 @@ public class FlightsFragmentModel {
     public final static int AIRPORTS_REQUEST_DEPARTURE = 0;
     public final static int AIRPORTS_REQUEST_ARRIVAL = 1;
 
+    public enum FlightTypes{
+        ROUNDTRIP, ONEWAY
+    }
+
+    public enum AirportsRequest{
+        DEPARTURE, ARRIVAL
+    }
+
+    public enum EditTextsDate{
+        OUTDATE, RETDATE
+    }
+
     private int selected_flight_type;
     private String sel_country; //Countries selected for view airports list
     private FlightsFragmentClient ffc;
