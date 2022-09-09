@@ -135,7 +135,8 @@ public class FlightsFragmentModel {
             this.ffc.getFfi().getFlightPrice(fs).enqueue(new Callback<FlightInfo>() {
                 @Override
                 public void onResponse(Call<FlightInfo> call, Response<FlightInfo> response) {
-                    gfi.getTicketPreviewResponse(null);
+                    FlightInfo fi = (FlightInfo)response.body();
+                    gfi.getTicketPreviewResponse(fi);
                 }
 
                 @Override

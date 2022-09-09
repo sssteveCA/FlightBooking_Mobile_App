@@ -18,16 +18,16 @@ import retrofit2.http.Query;
 public class FlightsFragmentClient
 {
     public interface FlightsFragmentInterface{
-        @GET("/airportsearch")
+        @GET(Globals.API_ROUTES_PREFIX+"/airportsearch")
         Call<JsonObject> airports_search(@Query("country") String country);
 
-        @GET("/flightsearch")
+        @GET(Globals.API_ROUTES_PREFIX+"/flightsearch")
         Call<List<String>> countries();
 
-        @GET("/companieslist")
+        @GET(Globals.API_ROUTES_PREFIX+"/companieslist")
         Call<List<String>> companies();
 
-        @POST("/flightprice")
+        @POST(Globals.API_ROUTES_PREFIX+"/flightprice")
         Call<FlightInfo> getFlightPrice(@Body FlightSearch fs);
 
     }

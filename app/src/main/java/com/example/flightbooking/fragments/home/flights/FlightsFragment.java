@@ -271,6 +271,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
                     @Override
                     public void getTicketPreviewResponse(FlightInfo fp) {
                       Log.i("FlightsFragment","getTicketPreviewResponse");
+                      //Log.i("FlightsFragment","getTicketPreviewResponse hashmap content => "+fp.flights);
                     }
                     @Override
                     public void getTicketPreviewError(String message) {
