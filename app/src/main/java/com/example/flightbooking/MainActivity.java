@@ -43,7 +43,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
         //NoConnection fragment Retry button clicked
         //Log.i("MainActivity","retryClick");
         this.mav.removeFragment(R.id.main_activity_fragment_container);
-        if(label.equalsIgnoreCase(FragmentLabels.FLIGHTS.getLabelName())){
+        if(label.equalsIgnoreCase(FragmentLabels.FLIGHTS.getLabelName()) || label.equalsIgnoreCase(FragmentLabels.TICKET_PREVIEW.getLabelName())){
             label = FragmentLabels.HOME.getLabelName();
         }
         this.setFragments(label,null);

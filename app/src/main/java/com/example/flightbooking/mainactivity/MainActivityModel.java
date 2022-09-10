@@ -99,7 +99,7 @@ public class MainActivityModel {
         if(label != null){
             List<String> internetItems = Arrays.asList(
                     FragmentLabels.FLIGHTS.getLabelName(),
-                    FragmentLabels.HOME.getLabelName(),FragmentLabels.NEWS.getLabelName()); //Label items that require internet
+                    FragmentLabels.HOME.getLabelName(),FragmentLabels.NEWS.getLabelName(),FragmentLabels.TICKET_PREVIEW.getLabelName()); //Label items that require internet
             Log.d("MainActivityModel","isConnectionRequired label => "+label);
             Log.d("MainActivityModel","isConnectionRequired internetItems => "+internetItems);
             String lcLabel = label.substring(0,1).toUpperCase()+label.substring(1);
