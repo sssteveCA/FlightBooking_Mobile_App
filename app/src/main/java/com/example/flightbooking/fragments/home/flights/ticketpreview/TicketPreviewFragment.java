@@ -4,6 +4,7 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -51,6 +52,7 @@ public class TicketPreviewFragment extends Fragment {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             this.fi = (FlightInfo) getArguments().getSerializable("flightinfo");
+            Log.d("TicketPreviewFragment","onCreate FlightInfo flight_type => "+fi.flightType);
         }
     }
 

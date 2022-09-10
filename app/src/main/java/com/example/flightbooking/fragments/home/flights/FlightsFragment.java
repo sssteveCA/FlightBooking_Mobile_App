@@ -285,6 +285,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
                             }
                             else if(fp.flightType != null && fp.flightType.equals("roundtrip")){
                             }
+                            fc.onFragmentChange("Voli","TicketPreview",true,fp);
                         }
                         @Override
                         public void getTicketPreviewError(String message) {

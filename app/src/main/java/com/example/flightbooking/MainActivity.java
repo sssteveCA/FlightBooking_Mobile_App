@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
     protected void onResume() {
         super.onResume();
         this.setMenu();
-        this.setFragments(FragmentLabels.HOME.getLabelName());
+        this.setFragments(FragmentLabels.HOME.getLabelName(),null);
     }
 
     @Override
@@ -46,13 +46,15 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
         if(label.equalsIgnoreCase(FragmentLabels.FLIGHTS.getLabelName())){
             label = FragmentLabels.HOME.getLabelName();
         }
-        this.setFragments(label);
+        this.setFragments(label,null);
     }
 
     /**
      * Set the fragment after check the application status
+     * @param label fragment label to insert
+     * @param data optional data to pass within the fragment
      */
-    public void setFragments(String label){
+    public void setFragments(String label, Object data){
         String fragment_pkg = this.mam.getFragmentPackage(label);
         Log.d("MainActivity","setFragment fragment package "+fragment_pkg);
         try {
@@ -66,7 +68,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
                 boolean connected = this.mam.getConnectionStatus();
                 if(connected){
                     Log.i("MainActivity","setFragments connection connected");
-                    this.mav.updateFragment(R.id.main_activity_fragment_container, (Fragment)frag_constr.newInstance());
+                    this.mav.updateFragment(R.id.main_activity_fragment_container, (Fragment)frag_constr.newInstance(data));
                 }//if(connected){
                 else{
                     Log.i("MainActivity","setFragments connection not connected");
@@ -106,13 +108,13 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
     //MainMenuFragment.OnMainMenuItemClick
     @Override
     public void mainMenuItemClick(String label) {
-        this.setFragments(label);
+        this.setFragments(label,null);
     }
 
     //FragmentChange
     @Override
     public void onFragmentChange(String oldFragmentLabel, String newFragmentLabel, boolean success, Object data){
         String nfl = newFragmentLabel;
-        this.setFragments(nfl);
+        this.setFragments(nfl,data);
     }
 }
