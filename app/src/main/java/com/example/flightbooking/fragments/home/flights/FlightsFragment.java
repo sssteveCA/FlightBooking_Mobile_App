@@ -113,7 +113,6 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
      * @return
      */
     private ArrayAdapter<String> arrayAdapterFromList(List<String> items){
-        Log.i("FlightsFragment", "arrayAdapterFromList begin ");
         ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         return adapter;
@@ -145,11 +144,9 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     }
 
     private void airportsRequest(String country, FlightsFragmentModel.AirportsRequest ar){
-        Log.i("FlightsFragment", "airportsRequest begin");
         FlightsFragmentModel ffm_temp = this.ffm;
         FlightsFragmentView ffv_temp = this.ffv;
         FlightsFragment ff_temp = this;
-        Log.i("FlightsFragment", "airportsRequest pre request");
         ffm_temp.getCountryAirports(country, new FlightsFragmentModel.GetCountryAirports() {
             @Override
             public void getCountryAirportsResponse(List<String> airports) {
@@ -183,10 +180,9 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
         ffm_temp.getCompanies(new FlightsFragmentModel.GetCompanies() {
             @Override
             public void companiesResponse(List<String> companies) {
-                Log.d("FlightsFragment","companiesRequest getCompanies response => "+companies);
+                //Log.d("FlightsFragment","companiesRequest getCompanies response => "+companies);
                 ArrayAdapter<String> companiesAdapter = ff_temp.arrayAdapterFromList(companies);
                 ffv_temp.getSpCompanies().setAdapter(companiesAdapter);
-                Log.d("FlightsFragment","companiesRequest getCompanies response after setAdapter ");
             }
             @Override
             public void companiesError(String message) {
@@ -206,19 +202,19 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
         ffm_temp.getCountries(new FlightsFragmentModel.GetCountries() {
             @Override
             public void countriesResponse(List<String> countries) {
-                Log.d("FlightsFragment","countriesRequest getCountries response => "+countries);
+                //Log.d("FlightsFragment","countriesRequest getCountries response => "+countries);
                 ArrayAdapter<String> countriesAdapter = ff_temp.arrayAdapterFromList(countries);
                 ffv_temp.getSpDepCountry().setAdapter(countriesAdapter);
                 ffv_temp.getSpArrCountry().setAdapter(countriesAdapter);
                 int index = countries.indexOf(country);
                 String country = countries.get(index);
-                Log.d("FlightsFragment","countriesRequest getCountries country => "+country);
+                //Log.d("FlightsFragment","countriesRequest getCountries country => "+country);
                 ff_temp.airportsRequest(country,FlightsFragmentModel.AirportsRequest.DEPARTURE);
                 ff_temp.airportsRequest(country,FlightsFragmentModel.AirportsRequest.ARRIVAL);
             }
             @Override
             public void countriesError(String message) {
-                Log.d("FlightsFragment","dataRequest getCountries error =>  "+message);
+                Log.e("FlightsFragment","dataRequest getCountries error =>  "+message);
             }
         });
     }
@@ -270,13 +266,10 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
                 this.ffm.flightTicketPreview(fs, new FlightsFragmentModel.GetFlightInfo() {
                     @Override
                     public void getTicketPreviewResponse(FlightInfo fp) {
-                      Log.i("FlightsFragment","getTicketPreviewResponse");
+                      //Log.i("FlightsFragment","getTicketPreviewResponse");
                       if(fp.flightType != null && fp.flightType.equals("oneway")){
-                          Log.i("FlightsFragment","getTicketPreviewResponse oneway flight_price => "+fp.flights.oneway.flightPrice);
                       }
                       else if(fp.flightType != null && fp.flightType.equals("roundtrip")){
-                          Log.i("FlightsFragment","getTicketPreviewResponse outbound flight_price => "+fp.flights.outbound.flightPrice);
-                          Log.i("FlightsFragment","getTicketPreviewResponse return flight_price => "+fp.flights._return.flightPrice);
                       }
                     }
                     @Override
