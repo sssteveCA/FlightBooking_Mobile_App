@@ -7,9 +7,12 @@ import java.util.HashMap;
 
 public class FlightInfo {
     @SerializedName("session_id")
-    public String session_id;
+    @Expose
+    public String sessionId;
     @SerializedName("flight_type")
-    public String flight_type;
+    @Expose
+    public String flightType;
     @SerializedName("flights")
-    public HashMap<String, TicketPreview> flights;
+    @Expose
+    public Flights flights;
 }
