@@ -54,7 +54,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
      * @param label fragment label to insert
      * @param data optional data to pass within the fragment
      */
-    public void setFragments(String label, Object data){
+    public void setFragments(String label, Bundle data){
         String fragment_pkg = this.mam.getFragmentPackage(label);
         Log.d("MainActivity","setFragment fragment package "+fragment_pkg);
         try {
@@ -68,18 +68,18 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
                 boolean connected = this.mam.getConnectionStatus();
                 if(connected){
                     Log.i("MainActivity","setFragments connection connected");
-                    this.mav.updateFragment(R.id.main_activity_fragment_container, (Fragment)frag_constr.newInstance(data));
+                    this.mav.updateFragment(R.id.main_activity_fragment_container, (Fragment)frag_constr.newInstance(),data);
                 }//if(connected){
                 else{
                     Log.i("MainActivity","setFragments connection not connected");
                     if(label.equalsIgnoreCase(FragmentLabels.FLIGHTS.getLabelName()))
                         label = FragmentLabels.HOME.getLabelName();
-                    this.mav.updateFragment(R.id.main_activity_fragment_container, (Fragment) NoConnectionFragment.newInstance(label));
+                    this.mav.updateFragment(R.id.main_activity_fragment_container, (Fragment) NoConnectionFragment.newInstance(label),data);
                 }
             }//if(require_connection){
             else{
                 Log.i("MainActivity","setFragments not require connection");
-                this.mav.updateFragment(R.id.main_activity_fragment_container, (Fragment)frag_constr.newInstance());
+                this.mav.updateFragment(R.id.main_activity_fragment_container, (Fragment)frag_constr.newInstance(),data);
             }//else di if(require_connection){
         } catch (ClassNotFoundException | NoSuchMethodException e) {
             e.printStackTrace();
@@ -101,7 +101,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
             //User is logged with its account
         }//if(userLogged){
         else{
-            this.mav.updateFragment(R.id.main_menu_fragment_container, new MainMenuNotLoggedFragment());
+            this.mav.updateFragment(R.id.main_menu_fragment_container, new MainMenuNotLoggedFragment(),null);
         }
     }
 
@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
 
     //FragmentChange
     @Override
-    public void onFragmentChange(String oldFragmentLabel, String newFragmentLabel, boolean success, Object data){
+    public void onFragmentChange(String oldFragmentLabel, String newFragmentLabel, boolean success, Bundle data){
         String nfl = newFragmentLabel;
         this.setFragments(nfl,data);
     }

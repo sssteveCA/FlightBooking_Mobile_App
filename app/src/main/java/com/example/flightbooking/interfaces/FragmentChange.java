@@ -1,5 +1,7 @@
 package com.example.flightbooking.interfaces;
 
+import android.os.Bundle;
+
 import androidx.fragment.app.Fragment;
 
 /**
@@ -13,5 +15,5 @@ public interface FragmentChange {
      * @param success true if  action return a success response
      * @param data optional data that can pass to next fragment
      */
-    public void onFragmentChange(String oldFragmentLabel, String newFragmentLabel, boolean success, Object data);
+    public void onFragmentChange(String oldFragmentLabel, String newFragmentLabel, boolean success, Bundle data);
 }

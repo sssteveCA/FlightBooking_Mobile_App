@@ -285,7 +285,9 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
                             }
                             else if(fp.flightType != null && fp.flightType.equals("roundtrip")){
                             }
-                            fc.onFragmentChange("Voli","TicketPreview",true,fp);
+                            Bundle bundle = new Bundle();
+                            bundle.putSerializable("flightinfo",fp);
+                            fc.onFragmentChange("Voli","TicketPreview",true,bundle);
                         }
                         @Override
                         public void getTicketPreviewError(String message) {

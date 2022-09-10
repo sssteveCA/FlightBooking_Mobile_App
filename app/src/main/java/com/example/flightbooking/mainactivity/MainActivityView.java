@@ -1,6 +1,7 @@
 package com.example.flightbooking.mainactivity;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ProgressBar;
 
@@ -42,7 +43,8 @@ public class MainActivityView {
         }
     }
 
-    public void updateFragment(int container, Fragment fragment){
+    public void updateFragment(int container, Fragment fragment, Bundle bundle){
+        fragment.setArguments(bundle);
         FragmentManager fm = this.ma.getSupportFragmentManager();
         Fragment current_fragment = fm.findFragmentById(container);
         FragmentTransaction ft = fm.beginTransaction();
