@@ -1,7 +1,9 @@
 package com.example.flightbooking.fragments.home.flights;
 
+import android.content.Context;
 import android.util.Log;
 
+import com.example.flightbooking.common.Connection;
 import com.example.flightbooking.common.RegEx;
 import com.example.flightbooking.models.FlightInfo;
 import com.example.flightbooking.models.FlightSearch;
@@ -55,14 +57,15 @@ public class FlightsFragmentModel {
         OUTDATE, RETDATE
     }
 
+    private Context context;
     private FlightTypes selected_flight_type;
     private String sel_country; //Countries selected for view airports list
     private FlightsFragmentClient ffc;
 
-    public FlightsFragmentModel(){
+    public FlightsFragmentModel(Context ctx){
+        this.context = ctx;
         this.selected_flight_type = FlightTypes.ROUNDTRIP;
         this.ffc = new FlightsFragmentClient();
-
     }
 
     public FlightTypes getSelectedFlightType(){return this.selected_flight_type;}
@@ -72,6 +75,15 @@ public class FlightsFragmentModel {
        this.selected_flight_type = ft;
     }
     public void setSelCountry(String sel_country){this.sel_country = sel_country;}
+
+    /***
+     *
+     *  Check if phone is connected to internet
+     * @return boolean
+     */
+    public boolean getConnectionStatus(){
+        return Connection.checkInternet(this.context);
+    }
 
     /**
      * Check if single property passes the validation

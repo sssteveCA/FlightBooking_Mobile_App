@@ -1,6 +1,7 @@
 package com.example.flightbooking.mainactivity;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.flightbooking.common.Connection;
 import com.example.flightbooking.enums.FragmentLabels;
@@ -95,6 +96,8 @@ public class MainActivityModel {
             List<String> internetItems = Arrays.asList(
                     FragmentLabels.FLIGHTS.getLabelName(),
                     FragmentLabels.HOME.getLabelName(),FragmentLabels.NEWS.getLabelName()); //Label items that require internet
+            Log.d("MainActivityModel","isConnectionRequired label => "+label);
+            Log.d("MainActivityModel","isConnectionRequired internetItems => "+internetItems);
             String lcLabel = label.toLowerCase(); //Convert all character to lower case for insensitive comparison
             return internetItems.contains(lcLabel);
         }//if(label != null){

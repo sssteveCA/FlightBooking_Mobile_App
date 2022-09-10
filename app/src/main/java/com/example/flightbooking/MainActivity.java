@@ -35,7 +35,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
     protected void onResume() {
         super.onResume();
         this.setMenu();
-        this.setFragments("Home");
+        this.setFragments(FragmentLabels.HOME.getLabelName());
     }
 
     @Override
@@ -67,6 +67,8 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
                     this.mav.updateFragment(R.id.main_activity_fragment_container, (Fragment)frag_constr.newInstance());
                 }//if(connected){
                 else{
+                    if(label.equalsIgnoreCase(FragmentLabels.FLIGHTS.getLabelName()))
+                        label = FragmentLabels.HOME.getLabelName();
                     this.mav.updateFragment(R.id.main_activity_fragment_container, (Fragment) NoConnectionFragment.newInstance(label));
                 }
             }//if(require_connection){
@@ -107,9 +109,6 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
     @Override
     public void onFragmentChange(String oldFragmentLabel, String newFragmentLabel, boolean success, Object data){
         String nfl = newFragmentLabel;
-        if(nfl.equals(FragmentLabels.NO_CONNECTION.getLabelName())){
-            //NoConnection fragment
-            this.setFragments(nfl);
-        }
+        this.setFragments(nfl);
     }
 }

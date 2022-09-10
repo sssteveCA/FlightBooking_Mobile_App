@@ -96,7 +96,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         View view = inflater.inflate(R.layout.fragment_flights, container, false);
-        this.ffm = new FlightsFragmentModel();
+        this.ffm = new FlightsFragmentModel(getActivity());
         try {
             this.ffv = new FlightsFragmentView(this.menuItemsMap(view));
             //Check the roundtrip radio button for default
@@ -275,7 +275,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.frag_flights_bt_search:
-                if(Connection.checkInternet(getActivity())){
+                if(this.ffm.getConnectionStatus()){
                     FlightSearch fs = this.setFlightSearchBody();
                     this.ffm.flightTicketPreview(fs, new FlightsFragmentModel.GetFlightInfo() {
                         @Override
@@ -291,9 +291,9 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
                             MessageDialog md = new MessageDialog(getActivity(),"Errore",message);
                         }
                     });
-                }//if(Connection.checkInternet(getActivity())){
+                }//if(this.ffm.getConnectionStatus()){
                 else{
-                    fc.onFragmentChange("Voli","NoConnection",false,null);
+                    fc.onFragmentChange("Voli","Voli",false,null);
                 }
 
                 break;
