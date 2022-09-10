@@ -3,6 +3,7 @@ package com.example.flightbooking.enums;
 public enum FragmentPackages {
     ABOUT_US("com.example.flightbooking.fragments.aboutus.AboutUsFragment"),
     CONTACTS("com.example.flightbooking.fragments.contacts.ContactsFragment"),
+    FLIGHTS("com.example.flightbooking.fragments.home.flights.FlightsFragment"),
     HOME("com.example.flightbooking.fragments.home.HomeFragment"),
     LOGIN("com.example.flightbooking.fragments.login.LoginFragment"),
     NEWS("com.example.flightbooking.fragments.news.NewsFragment"),

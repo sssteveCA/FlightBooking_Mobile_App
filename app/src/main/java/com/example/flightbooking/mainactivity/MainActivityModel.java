@@ -48,6 +48,8 @@ public class MainActivityModel {
             label = FragmentLabels.ABOUT_US.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.CONTACTS.getPackageName()))
             label = FragmentLabels.CONTACTS.getLabelName();
+        else if(class_name.equalsIgnoreCase(FragmentPackages.FLIGHTS.getPackageName()))
+            label = FragmentLabels.FLIGHTS.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.LOGIN.getPackageName()))
             label = FragmentLabels.LOGIN.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.NEWS.getPackageName()))
@@ -72,6 +74,8 @@ public class MainActivityModel {
             class_name = FragmentPackages.ABOUT_US.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.CONTACTS.getLabelName()))
             class_name = FragmentPackages.CONTACTS.getPackageName();
+        else if(label.equalsIgnoreCase(FragmentLabels.FLIGHTS.getLabelName()))
+            class_name = FragmentPackages.FLIGHTS.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.LOGIN.getLabelName()))
             class_name = FragmentPackages.LOGIN.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.NEWS.getLabelName()))
@@ -88,7 +92,9 @@ public class MainActivityModel {
      */
     public boolean isConnectionRequired(String label){
         if(label != null){
-            List<String> internetItems = Arrays.asList("home","news"); //Label items that require internet
+            List<String> internetItems = Arrays.asList(
+                    FragmentLabels.FLIGHTS.getLabelName(),
+                    FragmentLabels.HOME.getLabelName(),FragmentLabels.NEWS.getLabelName()); //Label items that require internet
             String lcLabel = label.toLowerCase(); //Convert all character to lower case for insensitive comparison
             return internetItems.contains(lcLabel);
         }//if(label != null){

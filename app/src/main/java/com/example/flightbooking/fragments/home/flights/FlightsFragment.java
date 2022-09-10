@@ -1,5 +1,6 @@
 package com.example.flightbooking.fragments.home.flights;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -21,6 +22,7 @@ import android.widget.TextView;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
+import com.example.flightbooking.common.Connection;
 import com.example.flightbooking.dialogs.DatePicker;
 import com.example.flightbooking.dialogs.MessageDialog;
 import com.example.flightbooking.exception.MissingValuesException;
@@ -76,9 +78,9 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     }
 
     @Override
-    public void onAttach(@NonNull Context context) {
-        super.onAttach(context);
-        this.fc = (MainActivity)context;
+    public void onAttach(@NonNull Activity activity) {
+        super.onAttach(activity);
+        this.fc = (MainActivity)activity;
     }
 
     @Override
@@ -273,21 +275,27 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.frag_flights_bt_search:
-                FlightSearch fs = this.setFlightSearchBody();
-                this.ffm.flightTicketPreview(fs, new FlightsFragmentModel.GetFlightInfo() {
-                    @Override
-                    public void getTicketPreviewResponse(FlightInfo fp) {
-                      //Log.i("FlightsFragment","getTicketPreviewResponse");
-                      if(fp.flightType != null && fp.flightType.equals("oneway")){
-                      }
-                      else if(fp.flightType != null && fp.flightType.equals("roundtrip")){
-                      }
-                    }
-                    @Override
-                    public void getTicketPreviewError(String message) {
-                        MessageDialog md = new MessageDialog(getActivity(),"Errore",message);
-                    }
-                });
+                if(Connection.checkInternet(getActivity())){
+                    FlightSearch fs = this.setFlightSearchBody();
+                    this.ffm.flightTicketPreview(fs, new FlightsFragmentModel.GetFlightInfo() {
+                        @Override
+                        public void getTicketPreviewResponse(FlightInfo fp) {
+                            //Log.i("FlightsFragment","getTicketPreviewResponse");
+                            if(fp.flightType != null && fp.flightType.equals("oneway")){
+                            }
+                            else if(fp.flightType != null && fp.flightType.equals("roundtrip")){
+                            }
+                        }
+                        @Override
+                        public void getTicketPreviewError(String message) {
+                            MessageDialog md = new MessageDialog(getActivity(),"Errore",message);
+                        }
+                    });
+                }//if(Connection.checkInternet(getActivity())){
+                else{
+                    fc.onFragmentChange("Voli","NoConnection",false,null);
+                }
+
                 break;
             case R.id.frag_flights_et_out_date:
                 this.showDatePickerDialog(this.ffv.getEtOutDate().getText().toString(), FlightsFragmentModel.EditTextsDate.OUTDATE);

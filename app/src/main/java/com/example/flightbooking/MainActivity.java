@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ProgressBar;
 
+import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.fragments.mainmenu.notlogged.MainMenuNotLoggedFragment;
 import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.mainactivity.MainActivityModel;
@@ -42,6 +43,9 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
         //NoConnection fragment Retry button clicked
         //Log.i("MainActivity","retryClick");
         this.mav.removeFragment(R.id.main_activity_fragment_container);
+        if(label.equalsIgnoreCase(FragmentLabels.FLIGHTS.getLabelName())){
+            label = FragmentLabels.HOME.getLabelName();
+        }
         this.setFragments(label);
     }
 
@@ -102,6 +106,10 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
     //FragmentChange
     @Override
     public void onFragmentChange(String oldFragmentLabel, String newFragmentLabel, boolean success, Object data){
-
+        String nfl = newFragmentLabel;
+        if(nfl.equals(FragmentLabels.NO_CONNECTION.getLabelName())){
+            //NoConnection fragment
+            this.setFragments(nfl);
+        }
     }
 }
