@@ -44,12 +44,14 @@ public class MainActivityModel {
             label = "Home";
         else if(class_name.equalsIgnoreCase("com.example.flightbooking.fragments.aboutus.AboutUsFragment"))
             label = "Chi siamo";
-        else if(class_name.equalsIgnoreCase("com.example.flightbooking.fragments.news.NewsFragment"))
-            label = "News";
         else if(class_name.equalsIgnoreCase("com.example.flightbooking.fragments.contacts.ContactsFragment"))
             label = "Contatti";
         else if(class_name.equalsIgnoreCase("com.example.flightbooking.fragments.login.LoginFragment"))
             label = "Login";
+        else if(class_name.equalsIgnoreCase("com.example.flightbooking.fragments.news.NewsFragment"))
+            label = "News";
+        else if(class_name.equalsIgnoreCase("com.example.flightbooking.fragments.noconnection.NoConnectionFragment"))
+            label = "NoConnection";
         else if(class_name.equalsIgnoreCase("com.example.flightbooking.fragments.subscribe.SubscribeFragment"))
             label = "Registrati";
         return label;
@@ -66,12 +68,14 @@ public class MainActivityModel {
             class_name = "com.example.flightbooking.fragments.home.HomeFragment";
         else if(label.equalsIgnoreCase("Chi siamo"))
             class_name = "com.example.flightbooking.fragments.aboutus.AboutUsFragment";
-        else if(label.equalsIgnoreCase("News"))
-            class_name = "com.example.flightbooking.fragments.news.NewsFragment";
         else if(label.equalsIgnoreCase("Contatti"))
             class_name = "com.example.flightbooking.fragments.contacts.ContactsFragment";
         else if(label.equalsIgnoreCase("Login"))
             class_name = "com.example.flightbooking.fragments.login.LoginFragment";
+        else if(label.equalsIgnoreCase("News"))
+            class_name = "com.example.flightbooking.fragments.news.NewsFragment";
+        else if(label.equalsIgnoreCase("NoConnection"))
+            class_name = "com.example.flightbooking.fragments.noconnection.NoConnectionFragment";
         else if(label.equalsIgnoreCase("Registrati"))
             class_name = "com.example.flightbooking.fragments.subscribe.SubscribeFragment";
         return class_name;
