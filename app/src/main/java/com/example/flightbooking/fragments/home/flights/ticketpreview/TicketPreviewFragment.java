@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.flightbooking.R;
+import com.example.flightbooking.models.FlightInfo;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -23,8 +24,7 @@ public class TicketPreviewFragment extends Fragment {
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
+    private FlightInfo fi;
 
     public TicketPreviewFragment() {
         // Required empty public constructor
@@ -34,16 +34,14 @@ public class TicketPreviewFragment extends Fragment {
      * Use this factory method to create a new instance of
      * this fragment using the provided parameters.
      *
-     * @param param1 Parameter 1.
-     * @param param2 Parameter 2.
+     * @param fi FlightInfo object
      * @return A new instance of fragment TicketPreviewFragment.
      */
     // TODO: Rename and change types and number of parameters
-    public static TicketPreviewFragment newInstance(String param1, String param2) {
+    public static TicketPreviewFragment newInstance(FlightInfo fi) {
         TicketPreviewFragment fragment = new TicketPreviewFragment();
         Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
+        args.putSerializable("flightinfo",fi);
         fragment.setArguments(args);
         return fragment;
     }
@@ -52,8 +50,7 @@ public class TicketPreviewFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            this.fi = (FlightInfo) getArguments().getSerializable("flightinfo");
         }
     }
 
@@ -61,6 +58,7 @@ public class TicketPreviewFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_ticket_preview, container, false);
+        View view = inflater.inflate(R.layout.fragment_ticket_preview, container, false);
+        return view;
     }
 }
