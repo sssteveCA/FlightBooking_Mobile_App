@@ -59,6 +59,8 @@ public class MainActivityModel {
             label = FragmentLabels.NO_CONNECTION.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.SUBSCRIBE.getPackageName()))
             label = FragmentLabels.SUBSCRIBE.getLabelName();
+        else if(class_name.equalsIgnoreCase(FragmentPackages.TICKET_PREVIEW.getPackageName()))
+            label = FragmentLabels.TICKET_PREVIEW.getLabelName();
         return label;
     }
 
@@ -85,6 +87,8 @@ public class MainActivityModel {
             class_name = FragmentPackages.NO_CONNECTION.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.SUBSCRIBE.getLabelName()))
             class_name = FragmentPackages.SUBSCRIBE.getPackageName();
+        else if(label.equalsIgnoreCase(FragmentLabels.TICKET_PREVIEW.getLabelName()))
+            class_name = FragmentPackages.TICKET_PREVIEW.getPackageName();
         return class_name;
     }
 

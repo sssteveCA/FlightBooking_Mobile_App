@@ -8,7 +8,8 @@ public enum FragmentPackages {
     LOGIN("com.example.flightbooking.fragments.login.LoginFragment"),
     NEWS("com.example.flightbooking.fragments.news.NewsFragment"),
     NO_CONNECTION("com.example.flightbooking.fragments.noconnection.NoConnectionFragment"),
-    SUBSCRIBE("com.example.flightbooking.fragments.subscribe.SubscribeFragment");
+    SUBSCRIBE("com.example.flightbooking.fragments.subscribe.SubscribeFragment"),
+    TICKET_PREVIEW("com.example.flightbooking.fragments.home.flights.ticketpreview");
 
     public String package_name;
 
