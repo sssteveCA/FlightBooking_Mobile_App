@@ -98,7 +98,7 @@ public class MainActivityModel {
                     FragmentLabels.HOME.getLabelName(),FragmentLabels.NEWS.getLabelName()); //Label items that require internet
             Log.d("MainActivityModel","isConnectionRequired label => "+label);
             Log.d("MainActivityModel","isConnectionRequired internetItems => "+internetItems);
-            String lcLabel = label.toLowerCase(); //Convert all character to lower case for insensitive comparison
+            String lcLabel = label.substring(0,1).toUpperCase()+label.substring(1);
             return internetItems.contains(lcLabel);
         }//if(label != null){
         else

@@ -54,12 +54,14 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
      */
     public void setFragments(String label){
         String fragment_pkg = this.mam.getFragmentPackage(label);
+        Log.d("MainActivity","setFragment fragment package "+fragment_pkg);
         try {
             //Create fragment instance by string package
             Class<?> fragment_clazz = Class.forName(fragment_pkg);
             Constructor<?> frag_constr = fragment_clazz.getConstructor();
             boolean require_connection = this.mam.isConnectionRequired(label);
             if(require_connection){
+                Log.i("MainActivity","setFragments require connection");
                 //For this item internet is required
                 boolean connected = this.mam.getConnectionStatus();
                 if(connected){
@@ -67,12 +69,14 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
                     this.mav.updateFragment(R.id.main_activity_fragment_container, (Fragment)frag_constr.newInstance());
                 }//if(connected){
                 else{
+                    Log.i("MainActivity","setFragments connection not connected");
                     if(label.equalsIgnoreCase(FragmentLabels.FLIGHTS.getLabelName()))
                         label = FragmentLabels.HOME.getLabelName();
                     this.mav.updateFragment(R.id.main_activity_fragment_container, (Fragment) NoConnectionFragment.newInstance(label));
                 }
             }//if(require_connection){
             else{
+                Log.i("MainActivity","setFragments not require connection");
                 this.mav.updateFragment(R.id.main_activity_fragment_container, (Fragment)frag_constr.newInstance());
             }//else di if(require_connection){
         } catch (ClassNotFoundException | NoSuchMethodException e) {
