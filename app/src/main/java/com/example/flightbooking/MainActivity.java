@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.ProgressBar;
 
 import com.example.flightbooking.fragments.mainmenu.notlogged.MainMenuNotLoggedFragment;
+import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.mainactivity.MainActivityModel;
 import com.example.flightbooking.mainactivity.MainActivityView;
 import com.example.flightbooking.fragments.noconnection.NoConnectionFragment;
@@ -15,7 +16,7 @@ import com.example.flightbooking.fragments.noconnection.NoConnectionFragment;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-public class MainActivity extends AppCompatActivity implements NoConnectionFragment.RetryListener, MainMenuNotLoggedFragment.OnMainMenuItemClick {
+public class MainActivity extends AppCompatActivity implements NoConnectionFragment.RetryListener, MainMenuNotLoggedFragment.OnMainMenuItemClick, FragmentChange {
 
     private MainActivityModel mam;
     private MainActivityView mav;
@@ -96,5 +97,11 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
     @Override
     public void mainMenuItemClick(String label) {
         this.setFragments(label);
+    }
+
+    //FragmentChange
+    @Override
+    public void onFragmentChange(String oldFragmentLabel, String newFragmentLabel, boolean success, Object data){
+
     }
 }

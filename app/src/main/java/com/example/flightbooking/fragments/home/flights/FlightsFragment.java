@@ -1,7 +1,9 @@
 package com.example.flightbooking.fragments.home.flights;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
@@ -17,10 +19,12 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.dialogs.DatePicker;
 import com.example.flightbooking.dialogs.MessageDialog;
 import com.example.flightbooking.exception.MissingValuesException;
+import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.models.FlightInfo;
 import com.example.flightbooking.models.FlightSearch;
 
@@ -38,6 +42,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     private FlightsFragmentModel ffm;
     private FlightsFragmentView ffv;
     private String initialCountry = "Austria";
+    public FragmentChange fc = null;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -68,6 +73,12 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.fc = (MainActivity)context;
     }
 
     @Override
