@@ -11,7 +11,7 @@ public enum FragmentPackages {
 
     public String package_name;
 
-    private FragmentPackages(String package_name){
+    FragmentPackages(String package_name){
         this.package_name = package_name;
     }
 

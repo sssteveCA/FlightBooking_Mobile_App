@@ -7,10 +7,11 @@ public enum FragmentLabels {
 
     private String label_name;
 
-    private FragmentLabels(String label_name){
+    FragmentLabels(String label_name){
         this.label_name = label_name;
     }
 
     public String getLabelName(){return this.label_name;}
+
 
 }
