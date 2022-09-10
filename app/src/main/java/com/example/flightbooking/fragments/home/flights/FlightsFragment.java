@@ -271,7 +271,13 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
                     @Override
                     public void getTicketPreviewResponse(FlightInfo fp) {
                       Log.i("FlightsFragment","getTicketPreviewResponse");
-                      //Log.i("FlightsFragment","getTicketPreviewResponse hashmap content => "+fp.flights);
+                      if(fp.flightType != null && fp.flightType.equals("oneway")){
+                          Log.i("FlightsFragment","getTicketPreviewResponse oneway flight_price => "+fp.flights.oneway.flightPrice);
+                      }
+                      else if(fp.flightType != null && fp.flightType.equals("roundtrip")){
+                          Log.i("FlightsFragment","getTicketPreviewResponse outbound flight_price => "+fp.flights.outbound.flightPrice);
+                          Log.i("FlightsFragment","getTicketPreviewResponse return flight_price => "+fp.flights._return.flightPrice);
+                      }
                     }
                     @Override
                     public void getTicketPreviewError(String message) {
