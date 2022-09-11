@@ -12,12 +12,16 @@ import android.view.ViewGroup;
 import com.example.flightbooking.R;
 import com.example.flightbooking.models.FlightInfo;
 
+import java.util.HashMap;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link TicketPreviewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
 public class TicketPreviewFragment extends Fragment {
+
+    private TicketPreviewFragmentModel tpfm;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,6 +57,9 @@ public class TicketPreviewFragment extends Fragment {
         if (getArguments() != null) {
             this.fi = (FlightInfo) getArguments().getSerializable("flightinfo");
             Log.d("TicketPreviewFragment","onCreate FlightInfo flight_type => "+fi.flightType);
+            this.tpfm = new TicketPreviewFragmentModel(this.fi);
+            HashMap<String, HashMap<String, Object>> flights = this.tpfm.getFlights();
+            Log.d("TicketPreviewFragment","onCreate flights HashMap => "+flights);
         }
     }
 
