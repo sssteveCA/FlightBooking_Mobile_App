@@ -4,6 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
+    android:backgroundTint="#2196F3"
     tools:context=".fragments.home.flights.ticketpreview.TicketPreviewFragment">
 
     <ScrollView
@@ -12,7 +13,9 @@
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="wrap_content"
+            android:backgroundTint="#2196F3"
+            android:paddingBottom="60sp">
 
             <TextView
                 android:id="@+id/frag_tprev_tv_header"
@@ -36,6 +39,33 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/frag_tprev_tv_header"></LinearLayout>
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:gravity="center"
+                android:orientation="horizontal"
+                android:paddingTop="30sp"
+                app:layout_constraintTop_toBottomOf="@+id/frag_tprev_llayout">
+
+                <Button
+                    android:id="@+id/frag_tprev_bt_book"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginEnd="50sp"
+                    android:backgroundTint="#2196F3"
+                    android:padding="15sp"
+                    android:text="Prenota" />
+
+                <Button
+                    android:id="@+id/frag_tprev_bt_back"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="50sp"
+                    android:backgroundTint="#F44336"
+                    android:padding="15sp"
+                    android:text="Indietro" />
+            </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 
