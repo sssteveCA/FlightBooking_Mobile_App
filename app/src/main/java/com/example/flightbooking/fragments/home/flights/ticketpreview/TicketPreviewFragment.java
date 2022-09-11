@@ -1,18 +1,26 @@
 package com.example.flightbooking.fragments.home.flights.ticketpreview;
 
+import android.content.Context;
+import android.graphics.Typeface;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.example.flightbooking.R;
 import com.example.flightbooking.models.FlightInfo;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -22,7 +30,8 @@ import java.util.HashMap;
 public class TicketPreviewFragment extends Fragment {
 
     private TicketPreviewFragmentModel tpfm;
-    private HashMap<String, HashMap<String, Object>> flights_info;
+    private TicketPreviewFragmentView tpfv;
+    private Context context;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -53,14 +62,19 @@ public class TicketPreviewFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             this.fi = (FlightInfo) getArguments().getSerializable("flightinfo");
             Log.d("TicketPreviewFragment","onCreate FlightInfo flight_type => "+fi.flightType);
             this.tpfm = new TicketPreviewFragmentModel(this.fi);
-            this.flights_info = this.tpfm.getFlights();
-            Log.d("TicketPreviewFragment","onCreate flights HashMap => "+this.flights_info);
+            Log.d("TicketPreviewFragment","onCreate flights HashMap => "+this.tpfm.getFlights());
         }
     }
 
@@ -72,7 +86,40 @@ public class TicketPreviewFragment extends Fragment {
         return view;
     }
 
-    private void setTable(){
+    private void setTable(View v){
+        this.tpfv = new TicketPreviewFragmentView();
+        LinearLayout ll = v.findViewById(R.id.frag_tprev_llayout);
+        this.tpfv.setContainer(ll);
+        for(Map.Entry<String, HashMap<String, Object>> flight: this.tpfm.getFlights().entrySet()){
+            //Loop over flights list HashMap
+            TextView table_caption = new TextView(this.context);
+            LinearLayout.LayoutParams linear_lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
+            linear_lp.setMargins(0,40,0,0);
+            table_caption.setLayoutParams(linear_lp);
+            table_caption.setText(flight.getValue().toString());
+            this.tpfv.getContainer().addView(table_caption);
+            TableLayout tl = new TableLayout(this.context);
+            linear_lp.setMargins(0,10,0,0);
+            tl.setLayoutParams(linear_lp);
+            for(Map.Entry<String, Object> flight_info: flight.getValue().entrySet()){
+                //Loop over each info of single flight
+                TableRow tr = this.flightTableRow(flight_info);
+                this.tpfv.getTable().addView(tr);
+            }//for(Map.Entry<String, Object> flight_info: flight.getValue().entrySet()){
+            this.tpfv.setTable(tl);
+            this.tpfv.getContainer().addView(this.tpfv.getTable());
+        }//for(Map.Entry<String, HashMap<String, Object>> flight: this.tpfm.getFlights().entrySet()){
+    }
 
+    private TableRow flightTableRow(Map.Entry<String, Object> flight_info){
+        TableRow tr = new TableRow(this.context);
+        TextView tv_row_name = new TextView(this.context);
+        tv_row_name.setText(flight_info.getKey());
+        tv_row_name.setTypeface(null,Typeface.BOLD);
+        tr.addView(tv_row_name);
+        TextView tv_row_field = new TextView(this.context);
+        tv_row_field.setText(flight_info.getValue().toString());
+        tr.addView(tv_row_field);
+        return tr;
     }
 }
