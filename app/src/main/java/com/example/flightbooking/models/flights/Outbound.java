@@ -3,7 +3,9 @@ package com.example.flightbooking.models.flights;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Outbound {
+import java.io.Serializable;
+
+public class Outbound implements Serializable {
     @SerializedName("company_name")
     @Expose
     public String companyName;

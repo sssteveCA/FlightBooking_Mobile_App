@@ -3,7 +3,9 @@ package com.example.flightbooking.models.flights;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Oneway {
+import java.io.Serializable;
+
+public class Oneway implements Serializable {
     @SerializedName("company_name")
     @Expose
     public String companyName;
