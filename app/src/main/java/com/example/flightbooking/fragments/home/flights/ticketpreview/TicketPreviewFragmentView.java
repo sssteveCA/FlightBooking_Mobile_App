@@ -64,4 +64,35 @@ public class TicketPreviewFragmentView {
         this.setTpfvTableViews(key,tv_row_field,tpv);
         return tr;
     }
+
+    /**
+     * Assign needed views to TicketPreviewViews object
+     * @param key
+     * @param tv
+     * @param tpv,
+     */
+    private void setTpfvTableViews(String key, TextView tv, TicketPreviewViews tpv){
+        if(key.equalsIgnoreCase("Compagnia aerea"))
+            tpv.setTvCompanyName(tv);
+        if(key.equalsIgnoreCase("Paese di partenza"))
+            tpv.setTvDepartureCountry(tv);
+        if(key.equalsIgnoreCase("Aereoporto di partenza"))
+            tpv.setTvDepartureAirport(tv);
+        if(key.equalsIgnoreCase("Data del volo"))
+            tpv.setTvFlightDate(tv);
+        if(key.equalsIgnoreCase("Paese di arrivo"))
+            tpv.setTvArrivalCountry(tv);
+        if(key.equalsIgnoreCase("Aereoporto di arrivo"))
+            tpv.setTvArrivalAirport(tv);
+        if(key.equalsIgnoreCase("Adulti"))
+            tpv.setTvAdults(tv);
+        if(key.equalsIgnoreCase("Adolescenti"))
+            tpv.setTvTeenagers(tv);
+        if(key.equalsIgnoreCase("Bambini"))
+            tpv.setTvChildren(tv);
+        if(key.equalsIgnoreCase("Neonati"))
+            tpv.setTvNewborns(tv);
+        if(key.equalsIgnoreCase("Prezzo"))
+            tpv.setTvFlightPrice(tv);
+    }
 }
