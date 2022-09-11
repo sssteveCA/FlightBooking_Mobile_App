@@ -2,6 +2,7 @@ package com.example.flightbooking.fragments.home.flights.ticketpreview;
 
 import android.content.Context;
 import android.graphics.Typeface;
+import android.util.TypedValue;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
@@ -57,9 +58,13 @@ public class TicketPreviewFragmentView {
         TextView tv_row_name = new TextView(this.context);
         tv_row_name.setText(key);
         tv_row_name.setTypeface(null, Typeface.BOLD);
+        tv_row_name.setPadding(10,20,10,20);
+        tv_row_name.setTextSize(TypedValue.COMPLEX_UNIT_SP, 18);
         tr.addView(tv_row_name);
         TextView tv_row_field = new TextView(this.context);
         tv_row_field.setText(value);
+        tv_row_field.setPadding(10,20,10,20);
+        tv_row_field.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
         tr.addView(tv_row_field);
         this.setTpfvTableViews(key,tv_row_field,tpv);
         return tr;
