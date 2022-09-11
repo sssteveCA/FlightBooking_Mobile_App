@@ -11,6 +11,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -27,7 +28,7 @@ import java.util.Map;
  * Use the {@link TicketPreviewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class TicketPreviewFragment extends Fragment {
+public class TicketPreviewFragment extends Fragment implements View.OnClickListener {
 
     private TicketPreviewFragmentModel tpfm;
     private TicketPreviewFragmentView tpfv;
@@ -83,7 +84,12 @@ public class TicketPreviewFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_ticket_preview, container, false);
+        Button bt_book = view.findViewById(R.id.frag_tprev_bt_book);
+        Button bt_back = view.findViewById(R.id.frag_tprev_bt_back);
+        this.tpfv = new TicketPreviewFragmentView(this.context,bt_book,bt_back);
         this.setTable(view);
+        this.tpfv.getBtBook().setOnClickListener(this);
+        this.tpfv.getBtBack().setOnClickListener(this);
         return view;
     }
 
@@ -110,7 +116,6 @@ public class TicketPreviewFragment extends Fragment {
      * @param v
      */
     private void setTable(View v){
-        this.tpfv = new TicketPreviewFragmentView(this.context);
         LinearLayout ll = v.findViewById(R.id.frag_tprev_llayout);
         this.tpfv.setContainer(ll);
         HashMap<String, TicketPreviewViews> flights_map = new HashMap<>();
@@ -124,6 +129,9 @@ public class TicketPreviewFragment extends Fragment {
         this.tpfv.setFlightsInfoViews(flights_map);
     }
 
+    //View.OnClickListener
+    @Override
+    public void onClick(View view) {
 
-
+    }
 }

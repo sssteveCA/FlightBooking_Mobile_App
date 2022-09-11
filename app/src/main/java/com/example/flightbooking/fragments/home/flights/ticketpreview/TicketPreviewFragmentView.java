@@ -23,8 +23,10 @@ public class TicketPreviewFragmentView {
     private HashMap<String, TicketPreviewViews> flights_info_views = new HashMap<>();
     private Button bt_book, bt_back;
 
-    public TicketPreviewFragmentView(Context ctx){
+    public TicketPreviewFragmentView(Context ctx, Button bt_book, Button bt_back){
         this.context = ctx;
+        this.bt_book = bt_book;
+        this.bt_back = bt_back;
     }
 
     public LinearLayout getContainer(){return this.container;}
