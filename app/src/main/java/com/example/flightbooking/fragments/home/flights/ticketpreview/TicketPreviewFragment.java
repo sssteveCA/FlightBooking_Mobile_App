@@ -83,6 +83,7 @@ public class TicketPreviewFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_ticket_preview, container, false);
+        this.setTable(view);
         return view;
     }
 
@@ -90,7 +91,7 @@ public class TicketPreviewFragment extends Fragment {
      * Set the Table view and its children
      * @param flight
      */
-    private void setTableLayout(Map.Entry<String, HashMap<String, Object>> flight){
+    private void setTableLayout(Map.Entry<String, HashMap<String, Object>> flight, TicketPreviewViews tpv){
         TableLayout tl = new TableLayout(this.context);
         this.tpfv.setTable(tl);
         LinearLayout.LayoutParams linear_lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -98,10 +99,9 @@ public class TicketPreviewFragment extends Fragment {
         tl.setLayoutParams(linear_lp);
         for(Map.Entry<String, Object> flight_info: flight.getValue().entrySet()){
             //Loop over each info of single flight
-            TableRow tr = this.flightTableRow(flight_info);
+            TableRow tr = this.flightTableRow(flight_info, tpv);
             this.tpfv.getTable().addView(tr);
         }//for(Map.Entry<String, Object> flight_info: flight.getValue().entrySet()){
-
         this.tpfv.getContainer().addView(this.tpfv.getTable());
     }
 
@@ -109,7 +109,7 @@ public class TicketPreviewFragment extends Fragment {
      * Add a TextView caption to TableLayout
      * @param caption
      */
-    private void setTvTableCaption(String caption){
+    public void setTvTableCaption(String caption){
         TextView table_caption = new TextView(this.context);
         LinearLayout.LayoutParams linear_lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         linear_lp.setMargins(0,40,0,0);
@@ -126,27 +126,35 @@ public class TicketPreviewFragment extends Fragment {
         this.tpfv = new TicketPreviewFragmentView();
         LinearLayout ll = v.findViewById(R.id.frag_tprev_llayout);
         this.tpfv.setContainer(ll);
+        HashMap<String, TicketPreviewViews> flights_map = new HashMap<>();
         for(Map.Entry<String, HashMap<String, Object>> flight: this.tpfm.getFlights().entrySet()){
             //Loop over flights list HashMap
+            TicketPreviewViews tpv = new TicketPreviewViews();
             this.setTvTableCaption(flight.getKey());
-            this.setTableLayout(flight);
+            this.setTableLayout(flight,tpv);
+            flights_map.put(flight.getKey(),tpv);
         }//for(Map.Entry<String, HashMap<String, Object>> flight: this.tpfm.getFlights().entrySet()){
+        this.tpfv.setFlightsInfoViews(flights_map);
     }
 
     /**
      * Set single row to be added to the TableLayout
      * @param flight_info
+     * @param tpv
      * @return TableRow view
      */
-    private TableRow flightTableRow(Map.Entry<String, Object> flight_info){
+    private TableRow flightTableRow(Map.Entry<String, Object> flight_info, TicketPreviewViews tpv){
+        String key = flight_info.getKey();
+        String value = flight_info.getValue().toString();
         TableRow tr = new TableRow(this.context);
         TextView tv_row_name = new TextView(this.context);
-        tv_row_name.setText(flight_info.getKey());
+        tv_row_name.setText(key);
         tv_row_name.setTypeface(null,Typeface.BOLD);
         tr.addView(tv_row_name);
         TextView tv_row_field = new TextView(this.context);
-        tv_row_field.setText(flight_info.getValue().toString());
+        tv_row_field.setText(value);
         tr.addView(tv_row_field);
+        this.setTpfvTableViews(key,tv_row_field,tpv);
         return tr;
     }
 
@@ -155,9 +163,8 @@ public class TicketPreviewFragment extends Fragment {
      * @param key
      * @param tv
      * @param tpv,
-     * @param fi_views
      */
-    private void setTpfvTableViews(String key, TextView tv, TicketPreviewViews tpv, HashMap<String, TicketPreviewViews> fi_views){
+    private void setTpfvTableViews(String key, TextView tv, TicketPreviewViews tpv){
         if(key.equalsIgnoreCase("Compagnia aerea"))
             tpv.setTvCompanyName(tv);
         if(key.equalsIgnoreCase("Paese di partenza"))

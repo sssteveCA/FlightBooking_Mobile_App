@@ -49,7 +49,7 @@ public class TicketPreviewFragmentModel {
                if(name.equalsIgnoreCase("oneway"))hm_name = "Volo di sola andata";
                else if(name.equalsIgnoreCase("outbound"))hm_name = "Volo di andata";
                else if(name.equalsIgnoreCase("returnF"))hm_name = "Volo di ritorno";
-               this.flights.put(name, map_flight);
+               this.flights.put(hm_name, map_flight);
            }//if(flight != null){
         }//for(Field field: fi_fields){
     }
@@ -89,6 +89,8 @@ public class TicketPreviewFragmentModel {
             return "Aereoporto di partenza";
         if(key.equalsIgnoreCase("flightDate"))
             return "Data del volo";
+        if(key.equalsIgnoreCase("flightTime"))
+            return "Orario del volo";
         if(key.equalsIgnoreCase("arrivalCountry"))
             return "Paese di arrivo";
         if(key.equalsIgnoreCase("arrivalAirport"))
