@@ -86,6 +86,10 @@ public class TicketPreviewFragment extends Fragment {
         return view;
     }
 
+    /**
+     * Set the table with the entry data from previous fragment
+     * @param v
+     */
     private void setTable(View v){
         this.tpfv = new TicketPreviewFragmentView();
         LinearLayout ll = v.findViewById(R.id.frag_tprev_llayout);
@@ -111,6 +115,11 @@ public class TicketPreviewFragment extends Fragment {
         }//for(Map.Entry<String, HashMap<String, Object>> flight: this.tpfm.getFlights().entrySet()){
     }
 
+    /**
+     * Set single row to be added to the TableLayout
+     * @param flight_info
+     * @return TableRow view
+     */
     private TableRow flightTableRow(Map.Entry<String, Object> flight_info){
         TableRow tr = new TableRow(this.context);
         TextView tv_row_name = new TextView(this.context);
@@ -121,5 +130,13 @@ public class TicketPreviewFragment extends Fragment {
         tv_row_field.setText(flight_info.getValue().toString());
         tr.addView(tv_row_field);
         return tr;
+    }
+
+    /**
+     * Assign needed views to TicketPreviewFragmentView
+     * @param key
+     */
+    private void setTpfvTableViews(String key){
+
     }
 }
