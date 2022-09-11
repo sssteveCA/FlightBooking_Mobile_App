@@ -133,10 +133,22 @@ public class TicketPreviewFragment extends Fragment {
     }
 
     /**
-     * Assign needed views to TicketPreviewFragmentView
+     * Assign needed views to TicketPreviewViews object
      * @param key
+     * @param tv
      */
-    private void setTpfvTableViews(String key){
+    private void setTpfvTableViews(String key, TextView tv){
+        HashMap<String, TicketPreviewViews> fi_views = new HashMap<>();
+        TicketPreviewViews tpv = new TicketPreviewViews();
+        if(key.equalsIgnoreCase("Compagnia aerea"))
 
+        if(key.equalsIgnoreCase(""))
+        if(key.equalsIgnoreCase(""))
+        if(key.equalsIgnoreCase(""))
+        if(key.equalsIgnoreCase(""))
+        if(key.equalsIgnoreCase(""))
+        if(key.equalsIgnoreCase(""))
+        if(key.equalsIgnoreCase(""))
+        if(key.equalsIgnoreCase(""))
     }
 }

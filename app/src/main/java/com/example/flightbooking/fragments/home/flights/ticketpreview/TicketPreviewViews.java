@@ -27,4 +27,16 @@ public class TicketPreviewViews {
     public TextView getTvNewborns(){return this.tv_newborns;}
     public TextView getTvFlightPrice(){return this.tv_flight_price;}
 
+    public void setTvCompanyName(TextView tv_company_name){this.tv_company_name = tv_company_name;}
+    public void setTvDepartureCountry(TextView tv_departure_country){this.tv_departure_country = tv_departure_country;}
+    public void setTvDepartureAirport(TextView tv_departure_airport){this.tv_departure_airport = tv_departure_airport;}
+    public void setTvFlightDate(TextView tv_flight_date){this.tv_flight_date = tv_flight_date;}
+    public void setTvArrivalCountry(TextView tv_arrival_country){this.tv_arrival_country = tv_arrival_country;}
+    public void setTvArrivalAirport(TextView tv_arrival_airport){this.tv_arrival_airport = tv_arrival_airport;}
+    public void setTvAdults(TextView tv_adults){this.tv_adults = tv_adults;}
+    public void setTvTeenagers(TextView tv_teenagers){this.tv_teenagers = tv_teenagers;}
+    public void setTvChildren(TextView tv_children){this.tv_chidren = tv_children;}
+    public void setTvNewborns(TextView tv_newborns){this.tv_newborns = tv_newborns;}
+    public void setTvFlightPrice(TextView tv_flight_price){this.tv_flight_price = tv_flight_price;}
+
 }
