@@ -136,19 +136,31 @@ public class TicketPreviewFragment extends Fragment {
      * Assign needed views to TicketPreviewViews object
      * @param key
      * @param tv
+     * @param tpv,
+     * @param fi_views
      */
-    private void setTpfvTableViews(String key, TextView tv){
-        HashMap<String, TicketPreviewViews> fi_views = new HashMap<>();
-        TicketPreviewViews tpv = new TicketPreviewViews();
+    private void setTpfvTableViews(String key, TextView tv, TicketPreviewViews tpv, HashMap<String, TicketPreviewViews> fi_views){
         if(key.equalsIgnoreCase("Compagnia aerea"))
-
-        if(key.equalsIgnoreCase(""))
-        if(key.equalsIgnoreCase(""))
-        if(key.equalsIgnoreCase(""))
-        if(key.equalsIgnoreCase(""))
-        if(key.equalsIgnoreCase(""))
-        if(key.equalsIgnoreCase(""))
-        if(key.equalsIgnoreCase(""))
-        if(key.equalsIgnoreCase(""))
+            tpv.setTvCompanyName(tv);
+        if(key.equalsIgnoreCase("Paese di partenza"))
+            tpv.setTvDepartureCountry(tv);
+        if(key.equalsIgnoreCase("Aereoporto di partenza"))
+            tpv.setTvDepartureAirport(tv);
+        if(key.equalsIgnoreCase("Data del volo"))
+            tpv.setTvFlightDate(tv);
+        if(key.equalsIgnoreCase("Paese di arrivo"))
+            tpv.setTvArrivalCountry(tv);
+        if(key.equalsIgnoreCase("Aereoporto di arrivo"))
+            tpv.setTvArrivalAirport(tv);
+        if(key.equalsIgnoreCase("Adulti"))
+            tpv.setTvAdults(tv);
+        if(key.equalsIgnoreCase("Adolescenti"))
+            tpv.setTvTeenagers(tv);
+        if(key.equalsIgnoreCase("Bambini"))
+            tpv.setTvChildren(tv);
+        if(key.equalsIgnoreCase("Neonati"))
+            tpv.setTvNewborns(tv);
+        if(key.equalsIgnoreCase("Prezzo"))
+            tpv.setTvFlightPrice(tv);
     }
 }
