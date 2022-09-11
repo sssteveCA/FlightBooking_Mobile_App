@@ -19,6 +19,11 @@ public class TicketPreviewFragmentModel {
         this.fi = fi;
         this.session_id = fi.sessionId;
         this.flight_type = fi.flightType;
+        try {
+            this.setHashMap();
+        } catch (IllegalAccessException e) {
+            e.printStackTrace();
+        }
     }
 
     public String getFlightType(){return this.flight_type;}
@@ -28,13 +33,26 @@ public class TicketPreviewFragmentModel {
     /**
      * Set the flights HashMap from FlightInfo properties
      */
-    private void setHashMap(){
+    private void setHashMap() throws IllegalAccessException {
         this.flights = new HashMap<>();
         Class<?> flights_class = this.fi.flights.getClass();
         Field[] fi_fields = flights_class.getDeclaredFields();
         for(Field field: fi_fields){
            String name = field.getName();
            Log.d("TicketPreviewFragmentModel","setHashMap name => "+ name);
+           Object flight = field.get(this.fi.flights);
+           Class<?> flight_class = flight.getClass();
+           Field[] fl_fields = flight_class.getDeclaredFields();
+           HashMap<String, Object> map_flight = new HashMap<>();
+           for(Field fl_field: fl_fields){
+               String fl_name = fl_field.getName();
+               Log.d("TicketPreviewFragmentModel","setHashMap flight name => "+ fl_name);
+               String row_name = this.setRowTitle(fl_name);
+               Log.d("TicketPreviewFragmentModel","setHashMap row name => "+ row_name);
+               Object flight_val = field.get(flight);
+               map_flight.put(row_name, flight_val);
+           }//for(Field fl_field: fl_fields){
+            this.flights.put(name, map_flight);
         }//for(Field field: fi_fields){
     }
 
