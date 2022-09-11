@@ -106,31 +106,18 @@ public class TicketPreviewFragment extends Fragment {
     }
 
     /**
-     * Add a TextView caption to TableLayout
-     * @param caption
-     */
-    public void setTvTableCaption(String caption){
-        TextView table_caption = new TextView(this.context);
-        LinearLayout.LayoutParams linear_lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        linear_lp.setMargins(0,40,0,0);
-        table_caption.setLayoutParams(linear_lp);
-        table_caption.setText(caption);
-        this.tpfv.getContainer().addView(table_caption);
-    }
-
-    /**
      * Set the table with the entry data from previous fragment
      * @param v
      */
     private void setTable(View v){
-        this.tpfv = new TicketPreviewFragmentView();
+        this.tpfv = new TicketPreviewFragmentView(this.context);
         LinearLayout ll = v.findViewById(R.id.frag_tprev_llayout);
         this.tpfv.setContainer(ll);
         HashMap<String, TicketPreviewViews> flights_map = new HashMap<>();
         for(Map.Entry<String, HashMap<String, Object>> flight: this.tpfm.getFlights().entrySet()){
             //Loop over flights list HashMap
             TicketPreviewViews tpv = new TicketPreviewViews();
-            this.setTvTableCaption(flight.getKey());
+            this.tpfv.setTvTableCaption(flight.getKey());
             this.setTableLayout(flight,tpv);
             flights_map.put(flight.getKey(),tpv);
         }//for(Map.Entry<String, HashMap<String, Object>> flight: this.tpfm.getFlights().entrySet()){
@@ -143,7 +130,7 @@ public class TicketPreviewFragment extends Fragment {
      * @param tpv
      * @return TableRow view
      */
-    private TableRow flightTableRow(Map.Entry<String, Object> flight_info, TicketPreviewViews tpv){
+    public TableRow flightTableRow(Map.Entry<String, Object> flight_info, TicketPreviewViews tpv){
         String key = flight_info.getKey();
         String value = flight_info.getValue().toString();
         TableRow tr = new TableRow(this.context);

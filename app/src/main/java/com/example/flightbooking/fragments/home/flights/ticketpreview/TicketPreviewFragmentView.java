@@ -1,12 +1,15 @@
 package com.example.flightbooking.fragments.home.flights.ticketpreview;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.ViewGroup;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
+import android.widget.TableRow;
 import android.widget.TextView;
 
 import java.util.HashMap;
+import java.util.Map;
 
 
 public class TicketPreviewFragmentView {
@@ -39,5 +42,26 @@ public class TicketPreviewFragmentView {
         table_caption.setLayoutParams(linear_lp);
         table_caption.setText(caption);
         this.getContainer().addView(table_caption);
+    }
+
+    /**
+     * Set single row to be added to the TableLayout
+     * @param flight_info
+     * @param tpv
+     * @return TableRow view
+     */
+    public TableRow flightTableRow(Map.Entry<String, Object> flight_info, TicketPreviewViews tpv){
+        String key = flight_info.getKey();
+        String value = flight_info.getValue().toString();
+        TableRow tr = new TableRow(this.context);
+        TextView tv_row_name = new TextView(this.context);
+        tv_row_name.setText(key);
+        tv_row_name.setTypeface(null, Typeface.BOLD);
+        tr.addView(tv_row_name);
+        TextView tv_row_field = new TextView(this.context);
+        tv_row_field.setText(value);
+        tr.addView(tv_row_field);
+        this.setTpfvTableViews(key,tv_row_field,tpv);
+        return tr;
     }
 }
