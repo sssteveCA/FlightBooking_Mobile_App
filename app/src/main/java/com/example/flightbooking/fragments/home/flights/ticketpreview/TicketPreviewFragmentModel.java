@@ -45,6 +45,10 @@ public class TicketPreviewFragmentModel {
                Class<?> flight_class = flight.getClass();
                Field[] fl_fields = flight_class.getDeclaredFields();
                HashMap<String, Object> map_flight = this.setFlightHashMap(fl_fields,flight);
+               String hm_name = "";
+               if(name.equalsIgnoreCase("oneway"))hm_name = "Volo di sola andata";
+               else if(name.equalsIgnoreCase("outbound"))hm_name = "Volo di andata";
+               else if(name.equalsIgnoreCase("returnF"))hm_name = "Volo di ritorno";
                this.flights.put(name, map_flight);
            }//if(flight != null){
         }//for(Field field: fi_fields){

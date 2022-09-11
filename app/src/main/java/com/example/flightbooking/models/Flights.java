@@ -15,5 +15,5 @@ public class Flights {
     public Outbound outbound;
     @SerializedName("return")
     @Expose
-    public Return _return;
+    public Return returnF;
 }

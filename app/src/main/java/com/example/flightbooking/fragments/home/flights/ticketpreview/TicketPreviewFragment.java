@@ -22,6 +22,7 @@ import java.util.HashMap;
 public class TicketPreviewFragment extends Fragment {
 
     private TicketPreviewFragmentModel tpfm;
+    private HashMap<String, HashMap<String, Object>> flights_info;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -58,8 +59,8 @@ public class TicketPreviewFragment extends Fragment {
             this.fi = (FlightInfo) getArguments().getSerializable("flightinfo");
             Log.d("TicketPreviewFragment","onCreate FlightInfo flight_type => "+fi.flightType);
             this.tpfm = new TicketPreviewFragmentModel(this.fi);
-            HashMap<String, HashMap<String, Object>> flights = this.tpfm.getFlights();
-            Log.d("TicketPreviewFragment","onCreate flights HashMap => "+flights);
+            this.flights_info = this.tpfm.getFlights();
+            Log.d("TicketPreviewFragment","onCreate flights HashMap => "+this.flights_info);
         }
     }
 
@@ -69,5 +70,9 @@ public class TicketPreviewFragment extends Fragment {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_ticket_preview, container, false);
         return view;
+    }
+
+    private void setTable(){
+
     }
 }
