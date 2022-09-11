@@ -5,6 +5,7 @@ import android.graphics.Typeface;
 import android.util.TypedValue;
 import android.view.Gravity;
 import android.view.ViewGroup;
+import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
@@ -20,6 +21,7 @@ public class TicketPreviewFragmentView {
     private LinearLayout container;
     private TableLayout table;
     private HashMap<String, TicketPreviewViews> flights_info_views = new HashMap<>();
+    private Button bt_book, bt_back;
 
     public TicketPreviewFragmentView(Context ctx){
         this.context = ctx;
@@ -28,6 +30,8 @@ public class TicketPreviewFragmentView {
     public LinearLayout getContainer(){return this.container;}
     public TableLayout getTable(){return this.table;}
     public HashMap<String, TicketPreviewViews> getFlightInfoViews(){return this.flights_info_views;}
+    public Button getBtBook(){return this.bt_book;}
+    public Button getBtBack(){return this.bt_back;}
 
     public void setContainer(LinearLayout container){this.container = container;}
     public void setTable(TableLayout table){this.table = table;}
