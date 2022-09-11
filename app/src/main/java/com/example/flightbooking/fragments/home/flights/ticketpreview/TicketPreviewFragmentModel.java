@@ -44,19 +44,30 @@ public class TicketPreviewFragmentModel {
            if(flight != null){
                Class<?> flight_class = flight.getClass();
                Field[] fl_fields = flight_class.getDeclaredFields();
-               HashMap<String, Object> map_flight = new HashMap<>();
-               for(Field fl_field: fl_fields){
-                   field.setAccessible(true);
-                   String fl_name = fl_field.getName();
-                   Log.d("TicketPreviewFragmentModel","setHashMap flight name => "+ fl_name);
-                   String row_name = this.setRowTitle(fl_name);
-                   Log.d("TicketPreviewFragmentModel","setHashMap row name => "+ row_name);
-                   Object flight_val = fl_field.get(flight);
-                   map_flight.put(row_name, flight_val);
-               }//for(Field fl_field: fl_fields){
+               HashMap<String, Object> map_flight = this.setFlightHashMap(fl_fields,flight);
                this.flights.put(name, map_flight);
            }//if(flight != null){
         }//for(Field field: fi_fields){
+    }
+
+    /**
+     * Set single flight HashMap to be added to flights HashMap
+     * @param fl_fields
+     * @param flight
+     * @return the single flight HashMap
+     * @throws IllegalAccessException
+     */
+    private HashMap<String, Object> setFlightHashMap(Field[] fl_fields, Object flight) throws IllegalAccessException {
+        HashMap<String, Object> map_flight = new HashMap<>();
+        for(Field fl_field: fl_fields){
+            String fl_name = fl_field.getName();
+            Log.d("TicketPreviewFragmentModel","setHashMap flight name => "+ fl_name);
+            String row_name = this.setRowTitle(fl_name);
+            Log.d("TicketPreviewFragmentModel","setHashMap row name => "+ row_name);
+            Object flight_val = fl_field.get(flight);
+            map_flight.put(row_name, flight_val);
+        }//for(Field fl_field: fl_fields){
+        return map_flight;
     }
 
     /**
