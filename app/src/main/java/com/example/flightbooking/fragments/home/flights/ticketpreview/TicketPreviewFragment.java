@@ -1,5 +1,6 @@
 package com.example.flightbooking.fragments.home.flights.ticketpreview;
 
+import android.app.Activity;
 import android.content.Context;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -17,7 +18,9 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
+import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.models.FlightInfo;
 
 import java.util.HashMap;
@@ -33,6 +36,7 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
     private TicketPreviewFragmentModel tpfm;
     private TicketPreviewFragmentView tpfv;
     private Context context;
+    public FragmentChange fc = null;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -66,6 +70,12 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         this.context = context;
+    }
+
+    @Override
+    public void onAttach(@NonNull Activity activity) {
+        super.onAttach(activity);
+        this.fc = (MainActivity)activity;
     }
 
     @Override
@@ -132,6 +142,12 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
     //View.OnClickListener
     @Override
     public void onClick(View view) {
-
+        switch(view.getId()){
+            case R.id.frag_tprev_bt_book:
+                break;
+            case R.id.frag_tprev_bt_back:
+                fc.onFragmentChange("TicketPreview","Voli",true,null);
+                break;
+        }
     }
 }

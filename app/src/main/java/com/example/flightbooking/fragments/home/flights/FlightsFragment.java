@@ -286,13 +286,15 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
                         public void getTicketPreviewResponse(FlightInfo fp) {
                             this_ffv.getPbSearch().setVisibility(View.GONE);
                             //Log.i("FlightsFragment","getTicketPreviewResponse");
-                            if(fp.flightType != null && fp.flightType.equals("oneway")){
-                            }
-                            else if(fp.flightType != null && fp.flightType.equals("roundtrip")){
-                            }
-                            Bundle bundle = new Bundle();
-                            bundle.putSerializable("flightinfo",fp);
-                            fc.onFragmentChange("Voli","TicketPreview",true,bundle);
+                            if(fp != null){
+                                if(fp.flightType != null && fp.flightType.equals("oneway")){
+                                }
+                                else if(fp.flightType != null && fp.flightType.equals("roundtrip")){
+                                }
+                                Bundle bundle = new Bundle();
+                                bundle.putSerializable("flightinfo",fp);
+                                fc.onFragmentChange("Voli","TicketPreview",true,bundle);
+                            }//if(fp != null){
                         }
                         @Override
                         public void getTicketPreviewError(String message) {
