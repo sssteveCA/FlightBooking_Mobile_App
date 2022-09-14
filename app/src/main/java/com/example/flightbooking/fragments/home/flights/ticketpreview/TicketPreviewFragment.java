@@ -146,7 +146,7 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
             case R.id.frag_tprev_bt_book:
                 break;
             case R.id.frag_tprev_bt_back:
-                fc.onFragmentChange("TicketPreview","Voli",true,null);
+                fc.fragmentChange("TicketPreview","Voli",true,null);
                 break;
         }
     }

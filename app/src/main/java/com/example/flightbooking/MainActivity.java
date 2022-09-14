@@ -113,7 +113,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
 
     //FragmentChange
     @Override
-    public void onFragmentChange(String oldFragmentLabel, String newFragmentLabel, boolean success, Bundle data){
+    public void fragmentChange(String oldFragmentLabel, String newFragmentLabel, boolean success, Bundle data){
         String nfl = newFragmentLabel;
         this.setFragments(nfl,data);
     }

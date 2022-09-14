@@ -42,6 +42,7 @@ import java.util.Map;
  */
 public class FlightsFragment extends Fragment implements View.OnClickListener, RadioGroup.OnCheckedChangeListener, AdapterView.OnItemSelectedListener, DatePicker.DialogDate {
 
+    private Context context;
     private FlightsFragmentModel ffm;
     private FlightsFragmentView ffv;
     private String initialCountry = "Austria";
@@ -76,6 +77,12 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
     }
 
     @Override
@@ -275,6 +282,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     //View.OnClickListener
     @Override
     public void onClick(View view) {
+        Context this_context = this.context;
         FlightsFragmentView this_ffv = this.ffv;
         switch(view.getId()){
             case R.id.frag_flights_bt_search:
@@ -293,8 +301,11 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
                                 }
                                 Bundle bundle = new Bundle();
                                 bundle.putSerializable("flightinfo",fp);
-                                fc.onFragmentChange("Voli","TicketPreview",true,bundle);
+                                fc.fragmentChange("Voli","TicketPreview",true,bundle);
                             }//if(fp != null){
+                            else{
+                                MessageDialog md = new MessageDialog(this_context,"Errore","Si è verificato un errore durante l'esecuzione della richiesta");
+                            }
                         }
                         @Override
                         public void getTicketPreviewError(String message) {
@@ -304,7 +315,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
                     });
                 }//if(this.ffm.getConnectionStatus()){
                 else{
-                    fc.onFragmentChange("Voli","Voli",false,null);
+                    fc.fragmentChange("Voli","Voli",false,null);
                 }
 
                 break;
