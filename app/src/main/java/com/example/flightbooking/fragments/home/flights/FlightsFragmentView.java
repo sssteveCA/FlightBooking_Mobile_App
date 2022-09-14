@@ -3,6 +3,7 @@ package com.example.flightbooking.fragments.home.flights;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -18,10 +19,11 @@ public class FlightsFragmentView {
     private TextView tv_ret_date;
     private EditText et_out_date, et_ret_date, et_adults, et_teenagers, et_childrens, et_newborns;
     private Button bt_search;
+    private ProgressBar pb_search;
 
     private static String[] itemsName = {
             "flight_types","companies","dep_country","dep_airport","arr_country","arr_airport","out_date","ret_date_tv","ret_date_et",
-            "adults","teenagers","childrens","newborns","search"
+            "adults","teenagers","childrens","newborns","search","progress_bar"
     };
 
     public FlightsFragmentView(Map<String, View> items) throws MissingValuesException {
@@ -42,6 +44,7 @@ public class FlightsFragmentView {
     public EditText getEtChildrens(){return this.et_childrens;}
     public EditText getEtNewborns(){return this.et_newborns;}
     public Button getBtSearch(){return this.bt_search;}
+    public ProgressBar getPbSearch(){return this.pb_search;}
 
     /**
      * Assign values from hashmap to properties
@@ -68,7 +71,7 @@ public class FlightsFragmentView {
         this.et_childrens = (EditText) items.get("childrens");
         this.et_newborns = (EditText) items.get("newborns");
         this.bt_search = (Button) items.get("search");
-
+        this.pb_search = (ProgressBar) items.get("progress_bar");
     }
 
     /**

@@ -16,6 +16,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
@@ -151,7 +152,8 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
                 new AbstractMap.SimpleImmutableEntry<>("teenagers", (EditText)v.findViewById(R.id.frag_flights_et_teenagers)),
                 new AbstractMap.SimpleImmutableEntry<>("childrens", (EditText)v.findViewById(R.id.frag_flights_et_childrens)),
                 new AbstractMap.SimpleImmutableEntry<>("newborns", (EditText)v.findViewById(R.id.frag_flights_et_newborns)),
-                new AbstractMap.SimpleImmutableEntry<>("search", (Button)v.findViewById(R.id.frag_flights_bt_search))
+                new AbstractMap.SimpleImmutableEntry<>("search", (Button)v.findViewById(R.id.frag_flights_bt_search)),
+                new AbstractMap.SimpleImmutableEntry<>("progress_bar", (ProgressBar)v.findViewById(R.id.frag_flights_pb_search))
         );
         return flightsItems;
     }
@@ -273,13 +275,16 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     //View.OnClickListener
     @Override
     public void onClick(View view) {
+        FlightsFragmentView this_ffv = this.ffv;
         switch(view.getId()){
             case R.id.frag_flights_bt_search:
                 if(this.ffm.getConnectionStatus()){
                     FlightSearch fs = this.setFlightSearchBody();
+                    this_ffv.getPbSearch().setVisibility(View.VISIBLE);
                     this.ffm.flightTicketPreview(fs, new FlightsFragmentModel.GetFlightInfo() {
                         @Override
                         public void getTicketPreviewResponse(FlightInfo fp) {
+                            this_ffv.getPbSearch().setVisibility(View.GONE);
                             //Log.i("FlightsFragment","getTicketPreviewResponse");
                             if(fp.flightType != null && fp.flightType.equals("oneway")){
                             }
@@ -291,6 +296,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
                         }
                         @Override
                         public void getTicketPreviewError(String message) {
+                            this_ffv.getPbSearch().setVisibility(View.GONE);
                             MessageDialog md = new MessageDialog(getActivity(),"Errore",message);
                         }
                     });
