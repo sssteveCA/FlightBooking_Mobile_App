@@ -1,8 +1,10 @@
 package com.example.flightbooking.fragments.subscribe;
 
+import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -18,6 +20,7 @@ import com.example.flightbooking.R;
 import com.example.flightbooking.dialogs.ConfirmDialog;
 import com.example.flightbooking.dialogs.MessageDialog;
 import com.example.flightbooking.interfaces.Globals;
+import com.example.flightbooking.models.subscribe.SubscribeFormResponse;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -32,6 +35,7 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
 
     private SubscribeFragmentModel sfm;
     private SubscribeFragmentView sfv;
+    private Context context;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -63,6 +67,12 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
     }
 
     @Override
@@ -114,13 +124,23 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
         switch(view.getId()){
             case R.id.frag_subsc_bt_subscribe:
                 SubscribeFragment sf_this = this;
-                ConfirmDialog cd = new ConfirmDialog(getActivity(),"Registrazione", "Vuoi creare un nuovo accoutn con i dati inseriti?");
+                ConfirmDialog cd = new ConfirmDialog(sf_this.context,"Registrazione", "Vuoi creare un nuovo accoutn con i dati inseriti?");
                 cd.setDialog(new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //Yes button pressed
                         Log.i("SubscribeFragment"," Yes button pressed");
                         Map<String, String> post_data = sf_this.setSubscribeBody();
+                        sf_this.sfm.subscribeRequest(post_data, new SubscribeFragmentModel.SubscribeResponse() {
+                            @Override
+                            public void subscribeResponse(SubscribeFormResponse response) {
+                                MessageDialog md = new MessageDialog(sf_this.context,"Registrazione",response.message);
+                            }
+                            @Override
+                            public void subscribeError(String message) {
+                                MessageDialog md = new MessageDialog(sf_this.context,"Registrazione",message);
+                            }
+                        });
                     }
                 }, new DialogInterface.OnClickListener() {
                     @Override

@@ -36,7 +36,6 @@ public class SubscribeFragmentModel {
             this.sfc.getSfi().subscribe(this.sfInputs).enqueue(new Callback<SubscribeFormResponse>() {
                 @Override
                 public void onResponse(Call<SubscribeFormResponse> call, Response<SubscribeFormResponse> response) {
-
                     sr.subscribeResponse(response.body());
                 }
                 @Override
