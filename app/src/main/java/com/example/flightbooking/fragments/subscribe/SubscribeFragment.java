@@ -17,6 +17,10 @@ import android.widget.EditText;
 import com.example.flightbooking.R;
 import com.example.flightbooking.dialogs.ConfirmDialog;
 
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link SubscribeFragment#newInstance} factory method to
@@ -86,17 +90,37 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
         return view;
     }
 
+    /**
+     * Check if subscribe inputs has valid pattern
+     * @return true if data are all valid, false otherwise
+     */
+    private boolean validateSubscribe(){
+        boolean valid = false;
+        Map<String, String> subscribeValues = Stream.of(new Object[][]{
+                {"username", this.sfv.getEtUsername().getText().toString()},
+                {"email", this.sfv.getEtEmailAddress().getText().toString()},
+                {"conf_email", this.sfv.getEtEmailAddressConf().getText().toString()},
+                {"password", this.sfv.getEtPassword().getText().toString()},
+                {"conf_password", this.sfv.getEtPasswordConf().getText().toString()}
+        }).collect(Collectors.toMap(data -> (String) data[0], data -> (String) data[1]));
+        return valid;
+    }
+
     //View.OnClickListener
     @Override
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.frag_subsc_bt_subscribe:
+                SubscribeFragment sf_this = this;
                 ConfirmDialog cd = new ConfirmDialog(getActivity(),"Registrazione", "Vuoi creare un nuovo accoutn con i dati inseriti?");
                 cd.setDialog(new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //Yes button pressed
                         Log.i("SubscribeFragment"," Yes button pressed");
+                        if(sf_this.validateSubscribe()){
+
+                        }//if(sf_this.validateSubscribe()){
                     }
                 }, new DialogInterface.OnClickListener() {
                     @Override

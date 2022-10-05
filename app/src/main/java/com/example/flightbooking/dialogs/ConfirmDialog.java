@@ -20,7 +20,7 @@ public class ConfirmDialog  extends AlertDialog.Builder {
 
     public void setDialog(DialogInterface.OnClickListener yesListener, DialogInterface.OnClickListener noListener){
         this.setTitle(this.title);
-        this.setMessage(this.title);
+        this.setMessage(this.message);
         this.onYesClick(yesListener);
         this.onNoClick(noListener);
         AlertDialog ad = this.create();
