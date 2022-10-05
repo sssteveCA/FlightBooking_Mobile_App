@@ -55,6 +55,7 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
 
     public SubscribeFragment() {
         // Required empty public constructor
+        Log.d("SubscribeFragment","constructor");
         this.sfm = new SubscribeFragmentModel();
     }
 

@@ -42,26 +42,27 @@ public class MainActivityModel {
      * @return
      */
     public String getFragmentLabel(String class_name){
-        String label = "";
         if(class_name.equalsIgnoreCase(FragmentPackages.HOME.getPackageName()))
-            label = FragmentLabels.HOME.getLabelName();
+            return FragmentLabels.HOME.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.ABOUT_US.getPackageName()))
-            label = FragmentLabels.ABOUT_US.getLabelName();
+            return FragmentLabels.ABOUT_US.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.CONTACTS.getPackageName()))
-            label = FragmentLabels.CONTACTS.getLabelName();
+            return FragmentLabels.CONTACTS.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.FLIGHTS.getPackageName()))
-            label = FragmentLabels.FLIGHTS.getLabelName();
+            return FragmentLabels.FLIGHTS.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.LOGIN.getPackageName()))
-            label = FragmentLabels.LOGIN.getLabelName();
+            return FragmentLabels.LOGIN.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.NEWS.getPackageName()))
-            label = FragmentLabels.NEWS.getLabelName();
+            return FragmentLabels.NEWS.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.NO_CONNECTION.getPackageName()))
-            label = FragmentLabels.NO_CONNECTION.getLabelName();
+            return FragmentLabels.NO_CONNECTION.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.SUBSCRIBE.getPackageName()))
-            label = FragmentLabels.SUBSCRIBE.getLabelName();
+            return FragmentLabels.SUBSCRIBE.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.TICKET_PREVIEW.getPackageName()))
-            label = FragmentLabels.TICKET_PREVIEW.getLabelName();
-        return label;
+            return FragmentLabels.TICKET_PREVIEW.getLabelName();
+        else if(class_name.equalsIgnoreCase(FragmentPackages.VERIFY.getPackageName()))
+            return FragmentLabels.VERIFY.getLabelName();
+        return "";
     }
 
     /**
@@ -70,26 +71,27 @@ public class MainActivityModel {
      * @return
      */
     public String getFragmentPackage(String label){
-        String class_name = "";
         if(label.equalsIgnoreCase(FragmentLabels.HOME.getLabelName()))
-            class_name = FragmentPackages.HOME.getPackageName();
+            return FragmentPackages.HOME.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.ABOUT_US.getLabelName()))
-            class_name = FragmentPackages.ABOUT_US.getPackageName();
+            return FragmentPackages.ABOUT_US.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.CONTACTS.getLabelName()))
-            class_name = FragmentPackages.CONTACTS.getPackageName();
+            return FragmentPackages.CONTACTS.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.FLIGHTS.getLabelName()))
-            class_name = FragmentPackages.FLIGHTS.getPackageName();
+            return FragmentPackages.FLIGHTS.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.LOGIN.getLabelName()))
-            class_name = FragmentPackages.LOGIN.getPackageName();
+            return FragmentPackages.LOGIN.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.NEWS.getLabelName()))
-            class_name = FragmentPackages.NEWS.getPackageName();
+            return FragmentPackages.NEWS.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.NO_CONNECTION.getLabelName()))
-            class_name = FragmentPackages.NO_CONNECTION.getPackageName();
+            return FragmentPackages.NO_CONNECTION.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.SUBSCRIBE.getLabelName()))
-            class_name = FragmentPackages.SUBSCRIBE.getPackageName();
+            return FragmentPackages.SUBSCRIBE.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.TICKET_PREVIEW.getLabelName()))
-            class_name = FragmentPackages.TICKET_PREVIEW.getPackageName();
-        return class_name;
+            return FragmentPackages.TICKET_PREVIEW.getPackageName();
+        else if(label.equalsIgnoreCase(FragmentLabels.VERIFY.getLabelName()))
+            return FragmentPackages.VERIFY.getPackageName();
+        return "";
     }
 
     /**
@@ -99,7 +101,7 @@ public class MainActivityModel {
         if(label != null){
             List<String> internetItems = Arrays.asList(
                     FragmentLabels.FLIGHTS.getLabelName(),
-                    FragmentLabels.HOME.getLabelName(),FragmentLabels.NEWS.getLabelName(),FragmentLabels.TICKET_PREVIEW.getLabelName()); //Label items that require internet
+                    FragmentLabels.HOME.getLabelName(),FragmentLabels.NEWS.getLabelName(),FragmentLabels.TICKET_PREVIEW.getLabelName(), FragmentLabels.VERIFY.getLabelName()); //Label items that require internet
             Log.d("MainActivityModel","isConnectionRequired label => "+label);
             Log.d("MainActivityModel","isConnectionRequired internetItems => "+internetItems);
             String lcLabel = label.substring(0,1).toUpperCase()+label.substring(1);
