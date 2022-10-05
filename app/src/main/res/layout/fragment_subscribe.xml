@@ -194,6 +194,17 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/frag_subsc_et_password_conf" />
+
+            <ProgressBar
+                android:id="@+id/frag_subsc_pb"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="97dp"
+                android:layout_marginTop="50dp"
+                android:visibility="gone"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frag_subsc_bt_subscribe" />
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 

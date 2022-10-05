@@ -16,6 +16,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.example.flightbooking.R;
 import com.example.flightbooking.dialogs.ConfirmDialog;
@@ -98,7 +99,8 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
         CheckBox cb_show_pass = view.findViewById(R.id.frag_subsc_cb_show_pass);
         Button bt_subscribe = view.findViewById(R.id.frag_subsc_bt_subscribe);
         Button bt_reset = view.findViewById(R.id.frag_subsc_bt_reset);
-        this.sfv = new SubscribeFragmentView(et_username,et_email_address,et_email_address_conf,et_password,et_password_conf,cb_show_pass,bt_subscribe,bt_reset);
+        ProgressBar pb = view.findViewById(R.id.frag_subsc_pb);
+        this.sfv = new SubscribeFragmentView(et_username,et_email_address,et_email_address_conf,et_password,et_password_conf,cb_show_pass,bt_subscribe,bt_reset,pb);
         this.sfv.getBtSubscribe().setOnClickListener(this);
         this.sfv.getBtReset().setOnClickListener(this);
         return view;
@@ -132,13 +134,16 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
                         //Yes button pressed
                         Log.i("SubscribeFragment"," Yes button pressed");
                         Map<String, String> post_data = sf_this.setSubscribeBody();
+                        sf_this.sfv.getPb().setVisibility(View.VISIBLE);
                         sf_this.sfm.subscribeRequest(post_data, new SubscribeFragmentModel.SubscribeResponse() {
                             @Override
                             public void subscribeResponse(SubscribeFormResponse response) {
+                                sf_this.sfv.getPb().setVisibility(View.GONE);
                                 MessageDialog md = new MessageDialog(sf_this.context,"Registrazione",response.message);
                             }
                             @Override
                             public void subscribeError(String message) {
+                                sf_this.sfv.getPb().setVisibility(View.GONE);
                                 MessageDialog md = new MessageDialog(sf_this.context,"Registrazione",message);
                             }
                         });
