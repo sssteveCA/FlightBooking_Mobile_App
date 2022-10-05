@@ -1,9 +1,11 @@
 package com.example.flightbooking.fragments.subscribe;
 
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -13,6 +15,7 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 
 import com.example.flightbooking.R;
+import com.example.flightbooking.dialogs.ConfirmDialog;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -88,6 +91,20 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.frag_subsc_bt_subscribe:
+                ConfirmDialog cd = new ConfirmDialog(getActivity(),"Registrazione", "Vuoi creare un nuovo accoutn con i dati inseriti?");
+                cd.setDialog(new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //Yes button pressed
+                        Log.i("SubscribeFragment"," Yes button pressed");
+                    }
+                }, new DialogInterface.OnClickListener() {
+                    @Override
+                    public void onClick(DialogInterface dialogInterface, int i) {
+                        //No button pressed
+                        dialogInterface.dismiss();
+                    }
+                });
                 break;
             case R.id.frag_subsc_bt_reset:
                 this.sfv.resetAll();

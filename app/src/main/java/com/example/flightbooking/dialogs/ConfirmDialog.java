@@ -9,16 +9,20 @@ public class ConfirmDialog  extends AlertDialog.Builder {
     private String title;
     private String message;
 
-    public ConfirmDialog(Context context) {
+    public ConfirmDialog(Context context, String title, String message) {
         super(context);
+        this.title = title;
+        this.message = message;
     }
 
     public String getTitle(){ return this.title; }
     public String getMessage(){ return this.message; }
 
-    private void setDialog(){
+    public void setDialog(DialogInterface.OnClickListener yesListener, DialogInterface.OnClickListener noListener){
         this.setTitle(this.title);
         this.setMessage(this.title);
+        this.onYesClick(yesListener);
+        this.onNoClick(noListener);
         AlertDialog ad = this.create();
         ad.show();
     }
@@ -27,7 +31,7 @@ public class ConfirmDialog  extends AlertDialog.Builder {
      * When user press "YES" button in confirm dialog
      * @param click the listener
      */
-    public void onYesClick(DialogInterface.OnClickListener click){
+    private void onYesClick(DialogInterface.OnClickListener click){
         this.setPositiveButton("SÌ",click);
     }
 
@@ -35,7 +39,7 @@ public class ConfirmDialog  extends AlertDialog.Builder {
      * When user press "NO" button in confirm dialog
      * @param click the listener
      */
-    public void onNoClick(DialogInterface.OnClickListener click){
+    private void onNoClick(DialogInterface.OnClickListener click){
         this.setNegativeButton("NO",click);
     }
 }
