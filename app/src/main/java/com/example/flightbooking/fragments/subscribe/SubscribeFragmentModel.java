@@ -1,6 +1,8 @@
 package com.example.flightbooking.fragments.subscribe;
 
 import com.example.flightbooking.common.RegEx;
+import com.example.flightbooking.interfaces.Globals;
+import com.example.flightbooking.models.subscribe.SubscribeFormInputs;
 import com.example.flightbooking.models.subscribe.SubscribeFormResponse;
 
 import java.util.Map;
@@ -12,8 +14,37 @@ public class SubscribeFragmentModel {
         public void subscribeError(String message);
     }
 
-    public SubscribeFragmentModel(){
+    private SubscribeFragmentClient sfc;
 
+    public SubscribeFragmentModel(){
+        this.sfc = new SubscribeFragmentClient();
+    }
+
+    /**
+     * Execute the user registration HTTP request
+     * @param data the user data to create the account
+     * @param sr lister to get the response
+     */
+    public void subscribeRequest(Map<String, String> data, SubscribeResponse sr){
+        if(this.validateData(data)){
+
+        }//if(this.validateData(data)){
+        else{
+            sr.subscribeError(Globals.ERR_INVALID_DATA_FORMAT);
+        }
+    }
+
+    /**
+     * Set the body class for subscribe request
+     * @return a SubscribeFormInputs instance with the user registration data
+     */
+    public SubscribeFormInputs setSfi(String username, String email, String password, String confirmPassword){
+        SubscribeFormInputs sfi = new SubscribeFormInputs();
+        sfi.name = username;
+        sfi.email = email;
+        sfi.password = password;
+        sfi.password_confirmation = confirmPassword;
+        return sfi;
     }
 
     /**
@@ -34,4 +65,5 @@ public class SubscribeFragmentModel {
         if(!confirmPassword.equals(password))return false;
         return true;
     }
+
 }

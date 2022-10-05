@@ -94,10 +94,10 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
     }
 
     /**
-     * Check if subscribe inputs has valid pattern
-     * @return true if data are all valid, false otherwise
+     * Set the subscribe body data
+     * @return the Map with the subscribe data
      */
-    private boolean validateSubscribe(){
+    private Map<String, String> setSubscribeBody(){
         Map<String, String> subscribeValues = Stream.of(new Object[][]{
                 {"username", this.sfv.getEtUsername().getText().toString()},
                 {"email", this.sfv.getEtEmailAddress().getText().toString()},
@@ -105,7 +105,7 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
                 {"password", this.sfv.getEtPassword().getText().toString()},
                 {"conf_password", this.sfv.getEtPasswordConf().getText().toString()}
         }).collect(Collectors.toMap(data -> (String) data[0], data -> (String) data[1]));
-        return this.sfm.validateData(subscribeValues);
+        return subscribeValues;
     }
 
     //View.OnClickListener
@@ -120,12 +120,8 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //Yes button pressed
                         Log.i("SubscribeFragment"," Yes button pressed");
-                        if(sf_this.validateSubscribe()){
+                        Map<String, String> post_data = sf_this.setSubscribeBody();
 
-                        }//if(sf_this.validateSubscribe()){
-                        else{
-                            MessageDialog md = new MessageDialog(getActivity(),"Registrazione", Globals.ERR_INVALID_DATA_FORMAT);
-                        }
                     }
                 }, new DialogInterface.OnClickListener() {
                     @Override
