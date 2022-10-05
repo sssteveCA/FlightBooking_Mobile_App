@@ -1,10 +1,16 @@
 package com.example.flightbooking.fragments.subscribe;
 
+import android.util.Log;
+
 import com.example.flightbooking.common.RegEx;
 import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.subscribe.SubscribeFormInputs;
 import com.example.flightbooking.models.subscribe.SubscribeFormResponse;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
+import java.io.IOException;
 import java.util.Map;
 
 import retrofit2.Call;
@@ -36,7 +42,19 @@ public class SubscribeFragmentModel {
             this.sfc.getSfi().subscribe(this.sfInputs).enqueue(new Callback<SubscribeFormResponse>() {
                 @Override
                 public void onResponse(Call<SubscribeFormResponse> call, Response<SubscribeFormResponse> response) {
-                    sr.subscribeResponse(response.body());
+                    if(response.isSuccessful()) sr.subscribeResponse(response.body());
+                    else{
+                        try {
+                            String jsonString = response.errorBody().string();
+                            JsonElement jsonEl = JsonParser.parseString(jsonString);
+                            JsonObject jsonObj = jsonEl.getAsJsonObject();
+                            String message = jsonObj.get("message").getAsString();
+                            Log.i("SubscribeFragmentModel","subscribeRequest error => "+jsonString);
+                            sr.subscribeError(message);
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                        }
+                    }
                 }
                 @Override
                 public void onFailure(Call<SubscribeFormResponse> call, Throwable t) {

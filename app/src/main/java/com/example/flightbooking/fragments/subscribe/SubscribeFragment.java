@@ -9,6 +9,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.text.InputType;
+import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -139,7 +140,7 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
         switch(view.getId()){
             case R.id.frag_subsc_bt_subscribe:
                 SubscribeFragment sf_this = this;
-                ConfirmDialog cd = new ConfirmDialog(sf_this.context,"Registrazione", "Vuoi creare un nuovo accoutn con i dati inseriti?");
+                ConfirmDialog cd = new ConfirmDialog(sf_this.context,"Registrazione", "Vuoi creare un nuovo account con i dati inseriti?");
                 cd.setDialog(new DialogInterface.OnClickListener() {
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
@@ -183,8 +184,8 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
         switch(compoundButton.getId()){
             case R.id.frag_subsc_cb_show_pass:
                 if(compoundButton.isChecked()){
-                    this.sfv.getEtPassword().setInputType(InputType.TYPE_CLASS_TEXT);
-                    this.sfv.getEtPasswordConf().setInputType(InputType.TYPE_CLASS_TEXT);
+                    this.sfv.getEtPassword().setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_NORMAL);
+                    this.sfv.getEtPasswordConf().setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_NORMAL);
                 }
                 else{
                     this.sfv.getEtPassword().setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
