@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.text.InputType;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -161,6 +162,14 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
     public void onCheckedChanged(CompoundButton compoundButton, boolean b) {
         switch(compoundButton.getId()){
             case R.id.frag_subsc_cb_show_pass:
+                if(compoundButton.isChecked()){
+                    this.sfv.getEtPassword().setInputType(InputType.TYPE_CLASS_TEXT);
+                    this.sfv.getEtPasswordConf().setInputType(InputType.TYPE_CLASS_TEXT);
+                }
+                else{
+                    this.sfv.getEtPassword().setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                    this.sfv.getEtPasswordConf().setInputType(InputType.TYPE_CLASS_TEXT|InputType.TYPE_TEXT_VARIATION_PASSWORD);
+                }
                 break;
         }
     }
