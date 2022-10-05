@@ -3,7 +3,7 @@ package com.example.flightbooking.models.subscribe;
 /**
  * Subscribe form input values
  */
-public class SubscribeForm {
+public class SubscribeFormInputs {
     public String name;
     public String email;
     public String password;
