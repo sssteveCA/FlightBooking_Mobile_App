@@ -16,6 +16,8 @@ import android.widget.EditText;
 
 import com.example.flightbooking.R;
 import com.example.flightbooking.dialogs.ConfirmDialog;
+import com.example.flightbooking.dialogs.MessageDialog;
+import com.example.flightbooking.interfaces.Globals;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -42,6 +44,7 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
 
     public SubscribeFragment() {
         // Required empty public constructor
+        this.sfm = new SubscribeFragmentModel();
     }
 
     /**
@@ -95,7 +98,6 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
      * @return true if data are all valid, false otherwise
      */
     private boolean validateSubscribe(){
-        boolean valid = false;
         Map<String, String> subscribeValues = Stream.of(new Object[][]{
                 {"username", this.sfv.getEtUsername().getText().toString()},
                 {"email", this.sfv.getEtEmailAddress().getText().toString()},
@@ -103,7 +105,7 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
                 {"password", this.sfv.getEtPassword().getText().toString()},
                 {"conf_password", this.sfv.getEtPasswordConf().getText().toString()}
         }).collect(Collectors.toMap(data -> (String) data[0], data -> (String) data[1]));
-        return valid;
+        return this.sfm.validateData(subscribeValues);
     }
 
     //View.OnClickListener
@@ -121,6 +123,9 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
                         if(sf_this.validateSubscribe()){
 
                         }//if(sf_this.validateSubscribe()){
+                        else{
+                            MessageDialog md = new MessageDialog(getActivity(),"Registrazione", Globals.ERR_INVALID_DATA_FORMAT);
+                        }
                     }
                 }, new DialogInterface.OnClickListener() {
                     @Override
