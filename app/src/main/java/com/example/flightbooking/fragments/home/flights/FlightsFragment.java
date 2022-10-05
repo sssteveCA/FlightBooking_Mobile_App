@@ -26,6 +26,7 @@ import com.example.flightbooking.R;
 import com.example.flightbooking.common.Connection;
 import com.example.flightbooking.dialogs.DatePicker;
 import com.example.flightbooking.dialogs.MessageDialog;
+import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.exception.MissingValuesException;
 import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.models.FlightInfo;
@@ -301,7 +302,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
                                 }
                                 Bundle bundle = new Bundle();
                                 bundle.putSerializable("flightinfo",fp);
-                                fc.fragmentChange("Voli","TicketPreview",true,bundle);
+                                fc.fragmentChange(FragmentLabels.FLIGHTS.getLabelName(), FragmentLabels.TICKET_PREVIEW.getLabelName(),true,bundle);
                             }//if(fp != null){
                             else{
                                 MessageDialog md = new MessageDialog(this_context,"Errore","Si è verificato un errore durante l'esecuzione della richiesta");
@@ -315,7 +316,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
                     });
                 }//if(this.ffm.getConnectionStatus()){
                 else{
-                    fc.fragmentChange("Voli","Voli",false,null);
+                    fc.fragmentChange(FragmentLabels.FLIGHTS.getLabelName(), FragmentLabels.FLIGHTS.getLabelName(), false,null);
                 }
 
                 break;

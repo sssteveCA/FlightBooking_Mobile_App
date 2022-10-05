@@ -1,5 +1,6 @@
 package com.example.flightbooking.fragments.subscribe;
 
+import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
 import android.os.Bundle;
@@ -18,9 +19,12 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.dialogs.ConfirmDialog;
 import com.example.flightbooking.dialogs.MessageDialog;
+import com.example.flightbooking.enums.FragmentLabels;
+import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.subscribe.SubscribeFormResponse;
 
@@ -38,6 +42,7 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
     private SubscribeFragmentModel sfm;
     private SubscribeFragmentView sfv;
     private Context context;
+    public FragmentChange fc = null;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -69,6 +74,12 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(@NonNull Activity activity) {
+        super.onAttach(activity);
+        this.fc = (MainActivity)activity;
     }
 
     @Override
@@ -139,7 +150,10 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
                             @Override
                             public void subscribeResponse(SubscribeFormResponse response) {
                                 sf_this.sfv.getPb().setVisibility(View.GONE);
-                                MessageDialog md = new MessageDialog(sf_this.context,"Registrazione",response.message);
+                                if(response.status.equals("OK")) fc.fragmentChange(FragmentLabels.SUBSCRIBE.getLabelName(),FragmentLabels.VERIFY.getLabelName(),true,null);
+                                else{
+                                    MessageDialog md = new MessageDialog(sf_this.context,"Registrazione",response.message);
+                                }
                             }
                             @Override
                             public void subscribeError(String message) {

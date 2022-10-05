@@ -20,6 +20,7 @@ import android.widget.TextView;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
+import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.models.FlightInfo;
 
@@ -146,7 +147,7 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
             case R.id.frag_tprev_bt_book:
                 break;
             case R.id.frag_tprev_bt_back:
-                fc.fragmentChange("TicketPreview","Voli",true,null);
+                fc.fragmentChange(FragmentLabels.TICKET_PREVIEW.getLabelName(), FragmentLabels.FLIGHTS.getLabelName(), true,null);
                 break;
         }
     }

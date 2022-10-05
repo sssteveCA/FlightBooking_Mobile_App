@@ -2,7 +2,7 @@ package com.example.flightbooking.enums;
 
 public enum FragmentLabels {
     ABOUT_US("Chi siamo"), CONTACTS("Contatti"), FLIGHTS("Voli"), LOGIN("Login"), HOME("Home"),
-    NEWS("News"), NO_CONNECTION("NoConnection"), TICKET_PREVIEW("TicketPreview"), SUBSCRIBE("Registrati");
+    NEWS("News"), NO_CONNECTION("NoConnection"), TICKET_PREVIEW("TicketPreview"), SUBSCRIBE("Registrati"), VERIFY("Verifica");
 
 
     private String label_name;
