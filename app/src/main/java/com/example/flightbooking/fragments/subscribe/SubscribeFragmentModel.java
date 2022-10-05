@@ -7,7 +7,13 @@ import com.example.flightbooking.models.subscribe.SubscribeFormResponse;
 
 import java.util.Map;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class SubscribeFragmentModel {
+
+    private SubscribeFormInputs sfInputs;
 
     public interface SubscribeResponse{
         public void subscribeResponse(SubscribeFormResponse response);
@@ -27,7 +33,17 @@ public class SubscribeFragmentModel {
      */
     public void subscribeRequest(Map<String, String> data, SubscribeResponse sr){
         if(this.validateData(data)){
+            this.sfc.getSfi().subscribe(this.sfInputs).enqueue(new Callback<SubscribeFormResponse>() {
+                @Override
+                public void onResponse(Call<SubscribeFormResponse> call, Response<SubscribeFormResponse> response) {
 
+                    sr.subscribeResponse(response.body());
+                }
+                @Override
+                public void onFailure(Call<SubscribeFormResponse> call, Throwable t) {
+                    sr.subscribeError(Globals.ERR_REQUEST);
+                }
+            });
         }//if(this.validateData(data)){
         else{
             sr.subscribeError(Globals.ERR_INVALID_DATA_FORMAT);
@@ -63,6 +79,7 @@ public class SubscribeFragmentModel {
         if(password.length() < 8)return false;
         String confirmPassword = data.get("conf_password");
         if(!confirmPassword.equals(password))return false;
+        this.sfInputs = this.setSfi(username,email,password,confirmPassword);
         return true;
     }
 

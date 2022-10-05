@@ -25,6 +25,7 @@ public class SubscribeFragmentClient {
                 .baseUrl(Globals.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        this.sfi = this.retrofit.create(SubscribeFragmentInterface.class);
     }
 
     public SubscribeFragmentInterface getSfi(){return this.sfi;}

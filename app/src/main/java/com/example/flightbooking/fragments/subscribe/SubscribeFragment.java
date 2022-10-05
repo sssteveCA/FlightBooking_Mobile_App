@@ -121,7 +121,6 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
                         //Yes button pressed
                         Log.i("SubscribeFragment"," Yes button pressed");
                         Map<String, String> post_data = sf_this.setSubscribeBody();
-
                     }
                 }, new DialogInterface.OnClickListener() {
                     @Override
