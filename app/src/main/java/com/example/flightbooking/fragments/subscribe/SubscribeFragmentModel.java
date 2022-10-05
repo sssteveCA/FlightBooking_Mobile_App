@@ -1,10 +1,16 @@
 package com.example.flightbooking.fragments.subscribe;
 
 import com.example.flightbooking.common.RegEx;
+import com.example.flightbooking.models.subscribe.SubscribeFormResponse;
 
 import java.util.Map;
 
 public class SubscribeFragmentModel {
+
+    public interface SubscribeResponse{
+        public void subscribeResponse(SubscribeFormResponse response);
+        public void subscribeError(String message);
+    }
 
     public SubscribeFragmentModel(){
 
