@@ -42,7 +42,11 @@ public class SubscribeFragmentModel {
             this.sfc.getSfi().subscribe(this.sfInputs).enqueue(new Callback<SubscribeFormResponse>() {
                 @Override
                 public void onResponse(Call<SubscribeFormResponse> call, Response<SubscribeFormResponse> response) {
-                    if(response.isSuccessful()) sr.subscribeResponse(response.body());
+                    if(response.isSuccessful()){
+                        SubscribeFormResponse sfr = (SubscribeFormResponse)response.body();
+                        Log.i("SubscribeFragmentModel","subscribeRequest response =>"+sfr);
+                        sr.subscribeResponse(sfr);
+                    }
                     else{
                         try {
                             String jsonString = response.errorBody().string();
@@ -58,6 +62,8 @@ public class SubscribeFragmentModel {
                 }
                 @Override
                 public void onFailure(Call<SubscribeFormResponse> call, Throwable t) {
+                    Log.e("SubscribeFragmentModel", "subscribeRequest fail");
+                    t.printStackTrace();
                     sr.subscribeError(Globals.ERR_REQUEST);
                 }
             });

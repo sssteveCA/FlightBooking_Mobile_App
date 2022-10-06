@@ -43,9 +43,12 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
         //NoConnection fragment Retry button clicked
         //Log.i("MainActivity","retryClick");
         this.mav.removeFragment(R.id.main_activity_fragment_container);
-        if(label.equalsIgnoreCase(FragmentLabels.FLIGHTS.getLabelName()) || label.equalsIgnoreCase(FragmentLabels.TICKET_PREVIEW.getLabelName())){
-            label = FragmentLabels.HOME.getLabelName();
+        if(label != null){
+            if(label.equalsIgnoreCase(FragmentLabels.FLIGHTS.getLabelName()) || label.equalsIgnoreCase(FragmentLabels.TICKET_PREVIEW.getLabelName())){
+                label = FragmentLabels.HOME.getLabelName();
+            }
         }
+        else label = FragmentLabels.HOME.getLabelName();
         this.setFragments(label,null);
     }
 
@@ -74,7 +77,10 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
                     Log.i("MainActivity","setFragments connection not connected");
                     if(label.equalsIgnoreCase(FragmentLabels.FLIGHTS.getLabelName()))
                         label = FragmentLabels.HOME.getLabelName();
-                    this.mav.updateFragment(R.id.main_activity_fragment_container, (Fragment) NoConnectionFragment.newInstance(label),data);
+                        Bundle noconnBund = new Bundle();
+                        noconnBund.putString("label",label);
+                        NoConnectionFragment ncf = new NoConnectionFragment();
+                    this.mav.updateFragment(R.id.main_activity_fragment_container, ncf, data);
                 }
             }//if(require_connection){
             else{
