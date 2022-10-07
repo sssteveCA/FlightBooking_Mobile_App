@@ -16,6 +16,9 @@ import android.widget.ProgressBar;
 
 import com.example.flightbooking.R;
 
+import java.util.AbstractMap;
+import java.util.Map;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link LoginFragment#newInstance} factory method to
@@ -82,6 +85,18 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
         this.lfv.getBtReset().setOnClickListener(this);
         this.lfv.getCbShowPass().setOnCheckedChangeListener(this);
         return view;
+    }
+
+    /**
+     * Set the login body data
+     * @return the Map with the login data
+     */
+    private Map<String, String> setLoginBody(){
+        Map<String, String> loginBody = Map.ofEntries(
+                new AbstractMap.SimpleImmutableEntry<String, String>("username", this.lfv.getEtUsername().getText().toString()),
+                new AbstractMap.SimpleImmutableEntry<String, String>("password", this.lfv.getEtPassword().getText().toString())
+        );
+        return loginBody;
     }
 
     //View.OnClickListener
