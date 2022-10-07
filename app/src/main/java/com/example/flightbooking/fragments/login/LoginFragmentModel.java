@@ -1,5 +1,6 @@
 package com.example.flightbooking.fragments.login;
 
+import com.example.flightbooking.models.login.Auth;
 import com.example.flightbooking.models.login.LoginFormInputs;
 
 import java.util.Map;
@@ -7,7 +8,8 @@ import java.util.Map;
 public class LoginFragmentModel {
 
     public interface LoginResponse{
-
+        public void loginResponse(Auth auth);
+        public void loginError(String message);
     }
 
     public LoginFragmentModel(){
