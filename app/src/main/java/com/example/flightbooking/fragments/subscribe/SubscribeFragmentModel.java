@@ -77,7 +77,7 @@ public class SubscribeFragmentModel {
      * Set the body class for subscribe request
      * @return a SubscribeFormInputs instance with the user registration data
      */
-    public SubscribeFormInputs setSfi(String username, String email, String password, String confirmPassword){
+    private SubscribeFormInputs setSfi(String username, String email, String password, String confirmPassword){
         SubscribeFormInputs sfi = new SubscribeFormInputs();
         sfi.name = username;
         sfi.email = email;
@@ -91,7 +91,7 @@ public class SubscribeFragmentModel {
      * @param data the map with the subscribe data
      * @return
      */
-    public boolean validateData(Map<String, String> data){
+    private boolean validateData(Map<String, String> data){
         String username = data.get("username");
         if(username.equals("") || username.length() > 255)return false;
         String email = data.get("email");
