@@ -6,6 +6,10 @@ import java.util.Map;
 
 public class LoginFragmentModel {
 
+    public interface LoginResponse{
+
+    }
+
     public LoginFragmentModel(){
 
     }
