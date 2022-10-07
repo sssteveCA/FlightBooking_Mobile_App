@@ -1,10 +1,13 @@
 package com.example.flightbooking.fragments.login;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.text.InputType;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -15,6 +18,8 @@ import android.widget.EditText;
 import android.widget.ProgressBar;
 
 import com.example.flightbooking.R;
+import com.example.flightbooking.dialogs.MessageDialog;
+import com.example.flightbooking.models.login.Auth;
 
 import java.util.AbstractMap;
 import java.util.Map;
@@ -28,6 +33,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
 
     private LoginFragmentModel lfm;
     private LoginFragmentView lfv;
+    private Context context;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -40,6 +46,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
 
     public LoginFragment() {
         // Required empty public constructor
+        this.lfm = new LoginFragmentModel();
     }
 
     /**
@@ -58,6 +65,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
     }
 
     @Override
@@ -102,8 +115,23 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
     //View.OnClickListener
     @Override
     public void onClick(View view) {
+        LoginFragment this_lf = this;
         switch(view.getId()){
             case R.id.frag_login_bt_login:
+                Map<String, String> loginData = this.setLoginBody();
+                this_lf.lfv.getPb().setVisibility(View.VISIBLE);
+                this_lf.lfm.loginRequest(loginData, new LoginFragmentModel.LoginResponse() {
+                    @Override
+                    public void loginResponse(Auth auth) {
+                        this_lf.lfv.getPb().setVisibility(View.GONE);
+                        Log.i("LoginFragment", "onClick loginResponse => "+auth.status);
+                    }
+                    @Override
+                    public void loginError(String message) {
+                        this_lf.lfv.getPb().setVisibility(View.GONE);
+                        MessageDialog md = new MessageDialog(this_lf.context,"Login",message);
+                    }
+                });
                 break;
             case R.id.frag_login_bt_reset:
                 this.lfv.resetAll();
