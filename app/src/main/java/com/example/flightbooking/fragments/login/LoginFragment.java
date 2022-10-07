@@ -12,6 +12,7 @@ import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.CompoundButton;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.example.flightbooking.R;
 
@@ -75,7 +76,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
         CheckBox cb_show_pass = view.findViewById(R.id.frag_login_cb_show_pass);
         Button bt_login = view.findViewById(R.id.frag_login_bt_login);
         Button bt_reset = view.findViewById(R.id.frag_login_bt_reset);
-        this.lfv = new LoginFragmentView(et_username,et_password,cb_show_pass,bt_login,bt_reset);
+        ProgressBar pb = view.findViewById(R.id.frag_login_pb);
+        this.lfv = new LoginFragmentView(et_username,et_password,cb_show_pass,bt_login,bt_reset,pb);
         this.lfv.getBtLogin().setOnClickListener(this);
         this.lfv.getBtReset().setOnClickListener(this);
         this.lfv.getCbShowPass().setOnCheckedChangeListener(this);
