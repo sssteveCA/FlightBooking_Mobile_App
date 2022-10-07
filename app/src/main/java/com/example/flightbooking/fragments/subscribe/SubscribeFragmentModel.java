@@ -57,6 +57,7 @@ public class SubscribeFragmentModel {
                             sr.subscribeError(message);
                         } catch (IOException e) {
                             e.printStackTrace();
+                            sr.subscribeError(Globals.ERR_REQUEST);
                         }
                     }
                 }
