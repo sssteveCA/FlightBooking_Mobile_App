@@ -1,6 +1,7 @@
 package com.example.flightbooking.fragments.login;
 
 import android.provider.Settings;
+import android.util.Log;
 
 import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.login.Auth;
@@ -49,6 +50,7 @@ public class LoginFragmentModel {
                     else{
                         try {
                             String jsonString = response.errorBody().string();
+                            Log.d("LoginFragmentModel","loginRequest errorBody => "+jsonString);
                             JsonElement je = JsonParser.parseString(jsonString);
                             JsonObject jo = je.getAsJsonObject();
                             String message = jo.get("message").getAsString();
@@ -75,11 +77,11 @@ public class LoginFragmentModel {
      * @return
      */
     private boolean validateData(Map<String, String> data){
-        String username = data.get("username");
-        if(username.equals(""))return false;
+        String email = data.get("email");
+        if(email.equals(""))return false;
         String password = data.get("password");
         if(password.equals(""))return false;
-        this.lfi = this.setLfi(username,password);
+        this.lfi = this.setLfi(email,password);
         return true;
     }
 
@@ -87,9 +89,9 @@ public class LoginFragmentModel {
      * Set the body class for login request
      * @return a LoginFormInputs instance with the user login data
      */
-    private LoginFormInputs setLfi(String username, String password){
+    private LoginFormInputs setLfi(String email, String password){
         LoginFormInputs lfi = new LoginFormInputs();
-        lfi.username = username;
+        lfi.email = email;
         lfi.password = password;
         return lfi;
     }

@@ -87,13 +87,13 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
-        EditText et_username = view.findViewById(R.id.frag_login_et_username);
+        EditText et_email = view.findViewById(R.id.frag_login_et_email);
         EditText et_password = view.findViewById(R.id.frag_login_et_password);
         CheckBox cb_show_pass = view.findViewById(R.id.frag_login_cb_show_pass);
         Button bt_login = view.findViewById(R.id.frag_login_bt_login);
         Button bt_reset = view.findViewById(R.id.frag_login_bt_reset);
         ProgressBar pb = view.findViewById(R.id.frag_login_pb);
-        this.lfv = new LoginFragmentView(et_username,et_password,cb_show_pass,bt_login,bt_reset,pb);
+        this.lfv = new LoginFragmentView(et_email,et_password,cb_show_pass,bt_login,bt_reset,pb);
         this.lfv.getBtLogin().setOnClickListener(this);
         this.lfv.getBtReset().setOnClickListener(this);
         this.lfv.getCbShowPass().setOnCheckedChangeListener(this);
@@ -106,7 +106,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
      */
     private Map<String, String> setLoginBody(){
         Map<String, String> loginBody = Map.ofEntries(
-                new AbstractMap.SimpleImmutableEntry<String, String>("username", this.lfv.getEtUsername().getText().toString()),
+                new AbstractMap.SimpleImmutableEntry<String, String>("email", this.lfv.getEtEmail().getText().toString()),
                 new AbstractMap.SimpleImmutableEntry<String, String>("password", this.lfv.getEtPassword().getText().toString())
         );
         return loginBody;
@@ -124,7 +124,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
                     @Override
                     public void loginResponse(Auth auth) {
                         this_lf.lfv.getPb().setVisibility(View.GONE);
-                        Log.i("LoginFragment", "onClick loginResponse => "+auth.status);
+                        Log.i("LoginFragment", "onClick loginResponse status => "+auth.status);
+                        Log.i("LoginFragment", "onClick loginResponse token => "+auth.token);
                     }
                     @Override
                     public void loginError(String message) {

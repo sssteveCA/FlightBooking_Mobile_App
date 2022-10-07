@@ -25,20 +25,20 @@
             app:layout_constraintTop_toTopOf="parent" />
 
         <TextView
-            android:id="@+id/frag_login_tv_username"
+            android:id="@+id/frag_login_tv_email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
             android:layout_marginTop="40dp"
             android:layout_marginEnd="20dp"
-            android:text="Nome utente"
+            android:text="Email"
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
             app:layout_constraintTop_toBottomOf="@+id/frag_login_tv_header" />
 
         <EditText
-            android:id="@+id/frag_login_et_username"
+            android:id="@+id/frag_login_et_email"
             android:layout_width="0dp"
             android:layout_height="wrap_content"
             android:layout_marginStart="20dp"
@@ -48,7 +48,7 @@
             android:inputType="textPersonName"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frag_login_tv_username" />
+            app:layout_constraintTop_toBottomOf="@+id/frag_login_tv_email" />
 
         <TextView
             android:id="@+id/frag_login_tv_password"
@@ -61,7 +61,7 @@
             android:textSize="16sp"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/frag_login_et_username" />
+            app:layout_constraintTop_toBottomOf="@+id/frag_login_et_email" />
 
         <EditText
             android:id="@+id/frag_login_et_password"
