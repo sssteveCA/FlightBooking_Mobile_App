@@ -34,7 +34,7 @@ import java.util.List;
  * Use the {@link MainMenuLoggedFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainMenuLoggedFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
+public class MainMenuLoggedFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener, ExpandableListView.OnChildClickListener {
 
     private MainMenuLoggedModel mmlm;
     private MainMenuLoggedView mmlv;
@@ -135,6 +135,7 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
         List<String> profileMenuTitles = new ArrayList<String>(this.mmlpm.getProfileSubmenuItems().keySet());
         MainMenuLoggedProfileAdapter mmlpa = new MainMenuLoggedProfileAdapter(this.ctx, profileMenuTitles, profileMenuMap);
         this.mmlpv.getElvProfile().setAdapter(mmlpa);
+        this.mmlpv.getElvProfile().setOnChildClickListener(this);
     }
 
     /**
@@ -181,5 +182,11 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
         this.changeMenuVisibility();
         this.mmlm.setLastLabelClicked(label);
         this.itemClickListener.mainMenuItemClick(label, null);
+    }
+
+    //ExpandableListView.OnChildClickListener
+    @Override
+    public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
+        return false;
     }
 }
