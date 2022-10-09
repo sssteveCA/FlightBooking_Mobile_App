@@ -118,7 +118,6 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
      */
     private void setMenuItems(ListView lv_1, Button bt_1){
         this.mmlm = new MainMenuLoggedModel(this.ctx);
-        this.mmlm.setMenu();
         this.mmlm.setMenuStatus(MainMenuLoggedModel.MENU_HIDDEN);
         MainMenuLoggedAdapter mmla = new MainMenuLoggedAdapter(this.ctx, R.layout.row_logged,this.mmlm.getMenuItems());
         this.mmlv = new MainMenuLoggedView(lv_1,bt_1);
@@ -131,11 +130,11 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
      */
     private void setMenuProfileItems(ExpandableListView elv_1){
         this.mmlpm = new MainMenuLoggedProfileModel(this.auth);
-        this.mmlpm.setMenu();
+        this.mmlpv = new MainMenuLoggedProfileView(elv_1);
         HashMap<String, List<MenuItem>> profileMenuMap = this.mmlpm.getProfileSubmenuItems();
         List<String> profileMenuTitles = new ArrayList<String>(this.mmlpm.getProfileSubmenuItems().keySet());
         MainMenuLoggedProfileAdapter mmlpa = new MainMenuLoggedProfileAdapter(this.ctx, profileMenuTitles, profileMenuMap);
-        elv_1.setAdapter(mmlpa);
+        this.mmlpv.getElvProfile().setAdapter(mmlpa);
     }
 
     /**

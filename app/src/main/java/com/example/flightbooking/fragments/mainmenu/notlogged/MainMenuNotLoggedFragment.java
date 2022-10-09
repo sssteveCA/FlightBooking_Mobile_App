@@ -92,7 +92,6 @@ public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickL
         Button bt_1 = view.findViewById(R.id.main_menu_frag_bt_1);
         ListView lv_1 = view.findViewById(R.id.main_menu_frag_lv_1);
         this.mmnlm = new MainMenuNotLoggedModel(this.ctx);
-        this.mmnlm.setMenu(); //Set ArrayList to create the ListView
         this.mmnlm.setMenuStatus(MainMenuNotLoggedModel.MENU_HIDDEN);
         MainMenuNotLoggedAdapter mma = new MainMenuNotLoggedAdapter(this.ctx,R.layout.row,this.mmnlm.getMenuItems());
         this.mmnlv = new MainMenuNotLoggedView(lv_1,bt_1);

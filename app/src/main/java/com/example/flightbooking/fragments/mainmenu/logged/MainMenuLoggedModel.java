@@ -14,12 +14,13 @@ public class MainMenuLoggedModel extends MenuModel {
     public MainMenuLoggedModel(Context ctx){
         super(ctx);
         this.lastLabelClicked = MainMenuLoggedModel.items[0]; //Trigger menu item 'Home' click
+        this.setMenu();
     }
 
     /**
      * Set the menu items list for logged users
      */
-    public void setMenu(){
+    private void setMenu(){
         this.menuItems.clear();
         for(String label: MainMenuLoggedModel.items){
             MenuItem mi = new MenuItem(label);

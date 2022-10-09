@@ -20,6 +20,8 @@ public class MainMenuLoggedProfileModel {
 
     public MainMenuLoggedProfileModel(Auth auth){
         this.auth = auth;
+        this.profile_submenu_items = new HashMap<>();
+        this.setMenu();
     }
 
     public HashMap<String, List<MenuItem>> getProfileSubmenuItems(){return this.profile_submenu_items;}
@@ -27,7 +29,7 @@ public class MainMenuLoggedProfileModel {
     /**
      * Set the submenu profile items list for logged users
      */
-    public void setMenu(){
+    private void setMenu(){
         List<MenuItem> elv_items = new ArrayList<>();
         for(String label: MainMenuLoggedProfileModel.items){
             MenuItem mi = new MenuItem(label);

@@ -20,6 +20,7 @@ public class MainMenuNotLoggedModel extends MenuModel {
     public MainMenuNotLoggedModel(Context ctx){
         super(ctx);
         this.lastLabelClicked = MainMenuNotLoggedModel.items[0]; //Trigger menu item 'Home' click
+        this.setMenu();
     }
 
     public boolean isLogged(){return this.logged;}
@@ -29,7 +30,7 @@ public class MainMenuNotLoggedModel extends MenuModel {
     /**
      * Set the menu items list for non logged users
      */
-    public void setMenu(){
+    private void setMenu(){
         this.menuItems.clear();
         for(String label: MainMenuNotLoggedModel.items){
             MenuItem mi = new MenuItem(label);
