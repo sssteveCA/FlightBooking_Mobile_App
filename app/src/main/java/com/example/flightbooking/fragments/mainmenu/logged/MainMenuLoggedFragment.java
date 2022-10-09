@@ -23,6 +23,7 @@ import com.example.flightbooking.dialogs.ConfirmDialog;
 import com.example.flightbooking.fragments.mainmenu.logged.profile.MainMenuLoggedProfileAdapter;
 import com.example.flightbooking.fragments.mainmenu.logged.profile.MainMenuLoggedProfileModel;
 import com.example.flightbooking.fragments.mainmenu.logged.profile.MainMenuLoggedProfileView;
+import com.example.flightbooking.interfaces.LoginObserver;
 import com.example.flightbooking.interfaces.OnMainMenuItemClick;
 import com.example.flightbooking.models.MenuItem;
 import com.example.flightbooking.models.login.Auth;
@@ -45,6 +46,7 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
     private Context ctx;
     private Auth auth = null;
     public OnMainMenuItemClick itemClickListener = null;
+    public LoginObserver lo = null;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -87,6 +89,7 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
     public void onAttach(@NonNull Activity activity) {
         super.onAttach(activity);
         this.itemClickListener = (MainActivity)activity;
+        this.lo = (MainActivity)activity;
     }
 
     @Override
@@ -189,16 +192,20 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
     //ExpandableListView.OnChildClickListener
     @Override
     public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
-        MenuItem mi = (MenuItem) this.mmlpm.getProfileSubmenuItems().get(i).get(i1);
+        MainMenuLoggedFragment this_mmlf = this;
+        MenuItem mi = (MenuItem) this_mmlf.mmlpm.getProfileSubmenuItems().get(i).get(i1);
         String label = mi.getLabel();
         Log.d("MainMenuLoggedFragment", "on child click label => "+label);
         if(label.equals(MainMenuLoggedProfileModel.items[2])){{
             //Logout menu item click
-            ConfirmDialog cd = new ConfirmDialog(this.ctx,"Esci dalla sessione","Sei sicuro di voler chiudere la sessione?");
+            ConfirmDialog cd = new ConfirmDialog(this_mmlf.ctx,"Esci dalla sessione","Sei sicuro di voler chiudere la sessione?");
             cd.setDialog(new DialogInterface.OnClickListener() {
                 @Override
                 public void onClick(DialogInterface dialogInterface, int i) {
                     dialogInterface.dismiss();
+                    Bundle data = new Bundle();
+                    data.putSerializable("auth",this_mmlf.auth);
+                    this_mmlf.lo.onLogout(data);
                 }
             }, new DialogInterface.OnClickListener() {
                 @Override
