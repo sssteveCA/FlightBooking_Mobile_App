@@ -1,10 +1,13 @@
 package com.example.flightbooking.fragments.mainmenu.logged.profile;
 
 import android.content.Context;
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.TextView;
 
+import com.example.flightbooking.R;
 import com.example.flightbooking.fragments.mainmenu.notlogged.MainMenuNotLoggedAdapter;
 import com.example.flightbooking.models.login.Auth;
 
@@ -67,11 +70,20 @@ public class MainMenuLoggedProfileAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-        return null;
+        final String expandedListText = (String) getChild(i, i1);
+        if(view == null){
+            LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = layoutInflater.inflate(R.layout.row_logged_profile_item, null);
+        }//if(view == null){
+        return view;
     }
 
     @Override
     public boolean isChildSelectable(int i, int i1) {
         return false;
+    }
+
+    private class ViewHolder{
+        public TextView label;
     }
 }
