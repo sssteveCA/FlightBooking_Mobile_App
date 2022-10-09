@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -16,6 +17,7 @@ import android.widget.ListView;
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.interfaces.OnMainMenuItemClick;
+import com.example.flightbooking.models.login.Auth;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,6 +29,7 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
     private MainMenuLoggedModel mmlm;
     private MainMenuLoggedView mmlv;
     private Context ctx;
+    private Auth auth = null;
     public OnMainMenuItemClick itemClickListener = null;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -76,8 +79,9 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            this.auth = (Auth) getArguments().getSerializable("auth");
+            Log.d("MainMenuLoggedFragment", "auth status => "+auth.status);
+            Log.d("MainMenuLoggedFragment", "auth user name => "+auth.user.name);
         }
     }
 

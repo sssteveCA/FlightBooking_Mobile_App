@@ -8,6 +8,7 @@ import android.util.Log;
 import android.widget.ProgressBar;
 
 import com.example.flightbooking.enums.FragmentLabels;
+import com.example.flightbooking.fragments.mainmenu.logged.MainMenuLoggedFragment;
 import com.example.flightbooking.fragments.mainmenu.notlogged.MainMenuNotLoggedFragment;
 import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.interfaces.LoginObserver;
@@ -24,6 +25,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
 
     private MainActivityModel mam;
     private MainActivityView mav;
+    private Bundle auth_data;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -108,6 +110,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
         boolean userLogged = this.mam.isUserLogged();
         if(userLogged){
             //User is logged with its account
+            this.mav.updateFragment(R.id.main_menu_fragment_container, new MainMenuLoggedFragment(), this.auth_data);
         }//if(userLogged){
         else{
             this.mav.updateFragment(R.id.main_menu_fragment_container, new MainMenuNotLoggedFragment(),null);
@@ -126,6 +129,9 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
         Auth auth = (Auth) auth_data.getSerializable("auth");
         /*Log.d("MainActivity", "auth status => "+auth.status);
         Log.d("MainActivity", "auth user name => "+auth.user.name);*/
+        this.auth_data = auth_data;
+        this.mam.setUserLogged(true);
+        this.setMenu();
         this.setFragments(FragmentLabels.HOME.getLabelName(),auth_data);
     }
 
