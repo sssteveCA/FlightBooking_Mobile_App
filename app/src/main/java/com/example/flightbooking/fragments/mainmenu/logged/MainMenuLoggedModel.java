@@ -11,13 +11,10 @@ public class MainMenuLoggedModel extends MenuModel {
             "Home","Chi siamo","News","Contatti"
     };
 
-    private String lastLabelClicked; //Last menu item label clicked
-
     public MainMenuLoggedModel(Context ctx){
         super(ctx);
         this.lastLabelClicked = MainMenuLoggedModel.items[0]; //Trigger menu item 'Home' click
     }
-    public String getLastLabelClicked(){return this.lastLabelClicked;}
 
     /**
      * Set the menu items list for logged users

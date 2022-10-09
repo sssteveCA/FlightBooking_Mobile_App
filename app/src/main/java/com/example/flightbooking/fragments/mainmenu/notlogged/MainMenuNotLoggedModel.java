@@ -16,7 +16,6 @@ public class MainMenuNotLoggedModel extends MenuModel {
 
     private boolean logged; //select menu to show(not logged menu or logged menu)
     private int menuStatus; //Status of menu (hidden or expaned)
-    private String lastLabelClicked; //Last menu item label clicked
 
     public MainMenuNotLoggedModel(Context ctx){
         super(ctx);
@@ -24,10 +23,8 @@ public class MainMenuNotLoggedModel extends MenuModel {
     }
 
     public boolean isLogged(){return this.logged;}
-    public String getLastLabelClicked(){return this.lastLabelClicked;}
 
     public void setLogged(boolean logged){this.logged = logged;}
-    public void setLastLabelClicked(String lastLabelClicked){this.lastLabelClicked = lastLabelClicked;}
 
     /**
      * Set the menu items list for non logged users

@@ -11,12 +11,14 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.Button;
 import android.widget.ListView;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.interfaces.OnMainMenuItemClick;
+import com.example.flightbooking.models.MenuItem;
 import com.example.flightbooking.models.login.Auth;
 
 /**
@@ -24,7 +26,7 @@ import com.example.flightbooking.models.login.Auth;
  * Use the {@link MainMenuLoggedFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainMenuLoggedFragment extends Fragment implements View.OnClickListener {
+public class MainMenuLoggedFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener {
 
     private MainMenuLoggedModel mmlm;
     private MainMenuLoggedView mmlv;
@@ -93,16 +95,49 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
         Button bt_1 = view.findViewById(R.id.main_menu_logged_frag_bt_1);
         ListView lv_1 = view.findViewById(R.id.main_menu_logged_frag_lv_1);
         this.mmlm = new MainMenuLoggedModel(this.ctx);
+        this.mmlm.setMenu();
+        this.mmlm.setMenuStatus(MainMenuLoggedModel.MENU_HIDDEN);
+        MainMenuLoggedAdapter mmla = new MainMenuLoggedAdapter(this.ctx, R.layout.row_logged,this.mmlm.getMenuItems());
         this.mmlv = new MainMenuLoggedView(lv_1,bt_1);
+        this.mmlv.getMenu().setAdapter(mmla);
         this.mmlv.getShowHide().setOnClickListener(this);
+        this.mmlv.getMenu().setOnItemClickListener(this);
         return view;
+    }
+
+    /**
+     * Change menu visibility (show/hide)
+     */
+    public void changeMenuVisibility(){
+        int status = this.mmlm.getMenuStatus();
+        if(status == MainMenuLoggedModel.MENU_HIDDEN){
+            this.mmlm.setMenuStatus(MainMenuLoggedModel.MENU_SHOWN);
+            this.mmlv.getMenu().setVisibility(View.VISIBLE);
+            this.mmlv.getShowHide().setText("Chiudi il menu");
+        }//if(status == MainMenuModel.MENU_HIDDEN){
+        else{
+            this.mmlm.setMenuStatus(MainMenuLoggedModel.MENU_HIDDEN);
+            this.mmlv.getMenu().setVisibility(View.GONE);
+            this.mmlv.getShowHide().setText("Apri il menu");
+        }
     }
 
     @Override
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.main_menu_logged_frag_bt_1:
+                this.changeMenuVisibility();
                 break;
         }
+    }
+
+    //AdapterView.OnItemClickListener
+    @Override
+    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
+        MenuItem mi = (MenuItem) adapterView.getItemAtPosition(i);
+        String label = mi.getLabel();
+        this.changeMenuVisibility();
+        this.mmlm.setLastLabelClicked(label);
+        this.itemClickListener.mainMenuItemClick(label);
     }
 }

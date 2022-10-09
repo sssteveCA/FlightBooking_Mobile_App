@@ -11,12 +11,13 @@ import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
 import com.example.flightbooking.R;
+import com.example.flightbooking.models.MenuItem;
 import com.example.flightbooking.models.MenuLoggedItem;
 
 import java.util.List;
 
-public class MainMenuLoggedAdapter extends ArrayAdapter<MenuLoggedItem> {
-    public MainMenuLoggedAdapter(@NonNull Context context, int resource, @NonNull List<MenuLoggedItem> objects) {
+public class MainMenuLoggedAdapter extends ArrayAdapter<MenuItem> {
+    public MainMenuLoggedAdapter(@NonNull Context context, int resource, @NonNull List<MenuItem> objects) {
         super(context, resource, objects);
     }
 
@@ -38,7 +39,7 @@ public class MainMenuLoggedAdapter extends ArrayAdapter<MenuLoggedItem> {
         else{
             vh = (ViewHolder) convertView.getTag();
         }
-        MenuLoggedItem mli = getItem(pos);
+        MenuItem mli = getItem(pos);
         vh.label.setText(mli.getLabel());
         return convertView;
     }
