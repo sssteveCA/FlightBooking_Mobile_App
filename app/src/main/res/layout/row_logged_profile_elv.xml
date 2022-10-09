@@ -4,6 +4,7 @@
     android:layout_height="match_parent">
 
     <ExpandableListView
+        android:id="@+id/main_menu_logged_profile_elv"
         android:layout_width="match_parent"
         android:layout_height="wrap_content">
 
