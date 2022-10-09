@@ -1,6 +1,7 @@
 package com.example.flightbooking.fragments.mainmenu.logged.profile;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -30,32 +31,32 @@ public class MainMenuLoggedProfileAdapter extends BaseExpandableListAdapter {
 
     @Override
     public int getGroupCount() {
-        return 0;
+        return this.elv_items.size();
     }
 
     @Override
     public int getChildrenCount(int i) {
-        return 0;
+        return this.elv_containers.get(this.elv_items.get(i)).size();
     }
 
     @Override
     public Object getGroup(int i) {
-        return null;
+        return this.elv_items.get(i);
     }
 
     @Override
     public Object getChild(int i, int i1) {
-        return null;
+        return this.elv_containers.get(this.elv_items.get(i)).get(i1);
     }
 
     @Override
     public long getGroupId(int i) {
-        return 0;
+        return i;
     }
 
     @Override
     public long getChildId(int i, int i1) {
-        return 0;
+        return i1;
     }
 
     @Override
@@ -65,7 +66,16 @@ public class MainMenuLoggedProfileAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getGroupView(int i, boolean b, View view, ViewGroup viewGroup) {
-        return null;
+        String listTitle = (String) getGroup(i);
+        if(view == null){
+            LayoutInflater layoutInflater = (LayoutInflater) this.context.
+                    getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = layoutInflater.inflate(R.layout.row_logged_profile_elv_title, null);
+        }//if(view == null){
+        TextView tv_elv_title = (TextView) view.findViewById(R.id.main_menu_logged_elv_tv_title);
+        tv_elv_title.setTypeface(null, Typeface.BOLD);
+        tv_elv_title.setText(listTitle);
+        return view;
     }
 
     @Override
@@ -75,15 +85,13 @@ public class MainMenuLoggedProfileAdapter extends BaseExpandableListAdapter {
             LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = layoutInflater.inflate(R.layout.row_logged_profile_item, null);
         }//if(view == null){
+        TextView tv_elv_item = (TextView) view.findViewById(R.id.main_menu_logged_profile_item_tv);
+        tv_elv_item.setText(expandedListText);
         return view;
     }
 
     @Override
     public boolean isChildSelectable(int i, int i1) {
-        return false;
-    }
-
-    private class ViewHolder{
-        public TextView label;
+        return true;
     }
 }
