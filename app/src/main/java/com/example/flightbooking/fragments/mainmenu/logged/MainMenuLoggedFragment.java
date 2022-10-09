@@ -13,13 +13,21 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
+import com.example.flightbooking.fragments.mainmenu.logged.profile.MainMenuLoggedProfileAdapter;
+import com.example.flightbooking.fragments.mainmenu.logged.profile.MainMenuLoggedProfileModel;
+import com.example.flightbooking.fragments.mainmenu.logged.profile.MainMenuLoggedProfileView;
 import com.example.flightbooking.interfaces.OnMainMenuItemClick;
 import com.example.flightbooking.models.MenuItem;
 import com.example.flightbooking.models.login.Auth;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -30,6 +38,8 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
 
     private MainMenuLoggedModel mmlm;
     private MainMenuLoggedView mmlv;
+    private MainMenuLoggedProfileModel mmlpm;
+    private MainMenuLoggedProfileView mmlpv;
     private Context ctx;
     private Auth auth = null;
     public OnMainMenuItemClick itemClickListener = null;
@@ -94,15 +104,46 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
         View view = inflater.inflate(R.layout.fragment_main_menu_logged, container, false);
         Button bt_1 = view.findViewById(R.id.main_menu_logged_frag_bt_1);
         ListView lv_1 = view.findViewById(R.id.main_menu_logged_frag_lv_1);
+        ExpandableListView elv_1 = view.findViewById(R.id.main_menu_logged_frag_profile_elv);
+        this.setMenuItems(lv_1,bt_1);
+        this.setMenuProfileItems(elv_1);
+        this.setMenuItemsListeners();
+        return view;
+    }
+
+    /**
+     * Set the non profile logged menu items part
+     * @param lv_1
+     * @param bt_1
+     */
+    private void setMenuItems(ListView lv_1, Button bt_1){
         this.mmlm = new MainMenuLoggedModel(this.ctx);
         this.mmlm.setMenu();
         this.mmlm.setMenuStatus(MainMenuLoggedModel.MENU_HIDDEN);
         MainMenuLoggedAdapter mmla = new MainMenuLoggedAdapter(this.ctx, R.layout.row_logged,this.mmlm.getMenuItems());
         this.mmlv = new MainMenuLoggedView(lv_1,bt_1);
         this.mmlv.getMenu().setAdapter(mmla);
+    }
+
+    /**
+     * Set the profile logged menu items part
+     * @param elv_1
+     */
+    private void setMenuProfileItems(ExpandableListView elv_1){
+        this.mmlpm = new MainMenuLoggedProfileModel(this.auth);
+        this.mmlpm.setMenu();
+        HashMap<String, List<MenuItem>> profileMenuMap = this.mmlpm.getProfileSubmenuItems();
+        List<String> profileMenuTitles = new ArrayList<String>(this.mmlpm.getProfileSubmenuItems().keySet());
+        MainMenuLoggedProfileAdapter mmlpa = new MainMenuLoggedProfileAdapter(this.ctx, profileMenuTitles, profileMenuMap);
+        elv_1.setAdapter(mmlpa);
+    }
+
+    /**
+     * Set listeners for menu item views
+     */
+    private void setMenuItemsListeners(){
         this.mmlv.getShowHide().setOnClickListener(this);
         this.mmlv.getMenu().setOnItemClickListener(this);
-        return view;
     }
 
     /**
@@ -113,11 +154,13 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
         if(status == MainMenuLoggedModel.MENU_HIDDEN){
             this.mmlm.setMenuStatus(MainMenuLoggedModel.MENU_SHOWN);
             this.mmlv.getMenu().setVisibility(View.VISIBLE);
+            this.mmlpv.getElvProfile().setVisibility(View.VISIBLE);
             this.mmlv.getShowHide().setText("Chiudi il menu");
         }//if(status == MainMenuModel.MENU_HIDDEN){
         else{
             this.mmlm.setMenuStatus(MainMenuLoggedModel.MENU_HIDDEN);
             this.mmlv.getMenu().setVisibility(View.GONE);
+            this.mmlpv.getElvProfile().setVisibility(View.GONE);
             this.mmlv.getShowHide().setText("Apri il menu");
         }
     }

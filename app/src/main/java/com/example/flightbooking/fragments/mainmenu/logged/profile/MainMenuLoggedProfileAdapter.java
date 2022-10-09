@@ -10,6 +10,7 @@ import android.widget.TextView;
 
 import com.example.flightbooking.R;
 import com.example.flightbooking.fragments.mainmenu.notlogged.MainMenuNotLoggedAdapter;
+import com.example.flightbooking.models.MenuItem;
 import com.example.flightbooking.models.login.Auth;
 
 import java.util.HashMap;
@@ -19,14 +20,12 @@ public class MainMenuLoggedProfileAdapter extends BaseExpandableListAdapter {
 
     private Context context;
     private List<String> elv_items;
-    private HashMap<String, List<String>> elv_containers;
-    private Auth auth;
+    private HashMap<String, List<MenuItem>> elv_containers;
 
-    public MainMenuLoggedProfileAdapter(Context context, List<String> elv_items, HashMap<String, List<String>> elv_containers, Auth auth){
+    public MainMenuLoggedProfileAdapter(Context context, List<String> elv_items, HashMap<String, List<MenuItem>> elv_containers){
         this.context = context;
         this.elv_items = elv_items;
         this.elv_containers = elv_containers;
-        this.auth = auth;
     }
 
     @Override
@@ -80,13 +79,13 @@ public class MainMenuLoggedProfileAdapter extends BaseExpandableListAdapter {
 
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
-        final String expandedListText = (String) getChild(i, i1);
+        final MenuItem expandedListText = (MenuItem) getChild(i, i1);
         if(view == null){
             LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = layoutInflater.inflate(R.layout.row_logged_profile_item, null);
         }//if(view == null){
         TextView tv_elv_item = (TextView) view.findViewById(R.id.main_menu_logged_profile_item_tv);
-        tv_elv_item.setText(expandedListText);
+        tv_elv_item.setText(expandedListText.getLabel());
         return view;
     }
 

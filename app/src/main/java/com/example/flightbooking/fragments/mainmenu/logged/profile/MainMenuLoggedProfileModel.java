@@ -18,7 +18,7 @@ public class MainMenuLoggedProfileModel {
     private HashMap<String, List<MenuItem>> profile_submenu_items;
     private Auth auth;
 
-    public MainMenuLoggedProfileModel(Context ctx, Auth auth){
+    public MainMenuLoggedProfileModel(Auth auth){
         this.auth = auth;
     }
 
