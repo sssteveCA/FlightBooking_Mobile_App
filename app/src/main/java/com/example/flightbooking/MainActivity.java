@@ -142,5 +142,5 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
 
     //OnMainMenuItemClick
     @Override
-    public void mainMenuItemClick(String label) {this.setFragments(label,null);}
+    public void mainMenuItemClick(String label, Bundle data) {this.setFragments(label,data);}
 }

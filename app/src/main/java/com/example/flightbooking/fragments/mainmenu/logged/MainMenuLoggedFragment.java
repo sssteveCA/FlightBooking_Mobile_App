@@ -138,6 +138,6 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
         String label = mi.getLabel();
         this.changeMenuVisibility();
         this.mmlm.setLastLabelClicked(label);
-        this.itemClickListener.mainMenuItemClick(label);
+        this.itemClickListener.mainMenuItemClick(label, null);
     }
 }
