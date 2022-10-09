@@ -193,9 +193,9 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
     @Override
     public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
         MainMenuLoggedFragment this_mmlf = this;
-        MenuItem mi = (MenuItem) this_mmlf.mmlpm.getProfileSubmenuItems().get(i).get(i1);
+        MenuItem mi = (MenuItem) expandableListView.getExpandableListAdapter().getChild(i,i1);
         String label = mi.getLabel();
-        Log.d("MainMenuLoggedFragment", "on child click label => "+label);
+        //Log.d("MainMenuLoggedFragment", "on child click label => "+label);
         if(label.equals(MainMenuLoggedProfileModel.items[2])){{
             //Logout menu item click
             ConfirmDialog cd = new ConfirmDialog(this_mmlf.ctx,"Esci dalla sessione","Sei sicuro di voler chiudere la sessione?");
