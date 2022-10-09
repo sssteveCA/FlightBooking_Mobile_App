@@ -11,7 +11,10 @@ import java.util.List;
 
 public class MainMenuLoggedProfileModel {
 
-    private static final String[] items = {
+    /**
+     * Profile submenu item labels
+     */
+    public static final String[] items = {
             "Il mio profilo", "I miei voli", "Logout"
     };
 

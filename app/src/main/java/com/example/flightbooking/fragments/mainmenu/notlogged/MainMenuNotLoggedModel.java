@@ -9,8 +9,10 @@ import java.util.ArrayList;
 
 public class MainMenuNotLoggedModel extends MenuModel {
 
-    //These items are present in any case(if user is logged or not)
-    private static final String[] items = {
+    /**
+     * Non logged user menu item labels
+     */
+    public static final String[] items = {
             "Home","Chi siamo","News","Contatti","Login","Registrati"
     };
 

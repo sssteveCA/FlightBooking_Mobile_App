@@ -2,6 +2,7 @@ package com.example.flightbooking.fragments.mainmenu.logged;
 
 import android.app.Activity;
 import android.content.Context;
+import android.content.DialogInterface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -18,6 +19,7 @@ import android.widget.ListView;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
+import com.example.flightbooking.dialogs.ConfirmDialog;
 import com.example.flightbooking.fragments.mainmenu.logged.profile.MainMenuLoggedProfileAdapter;
 import com.example.flightbooking.fragments.mainmenu.logged.profile.MainMenuLoggedProfileModel;
 import com.example.flightbooking.fragments.mainmenu.logged.profile.MainMenuLoggedProfileView;
@@ -187,6 +189,24 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
     //ExpandableListView.OnChildClickListener
     @Override
     public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
+        MenuItem mi = (MenuItem) this.mmlpm.getProfileSubmenuItems().get(i).get(i1);
+        String label = mi.getLabel();
+        Log.d("MainMenuLoggedFragment", "on child click label => "+label);
+        if(label.equals(MainMenuLoggedProfileModel.items[2])){{
+            //Logout menu item click
+            ConfirmDialog cd = new ConfirmDialog(this.ctx,"Esci dalla sessione","Sei sicuro di voler chiudere la sessione?");
+            cd.setDialog(new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            }, new DialogInterface.OnClickListener() {
+                @Override
+                public void onClick(DialogInterface dialogInterface, int i) {
+                    dialogInterface.dismiss();
+                }
+            });
+        }}
         return false;
     }
 }

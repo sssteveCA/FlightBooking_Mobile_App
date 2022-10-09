@@ -7,7 +7,10 @@ import com.example.flightbooking.models.MenuItem;
 
 public class MainMenuLoggedModel extends MenuModel {
 
-    private static final String[] items = {
+    /**
+     * Logged user menu item labels
+     */
+    public static final String[] items = {
             "Home","Chi siamo","News","Contatti"
     };
 
