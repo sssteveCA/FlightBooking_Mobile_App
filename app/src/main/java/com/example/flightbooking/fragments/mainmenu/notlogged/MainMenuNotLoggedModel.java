@@ -2,7 +2,6 @@ package com.example.flightbooking.fragments.mainmenu.notlogged;
 
 import android.content.Context;
 
-import com.example.flightbooking.common.Connection;
 import com.example.flightbooking.fragments.mainmenu.MenuModel;
 import com.example.flightbooking.models.MenuItem;
 
