@@ -3,7 +3,9 @@ package com.example.flightbooking.models.login;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class Auth {
+import java.io.Serializable;
+
+public class Auth implements Serializable {
 
     @SerializedName("status")
     @Expose

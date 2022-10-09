@@ -10,14 +10,16 @@ import android.widget.ProgressBar;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.fragments.mainmenu.notlogged.MainMenuNotLoggedFragment;
 import com.example.flightbooking.interfaces.FragmentChange;
+import com.example.flightbooking.interfaces.LoginObserver;
 import com.example.flightbooking.mainactivity.MainActivityModel;
 import com.example.flightbooking.mainactivity.MainActivityView;
 import com.example.flightbooking.fragments.noconnection.NoConnectionFragment;
+import com.example.flightbooking.models.login.Auth;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-public class MainActivity extends AppCompatActivity implements NoConnectionFragment.RetryListener, MainMenuNotLoggedFragment.OnMainMenuItemClick, FragmentChange {
+public class MainActivity extends AppCompatActivity implements NoConnectionFragment.RetryListener, MainMenuNotLoggedFragment.OnMainMenuItemClick, FragmentChange, LoginObserver {
 
     private MainActivityModel mam;
     private MainActivityView mav;
@@ -122,5 +124,18 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
     public void fragmentChange(String oldFragmentLabel, String newFragmentLabel, boolean success, Bundle data){
         String nfl = newFragmentLabel;
         this.setFragments(nfl,data);
+    }
+
+    @Override
+    public void onLogin(Bundle auth_data) {
+        Auth auth = (Auth) auth_data.getSerializable("auth");
+        /*Log.d("MainActivity", "auth status => "+auth.status);
+        Log.d("MainActivity", "auth user name => "+auth.user.name);
+        this.setFragments(FragmentLabels.HOME.getLabelName(),auth_data);*/
+    }
+
+    @Override
+    public void onLogout(Bundle auth_data) {
+
     }
 }
