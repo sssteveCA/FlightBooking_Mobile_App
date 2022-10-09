@@ -11,6 +11,7 @@ import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.fragments.mainmenu.notlogged.MainMenuNotLoggedFragment;
 import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.interfaces.LoginObserver;
+import com.example.flightbooking.interfaces.OnMainMenuItemClick;
 import com.example.flightbooking.mainactivity.MainActivityModel;
 import com.example.flightbooking.mainactivity.MainActivityView;
 import com.example.flightbooking.fragments.noconnection.NoConnectionFragment;
@@ -19,7 +20,7 @@ import com.example.flightbooking.models.login.Auth;
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
 
-public class MainActivity extends AppCompatActivity implements NoConnectionFragment.RetryListener, MainMenuNotLoggedFragment.OnMainMenuItemClick, FragmentChange, LoginObserver {
+public class MainActivity extends AppCompatActivity implements NoConnectionFragment.RetryListener, OnMainMenuItemClick, FragmentChange, LoginObserver {
 
     private MainActivityModel mam;
     private MainActivityView mav;
@@ -113,12 +114,6 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
         }
     }
 
-    //MainMenuFragment.OnMainMenuItemClick
-    @Override
-    public void mainMenuItemClick(String label) {
-        this.setFragments(label,null);
-    }
-
     //FragmentChange
     @Override
     public void fragmentChange(String oldFragmentLabel, String newFragmentLabel, boolean success, Bundle data){
@@ -138,4 +133,8 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
     public void onLogout(Bundle auth_data) {
 
     }
+
+    //OnMainMenuItemClick
+    @Override
+    public void mainMenuItemClick(String label) {this.setFragments(label,null);}
 }

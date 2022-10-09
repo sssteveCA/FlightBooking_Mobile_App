@@ -15,6 +15,7 @@ import android.widget.ListView;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
+import com.example.flightbooking.interfaces.OnMainMenuItemClick;
 import com.example.flightbooking.models.MenuItem;
 
 /**
@@ -23,11 +24,6 @@ import com.example.flightbooking.models.MenuItem;
  * create an instance of this fragment.
  */
 public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener{
-
-    //When user click on main menu item
-    public interface OnMainMenuItemClick{
-        public void mainMenuItemClick(String label);
-    }
 
     private MainMenuNotLoggedModel mmnlm;
     private MainMenuNotLoggedView mmnlv;
