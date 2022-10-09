@@ -1,5 +1,6 @@
 package com.example.flightbooking.fragments.login;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -17,8 +18,10 @@ import android.widget.CompoundButton;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.dialogs.MessageDialog;
+import com.example.flightbooking.interfaces.LoginObserver;
 import com.example.flightbooking.models.login.Auth;
 
 import java.util.AbstractMap;
@@ -34,6 +37,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
     private LoginFragmentModel lfm;
     private LoginFragmentView lfv;
     private Context context;
+    private LoginObserver lo;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -65,6 +69,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(@NonNull Activity activity) {
+        super.onAttach(activity);
+        this.lo = (MainActivity)activity;
     }
 
     @Override
@@ -126,6 +136,11 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
                         this_lf.lfv.getPb().setVisibility(View.GONE);
                         Log.i("LoginFragment", "onClick loginResponse status => "+auth.status);
                         Log.i("LoginFragment", "onClick loginResponse token => "+auth.token);
+                        if(auth.status.equals("OK")){
+                            Bundle bund = new Bundle();
+                            bund.putSerializable("auth",auth);
+                            this_lf.lo.onLogin(bund);
+                        }
                     }
                     @Override
                     public void loginError(String message) {
