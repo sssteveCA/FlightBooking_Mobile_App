@@ -1,6 +1,7 @@
 package com.example.flightbooking.fragments.mainmenu.notlogged;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -27,6 +28,7 @@ public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickL
 
     private MainMenuNotLoggedModel mmnlm;
     private MainMenuNotLoggedView mmnlv;
+    private Context ctx;
     public OnMainMenuItemClick itemClickListener = null;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -61,6 +63,12 @@ public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickL
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.ctx = ctx;
+    }
+
+    @Override
     public void onAttach(@NonNull Activity activity) {
         super.onAttach(activity);
         this.itemClickListener = (MainActivity)activity;
@@ -83,10 +91,10 @@ public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickL
         View view = inflater.inflate(R.layout.fragment_main_menu_not_logged, container, false);
         Button bt_1 = view.findViewById(R.id.main_menu_frag_bt_1);
         ListView lv_1 = view.findViewById(R.id.main_menu_frag_lv_1);
-        this.mmnlm = new MainMenuNotLoggedModel(getActivity());
+        this.mmnlm = new MainMenuNotLoggedModel(this.ctx);
         this.mmnlm.setMenu(); //Set ArrayList to create the ListView
         this.mmnlm.setMenuStatus(MainMenuNotLoggedModel.MENU_HIDDEN);
-        MainMenuNotLoggedAdapter mma = new MainMenuNotLoggedAdapter(getActivity(),R.layout.row,this.mmnlm.getMenuItems());
+        MainMenuNotLoggedAdapter mma = new MainMenuNotLoggedAdapter(this.ctx,R.layout.row,this.mmnlm.getMenuItems());
         this.mmnlv = new MainMenuNotLoggedView(lv_1,bt_1);
         this.mmnlv.getMenu().setAdapter(mma);
         this.mmnlv.getShowHide().setOnClickListener(this);
