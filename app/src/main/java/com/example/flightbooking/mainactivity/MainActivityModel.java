@@ -25,6 +25,8 @@ public class MainActivityModel {
 
     public boolean isUserLogged(){return this.userLogged;}
 
+    public void setUserLogged(boolean userLogged){ this.userLogged = userLogged; }
+
     /***
      *
      *  Check if phone is connected to internet
