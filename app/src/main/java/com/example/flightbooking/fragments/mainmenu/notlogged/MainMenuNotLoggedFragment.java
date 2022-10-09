@@ -65,7 +65,7 @@ public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickL
     @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
-        this.ctx = ctx;
+        this.ctx = context;
     }
 
     @Override
