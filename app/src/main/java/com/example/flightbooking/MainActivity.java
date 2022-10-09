@@ -130,8 +130,8 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
     public void onLogin(Bundle auth_data) {
         Auth auth = (Auth) auth_data.getSerializable("auth");
         /*Log.d("MainActivity", "auth status => "+auth.status);
-        Log.d("MainActivity", "auth user name => "+auth.user.name);
-        this.setFragments(FragmentLabels.HOME.getLabelName(),auth_data);*/
+        Log.d("MainActivity", "auth user name => "+auth.user.name);*/
+        this.setFragments(FragmentLabels.HOME.getLabelName(),auth_data);
     }
 
     @Override
