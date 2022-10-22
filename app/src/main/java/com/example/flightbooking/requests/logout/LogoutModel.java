@@ -33,8 +33,8 @@ public class LogoutModel {
      * Execute the user logout HTTP request
      * @param lr listener to get the response
      */
-    public void logoutRequest(LogoutResponse lr){
-        this.getLc().getLi().logout().enqueue(new Callback<Logout>() {
+    public void logoutRequest(String token, LogoutResponse lr){
+        this.getLc().getLi().logout("Beader "+token).enqueue(new Callback<Logout>() {
             @Override
             public void onResponse(Call<Logout> call, Response<Logout> response) {
                 if(response.isSuccessful()){

@@ -6,13 +6,14 @@ import com.example.flightbooking.models.logout.Logout;
 import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public class LogoutClient {
 
     public interface LogoutInterface{
         @POST(Globals.API_ROUTES_PREFIX+"/logout")
-        Call<Logout> logout();
+        Call<Logout> logout(@Header("Authorization") String token);
     }
 
     private Retrofit retrofit;

@@ -7,6 +7,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.widget.ProgressBar;
 
+import com.example.flightbooking.dialogs.MessageDialog;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.fragments.mainmenu.logged.MainMenuLoggedFragment;
 import com.example.flightbooking.fragments.mainmenu.notlogged.MainMenuNotLoggedFragment;
@@ -17,6 +18,8 @@ import com.example.flightbooking.mainactivity.MainActivityModel;
 import com.example.flightbooking.mainactivity.MainActivityView;
 import com.example.flightbooking.fragments.noconnection.NoConnectionFragment;
 import com.example.flightbooking.models.login.Auth;
+import com.example.flightbooking.models.logout.Logout;
+import com.example.flightbooking.requests.logout.LogoutModel;
 
 import java.lang.reflect.Constructor;
 import java.lang.reflect.InvocationTargetException;
@@ -133,12 +136,29 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
         this.auth_data = auth_data;
         this.mam.setUserLogged(true);
         this.setMenu();
-        this.setFragments(FragmentLabels.HOME.getLabelName(),auth_data);
+        this.setFragments(label,auth_data);
     }
 
     @Override
     public void onLogout(String label, Bundle auth_data) {
-        this.mam.setUserLogged(false);
+        MainActivity this_ma = this;
+        this.auth = (Auth)auth_data.getSerializable("auth");
+        this.auth_data = auth_data;
+        LogoutModel lm = new LogoutModel();
+        lm.logoutRequest(auth.token, new LogoutModel.LogoutResponse() {
+            @Override
+            public void logoutResponse(Logout logout) {
+                this_ma.mam.setUserLogged(false);
+                this_ma.auth_data = null;
+                this_ma.auth = null;
+                this_ma.setFragments(label,null);
+            }
+            @Override
+            public void logoutError(String message) {
+                MessageDialog md = new MessageDialog(this_ma,"Logout",message);
+            }
+        });
+
     }
 
     //OnMainMenuItemClick
