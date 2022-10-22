@@ -25,4 +25,6 @@ public class LogoutClient {
                 .build();
         this.li = this.retrofit.create(LogoutInterface.class);
     }
+
+    public LogoutInterface getLi(){ return this.li; }
 }
