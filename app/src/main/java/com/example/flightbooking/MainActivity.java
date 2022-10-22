@@ -26,6 +26,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
     private MainActivityModel mam;
     private MainActivityView mav;
     private Bundle auth_data;
+    private Auth auth;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -126,7 +127,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
 
     @Override
     public void onLogin(String label, Bundle auth_data) {
-        Auth auth = (Auth) auth_data.getSerializable("auth");
+        this.auth = (Auth) auth_data.getSerializable("auth");
         /*Log.d("MainActivity", "auth status => "+auth.status);
         Log.d("MainActivity", "auth user name => "+auth.user.name);*/
         this.auth_data = auth_data;
@@ -137,7 +138,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
 
     @Override
     public void onLogout(String label, Bundle auth_data) {
-
+        this.mam.setUserLogged(false);
     }
 
     //OnMainMenuItemClick
