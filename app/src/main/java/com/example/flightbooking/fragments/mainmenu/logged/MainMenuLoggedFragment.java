@@ -20,6 +20,7 @@ import android.widget.ListView;
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.dialogs.ConfirmDialog;
+import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.fragments.mainmenu.logged.profile.MainMenuLoggedProfileAdapter;
 import com.example.flightbooking.fragments.mainmenu.logged.profile.MainMenuLoggedProfileModel;
 import com.example.flightbooking.fragments.mainmenu.logged.profile.MainMenuLoggedProfileView;
@@ -205,7 +206,7 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
                     dialogInterface.dismiss();
                     Bundle data = new Bundle();
                     data.putSerializable("auth",this_mmlf.auth);
-                    this_mmlf.lo.onLogout(data);
+                    this_mmlf.lo.onLogout(FragmentLabels.HOME.getLabelName(), data);
                 }
             }, new DialogInterface.OnClickListener() {
                 @Override

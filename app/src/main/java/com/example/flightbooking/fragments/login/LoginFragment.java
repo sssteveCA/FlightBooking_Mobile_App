@@ -21,6 +21,7 @@ import android.widget.ProgressBar;
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.dialogs.MessageDialog;
+import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.interfaces.LoginObserver;
 import com.example.flightbooking.models.login.Auth;
 
@@ -139,7 +140,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
                         if(auth.status.equals("OK")){
                             Bundle bund = new Bundle();
                             bund.putSerializable("auth",auth);
-                            this_lf.lo.onLogin(bund);
+                            this_lf.lo.onLogin(FragmentLabels.HOME.getLabelName(), bund);
                         }
                     }
                     @Override

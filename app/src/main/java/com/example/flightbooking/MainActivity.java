@@ -125,7 +125,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
     }
 
     @Override
-    public void onLogin(Bundle auth_data) {
+    public void onLogin(String label, Bundle auth_data) {
         Auth auth = (Auth) auth_data.getSerializable("auth");
         /*Log.d("MainActivity", "auth status => "+auth.status);
         Log.d("MainActivity", "auth user name => "+auth.user.name);*/
@@ -136,7 +136,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
     }
 
     @Override
-    public void onLogout(Bundle auth_data) {
+    public void onLogout(String label, Bundle auth_data) {
 
     }
 
