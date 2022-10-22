@@ -39,8 +39,11 @@ public class LogoutModel {
         this.getLc().getLi().logout().enqueue(new Callback<Logout>() {
             @Override
             public void onResponse(Call<Logout> call, Response<Logout> response) {
+                Log.d("LogoutModel", "logoutRequest onResponse headers call => "+call.request().headers());
+                Log.d("LogoutModel", "logoutRequest onResponse headers response => "+response.headers());
                 if(response.isSuccessful()){
                     Logout logout = (Logout) response.body();
+                    Log.d("LogoutModel","logoutRequest onResponse OK => "+logout.message);
                     lr.logoutResponse(logout);
                 }//if(response.isSuccessful()){
                 else{
@@ -48,7 +51,7 @@ public class LogoutModel {
                     String message = "";
                     try {
                         jsonString = response.errorBody().string();
-                        Log.d("LogoutModel","logoutRequest jsonString => "+jsonString);
+                        Log.d("LogoutModel","logoutRequest onResponse ERROR jsonString => "+jsonString);
                         JsonElement je = JsonParser.parseString(jsonString);
                         JsonObject jo = je.getAsJsonObject();
                         message = jo.get("message").getAsString();
@@ -63,6 +66,8 @@ public class LogoutModel {
             }
             @Override
             public void onFailure(Call<Logout> call, Throwable t) {
+                Log.d("LogoutModel", "logoutRequest onFailure message => "+t.getMessage());
+                Log.d("LogoutModel", "logoutRequest onFailure throwable => "+t.toString());
                 String message = Globals.ERR_LOGOUT;
                 lr.logoutError(message);
             }
