@@ -36,10 +36,10 @@ public class LogoutModel {
      * @param lr listener to get the response
      */
     public void logoutRequest( LogoutResponse lr){
-        this.getLc().getLi().logout().enqueue(new Callback<Logout>() {
+        this.getLc().getLi().logout("Bearer "+this.getLc().getToken()).enqueue(new Callback<Logout>() {
             @Override
             public void onResponse(Call<Logout> call, Response<Logout> response) {
-                Log.d("LogoutModel", "logoutRequest onResponse headers call => "+call.request().headers());
+                Log.d("LogoutModel", "logoutRequest onResponse request call => "+call.request());
                 Log.d("LogoutModel", "logoutRequest onResponse headers response => "+response.headers());
                 if(response.isSuccessful()){
                     Logout logout = (Logout) response.body();
@@ -67,6 +67,7 @@ public class LogoutModel {
             @Override
             public void onFailure(Call<Logout> call, Throwable t) {
                 Log.d("LogoutModel", "logoutRequest onFailure message => "+t.getMessage());
+                Log.d("LogoutModel", "logoutRequest onFailure request => "+call.request());
                 Log.d("LogoutModel", "logoutRequest onFailure throwable => "+t.toString());
                 String message = Globals.ERR_LOGOUT;
                 lr.logoutError(message);
