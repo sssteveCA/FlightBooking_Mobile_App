@@ -145,12 +145,13 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
         this.auth = (Auth)auth_data.getSerializable("auth");
         this.auth_data = auth_data;
         LogoutModel lm = new LogoutModel();
-        lm.logoutRequest(auth.token, new LogoutModel.LogoutResponse() {
+        lm.logoutRequest(this.auth.token, new LogoutModel.LogoutResponse() {
             @Override
             public void logoutResponse(Logout logout) {
                 this_ma.mam.setUserLogged(false);
                 this_ma.auth_data = null;
                 this_ma.auth = null;
+                this_ma.setMenu();
                 this_ma.setFragments(label,null);
             }
             @Override

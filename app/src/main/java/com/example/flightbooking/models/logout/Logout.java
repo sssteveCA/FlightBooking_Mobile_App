@@ -7,7 +7,7 @@ public class Logout {
     @SerializedName("done")
     @Expose
     public boolean done;
-    @SerializedName("msg")
+    @SerializedName("message")
     @Expose
-    public String msg;
+    public String message;
 }

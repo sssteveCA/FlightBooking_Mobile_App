@@ -1,5 +1,7 @@
 package com.example.flightbooking.requests.logout;
 
+import android.util.Log;
+
 import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.logout.Logout;
 import com.google.gson.JsonElement;
@@ -46,9 +48,11 @@ public class LogoutModel {
                     String message = "";
                     try {
                         jsonString = response.errorBody().string();
+                        Log.d("LogoutModel","logoutRequest jsonString => "+jsonString);
                         JsonElement je = JsonParser.parseString(jsonString);
                         JsonObject jo = je.getAsJsonObject();
-                        message = jo.get("msg").getAsString();
+                        message = jo.get("message").getAsString();
+                        if(message == null) message = Globals.ERR_LOGOUT;
                     } catch (IOException e) {
                         e.printStackTrace();
                         message = Globals.ERR_LOGOUT;
