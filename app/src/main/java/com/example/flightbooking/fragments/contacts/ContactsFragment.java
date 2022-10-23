@@ -71,12 +71,13 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_contacts, container, false);
+        EditText et_name = view.findViewById(R.id.frag_cont_et_name);
         EditText et_from = view.findViewById(R.id.frag_cont_et_from);
         EditText et_subject = view.findViewById(R.id.frag_cont_et_subject);
         EditText et_message = view.findViewById(R.id.frag_cont_et_message);
         Button bt_send = view.findViewById(R.id.frag_cont_bt_send);
         Button bt_reset = view.findViewById(R.id.frag_cont_bt_reset);
-        this.cfv = new ContactsFragmentView(et_from,et_subject,et_message,bt_send,bt_reset);
+        this.cfv = new ContactsFragmentView(et_name,et_from,et_subject,et_message,bt_send,bt_reset);
         this.cfv.getBtSend().setOnClickListener(this);
         this.cfv.getBtReset().setOnClickListener(this);
         return view;
@@ -88,7 +89,10 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
      */
     private Map<String, String> contactsBody(){
         Map<String, String> body = Stream.of(new String[][]{
-                {"email", this.cfv.getEtFrom().getText().toString()}
+                {"name", this.cfv.getEtName().getText().toString()},
+                {"email", this.cfv.getEtFrom().getText().toString()},
+                {"subject", this.cfv.getEtSubject().getText().toString()},
+                {"message", this.cfv.getEtMessage().getText().toString()}
         }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
         return body;
     }
