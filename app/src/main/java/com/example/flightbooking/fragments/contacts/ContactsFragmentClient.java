@@ -19,11 +19,15 @@ public class ContactsFragmentClient {
     }
 
     private Retrofit retrofit;
+    public ContactsFragmentInterface cfi;
 
     public ContactsFragmentClient(){
         this.retrofit = new Retrofit.Builder()
                 .baseUrl(Globals.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        this.cfi = this.retrofit.create(ContactsFragmentInterface.class);
+
     }
+    public ContactsFragmentInterface getCfi(){return this.cfi;}
 }
