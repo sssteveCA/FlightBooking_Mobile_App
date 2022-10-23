@@ -9,9 +9,7 @@ import android.widget.BaseExpandableListAdapter;
 import android.widget.TextView;
 
 import com.example.flightbooking.R;
-import com.example.flightbooking.fragments.mainmenu.notlogged.MainMenuNotLoggedAdapter;
 import com.example.flightbooking.models.MenuItem;
-import com.example.flightbooking.models.login.Auth;
 
 import java.util.HashMap;
 import java.util.List;

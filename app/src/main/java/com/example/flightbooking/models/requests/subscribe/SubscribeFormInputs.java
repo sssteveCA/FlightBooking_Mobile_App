@@ -1,4 +1,4 @@
-package com.example.flightbooking.models.subscribe;
+package com.example.flightbooking.models.requests.subscribe;
 
 /**
  * Subscribe form input values

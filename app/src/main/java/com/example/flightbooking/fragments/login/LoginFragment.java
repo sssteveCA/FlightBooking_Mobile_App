@@ -23,7 +23,7 @@ import com.example.flightbooking.R;
 import com.example.flightbooking.dialogs.MessageDialog;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.interfaces.LoginObserver;
-import com.example.flightbooking.models.login.Auth;
+import com.example.flightbooking.models.response.login.Auth;
 
 import java.util.AbstractMap;
 import java.util.Map;

@@ -2,7 +2,6 @@ package com.example.flightbooking.fragments.home.flights.ticketpreview;
 
 import android.app.Activity;
 import android.content.Context;
-import android.graphics.Typeface;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -16,13 +15,12 @@ import android.widget.Button;
 import android.widget.LinearLayout;
 import android.widget.TableLayout;
 import android.widget.TableRow;
-import android.widget.TextView;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.interfaces.FragmentChange;
-import com.example.flightbooking.models.FlightInfo;
+import com.example.flightbooking.models.response.flights.FlightInfo;
 
 import java.util.HashMap;
 import java.util.Map;

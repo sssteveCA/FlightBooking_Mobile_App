@@ -1,8 +1,8 @@
 package com.example.flightbooking.fragments.subscribe;
 
 import com.example.flightbooking.interfaces.Globals;
-import com.example.flightbooking.models.subscribe.SubscribeFormInputs;
-import com.example.flightbooking.models.subscribe.SubscribeFormResponse;
+import com.example.flightbooking.models.requests.subscribe.SubscribeFormInputs;
+import com.example.flightbooking.models.response.subscribe.SubscribeFormResponse;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;

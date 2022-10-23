@@ -17,7 +17,8 @@ import com.example.flightbooking.interfaces.OnMainMenuItemClick;
 import com.example.flightbooking.mainactivity.MainActivityModel;
 import com.example.flightbooking.mainactivity.MainActivityView;
 import com.example.flightbooking.fragments.noconnection.NoConnectionFragment;
-import com.example.flightbooking.models.login.Auth;
+import com.example.flightbooking.models.response.Message;
+import com.example.flightbooking.models.response.login.Auth;
 import com.example.flightbooking.models.logout.Logout;
 import com.example.flightbooking.requests.logout.LogoutModel;
 
@@ -148,7 +149,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
         LogoutModel lm = new LogoutModel(this.auth.token);
         lm.logoutRequest(new LogoutModel.LogoutResponse() {
             @Override
-            public void logoutResponse(Logout logout) {
+            public void logoutResponse(Message message) {
                 this_ma.mam.setUserLogged(false);
                 this_ma.auth_data = null;
                 this_ma.auth = null;

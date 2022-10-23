@@ -1,4 +1,4 @@
-package com.example.flightbooking.models.requests;
+package com.example.flightbooking.models.requests.contacts;
 
 public class Contacts {
     public String name;

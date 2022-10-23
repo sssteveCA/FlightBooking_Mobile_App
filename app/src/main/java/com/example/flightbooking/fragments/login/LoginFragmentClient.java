@@ -1,8 +1,8 @@
 package com.example.flightbooking.fragments.login;
 
 import com.example.flightbooking.interfaces.Globals;
-import com.example.flightbooking.models.login.Auth;
-import com.example.flightbooking.models.login.LoginFormInputs;
+import com.example.flightbooking.models.response.login.Auth;
+import com.example.flightbooking.models.requests.login.LoginFormInputs;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;

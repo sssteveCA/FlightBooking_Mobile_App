@@ -1,8 +1,8 @@
-package com.example.flightbooking.models;
+package com.example.flightbooking.models.response.flights;
 
-import com.example.flightbooking.models.flights.Oneway;
-import com.example.flightbooking.models.flights.Outbound;
-import com.example.flightbooking.models.flights.Return;
+import com.example.flightbooking.models.response.flights.Oneway;
+import com.example.flightbooking.models.response.flights.Outbound;
+import com.example.flightbooking.models.response.flights.Return;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 

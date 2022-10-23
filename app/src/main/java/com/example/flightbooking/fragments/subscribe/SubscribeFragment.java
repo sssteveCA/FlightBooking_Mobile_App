@@ -9,7 +9,6 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.text.InputType;
-import android.text.method.PasswordTransformationMethod;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -26,8 +25,7 @@ import com.example.flightbooking.dialogs.ConfirmDialog;
 import com.example.flightbooking.dialogs.MessageDialog;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.interfaces.FragmentChange;
-import com.example.flightbooking.interfaces.Globals;
-import com.example.flightbooking.models.subscribe.SubscribeFormResponse;
+import com.example.flightbooking.models.response.subscribe.SubscribeFormResponse;
 
 import java.util.Map;
 import java.util.stream.Collectors;

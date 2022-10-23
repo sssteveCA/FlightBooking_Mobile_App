@@ -2,11 +2,10 @@ package com.example.flightbooking.fragments.home.flights.ticketpreview;
 
 import android.util.Log;
 
-import com.example.flightbooking.models.FlightInfo;
+import com.example.flightbooking.models.response.flights.FlightInfo;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
-import java.util.Map;
 
 public class TicketPreviewFragmentModel {
 

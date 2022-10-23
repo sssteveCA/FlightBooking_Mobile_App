@@ -28,8 +28,8 @@ import com.example.flightbooking.dialogs.MessageDialog;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.exception.MissingValuesException;
 import com.example.flightbooking.interfaces.FragmentChange;
-import com.example.flightbooking.models.FlightInfo;
-import com.example.flightbooking.models.requests.FlightSearch;
+import com.example.flightbooking.models.response.flights.FlightInfo;
+import com.example.flightbooking.models.requests.flights.FlightSearch;
 
 import java.util.AbstractMap;
 import java.util.List;

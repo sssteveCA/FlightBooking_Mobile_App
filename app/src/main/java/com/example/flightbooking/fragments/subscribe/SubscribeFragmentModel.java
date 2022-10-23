@@ -4,8 +4,8 @@ import android.util.Log;
 
 import com.example.flightbooking.common.RegEx;
 import com.example.flightbooking.interfaces.Globals;
-import com.example.flightbooking.models.subscribe.SubscribeFormInputs;
-import com.example.flightbooking.models.subscribe.SubscribeFormResponse;
+import com.example.flightbooking.models.requests.subscribe.SubscribeFormInputs;
+import com.example.flightbooking.models.response.subscribe.SubscribeFormResponse;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

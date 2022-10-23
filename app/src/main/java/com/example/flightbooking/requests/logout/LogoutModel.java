@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.logout.Logout;
+import com.example.flightbooking.models.response.Message;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -17,7 +18,7 @@ import retrofit2.Response;
 public class LogoutModel {
 
     public interface LogoutResponse{
-        public void logoutResponse(Logout logout);
+        public void logoutResponse(Message message);
         public void logoutError(String message);
     }
 
@@ -36,15 +37,15 @@ public class LogoutModel {
      * @param lr listener to get the response
      */
     public void logoutRequest( LogoutResponse lr){
-        this.getLc().getLi().logout("Bearer "+this.getLc().getToken()).enqueue(new Callback<Logout>() {
+        this.getLc().getLi().logout("Bearer "+this.getLc().getToken()).enqueue(new Callback<Message>() {
             @Override
-            public void onResponse(Call<Logout> call, Response<Logout> response) {
+            public void onResponse(Call<Message> call, Response<Message> response) {
                 Log.d("LogoutModel", "logoutRequest onResponse request call => "+call.request());
                 Log.d("LogoutModel", "logoutRequest onResponse headers response => "+response.headers());
                 if(response.isSuccessful()){
-                    Logout logout = (Logout) response.body();
-                    Log.d("LogoutModel","logoutRequest onResponse OK => "+logout.message);
-                    lr.logoutResponse(logout);
+                    Message message = (Message) response.body();
+                    Log.d("LogoutModel","logoutRequest onResponse OK => "+message.message);
+                    lr.logoutResponse(message);
                 }//if(response.isSuccessful()){
                 else{
                     String jsonString = null;
@@ -65,7 +66,7 @@ public class LogoutModel {
                 }//else di if(response.isSuccessful()){
             }
             @Override
-            public void onFailure(Call<Logout> call, Throwable t) {
+            public void onFailure(Call<Message> call, Throwable t) {
                 Log.d("LogoutModel", "logoutRequest onFailure message => "+t.getMessage());
                 Log.d("LogoutModel", "logoutRequest onFailure request => "+call.request());
                 Log.d("LogoutModel", "logoutRequest onFailure throwable => "+t.toString());

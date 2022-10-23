@@ -2,8 +2,6 @@ package com.example.flightbooking.interfaces;
 
 import android.os.Bundle;
 
-import com.example.flightbooking.models.login.Auth;
-
 public interface LoginObserver {
     /**
      * When user login with his account

@@ -4,6 +4,7 @@ import android.util.Log;
 
 import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.logout.Logout;
+import com.example.flightbooking.models.response.Message;
 import com.google.gson.Gson;
 import com.google.gson.GsonBuilder;
 
@@ -17,7 +18,7 @@ public class LogoutClient {
 
     public interface LogoutInterface{
         @POST(Globals.API_ROUTES_PREFIX+"/logout")
-        Call<Logout> logout(@Header("Authorization") String authorization);
+        Call<Message> logout(@Header("Authorization") String authorization);
     }
 
     private Retrofit retrofit;

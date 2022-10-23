@@ -1,4 +1,4 @@
-package com.example.flightbooking.models.login;
+package com.example.flightbooking.models.response.login;
 
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;

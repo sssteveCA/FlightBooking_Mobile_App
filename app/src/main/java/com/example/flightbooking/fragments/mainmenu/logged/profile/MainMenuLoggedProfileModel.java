@@ -1,9 +1,7 @@
 package com.example.flightbooking.fragments.mainmenu.logged.profile;
 
-import android.content.Context;
-
 import com.example.flightbooking.models.MenuItem;
-import com.example.flightbooking.models.login.Auth;
+import com.example.flightbooking.models.response.login.Auth;
 
 import java.util.ArrayList;
 import java.util.HashMap;

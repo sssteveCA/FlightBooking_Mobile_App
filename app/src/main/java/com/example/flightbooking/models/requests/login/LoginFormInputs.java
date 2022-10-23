@@ -1,4 +1,4 @@
-package com.example.flightbooking.models.login;
+package com.example.flightbooking.models.requests.login;
 
 /**
  * Login form input values

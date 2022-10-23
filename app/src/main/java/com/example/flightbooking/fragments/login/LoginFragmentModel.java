@@ -1,11 +1,10 @@
 package com.example.flightbooking.fragments.login;
 
-import android.provider.Settings;
 import android.util.Log;
 
 import com.example.flightbooking.interfaces.Globals;
-import com.example.flightbooking.models.login.Auth;
-import com.example.flightbooking.models.login.LoginFormInputs;
+import com.example.flightbooking.models.response.login.Auth;
+import com.example.flightbooking.models.requests.login.LoginFormInputs;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;

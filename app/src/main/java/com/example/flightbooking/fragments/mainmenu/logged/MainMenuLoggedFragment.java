@@ -27,7 +27,7 @@ import com.example.flightbooking.fragments.mainmenu.logged.profile.MainMenuLogge
 import com.example.flightbooking.interfaces.LoginObserver;
 import com.example.flightbooking.interfaces.OnMainMenuItemClick;
 import com.example.flightbooking.models.MenuItem;
-import com.example.flightbooking.models.login.Auth;
+import com.example.flightbooking.models.response.login.Auth;
 
 import java.util.ArrayList;
 import java.util.HashMap;
