@@ -23,14 +23,13 @@ import android.widget.TextView;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
-import com.example.flightbooking.common.Connection;
 import com.example.flightbooking.dialogs.DatePicker;
 import com.example.flightbooking.dialogs.MessageDialog;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.exception.MissingValuesException;
 import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.models.FlightInfo;
-import com.example.flightbooking.models.FlightSearch;
+import com.example.flightbooking.models.requests.FlightSearch;
 
 import java.util.AbstractMap;
 import java.util.List;

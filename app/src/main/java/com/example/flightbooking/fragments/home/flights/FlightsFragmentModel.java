@@ -6,7 +6,7 @@ import android.util.Log;
 import com.example.flightbooking.common.Connection;
 import com.example.flightbooking.common.RegEx;
 import com.example.flightbooking.models.FlightInfo;
-import com.example.flightbooking.models.FlightSearch;
+import com.example.flightbooking.models.requests.FlightSearch;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 

@@ -2,7 +2,7 @@ package com.example.flightbooking.fragments.home.flights;
 
 import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.FlightInfo;
-import com.example.flightbooking.models.FlightSearch;
+import com.example.flightbooking.models.requests.FlightSearch;
 import com.google.gson.JsonObject;
 
 import java.util.List;
