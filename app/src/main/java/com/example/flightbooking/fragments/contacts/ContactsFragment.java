@@ -1,7 +1,9 @@
 package com.example.flightbooking.fragments.contacts;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -11,6 +13,8 @@ import android.widget.Button;
 import android.widget.EditText;
 
 import com.example.flightbooking.R;
+import com.example.flightbooking.dialogs.MessageDialog;
+import com.example.flightbooking.models.response.Message;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -25,6 +29,7 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
 
     ContactsFragmentModel cfm;
     ContactsFragmentView cfv;
+    private Context context;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,6 +60,12 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
     }
 
     @Override
@@ -100,8 +111,20 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
     //View.OnClickListener
     @Override
     public void onClick(View view) {
+        ContactsFragment this_cf = this;
         switch(view.getId()){
             case R.id.frag_cont_bt_send:
+                Map<String, String> contactsData = this.contactsBody();
+                this_cf.cfm.contactsRequest(contactsData, new ContactsFragmentModel.ContactsResponse() {
+                    @Override
+                    public void emailSuccess(Message message) {
+                        MessageDialog md = new MessageDialog(this_cf.context,"Assistenza",message.message);
+                    }
+                    @Override
+                    public void emailError(String message) {
+                        MessageDialog md = new MessageDialog(this_cf.context,"Assistenza",message);
+                    }
+                });
                 break;
             case R.id.frag_cont_bt_reset:
                 this.cfv.resetAll();
