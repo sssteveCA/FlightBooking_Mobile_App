@@ -1,9 +1,20 @@
 package com.example.flightbooking.fragments.contacts;
 
+import android.util.Log;
+
+import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.requests.contacts.Contacts;
 import com.example.flightbooking.models.response.Message;
+import com.google.gson.JsonElement;
+import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
+import java.io.IOException;
 import java.util.Map;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class ContactsFragmentModel {
 
@@ -30,8 +41,48 @@ public class ContactsFragmentModel {
 
     public ContactsFragmentClient getCfc(){return this.cfc;}
 
-    public void contactsRequest(){
+    /**
+     * Execute the contacts HTTP request
+     * @param data the contacts data for email sending
+     * @param cr the listener to get the response
+     */
+    public void contactsRequest(Map<String, String> data, ContactsResponse cr){
+        if(this.validateData(data)){
+            this.getCfc().getCfi().sendEmail(this.contacts).enqueue(new Callback<Message>() {
+                @Override
+                public void onResponse(Call<Message> call, Response<Message> response) {
+                    if(response.isSuccessful()){
+                        Message message = (Message) response.body();
+                        cr.emailSuccess(message);
+                    }//if(response.isSuccessful()){
+                    else{
+                        String message = "";
+                        try {
+                            String jsonString = response.errorBody().string();
+                            JsonElement je = JsonParser.parseString(jsonString);
+                            JsonObject jo = je.getAsJsonObject();
+                            message = jo.get("message").getAsString();
+                            if(message == null) message = Globals.ERR_CONTACTS;
+                        } catch (IOException e) {
+                            e.printStackTrace();
+                            message = Globals.ERR_CONTACTS;
+                        } finally{
+                            cr.emailError(message);
+                        }
 
+                    }// else of if(response.isSuccessful()){
+                }
+                @Override
+                public void onFailure(Call<Message> call, Throwable t) {
+                    Log.d("ContactsFragmentModel", "contactsRequest onFailure message => "+t.getMessage());
+                    Log.d("ContactsFragmentModel", "contactsRequest onFailure request => "+call.request());
+                    Log.d("ContactsFragmentModel", "contactsRequest onFailure throwable => "+t.toString());
+                    String message = Globals.ERR_CONTACTS;
+                    cr.emailError(message);
+                }
+            });
+        }//if(this.validateData(data)){
+        else cr.emailError(Globals.ERR_INVALID_DATA_FORMAT);
     }
 
     /**
