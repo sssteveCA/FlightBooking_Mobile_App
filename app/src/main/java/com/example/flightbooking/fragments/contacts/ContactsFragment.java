@@ -11,6 +11,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 
 import com.example.flightbooking.R;
 import com.example.flightbooking.dialogs.MessageDialog;
@@ -88,7 +89,8 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
         EditText et_message = view.findViewById(R.id.frag_cont_et_message);
         Button bt_send = view.findViewById(R.id.frag_cont_bt_send);
         Button bt_reset = view.findViewById(R.id.frag_cont_bt_reset);
-        this.cfv = new ContactsFragmentView(et_name,et_from,et_subject,et_message,bt_send,bt_reset);
+        ProgressBar pb = view.findViewById(R.id.frag_cont_pb);
+        this.cfv = new ContactsFragmentView(et_name,et_from,et_subject,et_message,bt_send,bt_reset,pb);
         this.cfv.getBtSend().setOnClickListener(this);
         this.cfv.getBtReset().setOnClickListener(this);
         return view;
@@ -115,13 +117,17 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
         switch(view.getId()){
             case R.id.frag_cont_bt_send:
                 Map<String, String> contactsData = this.contactsBody();
+                this_cf.cfv.getPb().setVisibility(View.VISIBLE);
                 this_cf.cfm.contactsRequest(contactsData, new ContactsFragmentModel.ContactsResponse() {
                     @Override
                     public void emailSuccess(Message message) {
+                        this_cf.cfv.getPb().setVisibility(View.GONE);
+                        this_cf.cfv.resetAll();
                         MessageDialog md = new MessageDialog(this_cf.context,"Assistenza",message.message);
                     }
                     @Override
                     public void emailError(String message) {
+                        this_cf.cfv.getPb().setVisibility(View.GONE);
                         MessageDialog md = new MessageDialog(this_cf.context,"Assistenza",message);
                     }
                 });
