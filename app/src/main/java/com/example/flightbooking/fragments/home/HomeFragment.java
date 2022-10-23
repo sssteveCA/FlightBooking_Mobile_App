@@ -111,19 +111,19 @@ public class HomeFragment extends Fragment implements ChipGroup.OnCheckedChangeL
     public void onCheckedChanged(ChipGroup group, int checkedId) {
         switch(checkedId){
             case R.id.frag_home_chip_flights:
-                Log.i("HomeFragment","chip flights checked");
+                //Log.i("HomeFragment","chip flights checked");
                 this.hfv.updateFragment(new FlightsFragment());
                 break;
             case R.id.frag_home_chip_crent:
-                Log.i("HomeFragment","chip car rental checked");
+                //Log.i("HomeFragment","chip car rental checked");
                 this.hfv.updateFragment(new CarRentalFragment());
                 break;
             case R.id.frag_home_chip_hotel:
-                Log.i("HomeFragment","chip hotel checked");
+                //Log.i("HomeFragment","chip hotel checked");
                 this.hfv.updateFragment(new HotelFragment());
                 break;
             case R.id.frag_home_chip_events:
-                Log.i("HomeFragment","chip events checked");
+                //Log.i("HomeFragment","chip events checked");
                 this.hfv.updateFragment(new EventsFragment());
                 break;
         }

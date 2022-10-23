@@ -145,7 +145,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
         MainActivity this_ma = this;
         this.auth = (Auth)auth_data.getSerializable("auth");
         this.auth_data = auth_data;
-        Log.d("MainActivity", "onLogout token => "+this.auth.token);
+        //Log.d("MainActivity", "onLogout token => "+this.auth.token);
         LogoutModel lm = new LogoutModel(this.auth.token);
         lm.logoutRequest(new LogoutModel.LogoutResponse() {
             @Override
@@ -158,7 +158,13 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
             }
             @Override
             public void logoutError(String message) {
-                MessageDialog md = new MessageDialog(this_ma,"Logout",message);
+                //MessageDialog md = new MessageDialog(this_ma,"Logout",message);
+                //Temporary (logout request problem)
+                this_ma.mam.setUserLogged(false);
+                this_ma.auth_data = null;
+                this_ma.auth = null;
+                this_ma.setMenu();
+                this_ma.setFragments(label,null);
             }
         });
 

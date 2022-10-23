@@ -14,7 +14,7 @@
         <androidx.constraintlayout.widget.ConstraintLayout
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:paddingBottom="60dp">
+            android:paddingBottom="150dp">
 
             <TextView
                 android:id="@+id/frag_cont_tv_header"
@@ -168,9 +168,9 @@
                 android:layout_height="wrap_content"
                 android:layout_marginStart="80dp"
                 android:layout_marginTop="50dp"
+                android:visibility="gone"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_cont_bt_send"
-                tools:visibility="gone" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_cont_bt_send" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>

@@ -40,11 +40,11 @@ public class LogoutModel {
         this.getLc().getLi().logout("Bearer "+this.getLc().getToken()).enqueue(new Callback<Message>() {
             @Override
             public void onResponse(Call<Message> call, Response<Message> response) {
-                Log.d("LogoutModel", "logoutRequest onResponse request call => "+call.request());
-                Log.d("LogoutModel", "logoutRequest onResponse headers response => "+response.headers());
+                //Log.d("LogoutModel", "logoutRequest onResponse request call => "+call.request());
+                //Log.d("LogoutModel", "logoutRequest onResponse headers response => "+response.headers());
                 if(response.isSuccessful()){
                     Message message = (Message) response.body();
-                    Log.d("LogoutModel","logoutRequest onResponse OK => "+message.message);
+                    //Log.d("LogoutModel","logoutRequest onResponse OK => "+message.message);
                     lr.logoutResponse(message);
                 }//if(response.isSuccessful()){
                 else{
@@ -52,7 +52,7 @@ public class LogoutModel {
                     String message = "";
                     try {
                         jsonString = response.errorBody().string();
-                        Log.d("LogoutModel","logoutRequest onResponse ERROR jsonString => "+jsonString);
+                        //Log.d("LogoutModel","logoutRequest onResponse ERROR jsonString => "+jsonString);
                         JsonElement je = JsonParser.parseString(jsonString);
                         JsonObject jo = je.getAsJsonObject();
                         message = jo.get("message").getAsString();
@@ -67,9 +67,9 @@ public class LogoutModel {
             }
             @Override
             public void onFailure(Call<Message> call, Throwable t) {
-                Log.d("LogoutModel", "logoutRequest onFailure message => "+t.getMessage());
+ /*               Log.d("LogoutModel", "logoutRequest onFailure message => "+t.getMessage());
                 Log.d("LogoutModel", "logoutRequest onFailure request => "+call.request());
-                Log.d("LogoutModel", "logoutRequest onFailure throwable => "+t.toString());
+                Log.d("LogoutModel", "logoutRequest onFailure throwable => "+t.toString());*/
                 String message = Globals.ERR_LOGOUT;
                 lr.logoutError(message);
             }

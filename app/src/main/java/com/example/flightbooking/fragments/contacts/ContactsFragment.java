@@ -43,6 +43,7 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
 
     public ContactsFragment() {
         // Required empty public constructor
+        this.cfm = new ContactsFragmentModel();
     }
 
     /**

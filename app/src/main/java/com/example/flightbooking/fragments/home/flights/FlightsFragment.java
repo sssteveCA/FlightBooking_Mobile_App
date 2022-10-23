@@ -134,7 +134,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
      * @return
      */
     private ArrayAdapter<String> arrayAdapterFromList(List<String> items){
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(getActivity(),android.R.layout.simple_spinner_item,items);
+        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.context,android.R.layout.simple_spinner_item,items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         return adapter;
     }
