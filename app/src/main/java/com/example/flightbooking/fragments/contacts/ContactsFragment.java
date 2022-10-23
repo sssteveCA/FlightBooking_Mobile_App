@@ -12,6 +12,10 @@ import android.widget.EditText;
 
 import com.example.flightbooking.R;
 
+import java.util.Map;
+import java.util.stream.Collectors;
+import java.util.stream.Stream;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link ContactsFragment#newInstance} factory method to
@@ -76,6 +80,17 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
         this.cfv.getBtSend().setOnClickListener(this);
         this.cfv.getBtReset().setOnClickListener(this);
         return view;
+    }
+
+    /**
+     * Set the contacts body data for request
+     * @return the Map with the contacts body data
+     */
+    private Map<String, String> contactsBody(){
+        Map<String, String> body = Stream.of(new String[][]{
+                {"email", this.cfv.getEtFrom().getText().toString()}
+        }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
+        return body;
     }
 
     //View.OnClickListener

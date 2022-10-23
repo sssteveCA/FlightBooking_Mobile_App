@@ -27,4 +27,8 @@ public class ContactsFragmentModel {
     }
 
     public ContactsFragmentClient getCfc(){return this.cfc;}
+
+    public void contactsRequest(){
+
+    }
 }
