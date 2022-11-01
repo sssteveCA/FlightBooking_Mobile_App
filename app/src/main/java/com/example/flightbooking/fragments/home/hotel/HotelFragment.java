@@ -1,7 +1,9 @@
 package com.example.flightbooking.fragments.home.hotel;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
@@ -15,6 +17,7 @@ import android.widget.Spinner;
 
 import com.example.flightbooking.R;
 import com.example.flightbooking.dialogs.DatePicker;
+import com.example.flightbooking.dialogs.DatePickerHotel;
 import com.example.flightbooking.exception.MissingValuesException;
 import com.example.flightbooking.fragments.home.flights.FlightsFragmentModel;
 
@@ -26,7 +29,7 @@ import java.util.Map;
  * Use the {@link HotelFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HotelFragment extends Fragment implements AdapterView.OnItemSelectedListener, View.OnClickListener, DatePicker.DialogDate{
+public class HotelFragment extends Fragment implements AdapterView.OnItemSelectedListener, View.OnClickListener, DatePickerHotel.DialogDateHotel{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -37,6 +40,8 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
     private String mParam1;
     private String mParam2;
 
+    private Context context;
+    private HotelFragmentModel hfm;
     private HotelFragmentView hfv;
 
     public HotelFragment() {
@@ -62,6 +67,12 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -75,6 +86,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v =  inflater.inflate(R.layout.fragment_hotel, container, false);
+        this.hfm = new HotelFragmentModel(this.context);
         try {
             this.hfv = new HotelFragmentView(this.hotelItems(v));
             this.hfv.getSpCountry().setOnItemSelectedListener(this);
@@ -131,8 +143,10 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.frag_hotel_et_check_in:
+                this.showDatePickerDialog(this.hfv.getEtCkeckIn().getText().toString(), HotelFragmentModel.EditTextsDate.CKECK_IN);
                 break;
             case R.id.frag_hotel_et_check_out:
+                this.showDatePickerDialog(this.hfv.getEtCkeckOut().getText().toString(), HotelFragmentModel.EditTextsDate.CHECK_OUT);
                 break;
             case R.id.frag_hotel_bt_search:
                 break;
@@ -145,12 +159,17 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
      * @param etd
      */
     private void showDatePickerDialog(String inputDate, HotelFragmentModel.EditTextsDate etd){
-        //DialogFragment df = new DatePicker(inputDate,this,etd);
+        DialogFragment df = new DatePickerHotel(inputDate,this,etd);
+        df.show(getActivity().getSupportFragmentManager(),"datePicker");
     }
 
-    //DatePicker.DialogDate
-    @Override
-    public void getDate(String date, FlightsFragmentModel.EditTextsDate editTextsDate) {
 
+    //DatePickerHotel.DialogDateHotel
+    @Override
+    public void getDate(String date, HotelFragmentModel.EditTextsDate editTextsDate) {
+        if(editTextsDate == HotelFragmentModel.EditTextsDate.CKECK_IN)
+            this.hfv.getEtCkeckIn().setText(date);
+        else
+            this.hfv.getEtCkeckOut().setText(date);
     }
 }
