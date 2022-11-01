@@ -66,18 +66,24 @@ public class HotelFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_hotel, container, false);
+        View v =  inflater.inflate(R.layout.fragment_hotel, container, false);
+        return v;
     }
 
+    /**
+     * Create a Map with Hotel view references
+     * @param v
+     * @return
+     */
     private Map<String, View> hotelItems(View v){
         Map<String, View> items = Map.ofEntries(
-                new AbstractMap.SimpleImmutableEntry<>("sp_country", (Spinner)v.findViewById(R.id.frag_hotel_sp_country)),
-                new AbstractMap.SimpleImmutableEntry<>("sp_city", (Spinner)v.findViewById(R.id.frag_hotel_sp_city)),
-                new AbstractMap.SimpleImmutableEntry<>("sp_hotel", (Spinner)v.findViewById(R.id.frag_hotel_sp_hotel)),
-                new AbstractMap.SimpleImmutableEntry<>("et_check_in", (EditText)v.findViewById(R.id.frag_hotel_et_check_in)),
-                new AbstractMap.SimpleImmutableEntry<>("et_check_out", (EditText)v.findViewById(R.id.frag_hotel_et_check_out)),
-                new AbstractMap.SimpleImmutableEntry<>("et_rooms", (EditText)v.findViewById(R.id.frag_hotel_et_rooms)),
-                new AbstractMap.SimpleImmutableEntry<>("et_people", (EditText)v.findViewById(R.id.frag_hotel_et_people))
+                new AbstractMap.SimpleImmutableEntry<>("country", (Spinner)v.findViewById(R.id.frag_hotel_sp_country)),
+                new AbstractMap.SimpleImmutableEntry<>("city", (Spinner)v.findViewById(R.id.frag_hotel_sp_city)),
+                new AbstractMap.SimpleImmutableEntry<>("hotel", (Spinner)v.findViewById(R.id.frag_hotel_sp_hotel)),
+                new AbstractMap.SimpleImmutableEntry<>("check_in", (EditText)v.findViewById(R.id.frag_hotel_et_check_in)),
+                new AbstractMap.SimpleImmutableEntry<>("check_out", (EditText)v.findViewById(R.id.frag_hotel_et_check_out)),
+                new AbstractMap.SimpleImmutableEntry<>("rooms", (EditText)v.findViewById(R.id.frag_hotel_et_rooms)),
+                new AbstractMap.SimpleImmutableEntry<>("people", (EditText)v.findViewById(R.id.frag_hotel_et_people))
         );
         return items;
     }
