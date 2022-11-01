@@ -135,6 +135,9 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         return adapter;
     }
 
+    /**
+     * Get the countries that contains bookable hotels
+     */
     private void countriesRequest(){
         HotelFragmentModel hfm_temp = this.hfm;
         HotelFragmentView hfv_temp = this.hfv;
@@ -148,6 +151,27 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
             @Override
             public void countriesError(String message) {
                 Log.e("HotelFragment","countriesRequest error => "+message);
+            }
+        });
+    }
+
+    /**
+     * Get the cities of a specific country that have bookable hotels
+     * @param country
+     */
+    private void citiesRequest(String country){
+        HotelFragmentModel hfm_temp = this.hfm;
+        HotelFragmentView hfv_temp = this.hfv;
+        HotelFragment hf_temp = this;
+        hfm_temp.getCities(country, new HotelFragmentModel.GetCities() {
+            @Override
+            public void citiesResponse(List<String> cities) {
+                ArrayAdapter<String> citiesAdapter = hf_temp.arrayAdapterFromList(cities);
+                hfv_temp.getSpCities().setAdapter(citiesAdapter);
+            }
+            @Override
+            public void citiesError(String message) {
+                Log.e("HotelFragment","citiesRequest error => "+message);
             }
         });
     }
