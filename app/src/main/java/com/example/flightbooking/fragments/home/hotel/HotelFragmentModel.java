@@ -76,4 +76,62 @@ public class HotelFragmentModel {
             }
         });
     }
+
+    /**
+     * Perform the HTTP request to get the hotel cities list of a particular country
+     */
+    public void getCities(String country, GetCities gc){
+        this.hfc.getHfi().cities(country).enqueue(new Callback<List<String>>() {
+            @Override
+            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+                if(response.isSuccessful()){
+                    List<String> cities = response.body();
+                    gc.citiesResponse(cities);
+                }
+                else{
+                    String errorBody = "";
+                    try {
+                        errorBody = response.errorBody().string();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }finally {
+                        gc.citiesError(errorBody);
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<List<String>> call, Throwable t) {
+                gc.citiesError(t.getMessage());
+            }
+        });
+    }
+
+    /**
+     * Perform the HTTP request to get the available hotels of a country in a particular city
+     */
+    public void getHotels(String country, String city, GetHotels gh){
+        this.hfc.getHfi().hotels(country,city).enqueue(new Callback<List<String>>() {
+            @Override
+            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
+                if(response.isSuccessful()){
+                    List<String> hotels = response.body();
+                    gh.hotelsResponse(hotels);
+                }
+                else{
+                    String errorBody = "";
+                    try {
+                        errorBody = response.errorBody().string();
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }finally {
+                        gh.hotelsError(errorBody);
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<List<String>> call, Throwable t) {
+                gh.hotelsError(t.getMessage());
+            }
+        });
+    }
 }
