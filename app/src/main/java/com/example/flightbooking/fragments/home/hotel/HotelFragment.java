@@ -147,6 +147,9 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
             public void countriesResponse(List<String> countries) {
                 ArrayAdapter<String> countriesAdapter = hf_temp.arrayAdapterFromList(countries);
                 hfv_temp.getSpCountries().setAdapter(countriesAdapter);
+                String country = (String) hfv_temp.getSpCountries().getAdapter().getItem(0);
+                hf_temp.citiesRequest(country);
+
             }
             @Override
             public void countriesError(String message) {
@@ -168,6 +171,8 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
             public void citiesResponse(List<String> cities) {
                 ArrayAdapter<String> citiesAdapter = hf_temp.arrayAdapterFromList(cities);
                 hfv_temp.getSpCities().setAdapter(citiesAdapter);
+                String city = (String) hfv_temp.getSpCities().getAdapter().getItem(0);
+                hf_temp.hotelsRequest(country,city);
             }
             @Override
             public void citiesError(String message) {
@@ -176,6 +181,11 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         });
     }
 
+    /**
+     * Get the hotels available in a city of a particular country
+     * @param country
+     * @param city
+     */
     private void hotelsRequest(String country, String city){
         HotelFragmentModel hfm_temp = this.hfm;
         HotelFragmentView hfv_temp = this.hfv;
