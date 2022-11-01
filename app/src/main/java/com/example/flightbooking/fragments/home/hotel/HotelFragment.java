@@ -7,10 +7,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.flightbooking.R;
+import com.example.flightbooking.exception.MissingValuesException;
 
 import java.util.AbstractMap;
 import java.util.Map;
@@ -20,7 +23,7 @@ import java.util.Map;
  * Use the {@link HotelFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HotelFragment extends Fragment {
+public class HotelFragment extends Fragment implements AdapterView.OnItemSelectedListener, View.OnClickListener{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -30,6 +33,8 @@ public class HotelFragment extends Fragment {
     // TODO: Rename and change types of parameters
     private String mParam1;
     private String mParam2;
+
+    private HotelFragmentView hfv;
 
     public HotelFragment() {
         // Required empty public constructor
@@ -67,6 +72,17 @@ public class HotelFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v =  inflater.inflate(R.layout.fragment_hotel, container, false);
+        try {
+            this.hfv = new HotelFragmentView(this.hotelItems(v));
+            this.hfv.getSpCountry().setOnItemSelectedListener(this);
+            this.hfv.getSpCity().setOnItemSelectedListener(this);
+            this.hfv.getSpHotel().setOnItemSelectedListener(this);
+            this.hfv.getEtCkeckIn().setOnClickListener(this);
+            this.hfv.getEtCkeckOut().setOnClickListener(this);
+            this.hfv.getBtSearch().setOnClickListener(this);
+        } catch (MissingValuesException e) {
+            e.printStackTrace();
+        }
         return v;
     }
 
@@ -83,9 +99,26 @@ public class HotelFragment extends Fragment {
                 new AbstractMap.SimpleImmutableEntry<>("check_in", (EditText)v.findViewById(R.id.frag_hotel_et_check_in)),
                 new AbstractMap.SimpleImmutableEntry<>("check_out", (EditText)v.findViewById(R.id.frag_hotel_et_check_out)),
                 new AbstractMap.SimpleImmutableEntry<>("rooms", (EditText)v.findViewById(R.id.frag_hotel_et_rooms)),
-                new AbstractMap.SimpleImmutableEntry<>("people", (EditText)v.findViewById(R.id.frag_hotel_et_people))
+                new AbstractMap.SimpleImmutableEntry<>("people", (EditText)v.findViewById(R.id.frag_hotel_et_people)),
+                new AbstractMap.SimpleImmutableEntry<>("search", (Button)v.findViewById(R.id.frag_hotel_bt_search))
         );
         return items;
     }
 
+    //AdapterView.OnItemSelectedListener
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+
+    }
+
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
+    }
+
+    //View.OnClickListener
+    @Override
+    public void onClick(View view) {
+
+    }
 }
