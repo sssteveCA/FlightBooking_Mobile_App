@@ -2,6 +2,7 @@ package com.example.flightbooking.fragments.home.hotel;
 
 import android.os.Bundle;
 
+import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -13,7 +14,9 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.flightbooking.R;
+import com.example.flightbooking.dialogs.DatePicker;
 import com.example.flightbooking.exception.MissingValuesException;
+import com.example.flightbooking.fragments.home.flights.FlightsFragmentModel;
 
 import java.util.AbstractMap;
 import java.util.Map;
@@ -23,7 +26,7 @@ import java.util.Map;
  * Use the {@link HotelFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HotelFragment extends Fragment implements AdapterView.OnItemSelectedListener, View.OnClickListener{
+public class HotelFragment extends Fragment implements AdapterView.OnItemSelectedListener, View.OnClickListener, DatePicker.DialogDate{
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -134,5 +137,20 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
             case R.id.frag_hotel_bt_search:
                 break;
         }
+    }
+
+    /**
+     * Show a date picker dialog and pass the date inserted from EditText if exists
+     * @param inputDate
+     * @param etd
+     */
+    private void showDatePickerDialog(String inputDate, HotelFragmentModel.EditTextsDate etd){
+        //DialogFragment df = new DatePicker(inputDate,this,etd);
+    }
+
+    //DatePicker.DialogDate
+    @Override
+    public void getDate(String date, FlightsFragmentModel.EditTextsDate editTextsDate) {
+
     }
 }

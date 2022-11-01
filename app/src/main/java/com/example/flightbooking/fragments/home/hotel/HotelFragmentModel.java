@@ -8,6 +8,10 @@ public class HotelFragmentModel {
 
     private Context context;
 
+    public enum EditTextsDate{
+        CKECK_IN,CHECK_OUT
+    }
+
     public HotelFragmentModel(Context ctx){
         this.context = ctx;
     }
