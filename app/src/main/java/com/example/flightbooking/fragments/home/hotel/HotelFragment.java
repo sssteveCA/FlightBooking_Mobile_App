@@ -12,6 +12,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
@@ -23,6 +24,7 @@ import com.example.flightbooking.exception.MissingValuesException;
 import com.example.flightbooking.fragments.home.flights.FlightsFragmentModel;
 
 import java.util.AbstractMap;
+import java.util.List;
 import java.util.Map;
 
 /**
@@ -120,6 +122,33 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
                 new AbstractMap.SimpleImmutableEntry<>("search", (Button)v.findViewById(R.id.frag_hotel_bt_search))
         );
         return items;
+    }
+
+    /**
+     * Create an ArrayAdapter from list
+     * @param items
+     * @return
+     */
+    private ArrayAdapter<String> arrayAdapterFromList(List<String> items){
+        ArrayAdapter<String> adapter = new ArrayAdapter<>(this.context, android.R.layout.simple_spinner_item,items);
+        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        return adapter;
+    }
+
+    private void countriesRequest(){
+        HotelFragmentModel hfm_temp = this.hfm;
+        HotelFragmentView hfv_temp = this.hfv;
+        HotelFragment hf_temp = this;
+        hfm_temp.getCountries(new HotelFragmentModel.GetCountries() {
+            @Override
+            public void countriesResponse(List<String> countries) {
+
+            }
+            @Override
+            public void countriesError(String message) {
+
+            }
+        });
     }
 
     //AdapterView.OnItemSelectedListener
