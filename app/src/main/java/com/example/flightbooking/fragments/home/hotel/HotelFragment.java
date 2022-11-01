@@ -18,10 +18,8 @@ import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.flightbooking.R;
-import com.example.flightbooking.dialogs.DatePicker;
 import com.example.flightbooking.dialogs.DatePickerHotel;
 import com.example.flightbooking.exception.MissingValuesException;
-import com.example.flightbooking.fragments.home.flights.FlightsFragmentModel;
 
 import java.util.AbstractMap;
 import java.util.List;
@@ -112,9 +110,9 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
      */
     private Map<String, View> hotelItems(View v){
         Map<String, View> items = Map.ofEntries(
-                new AbstractMap.SimpleImmutableEntry<>("countries", (Spinner)v.findViewById(R.id.frag_hotel_sp_country)),
-                new AbstractMap.SimpleImmutableEntry<>("cities", (Spinner)v.findViewById(R.id.frag_hotel_sp_city)),
-                new AbstractMap.SimpleImmutableEntry<>("hotels", (Spinner)v.findViewById(R.id.frag_hotel_sp_hotel)),
+                new AbstractMap.SimpleImmutableEntry<>("countries", (Spinner)v.findViewById(R.id.frag_hotel_sp_countries)),
+                new AbstractMap.SimpleImmutableEntry<>("cities", (Spinner)v.findViewById(R.id.frag_hotel_sp_cities)),
+                new AbstractMap.SimpleImmutableEntry<>("hotels", (Spinner)v.findViewById(R.id.frag_hotel_sp_hotels)),
                 new AbstractMap.SimpleImmutableEntry<>("check_in", (EditText)v.findViewById(R.id.frag_hotel_et_check_in)),
                 new AbstractMap.SimpleImmutableEntry<>("check_out", (EditText)v.findViewById(R.id.frag_hotel_et_check_out)),
                 new AbstractMap.SimpleImmutableEntry<>("rooms", (EditText)v.findViewById(R.id.frag_hotel_et_rooms)),
@@ -207,12 +205,18 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
     //AdapterView.OnItemSelectedListener
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String country = "";
         switch(adapterView.getId()){
-            case R.id.frag_hotel_sp_country:
+            case R.id.frag_hotel_sp_countries:
+                country = (String) adapterView.getItemAtPosition(i);
+                this.citiesRequest(country);
                 break;
-            case R.id.frag_hotel_sp_city:
+            case R.id.frag_hotel_sp_cities:
+                country = (String) this.hfv.getSpCountries().getSelectedItem();
+                String city = (String) adapterView.getItemAtPosition(i);
+                this.hotelsRequest(country,city);
                 break;
-            case R.id.frag_hotel_sp_hotel:
+            case R.id.frag_hotel_sp_hotels:
                 break;
         }
     }

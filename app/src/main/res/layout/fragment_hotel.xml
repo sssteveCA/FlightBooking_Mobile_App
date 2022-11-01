@@ -40,7 +40,7 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_hotel_sp_hotel" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_hotel_sp_hotels" />
 
             <EditText
                 android:id="@+id/frag_hotel_et_check_in"
@@ -126,7 +126,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/frag_hotel_et_people" />
 
             <TextView
-                android:id="@+id/frag_hotel_tv_country"
+                android:id="@+id/frag_hotel_tv_countries"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -139,7 +139,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/frag_hotel_header" />
 
             <Spinner
-                android:id="@+id/frag_hotel_sp_country"
+                android:id="@+id/frag_hotel_sp_countries"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -147,10 +147,10 @@
                 android:layout_marginEnd="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_hotel_tv_country" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_hotel_tv_countries" />
 
             <TextView
-                android:id="@+id/frag_hotel_tv_city"
+                android:id="@+id/frag_hotel_tv_cities"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -160,10 +160,10 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_hotel_sp_country" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_hotel_sp_countries" />
 
             <Spinner
-                android:id="@+id/frag_hotel_sp_city"
+                android:id="@+id/frag_hotel_sp_cities"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -171,10 +171,10 @@
                 android:layout_marginEnd="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_hotel_tv_city" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_hotel_tv_cities" />
 
             <TextView
-                android:id="@+id/frag_hotel_tv_hotel"
+                android:id="@+id/frag_hotel_tv_hotels"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -184,10 +184,10 @@
                 android:textSize="16sp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_hotel_sp_city" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_hotel_sp_cities" />
 
             <Spinner
-                android:id="@+id/frag_hotel_sp_hotel"
+                android:id="@+id/frag_hotel_sp_hotels"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -195,7 +195,7 @@
                 android:layout_marginEnd="20dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_hotel_tv_hotel" />
+                app:layout_constraintTop_toBottomOf="@+id/frag_hotel_tv_hotels" />
 
             <TextView
                 android:id="@+id/frag_hotel_tv_people"
