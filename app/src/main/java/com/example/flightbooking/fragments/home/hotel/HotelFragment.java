@@ -176,6 +176,24 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         });
     }
 
+    private void hotelsRequest(String country, String city){
+        HotelFragmentModel hfm_temp = this.hfm;
+        HotelFragmentView hfv_temp = this.hfv;
+        HotelFragment hf_temp = this;
+        hfm_temp.getHotels(country, city, new HotelFragmentModel.GetHotels() {
+            @Override
+            public void hotelsResponse(List<String> hotels) {
+                ArrayAdapter<String> hotelsAdapter = hf_temp.arrayAdapterFromList(hotels);
+                hfv_temp.getSpHotels().setAdapter(hotelsAdapter);
+            }
+            @Override
+            public void hotelsError(String message) {
+                Log.e("HotelFragment","hotelsRequest error => "+message);
+            }
+        });
+    }
+
+
     //AdapterView.OnItemSelectedListener
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
