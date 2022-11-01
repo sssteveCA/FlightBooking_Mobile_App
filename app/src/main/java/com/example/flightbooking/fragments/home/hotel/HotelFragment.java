@@ -108,7 +108,14 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
     //AdapterView.OnItemSelectedListener
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-
+        switch(adapterView.getId()){
+            case R.id.frag_hotel_sp_country:
+                break;
+            case R.id.frag_hotel_sp_city:
+                break;
+            case R.id.frag_hotel_sp_hotel:
+                break;
+        }
     }
 
     @Override
@@ -119,6 +126,13 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
     //View.OnClickListener
     @Override
     public void onClick(View view) {
-
+        switch(view.getId()){
+            case R.id.frag_hotel_et_check_in:
+                break;
+            case R.id.frag_hotel_et_check_out:
+                break;
+            case R.id.frag_hotel_bt_search:
+                break;
+        }
     }
 }
