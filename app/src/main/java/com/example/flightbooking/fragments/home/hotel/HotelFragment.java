@@ -7,8 +7,13 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.EditText;
+import android.widget.Spinner;
 
 import com.example.flightbooking.R;
+
+import java.util.AbstractMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -63,4 +68,18 @@ public class HotelFragment extends Fragment {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_hotel, container, false);
     }
+
+    private Map<String, View> hotelItems(View v){
+        Map<String, View> items = Map.ofEntries(
+                new AbstractMap.SimpleImmutableEntry<>("sp_country", (Spinner)v.findViewById(R.id.frag_hotel_sp_country)),
+                new AbstractMap.SimpleImmutableEntry<>("sp_city", (Spinner)v.findViewById(R.id.frag_hotel_sp_city)),
+                new AbstractMap.SimpleImmutableEntry<>("sp_hotel", (Spinner)v.findViewById(R.id.frag_hotel_sp_hotel)),
+                new AbstractMap.SimpleImmutableEntry<>("et_check_in", (EditText)v.findViewById(R.id.frag_hotel_et_check_in)),
+                new AbstractMap.SimpleImmutableEntry<>("et_check_out", (EditText)v.findViewById(R.id.frag_hotel_et_check_out)),
+                new AbstractMap.SimpleImmutableEntry<>("et_rooms", (EditText)v.findViewById(R.id.frag_hotel_et_rooms)),
+                new AbstractMap.SimpleImmutableEntry<>("et_people", (EditText)v.findViewById(R.id.frag_hotel_et_people))
+        );
+        return items;
+    }
+
 }
