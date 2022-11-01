@@ -57,7 +57,7 @@ public class DatePickerHotel extends DialogFragment implements DatePickerDialog.
         String month = (i1 < 10) ? "0" + i1 : String.valueOf(i1);
         String day = (i2 < 10) ? "0" + i2 : String.valueOf(i2);
         String date = i+"-"+month+"-"+day;
-        Log.d("DatePickerHotel","onDateSet date => "+date);
+        //Log.d("DatePickerHotel","onDateSet date => "+date);
         this.ddh.getDate(date,etd);
     }
 
@@ -88,7 +88,7 @@ public class DatePickerHotel extends DialogFragment implements DatePickerDialog.
      */
     private void setEditTextDate(){
         String[] date_args = this.inputDate.split("-");
-        Log.d("DatePickerHotel","DatePicker setDate date_args => "+ Arrays.toString(date_args));
+        //Log.d("DatePickerHotel","DatePicker setDate date_args => "+ Arrays.toString(date_args));
         this.year = Integer.valueOf(date_args[0]);
         if(date_args[1].startsWith("0"))
             date_args[1] = date_args[1].substring(1);

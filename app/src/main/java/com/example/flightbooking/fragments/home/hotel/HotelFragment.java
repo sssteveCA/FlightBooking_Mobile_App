@@ -7,6 +7,7 @@ import androidx.annotation.NonNull;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -96,6 +97,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
             this.hfv.getEtCkeckOut().setOnClickListener(this);
             this.hfv.getBtSearch().setOnClickListener(this);
         } catch (MissingValuesException e) {
+            Log.e("HotelFragment","MissingValuesException");
             e.printStackTrace();
         }
         return v;
@@ -141,12 +143,14 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
     //View.OnClickListener
     @Override
     public void onClick(View view) {
+        HotelFragment this_hf = this;
+        HotelFragmentView this_hfv = this.hfv;
         switch(view.getId()){
             case R.id.frag_hotel_et_check_in:
-                this.showDatePickerDialog(this.hfv.getEtCkeckIn().getText().toString(), HotelFragmentModel.EditTextsDate.CKECK_IN);
+                this_hf.showDatePickerDialog(this_hfv.getEtCkeckIn().getText().toString(), HotelFragmentModel.EditTextsDate.CKECK_IN);
                 break;
             case R.id.frag_hotel_et_check_out:
-                this.showDatePickerDialog(this.hfv.getEtCkeckOut().getText().toString(), HotelFragmentModel.EditTextsDate.CHECK_OUT);
+                this_hf.showDatePickerDialog(this_hfv.getEtCkeckOut().getText().toString(), HotelFragmentModel.EditTextsDate.CHECK_OUT);
                 break;
             case R.id.frag_hotel_bt_search:
                 break;
@@ -160,11 +164,9 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
      */
     private void showDatePickerDialog(String inputDate, HotelFragmentModel.EditTextsDate etd){
         DialogFragment df = new DatePickerHotel(inputDate,this,etd);
-        df.show(getActivity().getSupportFragmentManager(),"datePicker");
+        df.show(getActivity().getSupportFragmentManager(),"DatePickerDialog");
     }
 
-
-    //DatePickerHotel.DialogDateHotel
     @Override
     public void getDate(String date, HotelFragmentModel.EditTextsDate editTextsDate) {
         if(editTextsDate == HotelFragmentModel.EditTextsDate.CKECK_IN)
