@@ -33,6 +33,7 @@ public class HotelFragmentClient {
                 .baseUrl(Globals.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        this.hfi = this.retrofit.create(HotelFragmentInterface.class);
     }
 
     public HotelFragmentInterface getHfi(){return this.hfi;}
