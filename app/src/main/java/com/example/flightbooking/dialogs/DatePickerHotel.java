@@ -43,11 +43,19 @@ public class DatePickerHotel extends DialogFragment implements DatePickerDialog.
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
+        this.setDate();
+        DatePickerDialog dpd = new DatePickerDialog(requireContext(),this,this.year,this.month,this.day);
+        dpd.getDatePicker().setMinDate(System.currentTimeMillis());
+        return dpd;
     }
 
     @Override
     public void onDateSet(DatePicker datePicker, int i, int i1, int i2) {
-
+        i1++;
+        String month = (i1 < 10) ? "0" + i1 : String.valueOf(i1);
+        String day = (i2 < 10) ? "0" + i2 : String.valueOf(i2);
+        String date = i+"-"+month+"-"+day;
+        this.ddh.getDate(date,etd);
     }
 
     /**
@@ -61,12 +69,29 @@ public class DatePickerHotel extends DialogFragment implements DatePickerDialog.
             if(matcher.matches())
                 valid_date = true;
         }
-        if(valid_date){}
+        if(valid_date){
+            this.setEditTextDate();
+        }
         else{
             final Calendar cal = Calendar.getInstance();
             this.year = cal.get(Calendar.YEAR);
             this.month = cal.get(Calendar.MONTH);
             this.day = cal.get(Calendar.DAY_OF_MONTH);
         }
+    }
+
+    /**
+     * If there is a valid date from EditText, use that when date picker dialog is opened
+     */
+    private void setEditTextDate(){
+        String[] date_args = this.inputDate.split("-");
+        //Log.d("DatePicker","DatePicker setDate date_args => "+ Arrays.toString(date_args));
+        this.year = Integer.valueOf(date_args[0]);
+        if(date_args[1].startsWith("0"))
+            date_args[1] = date_args[1].substring(1);
+        this.month = Integer.parseInt(date_args[1]) - 1;
+        if(date_args[2].startsWith("0"))
+            date_args[2] = date_args[2].substring(1);
+        this.day = Integer.valueOf(date_args[2]);
     }
 }
