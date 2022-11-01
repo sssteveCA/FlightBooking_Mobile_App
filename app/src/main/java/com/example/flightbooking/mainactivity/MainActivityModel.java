@@ -104,8 +104,8 @@ public class MainActivityModel {
             List<String> internetItems = Arrays.asList(
                     FragmentLabels.FLIGHTS.getLabelName(),
                     FragmentLabels.HOME.getLabelName(),FragmentLabels.NEWS.getLabelName(),FragmentLabels.TICKET_PREVIEW.getLabelName(), FragmentLabels.VERIFY.getLabelName()); //Label items that require internet
-            Log.d("MainActivityModel","isConnectionRequired label => "+label);
-            Log.d("MainActivityModel","isConnectionRequired internetItems => "+internetItems);
+            //Log.d("MainActivityModel","isConnectionRequired label => "+label);
+            //Log.d("MainActivityModel","isConnectionRequired internetItems => "+internetItems);
             String lcLabel = label.substring(0,1).toUpperCase()+label.substring(1);
             return internetItems.contains(lcLabel);
         }//if(label != null){

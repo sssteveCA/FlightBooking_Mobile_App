@@ -18,7 +18,7 @@ public class HotelFragmentView {
     private ProgressBar pb_search;
 
     private static String[] itemsName = {
-            "country","city","hotel","check_in","check_out", "rooms","people"
+            "countries","cities","hotels","check_in","check_out", "rooms","people"
     };
 
     public HotelFragmentView(Map<String, View> items) throws MissingValuesException {

@@ -149,7 +149,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         hfm_temp.getCountries(new HotelFragmentModel.GetCountries() {
             @Override
             public void countriesResponse(List<String> countries) {
-                Log.d("HotelFragment","countriesRequest countries => "+countries);
+                //Log.d("HotelFragment","countriesRequest countries => "+countries);
                 ArrayAdapter<String> countriesAdapter = hf_temp.arrayAdapterFromList(countries);
                 hfv_temp.getSpCountries().setAdapter(countriesAdapter);
                 String country = (String) hfv_temp.getSpCountries().getAdapter().getItem(0);
@@ -173,7 +173,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         hfm_temp.getCities(country, new HotelFragmentModel.GetCities() {
             @Override
             public void citiesResponse(List<String> cities) {
-                Log.d("HotelFragment","citiesRequest cities => "+cities);
+                //Log.d("HotelFragment","citiesRequest cities => "+cities);
                 ArrayAdapter<String> citiesAdapter = hf_temp.arrayAdapterFromList(cities);
                 hfv_temp.getSpCities().setAdapter(citiesAdapter);
                 String city = (String) hfv_temp.getSpCities().getAdapter().getItem(0);
@@ -198,7 +198,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         hfm_temp.getHotels(country, city, new HotelFragmentModel.GetHotels() {
             @Override
             public void hotelsResponse(List<String> hotels) {
-                Log.d("HotelFragment","hotelsRequest hotels => "+hotels);
+                //Log.d("HotelFragment","hotelsRequest hotels => "+hotels);
                 ArrayAdapter<String> hotelsAdapter = hf_temp.arrayAdapterFromList(hotels);
                 hfv_temp.getSpHotels().setAdapter(hotelsAdapter);
             }

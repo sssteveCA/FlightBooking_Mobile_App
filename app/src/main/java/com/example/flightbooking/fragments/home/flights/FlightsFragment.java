@@ -172,7 +172,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
         ffm_temp.getCountryAirports(country, new FlightsFragmentModel.GetCountryAirports() {
             @Override
             public void getCountryAirportsResponse(List<String> airports) {
-                Log.d("FlightsFragment","airportsRequest getCountryAirports response => "+airports);
+                //Log.d("FlightsFragment","airportsRequest getCountryAirports response => "+airports);
                 if(ar == FlightsFragmentModel.AirportsRequest.DEPARTURE){
                     //edit the spinner with departure airports list
                     ArrayAdapter<String> airportsAdapter = ff_temp.arrayAdapterFromList(airports);
@@ -195,7 +195,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
      * Get the available flight companies list
      */
     private void companiesRequest(){
-        Log.i("FlightsFragment","companiesRequest begin");
+        //Log.i("FlightsFragment","companiesRequest begin");
         FlightsFragmentModel ffm_temp = this.ffm;
         FlightsFragmentView ffv_temp = this.ffv;
         FlightsFragment ff_temp = this;

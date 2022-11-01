@@ -143,7 +143,7 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
                     @Override
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //Yes button pressed
-                        Log.i("SubscribeFragment"," Yes button pressed");
+                        //Log.i("SubscribeFragment"," Yes button pressed");
                         Map<String, String> post_data = sf_this.setSubscribeBody();
                         sf_this.sfv.getPb().setVisibility(View.VISIBLE);
                         sf_this.sfm.subscribeRequest(post_data, new SubscribeFragmentModel.SubscribeResponse() {

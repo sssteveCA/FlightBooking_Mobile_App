@@ -76,15 +76,15 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
             Constructor<?> frag_constr = fragment_clazz.getConstructor();
             boolean require_connection = this.mam.isConnectionRequired(label);
             if(require_connection){
-                Log.i("MainActivity","setFragments require connection");
+                //Log.i("MainActivity","setFragments require connection");
                 //For this item internet is required
                 boolean connected = this.mam.getConnectionStatus();
                 if(connected){
-                    Log.i("MainActivity","setFragments connection connected");
+                    //Log.i("MainActivity","setFragments connection connected");
                     this.mav.updateFragment(R.id.main_activity_fragment_container, (Fragment)frag_constr.newInstance(),data);
                 }//if(connected){
                 else{
-                    Log.i("MainActivity","setFragments connection not connected");
+                    //Log.i("MainActivity","setFragments connection not connected");
                     if(label.equalsIgnoreCase(FragmentLabels.FLIGHTS.getLabelName()))
                         label = FragmentLabels.HOME.getLabelName();
                         Bundle noconnBund = new Bundle();
@@ -94,7 +94,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
                 }
             }//if(require_connection){
             else{
-                Log.i("MainActivity","setFragments not require connection");
+                //Log.i("MainActivity","setFragments not require connection");
                 this.mav.updateFragment(R.id.main_activity_fragment_container, (Fragment)frag_constr.newInstance(),data);
             }//else di if(require_connection){
         } catch (ClassNotFoundException | NoSuchMethodException e) {
