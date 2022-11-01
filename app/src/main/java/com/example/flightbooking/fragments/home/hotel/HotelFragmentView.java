@@ -12,7 +12,7 @@ import java.util.Map;
 
 public class HotelFragmentView {
 
-    private Spinner sp_country,sp_city,sp_hotel;
+    private Spinner sp_countries,sp_cities,sp_hotels;
     private EditText et_check_in,et_check_out,et_rooms,et_people;
     private Button bt_search;
     private ProgressBar pb_search;
@@ -25,9 +25,9 @@ public class HotelFragmentView {
         this.assignItems(items);
     }
 
-    public Spinner getSpCountry(){return this.sp_country;}
-    public Spinner getSpCity(){return this.sp_city;}
-    public Spinner getSpHotel(){return this.sp_hotel;}
+    public Spinner getSpCountries(){return this.sp_countries;}
+    public Spinner getSpCities(){return this.sp_cities;}
+    public Spinner getSpHotels(){return this.sp_hotels;}
     public EditText getEtCkeckIn(){return this.et_check_in;}
     public EditText getEtCkeckOut(){return this.et_check_out;}
     public EditText getEtRooms(){return this.et_rooms;}
@@ -41,9 +41,9 @@ public class HotelFragmentView {
                 throw new MissingValuesException("Impossibile trovare uno o più dati richiesti");
             }
         }
-        this.sp_country = (Spinner) items.get("country");
-        this.sp_city = (Spinner) items.get("city");
-        this.sp_hotel = (Spinner) items.get("hotel");
+        this.sp_countries = (Spinner) items.get("countries");
+        this.sp_cities = (Spinner) items.get("cities");
+        this.sp_hotels = (Spinner) items.get("hotels");
         this.et_check_in = (EditText) items.get("check_in");
         this.et_check_out = (EditText) items.get("check_out");
         this.et_rooms = (EditText) items.get("et_rooms");

@@ -92,9 +92,9 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         this.hfm = new HotelFragmentModel(this.context);
         try {
             this.hfv = new HotelFragmentView(this.hotelItems(v));
-            this.hfv.getSpCountry().setOnItemSelectedListener(this);
-            this.hfv.getSpCity().setOnItemSelectedListener(this);
-            this.hfv.getSpHotel().setOnItemSelectedListener(this);
+            this.hfv.getSpCountries().setOnItemSelectedListener(this);
+            this.hfv.getSpCities().setOnItemSelectedListener(this);
+            this.hfv.getSpHotels().setOnItemSelectedListener(this);
             this.hfv.getEtCkeckIn().setOnClickListener(this);
             this.hfv.getEtCkeckOut().setOnClickListener(this);
             this.hfv.getBtSearch().setOnClickListener(this);
@@ -112,9 +112,9 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
      */
     private Map<String, View> hotelItems(View v){
         Map<String, View> items = Map.ofEntries(
-                new AbstractMap.SimpleImmutableEntry<>("country", (Spinner)v.findViewById(R.id.frag_hotel_sp_country)),
-                new AbstractMap.SimpleImmutableEntry<>("city", (Spinner)v.findViewById(R.id.frag_hotel_sp_city)),
-                new AbstractMap.SimpleImmutableEntry<>("hotel", (Spinner)v.findViewById(R.id.frag_hotel_sp_hotel)),
+                new AbstractMap.SimpleImmutableEntry<>("countries", (Spinner)v.findViewById(R.id.frag_hotel_sp_country)),
+                new AbstractMap.SimpleImmutableEntry<>("cities", (Spinner)v.findViewById(R.id.frag_hotel_sp_city)),
+                new AbstractMap.SimpleImmutableEntry<>("hotels", (Spinner)v.findViewById(R.id.frag_hotel_sp_hotel)),
                 new AbstractMap.SimpleImmutableEntry<>("check_in", (EditText)v.findViewById(R.id.frag_hotel_et_check_in)),
                 new AbstractMap.SimpleImmutableEntry<>("check_out", (EditText)v.findViewById(R.id.frag_hotel_et_check_out)),
                 new AbstractMap.SimpleImmutableEntry<>("rooms", (EditText)v.findViewById(R.id.frag_hotel_et_rooms)),
@@ -142,11 +142,12 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         hfm_temp.getCountries(new HotelFragmentModel.GetCountries() {
             @Override
             public void countriesResponse(List<String> countries) {
-
+                ArrayAdapter<String> countriesAdapter = hf_temp.arrayAdapterFromList(countries);
+                hfv_temp.getSpCountries().setAdapter(countriesAdapter);
             }
             @Override
             public void countriesError(String message) {
-
+                Log.e("HotelFragment","countriesRequest error => "+message);
             }
         });
     }
