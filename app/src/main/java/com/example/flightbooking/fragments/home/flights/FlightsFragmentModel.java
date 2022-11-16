@@ -288,4 +288,20 @@ public class FlightsFragmentModel {
             }
         });
     }
+
+    /**
+     * Get a list with the countries that contain bookable airports
+     * @return
+     */
+    public LinkedList<String> getAirportsCountries(){
+        LinkedList<String> countries = new LinkedList<>();
+        if(this.airportsInfo != null){
+            Set<Map.Entry<String, JsonElement>> entries = this.airportsInfo.entrySet();
+            for(Map.Entry<String, JsonElement> entry: entries){
+                countries.add(entry.getKey());
+            }
+            return countries;
+        }//if(this.airportsInfo != null){
+        return null;
+    }
 }
