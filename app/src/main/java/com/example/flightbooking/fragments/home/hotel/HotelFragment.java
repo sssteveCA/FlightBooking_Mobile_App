@@ -236,12 +236,25 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
 
     /**
      * Set a list of city in the proper dropdown widget
-     * @param country the countries of the cities to display
+     * @param country the country of the cities to display
      */
     private void setCitiesList(String country){
         LinkedList<String> cities = this.hfm.getHotelCitiesOfCountry(country);
         ArrayAdapter<String> citiesAdapter = this.arrayAdapterFromList(cities);
         this.hfv.getSpCities().setAdapter(citiesAdapter);
+        String firstCity = cities.getFirst();
+        this.setHotelsList(country,firstCity);
+    }
+
+    /**
+     * Set a list of hotels in the proper dropdown widget
+     * @param country the country to search the hotels
+     * @param city the city of the hotels to display
+     */
+    private void setHotelsList(String country, String city){
+        LinkedList<String> hotels = this.hfm.getHotelsOfCity(country,city);
+        ArrayAdapter hotelsAdapter = this.arrayAdapterFromList(hotels);
+        this.hfv.getSpHotels().setAdapter(hotelsAdapter);
     }
 
 

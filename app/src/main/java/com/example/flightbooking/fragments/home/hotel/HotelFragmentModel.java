@@ -154,13 +154,16 @@ public class HotelFragmentModel {
      */
     public LinkedList<String> getHotelCitiesOfCountry(String country){
         LinkedList<String> cities = new LinkedList<>();
-        if(this.hotelsInfo.has(country)){
-            JsonObject joCities = this.hotelsInfo.getAsJsonObject(country);
-            Set<Map.Entry<String, JsonElement>> entries = joCities.entrySet();
-            for(Map.Entry<String, JsonElement> entry: entries){
-                cities.add(entry.getKey());
-            }
-        }//if(this.hotelsInfo.has(country)){
+        if(this.hotelsInfo != null){
+            if(this.hotelsInfo.has(country)){
+                JsonObject joCities = this.hotelsInfo.getAsJsonObject(country);
+                Set<Map.Entry<String, JsonElement>> entries = joCities.entrySet();
+                for(Map.Entry<String, JsonElement> entry: entries){
+                    cities.add(entry.getKey());
+                }
+            }//if(this.hotelsInfo.has(country)){
+        }//if(this.hotelsInfo != null){
+
         return cities;
     }
 
@@ -187,16 +190,18 @@ public class HotelFragmentModel {
      */
     public LinkedList<String> getHotelsOfCity(String country, String city){
         LinkedList<String> hotels = new LinkedList<>();
-        if(this.hotelsInfo.has(country)){
-            JsonObject joCities = this.hotelsInfo.getAsJsonObject(country);
-            if(joCities.has(city)){
-                JsonObject joHotels = joCities.getAsJsonObject(city);
-                Set<Map.Entry<String, JsonElement>> entries = joHotels.entrySet();
-                for(Map.Entry<String, JsonElement> entry: entries){
-                    hotels.add(entry.getKey());
-                }
-            }//if(joCities.has(city)){
-        }//if(this.hotelsInfo.has(country)){
+        if(this.hotelsInfo != null){
+            if(this.hotelsInfo.has(country)){
+                JsonObject joCities = this.hotelsInfo.getAsJsonObject(country);
+                if(joCities.has(city)){
+                    JsonObject joHotels = joCities.getAsJsonObject(city);
+                    Set<Map.Entry<String, JsonElement>> entries = joHotels.entrySet();
+                    for(Map.Entry<String, JsonElement> entry: entries){
+                        hotels.add(entry.getKey());
+                    }
+                }//if(joCities.has(city)){
+            }//if(this.hotelsInfo.has(country)){
+        }//if(this.hotelsInfo != null){
         return hotels;
     }
 
