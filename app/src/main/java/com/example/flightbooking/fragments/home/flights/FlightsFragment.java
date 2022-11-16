@@ -127,7 +127,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     public void onResume() {
         super.onResume();
         this.companiesRequest();
-        this.countriesRequest(this.initialCountry);
+        this.loadAirportsData();
     }
 
     /**
@@ -167,32 +167,6 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
         return flightsItems;
     }
 
-    private void airportsRequest(String country, FlightsFragmentModel.AirportsRequest ar){
-        FlightsFragmentModel ffm_temp = this.ffm;
-        FlightsFragmentView ffv_temp = this.ffv;
-        FlightsFragment ff_temp = this;
-        ffm_temp.getCountryAirports(country, new FlightsFragmentModel.GetCountryAirports() {
-            @Override
-            public void getCountryAirportsResponse(List<String> airports) {
-                //Log.d("FlightsFragment","airportsRequest getCountryAirports response => "+airports);
-                if(ar == FlightsFragmentModel.AirportsRequest.DEPARTURE){
-                    //edit the spinner with departure airports list
-                    ArrayAdapter<String> airportsAdapter = ff_temp.arrayAdapterFromList(airports);
-                    ffv_temp.getSpDepAirport().setAdapter(airportsAdapter);
-                }
-                else{
-                    //edit the spinner with arrival airports list
-                    ArrayAdapter<String> airportsAdapter = ff_temp.arrayAdapterFromList(airports);
-                    ffv_temp.getSpArrAirport().setAdapter(airportsAdapter);
-                }
-            }
-            @Override
-            public void getCountryAirportsError(String message) {
-                Log.e("FlightsFragment","dataRequest getCountryAirports error => "+message);
-            }
-        });
-    }
-
     /**
      * Get the available flight companies list
      */
@@ -215,33 +189,6 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
         });
     }
 
-    /**
-     * Get the countries list and airports list for specified country
-     * @param country
-     */
-    private void countriesRequest(String country){
-        FlightsFragmentModel ffm_temp = this.ffm;
-        FlightsFragmentView ffv_temp = this.ffv;
-        FlightsFragment ff_temp = this;
-        ffm_temp.getCountries(new FlightsFragmentModel.GetCountries() {
-            @Override
-            public void countriesResponse(List<String> countries) {
-                //Log.d("FlightsFragment","countriesRequest getCountries response => "+countries);
-                ArrayAdapter<String> countriesAdapter = ff_temp.arrayAdapterFromList(countries);
-                ffv_temp.getSpDepCountry().setAdapter(countriesAdapter);
-                ffv_temp.getSpArrCountry().setAdapter(countriesAdapter);
-                int index = countries.indexOf(country);
-                String country = countries.get(index);
-                //Log.d("FlightsFragment","countriesRequest getCountries country => "+country);
-                ff_temp.airportsRequest(country,FlightsFragmentModel.AirportsRequest.DEPARTURE);
-                ff_temp.airportsRequest(country,FlightsFragmentModel.AirportsRequest.ARRIVAL);
-            }
-            @Override
-            public void countriesError(String message) {
-                Log.e("FlightsFragment","dataRequest getCountries error =>  "+message);
-            }
-        });
-    }
 
     /**
      * Do the HTTP request to the full bookable airports info
