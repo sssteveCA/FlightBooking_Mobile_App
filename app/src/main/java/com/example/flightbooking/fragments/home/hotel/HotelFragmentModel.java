@@ -36,6 +36,7 @@ public class HotelFragmentModel {
 
     private Context context;
     private HotelFragmentClient hfc;
+    private JsonObject hotelsInfo = null;
 
     public enum EditTextsDate{
         CKECK_IN,CHECK_OUT
@@ -53,6 +54,7 @@ public class HotelFragmentModel {
     public boolean getConnectionStatus(){
         return Connection.checkInternet(this.context);
     }
+    public JsonObject getHotelsInfo(){return this.hotelsInfo;}
 
     /**
      * Perform the HTTP request to get the hotel countries list
@@ -137,6 +139,35 @@ public class HotelFragmentModel {
             @Override
             public void onFailure(Call<List<String>> call, Throwable t) {
                 gh.hotelsError(t.getMessage());
+            }
+        });
+    }
+
+    /**
+     * Perform the HTTP request to get all available hotels details
+     * @param ghi
+     */
+    public void getHotelsInfo(GetHotelsInfo ghi){
+        HotelFragmentModel this_hfm = this;
+        this.hfc.getHfi().hotels().enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if(response.isSuccessful()){
+                    this_hfm.hotelsInfo = response.body();
+                    ghi.hotelInfoResponse(this_hfm.hotelsInfo);
+                }//if(response.isSuccessful()){
+                else{
+                    try {
+                        String errorBody = response.errorBody().string();
+                        ghi.hotelInfoError(errorBody);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                ghi.hotelInfoError(t.getMessage());
             }
         });
     }
