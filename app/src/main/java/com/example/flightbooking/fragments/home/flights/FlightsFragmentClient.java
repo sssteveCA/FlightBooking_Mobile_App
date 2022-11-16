@@ -18,6 +18,9 @@ import retrofit2.http.Query;
 public class FlightsFragmentClient
 {
     public interface FlightsFragmentInterface{
+        @GET(Globals.API_ROUTES_PREFIX+"/airports")
+        Call<JsonObject> airports();
+
         @GET(Globals.API_ROUTES_PREFIX+"/airportsearch")
         Call<JsonObject> airports_search(@Query("country") String country);
 
