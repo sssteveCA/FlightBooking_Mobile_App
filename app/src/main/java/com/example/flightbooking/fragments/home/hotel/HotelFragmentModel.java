@@ -3,6 +3,7 @@ package com.example.flightbooking.fragments.home.hotel;
 import android.content.Context;
 
 import com.example.flightbooking.common.Connection;
+import com.google.gson.JsonObject;
 
 import java.io.IOException;
 import java.util.List;
@@ -26,6 +27,11 @@ public class HotelFragmentModel {
     public interface GetHotels{
         public void hotelsResponse(List<String> hotels);
         public void hotelsError(String message);
+    }
+
+    public interface GetHotelsInfo{
+        public void hotelInfoResponse(JsonObject hotels);
+        public void hotelInfoError(String message);
     }
 
     private Context context;
