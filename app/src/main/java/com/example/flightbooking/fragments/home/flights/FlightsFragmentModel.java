@@ -35,16 +35,6 @@ public class FlightsFragmentModel {
         public void companiesError(String message);
     }
 
-    public interface GetCountries{
-        public void countriesResponse(List<String> countries);
-        public void countriesError(String message);
-    }
-
-    public interface GetCountryAirports{
-        public void getCountryAirportsResponse(List<String> airports);
-        public void getCountryAirportsError(String message);
-    }
-
     public interface GetFlightInfo{
         public void getTicketPreviewResponse(FlightInfo fp);
         public void getTicketPreviewError(String message);
@@ -222,69 +212,6 @@ public class FlightsFragmentModel {
             @Override
             public void onFailure(Call<List<String>> call, Throwable t) {
                 gc.companiesError(t.getMessage());
-            }
-        });
-    }
-
-    /**
-     * Perform the HTTP request to get the countries list
-     * @param gc
-     */
-    public void getCountries(GetCountries gc){
-        this.ffc.getFfi().countries().enqueue(new Callback<List<String>>() {
-            @Override
-            public void onResponse(Call<List<String>> call, Response<List<String>> response) {
-                if(response.isSuccessful()){
-                    List<String> countries = response.body();
-                    gc.countriesResponse(countries);
-                }
-                else{
-                    try {
-                        String errorBody = response.errorBody().string();
-                        gc.countriesError(errorBody);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-            @Override
-            public void onFailure(Call<List<String>> call, Throwable t) {
-                gc.countriesError(t.getMessage());
-            }
-        });
-    }
-
-    /**
-     * Perform the HTTP request to get the airports list for specific country
-     * @param country
-     * @param gca
-     */
-    public void getCountryAirports(String country, GetCountryAirports gca){
-        this.ffc.getFfi().airports_search(country).enqueue(new Callback<JsonObject>() {
-            @Override
-            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
-                if(response.isSuccessful()){
-                    JsonObject airports = response.body();
-                    LinkedList<String> airports_name = new LinkedList<String>();
-                    //Loop over the JsonObject to put all keys in LinkedList
-                    Set<Map.Entry<String, JsonElement>> entries = airports.entrySet();
-                    for(Map.Entry<String, JsonElement> entry: entries){
-                        airports_name.add(entry.getKey());
-                    }
-                    gca.getCountryAirportsResponse(airports_name);
-                }
-                else{
-                    try {
-                        String errorBody = response.errorBody().string();
-                        gca.getCountryAirportsError(errorBody);
-                    } catch (IOException e) {
-                        e.printStackTrace();
-                    }
-                }
-            }
-            @Override
-            public void onFailure(Call<JsonObject> call, Throwable t) {
-                gca.getCountryAirportsError(t.getMessage());
             }
         });
     }
