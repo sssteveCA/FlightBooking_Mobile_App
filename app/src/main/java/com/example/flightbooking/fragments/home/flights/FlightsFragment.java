@@ -30,8 +30,10 @@ import com.example.flightbooking.exception.MissingValuesException;
 import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.models.response.flights.FlightInfo;
 import com.example.flightbooking.models.requests.flights.FlightSearch;
+import com.google.gson.JsonObject;
 
 import java.util.AbstractMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -237,6 +239,28 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
             @Override
             public void countriesError(String message) {
                 Log.e("FlightsFragment","dataRequest getCountries error =>  "+message);
+            }
+        });
+    }
+
+    /**
+     * Do the HTTP request to the full bookable airports info
+     */
+    private void loadAirportsData(){
+        FlightsFragmentModel ffm_temp = this.ffm;
+        FlightsFragmentView ffv_temp = this.ffv;
+        FlightsFragment ff_temp = this;
+        ffm_temp.getAirports(new FlightsFragmentModel.GetAirportsInfo() {
+            @Override
+            public void airportsResponse(JsonObject airports) {
+                LinkedList<String> countries = ffm_temp.getAirportsCountries();
+                ArrayAdapter<String> countriesAdapter = ff_temp.arrayAdapterFromList(countries);
+                ffv_temp.getSpDepCountry().setAdapter(countriesAdapter);
+                ffv_temp.getSpArrCountry().setAdapter(countriesAdapter);
+            }
+            @Override
+            public void airportsError(String message) {
+
             }
         });
     }
