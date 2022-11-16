@@ -3,6 +3,7 @@ package com.example.flightbooking.fragments.home.hotel;
 import android.provider.Settings;
 
 import com.example.flightbooking.interfaces.Globals;
+import com.google.gson.JsonObject;
 
 import java.util.List;
 
@@ -15,6 +16,9 @@ import retrofit2.http.Query;
 public class HotelFragmentClient {
 
     public interface HotelFragmentInterface{
+        @GET(Globals.API_ROUTES_PREFIX+"/hotels")
+        Call<JsonObject> hotels();
+
         @GET(Globals.API_ROUTES_PREFIX+"/hotelcountries")
         Call<List<String>> countries();
 
