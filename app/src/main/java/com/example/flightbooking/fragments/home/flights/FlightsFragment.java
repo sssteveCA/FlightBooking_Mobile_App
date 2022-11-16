@@ -257,6 +257,9 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
                 ArrayAdapter<String> countriesAdapter = ff_temp.arrayAdapterFromList(countries);
                 ffv_temp.getSpDepCountry().setAdapter(countriesAdapter);
                 ffv_temp.getSpArrCountry().setAdapter(countriesAdapter);
+                String initialCountry = countries.getFirst();
+                ff_temp.setAirportsList(initialCountry, FlightsFragmentModel.AirportsRequest.DEPARTURE);
+                ff_temp.setAirportsList(initialCountry, FlightsFragmentModel.AirportsRequest.ARRIVAL);
             }
             @Override
             public void airportsError(String message) {
@@ -389,12 +392,12 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
         if(adapterView == this.ffv.getSpDepCountry()){
           //Item selected from country departure spinner
             FlightsFragmentModel.AirportsRequest flight_type = FlightsFragmentModel.AirportsRequest.DEPARTURE;
-            this.airportsRequest(country,flight_type);
+            this.setAirportsList(country, flight_type);
         }
         else if(adapterView == this.ffv.getSpArrCountry()){
             //Item selected from country arrival spinner
             FlightsFragmentModel.AirportsRequest flight_type = FlightsFragmentModel.AirportsRequest.ARRIVAL;
-            this.airportsRequest(country,flight_type);
+            this.setAirportsList(country,flight_type);
         }
     }
 
