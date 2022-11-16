@@ -108,7 +108,8 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
     @Override
     public void onResume() {
         super.onResume();
-        this.countriesRequest();
+        //this.countriesRequest();
+        this.loadHotelsData();
     }
 
     /**
@@ -265,12 +266,12 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         switch(adapterView.getId()){
             case R.id.frag_hotel_sp_countries:
                 country = (String) adapterView.getItemAtPosition(i);
-                this.citiesRequest(country);
+                this.setCitiesList(country);
                 break;
             case R.id.frag_hotel_sp_cities:
                 country = (String) this.hfv.getSpCountries().getSelectedItem();
                 String city = (String) adapterView.getItemAtPosition(i);
-                this.hotelsRequest(country,city);
+                this.setHotelsList(country,city);
                 break;
             case R.id.frag_hotel_sp_hotels:
                 break;
