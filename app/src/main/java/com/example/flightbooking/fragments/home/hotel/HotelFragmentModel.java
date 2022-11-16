@@ -3,10 +3,14 @@ package com.example.flightbooking.fragments.home.hotel;
 import android.content.Context;
 
 import com.example.flightbooking.common.Connection;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
+import java.util.LinkedList;
 import java.util.List;
+import java.util.Map;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -141,6 +145,21 @@ public class HotelFragmentModel {
                 gh.hotelsError(t.getMessage());
             }
         });
+    }
+
+    /**
+     * Get a list with the countries that contain bookable hotels
+     * @return
+     */
+    public LinkedList<String> getHotelsCountries(){
+        LinkedList<String> countries = new LinkedList<>();
+        if(this.hotelsInfo != null){
+            Set<Map.Entry<String, JsonElement>> entries = this.hotelsInfo.entrySet();
+            for(Map.Entry<String, JsonElement> entry: entries){
+                countries.add(entry.getKey());
+            }
+        }//if(this.hotelsInfo != null){
+        return countries;
     }
 
     /**
