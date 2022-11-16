@@ -21,12 +21,6 @@ public class FlightsFragmentClient
         @GET(Globals.API_ROUTES_PREFIX+"/airports")
         Call<JsonObject> airports();
 
-        @GET(Globals.API_ROUTES_PREFIX+"/airportsearch")
-        Call<JsonObject> airports_search(@Query("country") String country);
-
-        @GET(Globals.API_ROUTES_PREFIX+"/flightsearch")
-        Call<List<String>> countries();
-
         @GET(Globals.API_ROUTES_PREFIX+"/companieslist")
         Call<List<String>> companies();
 
