@@ -191,13 +191,13 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
 
 
     /**
-     * Do the HTTP request to the full bookable airports info
+     * Do the HTTP request to get the full bookable airports info
      */
     private void loadAirportsData(){
         FlightsFragmentModel ffm_temp = this.ffm;
         FlightsFragmentView ffv_temp = this.ffv;
         FlightsFragment ff_temp = this;
-        ffm_temp.getAirports(new FlightsFragmentModel.GetAirportsInfo() {
+        ffm_temp.getAirportsRequest(new FlightsFragmentModel.GetAirportsInfo() {
             @Override
             public void airportsResponse(JsonObject airports) {
                 //Log.i("FlightsFragment","loadAirportsData airports request => "+airports);

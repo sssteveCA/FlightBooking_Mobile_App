@@ -164,7 +164,7 @@ public class FlightsFragmentModel {
      * Permorm the HTTP request to get all the available airports details
      * @param gai
      */
-    public void getAirports(GetAirportsInfo gai){
+    public void getAirportsRequest(GetAirportsInfo gai){
         FlightsFragmentModel this_ffm = this;
         this.ffc.getFfi().airports().enqueue(new Callback<JsonObject>() {
             @Override

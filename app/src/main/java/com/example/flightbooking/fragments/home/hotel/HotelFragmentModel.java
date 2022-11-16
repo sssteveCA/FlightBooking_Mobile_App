@@ -147,7 +147,7 @@ public class HotelFragmentModel {
      * Perform the HTTP request to get all available hotels details
      * @param ghi
      */
-    public void getHotelsInfo(GetHotelsInfo ghi){
+    public void getHotelsInfoRequest(GetHotelsInfo ghi){
         HotelFragmentModel this_hfm = this;
         this.hfc.getHfi().hotels().enqueue(new Callback<JsonObject>() {
             @Override

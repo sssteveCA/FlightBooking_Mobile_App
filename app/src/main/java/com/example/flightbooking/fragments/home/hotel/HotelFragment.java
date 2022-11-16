@@ -20,6 +20,7 @@ import android.widget.Spinner;
 import com.example.flightbooking.R;
 import com.example.flightbooking.dialogs.DatePickerHotel;
 import com.example.flightbooking.exception.MissingValuesException;
+import com.google.gson.JsonObject;
 
 import java.util.AbstractMap;
 import java.util.List;
@@ -205,6 +206,25 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
             @Override
             public void hotelsError(String message) {
                 Log.e("HotelFragment","hotelsRequest error => "+message);
+            }
+        });
+    }
+
+    /**
+     * Do the HTTP request to get the full bookable hotels info
+     */
+    private void loadHotelsData(){
+        HotelFragmentModel hfm_temp = this.hfm;
+        HotelFragmentView hfv_temp = this.hfv;
+        HotelFragment hf_temp = this;
+        hfm_temp.getHotelsInfoRequest(new HotelFragmentModel.GetHotelsInfo() {
+            @Override
+            public void hotelInfoResponse(JsonObject hotels) {
+
+            }
+            @Override
+            public void hotelInfoError(String message) {
+
             }
         });
     }
