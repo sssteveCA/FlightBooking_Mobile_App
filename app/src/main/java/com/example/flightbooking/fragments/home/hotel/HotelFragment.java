@@ -108,7 +108,6 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
     @Override
     public void onResume() {
         super.onResume();
-        //this.countriesRequest();
         this.loadHotelsData();
     }
 

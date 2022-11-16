@@ -18,15 +18,6 @@ public class HotelFragmentClient {
     public interface HotelFragmentInterface{
         @GET(Globals.API_ROUTES_PREFIX+"/hotels")
         Call<JsonObject> hotels();
-
-        @GET(Globals.API_ROUTES_PREFIX+"/hotelcountries")
-        Call<List<String>> countries();
-
-        @GET(Globals.API_ROUTES_PREFIX+"/hotelcities")
-        Call<List<String>> cities(@Query("country")String country);
-
-        @GET(Globals.API_ROUTES_PREFIX+"/hotelsearch")
-        Call<List<String>> hotels(@Query("country")String country,@Query("city")String city);
     }
 
     private Retrofit retrofit;
