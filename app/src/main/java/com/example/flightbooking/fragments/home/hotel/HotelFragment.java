@@ -23,6 +23,7 @@ import com.example.flightbooking.exception.MissingValuesException;
 import com.google.gson.JsonObject;
 
 import java.util.AbstractMap;
+import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
 
@@ -220,13 +221,27 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         hfm_temp.getHotelsInfoRequest(new HotelFragmentModel.GetHotelsInfo() {
             @Override
             public void hotelInfoResponse(JsonObject hotels) {
-
+                LinkedList<String> countries = hfm_temp.getHotelsCountries();
+                ArrayAdapter<String> countriesAdapter = hf_temp.arrayAdapterFromList(countries);
+                hfv_temp.getSpCountries().setAdapter(countriesAdapter);
+                String initialCity = countries.getFirst();
+                hf_temp.setCitiesList(initialCity);
             }
             @Override
             public void hotelInfoError(String message) {
 
             }
         });
+    }
+
+    /**
+     * Set a list of city in the proper dropdown widget
+     * @param country the countries of the cities to display
+     */
+    private void setCitiesList(String country){
+        LinkedList<String> cities = this.hfm.getHotelCitiesOfCountry(country);
+        ArrayAdapter<String> citiesAdapter = this.arrayAdapterFromList(cities);
+        this.hfv.getSpCities().setAdapter(citiesAdapter);
     }
 
 
