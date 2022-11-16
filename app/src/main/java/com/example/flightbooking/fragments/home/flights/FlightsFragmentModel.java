@@ -25,6 +25,11 @@ import retrofit2.Response;
 
 public class FlightsFragmentModel {
 
+    public interface GetAirportsInfo{
+        public void airportsResponse(JsonObject airports);
+        public void airportsError(String message);
+    }
+
     public interface GetCompanies{
         public void companiesResponse(List<String> companies);
         public void companiesError(String message);
