@@ -66,6 +66,7 @@ public class FlightsFragmentModel {
     private FlightTypes selected_flight_type;
     private String sel_country; //Countries selected for view airports list
     private FlightsFragmentClient ffc;
+    private JsonObject airportsInfo = null;
 
     public FlightsFragmentModel(Context ctx){
         this.context = ctx;
@@ -75,6 +76,7 @@ public class FlightsFragmentModel {
 
     public FlightTypes getSelectedFlightType(){return this.selected_flight_type;}
     public String getSelCountry(){return this.sel_country;}
+    public JsonObject getAirportsInfo(){return this.airportsInfo;}
 
     public void setSelectedFlightType(FlightTypes ft){
        this.selected_flight_type = ft;
@@ -166,6 +168,35 @@ public class FlightsFragmentModel {
             //One or more inputs are not valid
             gfi.getTicketPreviewError("Uno o più dati non sono nel formato corretto, riprova");
         }
+    }
+
+    /**
+     * Permorm the HTTP request to get all the available airports details
+     * @param gai
+     */
+    public void getAirports(GetAirportsInfo gai){
+        FlightsFragmentModel this_ffm = this;
+        this.ffc.getFfi().airports().enqueue(new Callback<JsonObject>() {
+            @Override
+            public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
+                if(response.isSuccessful()){
+                    this_ffm.airportsInfo = response.body();
+                    gai.airportsResponse(this_ffm.airportsInfo);
+                }
+                else{
+                    try {
+                        String errorBody = response.errorBody().string();
+                        gai.airportsError(errorBody);
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                    }
+                }
+            }
+            @Override
+            public void onFailure(Call<JsonObject> call, Throwable t) {
+                gai.airportsError(t.getMessage());
+            }
+        });
     }
 
     /**
