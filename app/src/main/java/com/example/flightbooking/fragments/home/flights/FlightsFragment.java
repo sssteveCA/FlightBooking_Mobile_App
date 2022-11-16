@@ -266,6 +266,22 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     }
 
     /**
+     * Set a list of bookable airports
+     * @param country the country of the airports to display
+     * @param ar the option to choose the dropdown to fill
+     */
+    private void setAirportsList(String country, FlightsFragmentModel.AirportsRequest ar){
+        LinkedList<String> airports = this.ffm.getAirportsOfCountry(country);
+        ArrayAdapter<String> airportsAdapter = this.arrayAdapterFromList(airports);
+        if(ar == FlightsFragmentModel.AirportsRequest.DEPARTURE){
+            this.ffv.getSpDepCountry().setAdapter(airportsAdapter);
+        }//if(ar == FlightsFragmentModel.AirportsRequest.DEPARTURE){
+        else{
+            this.ffv.getSpArrCountry().setAdapter(airportsAdapter);
+        }
+    }
+
+    /**
      * Se the body for flightsearch POST request
      * @return
      */
