@@ -200,7 +200,9 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
         ffm_temp.getAirports(new FlightsFragmentModel.GetAirportsInfo() {
             @Override
             public void airportsResponse(JsonObject airports) {
+                //Log.i("FlightsFragment","loadAirportsData airports request => "+airports);
                 LinkedList<String> countries = ffm_temp.getAirportsCountries();
+                Log.i("FlightsFragment","loadAirportsData airports request linkedlist => "+countries);
                 ArrayAdapter<String> countriesAdapter = ff_temp.arrayAdapterFromList(countries);
                 ffv_temp.getSpDepCountry().setAdapter(countriesAdapter);
                 ffv_temp.getSpArrCountry().setAdapter(countriesAdapter);
@@ -224,10 +226,10 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
         LinkedList<String> airports = this.ffm.getAirportsOfCountry(country);
         ArrayAdapter<String> airportsAdapter = this.arrayAdapterFromList(airports);
         if(ar == FlightsFragmentModel.AirportsRequest.DEPARTURE){
-            this.ffv.getSpDepCountry().setAdapter(airportsAdapter);
+            this.ffv.getSpDepAirport().setAdapter(airportsAdapter);
         }//if(ar == FlightsFragmentModel.AirportsRequest.DEPARTURE){
         else{
-            this.ffv.getSpArrCountry().setAdapter(airportsAdapter);
+            this.ffv.getSpArrAirport().setAdapter(airportsAdapter);
         }
     }
 

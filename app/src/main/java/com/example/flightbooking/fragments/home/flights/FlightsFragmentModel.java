@@ -171,6 +171,7 @@ public class FlightsFragmentModel {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if(response.isSuccessful()){
                     this_ffm.airportsInfo = response.body();
+                    //Log.i("FlightsFragmentModel","getAirports airportsInfo => "+this_ffm.airportsInfo);
                     gai.airportsResponse(this_ffm.airportsInfo);
                 }
                 else{
@@ -221,15 +222,14 @@ public class FlightsFragmentModel {
      * @return
      */
     public LinkedList<String> getAirportsCountries(){
+        LinkedList<String> countries = new LinkedList<>();
         if(this.airportsInfo != null){
-            LinkedList<String> countries = new LinkedList<>();
             Set<Map.Entry<String, JsonElement>> entries = this.airportsInfo.entrySet();
             for(Map.Entry<String, JsonElement> entry: entries){
                 countries.add(entry.getKey());
             }
-            return countries;
         }//if(this.airportsInfo != null){
-        return null;
+        return countries;
     }
 
     /**
@@ -238,18 +238,16 @@ public class FlightsFragmentModel {
      * @return
      */
     public LinkedList<String> getAirportsOfCountry(String country){
+        LinkedList<String> airports = new LinkedList<>();
         if(this.airportsInfo != null){
             if(this.airportsInfo.has(country)){
-                LinkedList<String> airports = new LinkedList<>();
                 JsonObject joAirports = this.airportsInfo.getAsJsonObject(country);
                 Set<Map.Entry<String, JsonElement>> entries = joAirports.entrySet();
                 for(Map.Entry<String,JsonElement> entry: entries){
                     airports.add(entry.getKey());
                 }
-                return airports;
             }//if(this.airportsInfo.has(country)){
-            return null;
         }//if(this.airportsInfo != null){
-        return null;
+        return airports;
     }
 }
