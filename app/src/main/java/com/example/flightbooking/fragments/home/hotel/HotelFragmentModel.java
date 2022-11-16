@@ -148,6 +148,25 @@ public class HotelFragmentModel {
     }
 
     /**
+     * Get a list of cities in a country that have bookable hotels
+     * @param country the country to search the cities
+     * @return
+     */
+    public LinkedList<String> getHotelCitiesOfCountry(String country){
+        LinkedList<String> cities = new LinkedList<>();
+        if(!this.getHotelsCountries().isEmpty()){
+            if(this.hotelsInfo.has(country)){
+                JsonObject joCities = this.hotelsInfo.getAsJsonObject(country);
+                Set<Map.Entry<String, JsonElement>> entries = joCities.entrySet();
+                for(Map.Entry<String, JsonElement> entry: entries){
+                    cities.add(entry.getKey());
+                }
+            }//if(this.hotelsInfo.has(country)){
+        }//if(!this.getHotelsCountries().isEmpty()){
+        return cities;
+    }
+
+    /**
      * Get a list with the countries that contain bookable hotels
      * @return
      */
