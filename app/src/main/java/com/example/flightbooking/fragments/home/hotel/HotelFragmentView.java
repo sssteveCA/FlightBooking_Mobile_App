@@ -11,6 +11,8 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import androidx.constraintlayout.widget.ConstraintLayout;
+
 import com.example.flightbooking.exception.MissingValuesException;
 
 import java.util.HashMap;
@@ -18,19 +20,21 @@ import java.util.Map;
 
 public class HotelFragmentView {
 
+    private ConstraintLayout cl;
     private Spinner sp_countries,sp_cities,sp_hotels;
     private EditText et_check_in,et_check_out,et_rooms,et_people;
     private Button bt_search;
     private ProgressBar pb_search;
 
     private static String[] itemsName = {
-            "countries","cities","hotels","check_in","check_out", "rooms","people"
+            "layout","countries","cities","hotels","check_in","check_out", "rooms","people"
     };
 
     public HotelFragmentView(Map<String, View> items) throws MissingValuesException {
         this.assignItems(items);
     }
 
+    public ConstraintLayout getCl(){return this.cl;}
     public Spinner getSpCountries(){return this.sp_countries;}
     public Spinner getSpCities(){return this.sp_cities;}
     public Spinner getSpHotels(){return this.sp_hotels;}
@@ -47,6 +51,7 @@ public class HotelFragmentView {
                 throw new MissingValuesException("Impossibile trovare uno o più dati richiesti");
             }
         }
+        this.cl = (ConstraintLayout) items.get("layout");
         this.sp_countries = (Spinner) items.get("countries");
         this.sp_cities = (Spinner) items.get("cities");
         this.sp_hotels = (Spinner) items.get("hotels");
@@ -64,7 +69,7 @@ public class HotelFragmentView {
      * @return a TableLayout view
      */
     @SuppressLint("SetTextI18n")
-    public TableLayout setHotelInfoTable(Context context, HashMap<String, Object> info){
+    public TableLayout createHotelInfoTable(Context context, HashMap<String, Object> info){
         TableLayout tl = new TableLayout(context);
         if(info.containsKey("max_people")){
             TableRow tr = new TableRow(context);

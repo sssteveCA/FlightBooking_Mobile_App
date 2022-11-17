@@ -4,6 +4,7 @@ import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
+import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
@@ -16,6 +17,7 @@ import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
+import android.widget.TableLayout;
 
 import com.example.flightbooking.R;
 import com.example.flightbooking.dialogs.DatePickerHotel;
@@ -23,6 +25,7 @@ import com.example.flightbooking.exception.MissingValuesException;
 import com.google.gson.JsonObject;
 
 import java.util.AbstractMap;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -46,6 +49,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
     private Context context;
     private HotelFragmentModel hfm;
     private HotelFragmentView hfv;
+    private TableLayout tlInfo = null;
 
     public HotelFragment() {
         // Required empty public constructor
@@ -118,6 +122,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
      */
     private Map<String, View> hotelItems(View v){
         Map<String, View> items = Map.ofEntries(
+                new AbstractMap.SimpleImmutableEntry<>("layout", (ConstraintLayout)v.findViewById(R.id.frag_hotel_cl)),
                 new AbstractMap.SimpleImmutableEntry<>("countries", (Spinner)v.findViewById(R.id.frag_hotel_sp_countries)),
                 new AbstractMap.SimpleImmutableEntry<>("cities", (Spinner)v.findViewById(R.id.frag_hotel_sp_cities)),
                 new AbstractMap.SimpleImmutableEntry<>("hotels", (Spinner)v.findViewById(R.id.frag_hotel_sp_hotels)),
@@ -174,6 +179,19 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         this.hfv.getSpCities().setAdapter(citiesAdapter);
         String firstCity = cities.getFirst();
         this.setHotelsList(country,firstCity);
+    }
+
+    /**
+     * Set the table in the layout that display the information about a hotel
+     * @param country
+     * @param city
+     * @param hotel
+     */
+    private void setHotelInfoTable(String country, String city, String hotel){
+        HashMap<String, Object> info = this.hfm.getHotelInfo(country,city,hotel);
+        if(this.tlInfo != null){
+
+        }
     }
 
     /**
