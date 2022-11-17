@@ -79,16 +79,23 @@ public class HotelFragmentView {
     @SuppressLint("SetTextI18n")
     public void createHotelInfoTable(Context context, HashMap<String, Object> info){
         this.tl_info = new TableLayout(context);
+        this.tl_info.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        this.tl_info.setStretchAllColumns(true);
+        this.tl_info.setShrinkAllColumns(true);
+        this.tl_info.setWeightSum(4);
         TableRow tr; TextView th,td;
         tl_info.setId(View.generateViewId());
         if(info.containsKey("max_people")){
             tr = new TableRow(context);
+            tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
             th = new TextView(context);
+            th.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT,3));
             th.setText("Numero massimo di persone per stanza");
             th.setTypeface(null, Typeface.BOLD);
             th.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
             tr.addView(th);
             td = new TextView(context);
+            td.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT,1));
             td.setPadding(10,0,0,0);
             td.setText(String.valueOf(info.get("max_people")));
             td.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
@@ -98,12 +105,15 @@ public class HotelFragmentView {
         }
         if(info.containsKey("price")){
             tr = new TableRow(context);
+            tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
             th = new TextView(context);
+            th.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT,3));
             th.setText("Prezzo per notte");
             th.setTypeface(null, Typeface.BOLD);
             th.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
             tr.addView(th);
             td = new TextView(context);
+            td.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT,1));
             td.setPadding(10,0,0,0);
             td.setText(info.get("price")+"€");
             td.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
@@ -113,12 +123,15 @@ public class HotelFragmentView {
         }
         if(info.containsKey("rooms")){
             tr = new TableRow(context);
+            tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
             th = new TextView(context);
+            th.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT,3));
             th.setText("Stanze disponibili");
             th.setTypeface(null, Typeface.BOLD);
             th.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
             tr.addView(th);
             td = new TextView(context);
+            td.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT,1));
             td.setPadding(10,0,0,0);
             td.setText(info.get("rooms")+" stanze");
             td.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
@@ -128,12 +141,15 @@ public class HotelFragmentView {
         }
         if(info.containsKey("score")){
             tr = new TableRow(context);
+            tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
             th = new TextView(context);
+            th.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT,3));
             th.setText("Voto medio");
             th.setTypeface(null, Typeface.BOLD);
             th.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
             tr.addView(th);
             td = new TextView(context);
+            td.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT,1));
             td.setPadding(10,0,0,0);
             td.setText(String.valueOf(info.get("score")));
             td.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
@@ -143,12 +159,15 @@ public class HotelFragmentView {
         }
         if(info.containsKey("stars")){
             tr = new TableRow(context);
+            tr.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT));
             th = new TextView(context);
+            th.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT,3));
             th.setText("Stelle");
             th.setTypeface(null, Typeface.BOLD);
             th.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
             tr.addView(th);
             td = new TextView(context);
+            td.setLayoutParams(new TableRow.LayoutParams(TableRow.LayoutParams.MATCH_PARENT, TableRow.LayoutParams.MATCH_PARENT,1));
             td.setPadding(10,0,0,0);
             td.setText(info.get("stars")+" stelle");
             td.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
