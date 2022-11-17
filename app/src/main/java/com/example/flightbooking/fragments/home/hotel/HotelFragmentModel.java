@@ -7,6 +7,7 @@ import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 
 import java.io.IOException;
+import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
 import java.util.Map;
@@ -78,6 +79,34 @@ public class HotelFragmentModel {
         }//if(this.hotelsInfo != null){
 
         return cities;
+    }
+
+    /**
+     * Get the information of a specific hotel
+     * @param country the coutnry where the hotel is located
+     * @param city the city where the hotel is located
+     * @param hotel the hotel to search
+     * @return An HashMap with the hotel information
+     */
+    public HashMap<String, Object> getHotelInfo(String country, String city, String hotel){
+        HashMap<String, Object> info = new HashMap<>();
+        if(this.hotelsInfo != null){
+            if(this.hotelsInfo.has(country)){
+                JsonObject joCities = this.hotelsInfo.getAsJsonObject(country);
+                if(joCities.has(city)){
+                    JsonObject joHotels = this.hotelsInfo.getAsJsonObject(city);
+                    if(joHotels.has(hotel)){
+                        JsonObject joInfo = this.hotelsInfo.getAsJsonObject(hotel);
+                        info.put("max_people", joInfo.get("max_people").getAsInt());
+                        info.put("price",joInfo.get("price").getAsFloat());
+                        info.put("rooms",joInfo.get("rooms").getAsInt());
+                        info.put("score",joInfo.get("score").getAsInt());
+                        info.put("stars",joInfo.get("stars").getAsInt());
+                    }//if(joHotels.has(hotel)){
+                }//if(joCities.has(hotel)){
+            }//if(this.hotelsInfo.has(country)){
+        }//if(this.hotelsInfo != null){
+        return info;
     }
 
     /**
