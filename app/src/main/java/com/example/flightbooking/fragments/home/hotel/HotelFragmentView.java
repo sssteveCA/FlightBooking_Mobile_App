@@ -1,13 +1,19 @@
 package com.example.flightbooking.fragments.home.hotel;
 
+import android.annotation.SuppressLint;
+import android.content.Context;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
+import android.widget.TableLayout;
+import android.widget.TableRow;
+import android.widget.TextView;
 
 import com.example.flightbooking.exception.MissingValuesException;
 
+import java.util.HashMap;
 import java.util.Map;
 
 public class HotelFragmentView {
@@ -49,5 +55,67 @@ public class HotelFragmentView {
         this.et_rooms = (EditText) items.get("et_rooms");
         this.et_people = (EditText) items.get("et_people");
         this.bt_search = (Button) items.get("search");
+    }
+
+    /**
+     * Create the table that displays the hotel information
+     * @param context
+     * @param info the information values of the hotel
+     * @return a TableLayout view
+     */
+    @SuppressLint("SetTextI18n")
+    public TableLayout setHotelInfoTable(Context context, HashMap<String, Object> info){
+        TableLayout tl = new TableLayout(context);
+        if(info.containsKey("max_people")){
+            TableRow tr = new TableRow(context);
+            TextView th = new TextView(context);
+            th.setText("Numero massimo di persone per stanza");
+            tr.addView(th);
+            TextView td = new TextView(context);
+            td.setText(String.valueOf(info.get("max_people")));
+            tr.addView(td);
+            tl.addView(tr);
+        }
+        if(info.containsKey("price")){
+            TableRow tr = new TableRow(context);
+            TextView th = new TextView(context);
+            th.setText("Prezzo per notte");
+            tr.addView(th);
+            TextView td = new TextView(context);
+            td.setText(info.get("price")+"€");
+            tr.addView(td);
+            tl.addView(tr);
+        }
+        if(info.containsKey("rooms")){
+            TableRow tr = new TableRow(context);
+            TextView th = new TextView(context);
+            th.setText("Stanze disponibili");
+            tr.addView(th);
+            TextView td = new TextView(context);
+            td.setText(info.get("rooms")+" stanze");
+            tr.addView(td);
+            tl.addView(tr);
+        }
+        if(info.containsKey("score")){
+            TableRow tr = new TableRow(context);
+            TextView th = new TextView(context);
+            th.setText("Voto medio");
+            tr.addView(th);
+            TextView td = new TextView(context);
+            td.setText(String.valueOf(info.get("score")));
+            tr.addView(td);
+            tl.addView(tr);
+        }
+        if(info.containsKey("stars")){
+            TableRow tr = new TableRow(context);
+            TextView th = new TextView(context);
+            th.setText("Stelle");
+            tr.addView(th);
+            TextView td = new TextView(context);
+            td.setText(info.get("stars")+" stelle");
+            tr.addView(td);
+            tl.addView(tr);
+        }
+        return tl;
     }
 }
