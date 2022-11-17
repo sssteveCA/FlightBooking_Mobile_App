@@ -212,13 +212,15 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         LinkedList<String> hotels = this.hfm.getHotelsOfCity(country,city);
         ArrayAdapter hotelsAdapter = this.arrayAdapterFromList(hotels);
         this.hfv.getSpHotels().setAdapter(hotelsAdapter);
+        String firstHotel = hotels.getFirst();
+        this.setHotelInfoTable(country,city,firstHotel);
     }
 
 
     //AdapterView.OnItemSelectedListener
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
-        String country = "";
+        String country = ""; String city = ""; String hotel = "";
         switch(adapterView.getId()){
             case R.id.frag_hotel_sp_countries:
                 country = (String) adapterView.getItemAtPosition(i);
@@ -226,10 +228,14 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
                 break;
             case R.id.frag_hotel_sp_cities:
                 country = (String) this.hfv.getSpCountries().getSelectedItem();
-                String city = (String) adapterView.getItemAtPosition(i);
+                city = (String) adapterView.getItemAtPosition(i);
                 this.setHotelsList(country,city);
                 break;
             case R.id.frag_hotel_sp_hotels:
+                country = (String) this.hfv.getSpCountries().getSelectedItem();
+                city = (String) this.hfv.getSpCities().getSelectedItem();
+                hotel = (String) adapterView.getItemAtPosition(i);
+                this.setHotelInfoTable(country,city,hotel);
                 break;
         }
     }
