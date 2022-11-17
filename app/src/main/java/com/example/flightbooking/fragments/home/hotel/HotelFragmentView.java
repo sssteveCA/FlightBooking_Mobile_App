@@ -2,7 +2,9 @@ package com.example.flightbooking.fragments.home.hotel;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Typeface;
 import android.util.Log;
+import android.util.TypedValue;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -81,9 +83,14 @@ public class HotelFragmentView {
             TableRow tr = new TableRow(context);
             TextView th = new TextView(context);
             th.setText("Numero massimo di persone per stanza");
+            th.setTypeface(null, Typeface.BOLD);
+            th.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
             tr.addView(th);
             TextView td = new TextView(context);
+            td.setPadding(5,0,0,0);
             td.setText(String.valueOf(info.get("max_people")));
+            td.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            tr.setPadding(0,10,0,10);
             tr.addView(td);
             this.tl_info.addView(tr);
         }
@@ -91,9 +98,14 @@ public class HotelFragmentView {
             TableRow tr = new TableRow(context);
             TextView th = new TextView(context);
             th.setText("Prezzo per notte");
+            th.setTypeface(null, Typeface.BOLD);
+            th.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
             tr.addView(th);
             TextView td = new TextView(context);
+            td.setPadding(5,0,0,0);
             td.setText(info.get("price")+"€");
+            td.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            tr.setPadding(0,10,0,10);
             tr.addView(td);
             this.tl_info.addView(tr);
         }
@@ -101,9 +113,14 @@ public class HotelFragmentView {
             TableRow tr = new TableRow(context);
             TextView th = new TextView(context);
             th.setText("Stanze disponibili");
+            th.setTypeface(null, Typeface.BOLD);
+            th.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
             tr.addView(th);
             TextView td = new TextView(context);
+            td.setPadding(5,0,0,0);
             td.setText(info.get("rooms")+" stanze");
+            td.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            tr.setPadding(0,10,0,10);
             tr.addView(td);
             this.tl_info.addView(tr);
         }
@@ -111,9 +128,14 @@ public class HotelFragmentView {
             TableRow tr = new TableRow(context);
             TextView th = new TextView(context);
             th.setText("Voto medio");
+            th.setTypeface(null, Typeface.BOLD);
+            th.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
             tr.addView(th);
             TextView td = new TextView(context);
+            td.setPadding(5,0,0,0);
             td.setText(String.valueOf(info.get("score")));
+            td.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            tr.setPadding(0,10,0,10);
             tr.addView(td);
             this.tl_info.addView(tr);
         }
@@ -121,9 +143,14 @@ public class HotelFragmentView {
             TableRow tr = new TableRow(context);
             TextView th = new TextView(context);
             th.setText("Stelle");
+            th.setTypeface(null, Typeface.BOLD);
+            th.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
             tr.addView(th);
             TextView td = new TextView(context);
+            td.setPadding(5,0,0,0);
             td.setText(info.get("stars")+" stelle");
+            td.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            tr.setPadding(0,10,0,10);
             tr.addView(td);
             this.tl_info.addView(tr);
         }
