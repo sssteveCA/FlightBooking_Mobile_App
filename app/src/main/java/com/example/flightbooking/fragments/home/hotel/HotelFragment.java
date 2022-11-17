@@ -160,6 +160,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
                 ArrayAdapter<String> countriesAdapter = hf_temp.arrayAdapterFromList(countries);
                 hfv_temp.getSpCountries().setAdapter(countriesAdapter);
                 String initialCity = countries.getFirst();
+                //Log.d("HotelFragment","loadHotelsData initialCity => "+initialCity);
                 hf_temp.setCitiesList(initialCity);
             }
             @Override

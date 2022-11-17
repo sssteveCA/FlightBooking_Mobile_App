@@ -1,6 +1,7 @@
 package com.example.flightbooking.fragments.home.hotel;
 
 import android.content.Context;
+import android.util.Log;
 
 import com.example.flightbooking.common.Connection;
 import com.google.gson.JsonElement;
@@ -94,9 +95,9 @@ public class HotelFragmentModel {
             if(this.hotelsInfo.has(country)){
                 JsonObject joCities = this.hotelsInfo.getAsJsonObject(country);
                 if(joCities.has(city)){
-                    JsonObject joHotels = this.hotelsInfo.getAsJsonObject(city);
+                    JsonObject joHotels = joCities.getAsJsonObject(city);
                     if(joHotels.has(hotel)){
-                        JsonObject joInfo = this.hotelsInfo.getAsJsonObject(hotel);
+                        JsonObject joInfo = joHotels.getAsJsonObject(hotel);
                         info.put("max_people", joInfo.get("max_people").getAsInt());
                         info.put("price",joInfo.get("price").getAsFloat());
                         info.put("rooms",joInfo.get("rooms").getAsInt());
@@ -106,6 +107,7 @@ public class HotelFragmentModel {
                 }//if(joCities.has(hotel)){
             }//if(this.hotelsInfo.has(country)){
         }//if(this.hotelsInfo != null){
+        //Log.d("HotelFragmentModel","getHotelInfo info => "+info);
         return info;
     }
 

@@ -2,6 +2,7 @@ package com.example.flightbooking.fragments.home.hotel;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -126,5 +127,6 @@ public class HotelFragmentView {
             tr.addView(td);
             this.tl_info.addView(tr);
         }
+        //Log.d("HotelFragmentView","createHotelInfoTable end");
     }
 }
