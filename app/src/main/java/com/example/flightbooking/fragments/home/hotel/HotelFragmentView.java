@@ -25,6 +25,7 @@ public class HotelFragmentView {
     private EditText et_check_in,et_check_out,et_rooms,et_people;
     private Button bt_search;
     private ProgressBar pb_search;
+    private TableLayout tl_info = null;
 
     private static String[] itemsName = {
             "layout","countries","cities","hotels","check_in","check_out", "rooms","people"
@@ -44,6 +45,9 @@ public class HotelFragmentView {
     public EditText getEtPeople(){return this.et_people;}
     public Button getBtSearch(){return this.bt_search;}
     public ProgressBar getPbSearch(){return this.pb_search;}
+    public TableLayout getTlInfo(){return this.tl_info;}
+
+    public void setTlInfo(TableLayout tl_info){ this.tl_info = tl_info; }
 
     private void assignItems(Map<String, View> items) throws MissingValuesException {
         for(String item: HotelFragmentView.itemsName){
@@ -69,8 +73,9 @@ public class HotelFragmentView {
      * @return a TableLayout view
      */
     @SuppressLint("SetTextI18n")
-    public TableLayout createHotelInfoTable(Context context, HashMap<String, Object> info){
-        TableLayout tl = new TableLayout(context);
+    public void createHotelInfoTable(Context context, HashMap<String, Object> info){
+        this.tl_info = new TableLayout(context);
+        tl_info.setId(View.generateViewId());
         if(info.containsKey("max_people")){
             TableRow tr = new TableRow(context);
             TextView th = new TextView(context);
@@ -79,7 +84,7 @@ public class HotelFragmentView {
             TextView td = new TextView(context);
             td.setText(String.valueOf(info.get("max_people")));
             tr.addView(td);
-            tl.addView(tr);
+            this.tl_info.addView(tr);
         }
         if(info.containsKey("price")){
             TableRow tr = new TableRow(context);
@@ -89,7 +94,7 @@ public class HotelFragmentView {
             TextView td = new TextView(context);
             td.setText(info.get("price")+"€");
             tr.addView(td);
-            tl.addView(tr);
+            this.tl_info.addView(tr);
         }
         if(info.containsKey("rooms")){
             TableRow tr = new TableRow(context);
@@ -99,7 +104,7 @@ public class HotelFragmentView {
             TextView td = new TextView(context);
             td.setText(info.get("rooms")+" stanze");
             tr.addView(td);
-            tl.addView(tr);
+            this.tl_info.addView(tr);
         }
         if(info.containsKey("score")){
             TableRow tr = new TableRow(context);
@@ -109,7 +114,7 @@ public class HotelFragmentView {
             TextView td = new TextView(context);
             td.setText(String.valueOf(info.get("score")));
             tr.addView(td);
-            tl.addView(tr);
+            this.tl_info.addView(tr);
         }
         if(info.containsKey("stars")){
             TableRow tr = new TableRow(context);
@@ -119,8 +124,7 @@ public class HotelFragmentView {
             TextView td = new TextView(context);
             td.setText(info.get("stars")+" stelle");
             tr.addView(td);
-            tl.addView(tr);
+            this.tl_info.addView(tr);
         }
-        return tl;
     }
 }

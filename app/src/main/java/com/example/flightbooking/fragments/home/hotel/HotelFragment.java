@@ -5,6 +5,7 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
+import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
@@ -49,7 +50,6 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
     private Context context;
     private HotelFragmentModel hfm;
     private HotelFragmentView hfv;
-    private TableLayout tlInfo = null;
 
     public HotelFragment() {
         // Required empty public constructor
@@ -188,10 +188,19 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
      * @param hotel
      */
     private void setHotelInfoTable(String country, String city, String hotel){
+        if(this.hfv.getTlInfo() != null){
+            this.hfv.getCl().removeView(this.hfv.getTlInfo());
+            this.hfv.setTlInfo(null);
+        }//if(this.hfv.getTlInfo() != null){
         HashMap<String, Object> info = this.hfm.getHotelInfo(country,city,hotel);
-        if(this.tlInfo != null){
-
-        }
+        this.hfv.createHotelInfoTable(this.context,info);
+        this.hfv.getCl().addView(this.hfv.getTlInfo());
+        ConstraintSet cs = new ConstraintSet();
+        cs.clone(this.hfv.getCl());
+        cs.connect(this.hfv.getTlInfo().getId(), ConstraintSet.TOP, this.hfv.getBtSearch().getId(), ConstraintSet.BOTTOM, 40);
+        cs.connect(this.hfv.getTlInfo().getId(), ConstraintSet.LEFT, ConstraintSet.PARENT_ID,ConstraintSet.LEFT,5);
+        cs.connect(this.hfv.getTlInfo().getId(), ConstraintSet.RIGHT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT, 5);
+        cs.applyTo(this.hfv.getCl());
     }
 
     /**
