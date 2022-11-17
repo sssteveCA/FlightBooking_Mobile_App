@@ -6,6 +6,7 @@ import android.graphics.Typeface;
 import android.util.Log;
 import android.util.TypedValue;
 import android.view.View;
+import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
@@ -78,78 +79,79 @@ public class HotelFragmentView {
     @SuppressLint("SetTextI18n")
     public void createHotelInfoTable(Context context, HashMap<String, Object> info){
         this.tl_info = new TableLayout(context);
+        TableRow tr; TextView th,td;
         tl_info.setId(View.generateViewId());
         if(info.containsKey("max_people")){
-            TableRow tr = new TableRow(context);
-            TextView th = new TextView(context);
+            tr = new TableRow(context);
+            th = new TextView(context);
             th.setText("Numero massimo di persone per stanza");
             th.setTypeface(null, Typeface.BOLD);
-            th.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            th.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
             tr.addView(th);
-            TextView td = new TextView(context);
-            td.setPadding(5,0,0,0);
+            td = new TextView(context);
+            td.setPadding(10,0,0,0);
             td.setText(String.valueOf(info.get("max_people")));
-            td.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            td.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
             tr.setPadding(0,10,0,10);
             tr.addView(td);
             this.tl_info.addView(tr);
         }
         if(info.containsKey("price")){
-            TableRow tr = new TableRow(context);
-            TextView th = new TextView(context);
+            tr = new TableRow(context);
+            th = new TextView(context);
             th.setText("Prezzo per notte");
             th.setTypeface(null, Typeface.BOLD);
-            th.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            th.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
             tr.addView(th);
-            TextView td = new TextView(context);
-            td.setPadding(5,0,0,0);
+            td = new TextView(context);
+            td.setPadding(10,0,0,0);
             td.setText(info.get("price")+"€");
-            td.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            td.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
             tr.setPadding(0,10,0,10);
             tr.addView(td);
             this.tl_info.addView(tr);
         }
         if(info.containsKey("rooms")){
-            TableRow tr = new TableRow(context);
-            TextView th = new TextView(context);
+            tr = new TableRow(context);
+            th = new TextView(context);
             th.setText("Stanze disponibili");
             th.setTypeface(null, Typeface.BOLD);
-            th.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            th.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
             tr.addView(th);
-            TextView td = new TextView(context);
-            td.setPadding(5,0,0,0);
+            td = new TextView(context);
+            td.setPadding(10,0,0,0);
             td.setText(info.get("rooms")+" stanze");
-            td.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            td.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
             tr.setPadding(0,10,0,10);
             tr.addView(td);
             this.tl_info.addView(tr);
         }
         if(info.containsKey("score")){
-            TableRow tr = new TableRow(context);
-            TextView th = new TextView(context);
+            tr = new TableRow(context);
+            th = new TextView(context);
             th.setText("Voto medio");
             th.setTypeface(null, Typeface.BOLD);
-            th.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            th.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
             tr.addView(th);
-            TextView td = new TextView(context);
-            td.setPadding(5,0,0,0);
+            td = new TextView(context);
+            td.setPadding(10,0,0,0);
             td.setText(String.valueOf(info.get("score")));
-            td.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            td.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
             tr.setPadding(0,10,0,10);
             tr.addView(td);
             this.tl_info.addView(tr);
         }
         if(info.containsKey("stars")){
-            TableRow tr = new TableRow(context);
-            TextView th = new TextView(context);
+            tr = new TableRow(context);
+            th = new TextView(context);
             th.setText("Stelle");
             th.setTypeface(null, Typeface.BOLD);
-            th.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            th.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
             tr.addView(th);
-            TextView td = new TextView(context);
-            td.setPadding(5,0,0,0);
+            td = new TextView(context);
+            td.setPadding(10,0,0,0);
             td.setText(info.get("stars")+" stelle");
-            td.setTextSize(TypedValue.COMPLEX_UNIT_SP,18);
+            td.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
             tr.setPadding(0,10,0,10);
             tr.addView(td);
             this.tl_info.addView(tr);

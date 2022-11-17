@@ -199,8 +199,8 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         ConstraintSet cs = new ConstraintSet();
         cs.clone(this.hfv.getCl());
         cs.connect(this.hfv.getTlInfo().getId(), ConstraintSet.TOP, this.hfv.getBtSearch().getId(), ConstraintSet.BOTTOM, 40);
-        cs.connect(this.hfv.getTlInfo().getId(), ConstraintSet.LEFT, ConstraintSet.PARENT_ID,ConstraintSet.LEFT,5);
-        cs.connect(this.hfv.getTlInfo().getId(), ConstraintSet.RIGHT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT, 5);
+        cs.connect(this.hfv.getTlInfo().getId(), ConstraintSet.LEFT, ConstraintSet.PARENT_ID,ConstraintSet.LEFT,20);
+        cs.connect(this.hfv.getTlInfo().getId(), ConstraintSet.RIGHT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT, 20);
         cs.applyTo(this.hfv.getCl());
     }
 
