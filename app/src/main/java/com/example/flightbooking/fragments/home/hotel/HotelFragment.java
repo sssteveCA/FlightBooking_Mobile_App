@@ -186,15 +186,16 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
     /**
      * Add the button that show the hotel images to the constaint layout
      */
-    private void setHotelInfoImagesButton(){
+    private void setHotelInfoImagesButton(ConstraintSet cs){
         if(this.hfv.getBtShowImages() == null){
+            Log.d("HotelFragment","setHotelInfoImageButton");
             this.hfv.createHotelImagesButton(this.context);
             this.hfv.getCl().addView(this.hfv.getBtShowImages());
-            ConstraintSet cs = new ConstraintSet();
             cs.clone(this.hfv.getCl());
-            cs.connect(this.hfv.getBtShowImages().getId(),ConstraintSet.TOP,this.hfv.getTlInfo().getId(), ConstraintSet.BOTTOM,40);
+            cs.connect(this.hfv.getBtShowImages().getId(),ConstraintSet.TOP,this.hfv.getCl().getId(), ConstraintSet.TOP,2300);
             cs.connect(this.hfv.getBtShowImages().getId(),ConstraintSet.LEFT,ConstraintSet.PARENT_ID,ConstraintSet.LEFT,20);
             cs.connect(this.hfv.getBtShowImages().getId(),ConstraintSet.RIGHT,ConstraintSet.PARENT_ID,ConstraintSet.RIGHT,20);
+            cs.constrainHeight(this.hfv.getBtShowImages().getId(),ConstraintSet.WRAP_CONTENT);
             cs.applyTo(this.hfv.getCl());
             this.hfv.getBtShowImages().setOnClickListener(this);
         }//if(this.hfv.getBtShowImages() == null){
@@ -213,14 +214,15 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         }//if(this.hfv.getTlInfo() != null){
         HashMap<String, Object> info = this.hfm.getHotelInfo(country,city,hotel);
         this.hfv.createHotelInfoTable(this.context,info);
-        this.hfv.getCl().addView(this.hfv.getTlInfo());
         ConstraintSet cs = new ConstraintSet();
         cs.clone(this.hfv.getCl());
+        this.hfv.getCl().addView(this.hfv.getTlInfo());
         cs.connect(this.hfv.getTlInfo().getId(), ConstraintSet.TOP, this.hfv.getBtSearch().getId(), ConstraintSet.BOTTOM, 40);
         cs.connect(this.hfv.getTlInfo().getId(), ConstraintSet.LEFT, ConstraintSet.PARENT_ID,ConstraintSet.LEFT,20);
         cs.connect(this.hfv.getTlInfo().getId(), ConstraintSet.RIGHT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT, 20);
+        cs.constrainHeight(this.hfv.getTlInfo().getId(), ConstraintSet.WRAP_CONTENT);
         cs.applyTo(this.hfv.getCl());
-        this.setHotelInfoImagesButton();
+        this.setHotelInfoImagesButton(cs);
     }
 
     /**
@@ -249,12 +251,14 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
             case R.id.frag_hotel_sp_cities:
                 country = (String) this.hfv.getSpCountries().getSelectedItem();
                 city = (String) adapterView.getItemAtPosition(i);
+
                 this.setHotelsList(country,city);
                 break;
             case R.id.frag_hotel_sp_hotels:
                 country = (String) this.hfv.getSpCountries().getSelectedItem();
                 city = (String) this.hfv.getSpCities().getSelectedItem();
                 hotel = (String) adapterView.getItemAtPosition(i);
+
                 this.setHotelInfoTable(country,city,hotel);
                 break;
         }
@@ -281,6 +285,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
                 break;
             default:
                 if(view.getId() == this.hfv.getBtShowImages().getId()){
+                    Log.d("HotelFragment","onClick getBtShowImages");
                     ImagesDialog img_dialog = new ImagesDialog("Immagini hotel",null);
                     img_dialog.displayFullScreen(getParentFragmentManager());
                 }//if(view.getId() == this.hfv.getBtShowImages().getId()){

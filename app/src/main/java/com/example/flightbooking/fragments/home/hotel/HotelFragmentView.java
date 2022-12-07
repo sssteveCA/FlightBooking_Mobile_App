@@ -81,7 +81,7 @@ public class HotelFragmentView {
     @SuppressLint("SetTextI18n")
     public void createHotelInfoTable(Context context, HashMap<String, Object> info){
         this.tl_info = new TableLayout(context);
-        this.tl_info.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
+        //this.tl_info.setLayoutParams(new TableLayout.LayoutParams(TableLayout.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.MATCH_PARENT));
         this.tl_info.setStretchAllColumns(true);
         this.tl_info.setShrinkAllColumns(true);
         this.tl_info.setWeightSum(4);
@@ -186,7 +186,7 @@ public class HotelFragmentView {
      */
     public void createHotelImagesButton(Context context){
         this.bt_show_images = new Button(context);
-        this.bt_show_images.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        //this.bt_show_images.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
         this.bt_show_images.setId(View.generateViewId());
         this.bt_show_images.setPadding(15,15,15,15);
         this.bt_show_images.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
