@@ -13,6 +13,13 @@ import java.util.regex.Pattern;
 
 public class HotelImagesModel {
 
+    /**
+     * When all requests finish (successful or not)
+     */
+    public interface RequestsFinish{
+        public void onFinish();
+    }
+
     private Context context;
     private String country;
     private String city;
@@ -57,7 +64,7 @@ public class HotelImagesModel {
     /**
      * Execute all the requests to get the images
      */
-    public void executeRequests(){
+    public void executeRequests(RequestsFinish rf){
         this.fetched = 0;
         String prefix = this.urlImagesPrefix();
         prefix = Globals.BASE_URL+Globals.IMG_FOLDER+prefix;
@@ -67,10 +74,16 @@ public class HotelImagesModel {
                 @Override
                 public void imageResponse(Bitmap image) {
                     this_him.fetchedImages.add(image);
+                    this_him.fetched++;
+                    if(this_him.fetched >= this_him.images)
+                        rf.onFinish();
                 }
                 @Override
                 public void imageError(String message) {
                     Log.e("HotelImagesModel","executeRequests errore => "+message);
+                    this_him.fetched++;
+                    if(this_him.fetched >= this_him.images)
+                        rf.onFinish();
                 }
             });
         }
