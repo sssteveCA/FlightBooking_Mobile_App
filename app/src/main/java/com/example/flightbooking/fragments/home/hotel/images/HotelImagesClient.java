@@ -21,22 +21,20 @@ public class HotelImagesClient {
 
     private Context context;
     private RequestQueue queue;
-    private String url;
 
-    public HotelImagesClient(Context context,String url){
+    public HotelImagesClient(Context context){
         this.context = context;
-        this.url = url;
         this.queue = Volley.newRequestQueue(this.context);
     }
 
-    public String getUrl(){ return this.url; }
+    public RequestQueue getQueue(){ return this.queue; }
 
     /**
      * Add an image request to queue
      * @param hil the image request response listener
      */
-    public void addRequest(HotelImagesListener hil){
-        ImageRequest imageRequest = new ImageRequest(this.url, new Response.Listener<Bitmap>() {
+    public void addRequest(String url, HotelImagesListener hil){
+        ImageRequest imageRequest = new ImageRequest(url, new Response.Listener<Bitmap>() {
             @Override
             public void onResponse(Bitmap response) {
                 hil.imageResponse(response);
