@@ -2,6 +2,7 @@ package com.example.flightbooking.fragments.home.hotel;
 
 import android.annotation.SuppressLint;
 import android.content.Context;
+import android.graphics.Color;
 import android.graphics.Typeface;
 import android.util.Log;
 import android.util.TypedValue;
@@ -191,5 +192,6 @@ public class HotelFragmentView {
         this.bt_show_images.setPadding(15,15,15,15);
         this.bt_show_images.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
         this.bt_show_images.setText("Mostra immagini");
+        this.bt_show_images.setBackgroundColor(Color.MAGENTA);
     }
 }

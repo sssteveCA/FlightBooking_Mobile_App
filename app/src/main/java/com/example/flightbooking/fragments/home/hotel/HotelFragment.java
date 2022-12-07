@@ -188,7 +188,6 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
      */
     private void setHotelInfoImagesButton(ConstraintSet cs){
         if(this.hfv.getBtShowImages() == null){
-            Log.d("HotelFragment","setHotelInfoImageButton");
             this.hfv.createHotelImagesButton(this.context);
             this.hfv.getCl().addView(this.hfv.getBtShowImages());
             cs.clone(this.hfv.getCl());
@@ -285,7 +284,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
                 break;
             default:
                 if(view.getId() == this.hfv.getBtShowImages().getId()){
-                    Log.d("HotelFragment","onClick getBtShowImages");
+                    //Log.d("HotelFragment","onClick getBtShowImages");
                     ImagesDialog img_dialog = new ImagesDialog("Immagini hotel",null);
                     img_dialog.displayFullScreen(getParentFragmentManager());
                 }//if(view.getId() == this.hfv.getBtShowImages().getId()){
