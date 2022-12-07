@@ -254,6 +254,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
                 city = (String) this.hfv.getSpCities().getSelectedItem();
                 hotel = (String) adapterView.getItemAtPosition(i);
                 this.setHotelInfoTable(country,city,hotel);
+                this.setHotelInfoImagesButton();
                 break;
         }
     }
@@ -279,7 +280,6 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
                 break;
             default:
                 if(view.getId() == this.hfv.getBtShowImages().getId()){
-                    this.setHotelInfoImagesButton();
                 }//if(view.getId() == this.hfv.getBtShowImages().getId()){
                 break;
         }
