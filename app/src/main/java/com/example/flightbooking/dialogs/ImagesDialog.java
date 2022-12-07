@@ -10,6 +10,8 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 import androidx.fragment.app.DialogFragment;
+import androidx.fragment.app.FragmentManager;
+import androidx.fragment.app.FragmentTransaction;
 import androidx.recyclerview.widget.RecyclerView;
 
 /**
@@ -34,6 +36,18 @@ public class ImagesDialog extends DialogFragment implements DialogInterface.OnCl
         builder.setTitle(this.title);
         builder.setPositiveButton("OK",this);
         return builder.create();
+    }
+
+    /**
+     * Display the hotel images dialog fullscreen
+     * @param fm the FragmentManager instance
+     */
+    public void displayFullScreen(FragmentManager fm){
+        FragmentTransaction ft = fm.beginTransaction();
+        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
+        ft.add(android.R.id.content,this);
+        ft.addToBackStack(null);
+        ft.commit();
     }
 
     @Override

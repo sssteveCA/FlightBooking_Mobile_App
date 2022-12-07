@@ -22,6 +22,7 @@ import android.widget.TableLayout;
 
 import com.example.flightbooking.R;
 import com.example.flightbooking.dialogs.DatePickerHotel;
+import com.example.flightbooking.dialogs.ImagesDialog;
 import com.example.flightbooking.exception.MissingValuesException;
 import com.google.gson.JsonObject;
 
@@ -219,6 +220,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         cs.connect(this.hfv.getTlInfo().getId(), ConstraintSet.LEFT, ConstraintSet.PARENT_ID,ConstraintSet.LEFT,20);
         cs.connect(this.hfv.getTlInfo().getId(), ConstraintSet.RIGHT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT, 20);
         cs.applyTo(this.hfv.getCl());
+        this.setHotelInfoImagesButton();
     }
 
     /**
@@ -254,7 +256,6 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
                 city = (String) this.hfv.getSpCities().getSelectedItem();
                 hotel = (String) adapterView.getItemAtPosition(i);
                 this.setHotelInfoTable(country,city,hotel);
-                this.setHotelInfoImagesButton();
                 break;
         }
     }
@@ -280,6 +281,8 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
                 break;
             default:
                 if(view.getId() == this.hfv.getBtShowImages().getId()){
+                    ImagesDialog img_dialog = new ImagesDialog("Immagini hotel",null);
+                    img_dialog.displayFullScreen(getParentFragmentManager());
                 }//if(view.getId() == this.hfv.getBtShowImages().getId()){
                 break;
         }
