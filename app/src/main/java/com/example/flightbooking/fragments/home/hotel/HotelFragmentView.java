@@ -30,6 +30,7 @@ public class HotelFragmentView {
     private Button bt_search;
     private ProgressBar pb_search;
     private TableLayout tl_info = null;
+    private Button bt_show_images;
 
     private static String[] itemsName = {
             "layout","countries","cities","hotels","check_in","check_out", "rooms","people"
@@ -50,6 +51,7 @@ public class HotelFragmentView {
     public Button getBtSearch(){return this.bt_search;}
     public ProgressBar getPbSearch(){return this.pb_search;}
     public TableLayout getTlInfo(){return this.tl_info;}
+    public Button getBtShowImages(){ return this.bt_show_images; }
 
     public void setTlInfo(TableLayout tl_info){ this.tl_info = tl_info; }
 
@@ -176,5 +178,17 @@ public class HotelFragmentView {
             this.tl_info.addView(tr);
         }
         //Log.d("HotelFragmentView","createHotelInfoTable end");
+    }
+
+    /**
+     * Create the button that show the dialog with the hotel images
+     * @param context
+     */
+    public void createHotelImagesButton(Context context){
+        this.bt_show_images = new Button(context);
+        this.bt_show_images.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        this.bt_show_images.setPadding(15,15,15,15);
+        this.bt_show_images.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
+        this.bt_show_images.setText("Mostra immagini");
     }
 }
