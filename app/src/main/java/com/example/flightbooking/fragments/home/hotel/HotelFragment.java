@@ -183,6 +183,23 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
     }
 
     /**
+     * Add the button that show the hotel images to the constaint layout
+     */
+    private void setHotelInfoImagesButton(){
+        if(this.hfv.getBtShowImages() == null){
+            this.hfv.createHotelImagesButton(this.context);
+            this.hfv.getCl().addView(this.hfv.getBtShowImages());
+            ConstraintSet cs = new ConstraintSet();
+            cs.clone(this.hfv.getCl());
+            cs.connect(this.hfv.getBtShowImages().getId(),ConstraintSet.TOP,this.hfv.getTlInfo().getId(), ConstraintSet.BOTTOM,40);
+            cs.connect(this.hfv.getBtShowImages().getId(),ConstraintSet.LEFT,ConstraintSet.PARENT_ID,ConstraintSet.LEFT,20);
+            cs.connect(this.hfv.getBtShowImages().getId(),ConstraintSet.RIGHT,ConstraintSet.PARENT_ID,ConstraintSet.RIGHT,20);
+            cs.applyTo(this.hfv.getCl());
+            this.hfv.getBtShowImages().setOnClickListener(this);
+        }//if(this.hfv.getBtShowImages() == null){
+    }
+
+    /**
      * Set the table in the layout that display the information about a hotel
      * @param country
      * @param city
@@ -259,6 +276,11 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
                 this_hf.showDatePickerDialog(this_hfv.getEtCkeckOut().getText().toString(), HotelFragmentModel.EditTextsDate.CHECK_OUT);
                 break;
             case R.id.frag_hotel_bt_search:
+                break;
+            default:
+                if(view.getId() == this.hfv.getBtShowImages().getId()){
+                    this.setHotelInfoImagesButton();
+                }//if(view.getId() == this.hfv.getBtShowImages().getId()){
                 break;
         }
     }

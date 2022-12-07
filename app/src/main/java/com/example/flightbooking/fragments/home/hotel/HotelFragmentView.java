@@ -187,6 +187,7 @@ public class HotelFragmentView {
     public void createHotelImagesButton(Context context){
         this.bt_show_images = new Button(context);
         this.bt_show_images.setLayoutParams(new ConstraintLayout.LayoutParams(ViewGroup.LayoutParams.WRAP_CONTENT, ViewGroup.LayoutParams.WRAP_CONTENT));
+        this.bt_show_images.setId(View.generateViewId());
         this.bt_show_images.setPadding(15,15,15,15);
         this.bt_show_images.setTextSize(TypedValue.COMPLEX_UNIT_SP, 14);
         this.bt_show_images.setText("Mostra immagini");
