@@ -1,5 +1,6 @@
 package com.example.flightbooking.fragments.home.hotel;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -20,6 +21,7 @@ import android.widget.EditText;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 
+import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.dialogs.DatePickerHotel;
 import com.example.flightbooking.dialogs.ImagesDialog;
@@ -51,6 +53,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
     private Context context;
     private HotelFragmentModel hfm;
     private HotelFragmentView hfv;
+    private MainActivity ma;
 
     public HotelFragment() {
         // Required empty public constructor
@@ -78,6 +81,12 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         this.context = context;
+    }
+
+    @Override
+    public void onAttach(@NonNull Activity activity) {
+        super.onAttach(activity);
+        this.ma = (MainActivity) activity;
     }
 
     @Override
@@ -285,8 +294,8 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
             default:
                 if(view.getId() == this.hfv.getBtShowImages().getId()){
                     //Log.d("HotelFragment","onClick getBtShowImages");
-                    ImagesDialog img_dialog = new ImagesDialog("Immagini hotel",null);
-                    img_dialog.displayFullScreen(getParentFragmentManager());
+                    ImagesDialog img_dialog = new ImagesDialog(this.ma.getSupportFragmentManager(),"Immagini hotel",null);
+                    img_dialog.displayFullScreen();
                 }//if(view.getId() == this.hfv.getBtShowImages().getId()){
                 break;
         }
@@ -299,7 +308,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
      */
     private void showDatePickerDialog(String inputDate, HotelFragmentModel.EditTextsDate etd){
         DialogFragment df = new DatePickerHotel(inputDate,this,etd);
-        df.show(getActivity().getSupportFragmentManager(),"DatePickerDialog");
+        df.show(this.ma.getSupportFragmentManager(),"DatePickerDialog");
     }
 
     @Override

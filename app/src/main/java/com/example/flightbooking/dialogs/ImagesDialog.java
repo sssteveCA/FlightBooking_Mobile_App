@@ -2,6 +2,7 @@ package com.example.flightbooking.dialogs;
 
 import static android.content.DialogInterface.BUTTON_POSITIVE;
 
+import android.app.Activity;
 import android.app.AlertDialog;
 import android.app.Dialog;
 import android.content.DialogInterface;
@@ -18,10 +19,12 @@ import androidx.recyclerview.widget.RecyclerView;
  * This dialog shows a list of images
  */
 public class ImagesDialog extends DialogFragment implements DialogInterface.OnClickListener {
+    private FragmentManager fm;
     private String title;
     private RecyclerView images;
 
-    public ImagesDialog(String title, RecyclerView images){
+    public ImagesDialog(FragmentManager fm, String title, RecyclerView images){
+        this.fm = fm;
         this.title = title;
         this.images = images;
     }
@@ -40,14 +43,9 @@ public class ImagesDialog extends DialogFragment implements DialogInterface.OnCl
 
     /**
      * Display the hotel images dialog fullscreen
-     * @param fm the FragmentManager instance
      */
-    public void displayFullScreen(FragmentManager fm){
-        FragmentTransaction ft = fm.beginTransaction();
-        ft.setTransition(FragmentTransaction.TRANSIT_FRAGMENT_OPEN);
-        ft.add(android.R.id.content,this);
-        ft.addToBackStack(null);
-        ft.commit();
+    public void displayFullScreen(){
+        this.show(this.fm, "hotelImages");
     }
 
     @Override
