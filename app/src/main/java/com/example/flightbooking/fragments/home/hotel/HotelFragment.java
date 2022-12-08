@@ -26,6 +26,7 @@ import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.dialogs.DatePickerHotel;
 import com.example.flightbooking.dialogs.ImagesDialog;
+import com.example.flightbooking.dialogs.MessageDialog;
 import com.example.flightbooking.exception.MissingValuesException;
 import com.example.flightbooking.fragments.home.hotel.images.HotelImagesModel;
 import com.google.gson.JsonObject;
@@ -182,9 +183,15 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
                         ImagesDialog imagesDialog = new ImagesDialog(this_hf.context,this_hf.ma.getSupportFragmentManager(),"Immagini hotel",images);
                         imagesDialog.displayFullScreen();
                     }//if(images.size() > 0){
+                    else{
+                        MessageDialog md = new MessageDialog(this_hf.context, "Immagini hotel","Nessuna immagine di questo hotel da mostrare");
+                    }
                 }
             });
         }//if(!hotelInfo.isEmpty()){
+        else{
+            MessageDialog md = new MessageDialog(this.context,"Immagini hotel","Errore durente l'esecuzione della richiesta");
+        }
     }
 
     /**
