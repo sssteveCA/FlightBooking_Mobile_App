@@ -98,8 +98,8 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             this.auth = (Auth) getArguments().getSerializable("auth");
-            Log.d("MainMenuLoggedFragment", "auth status => "+auth.status);
-            Log.d("MainMenuLoggedFragment", "auth user name => "+auth.user.name);
+            //Log.d("MainMenuLoggedFragment", "auth status => "+auth.status);
+            //Log.d("MainMenuLoggedFragment", "auth user name => "+auth.user.name);
         }
     }
 

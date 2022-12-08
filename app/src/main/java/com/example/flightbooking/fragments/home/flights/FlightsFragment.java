@@ -202,7 +202,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
             public void airportsResponse(JsonObject airports) {
                 //Log.i("FlightsFragment","loadAirportsData airports request => "+airports);
                 LinkedList<String> countries = ffm_temp.getAirportsCountries();
-                Log.i("FlightsFragment","loadAirportsData airports request linkedlist => "+countries);
+                //Log.i("FlightsFragment","loadAirportsData airports request linkedlist => "+countries);
                 ArrayAdapter<String> countriesAdapter = ff_temp.arrayAdapterFromList(countries);
                 ffv_temp.getSpDepCountry().setAdapter(countriesAdapter);
                 ffv_temp.getSpArrCountry().setAdapter(countriesAdapter);

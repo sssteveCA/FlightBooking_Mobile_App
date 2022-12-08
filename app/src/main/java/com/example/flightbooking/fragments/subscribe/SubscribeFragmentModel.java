@@ -44,7 +44,7 @@ public class SubscribeFragmentModel {
                 public void onResponse(Call<SubscribeFormResponse> call, Response<SubscribeFormResponse> response) {
                     if(response.isSuccessful()){
                         SubscribeFormResponse sfr = (SubscribeFormResponse)response.body();
-                        Log.i("SubscribeFragmentModel","subscribeRequest response =>"+sfr);
+                        //Log.i("SubscribeFragmentModel","subscribeRequest response =>"+sfr);
                         sr.subscribeResponse(sfr);
                     }
                     else{
@@ -53,7 +53,7 @@ public class SubscribeFragmentModel {
                             JsonElement jsonEl = JsonParser.parseString(jsonString);
                             JsonObject jsonObj = jsonEl.getAsJsonObject();
                             String message = jsonObj.get("message").getAsString();
-                            Log.i("SubscribeFragmentModel","subscribeRequest error => "+jsonString);
+                            //Log.i("SubscribeFragmentModel","subscribeRequest error => "+jsonString);
                             sr.subscribeError(message);
                         } catch (IOException e) {
                             e.printStackTrace();
