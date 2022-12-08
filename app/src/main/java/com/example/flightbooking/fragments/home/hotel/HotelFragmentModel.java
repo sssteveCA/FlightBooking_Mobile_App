@@ -103,6 +103,7 @@ public class HotelFragmentModel {
                         info.put("rooms",joInfo.get("rooms").getAsInt());
                         info.put("score",joInfo.get("score").getAsInt());
                         info.put("stars",joInfo.get("stars").getAsInt());
+                        info.put("images",joInfo.get("images").getAsInt());
                     }//if(joHotels.has(hotel)){
                 }//if(joCities.has(hotel)){
             }//if(this.hotelsInfo.has(country)){

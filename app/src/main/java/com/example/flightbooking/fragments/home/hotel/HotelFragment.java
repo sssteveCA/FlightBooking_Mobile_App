@@ -2,6 +2,7 @@ package com.example.flightbooking.fragments.home.hotel;
 
 import android.app.Activity;
 import android.content.Context;
+import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,9 +27,11 @@ import com.example.flightbooking.R;
 import com.example.flightbooking.dialogs.DatePickerHotel;
 import com.example.flightbooking.dialogs.ImagesDialog;
 import com.example.flightbooking.exception.MissingValuesException;
+import com.example.flightbooking.fragments.home.hotel.images.HotelImagesModel;
 import com.google.gson.JsonObject;
 
 import java.util.AbstractMap;
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
 import java.util.List;
@@ -53,6 +56,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
     private Context context;
     private HotelFragmentModel hfm;
     private HotelFragmentView hfv;
+    private HotelImagesModel him;
     private MainActivity ma;
 
     public HotelFragment() {
@@ -154,6 +158,26 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         ArrayAdapter<String> adapter = new ArrayAdapter<>(this.context, android.R.layout.simple_spinner_item,items);
         adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
         return adapter;
+    }
+
+    /**
+     * Perform the HTTP requests to get all hotel images
+     * @param country
+     * @param city
+     * @param hotel
+     */
+    private void hotelImagesRequests(String country, String city, String hotel){
+        HashMap<String, Object> hotelInfo = this.hfm.getHotelInfo(country,city,hotel);
+        if(!hotelInfo.isEmpty()){
+            int nImages = (int)hotelInfo.get("images");
+            this.him = new HotelImagesModel(this.context,country,city,hotel,nImages);
+            this.him.executeRequests(new HotelImagesModel.RequestsFinish() {
+                @Override
+                public void onFinish(ArrayList<Bitmap> images) {
+
+                }
+            });
+        }//if(!hotelInfo.isEmpty()){
     }
 
     /**
