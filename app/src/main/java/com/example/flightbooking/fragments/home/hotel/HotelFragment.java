@@ -171,10 +171,14 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         if(!hotelInfo.isEmpty()){
             int nImages = (int)hotelInfo.get("images");
             this.him = new HotelImagesModel(this.context,country,city,hotel,nImages);
+            HotelFragment this_hf = this;
             this.him.executeRequests(new HotelImagesModel.RequestsFinish() {
                 @Override
                 public void onFinish(ArrayList<Bitmap> images) {
-
+                    if(images.size() > 0){
+                        ImagesDialog imagesDialog = new ImagesDialog(this_hf.context,this_hf.ma.getSupportFragmentManager(),"Immagini hotel",images);
+                        imagesDialog.displayFullScreen();
+                    }//if(images.size() > 0){
                 }
             });
         }//if(!hotelInfo.isEmpty()){
@@ -318,8 +322,10 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
             default:
                 if(view.getId() == this.hfv.getBtShowImages().getId()){
                     //Log.d("HotelFragment","onClick getBtShowImages");
-                    ImagesDialog img_dialog = new ImagesDialog(this.context,this.ma.getSupportFragmentManager(),"Immagini hotel",null);
-                    img_dialog.displayFullScreen();
+                    String country = (String) this.hfv.getSpCountries().getSelectedItem();
+                    String city = (String) this.hfv.getSpCities().getSelectedItem();
+                    String hotel = (String) this.hfv.getSpHotels().getSelectedItem();
+                    this.hotelImagesRequests(country,city,hotel);
                 }//if(view.getId() == this.hfv.getBtShowImages().getId()){
                 break;
         }
