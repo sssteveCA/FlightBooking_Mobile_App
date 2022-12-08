@@ -294,7 +294,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
             default:
                 if(view.getId() == this.hfv.getBtShowImages().getId()){
                     //Log.d("HotelFragment","onClick getBtShowImages");
-                    ImagesDialog img_dialog = new ImagesDialog(this.ma.getSupportFragmentManager(),"Immagini hotel",null);
+                    ImagesDialog img_dialog = new ImagesDialog(this.context,this.ma.getSupportFragmentManager(),"Immagini hotel",null);
                     img_dialog.displayFullScreen();
                 }//if(view.getId() == this.hfv.getBtShowImages().getId()){
                 break;
