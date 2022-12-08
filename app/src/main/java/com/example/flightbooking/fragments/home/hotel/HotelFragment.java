@@ -167,7 +167,9 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
      * @param hotel
      */
     private void hotelImagesRequests(String country, String city, String hotel){
+        Log.d("HotelFragment","HotelImagesRequests");
         HashMap<String, Object> hotelInfo = this.hfm.getHotelInfo(country,city,hotel);
+        Log.d("HotelFragment","HotelImagesRequests hotelInfo => "+hotelInfo);
         if(!hotelInfo.isEmpty()){
             int nImages = (int)hotelInfo.get("images");
             this.him = new HotelImagesModel(this.context,country,city,hotel,nImages);
@@ -175,6 +177,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
             this.him.executeRequests(new HotelImagesModel.RequestsFinish() {
                 @Override
                 public void onFinish(ArrayList<Bitmap> images) {
+                    Log.d("HotelFragment","hotelImagesRequests onFinish");
                     if(images.size() > 0){
                         ImagesDialog imagesDialog = new ImagesDialog(this_hf.context,this_hf.ma.getSupportFragmentManager(),"Immagini hotel",images);
                         imagesDialog.displayFullScreen();

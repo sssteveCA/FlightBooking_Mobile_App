@@ -2,6 +2,7 @@ package com.example.flightbooking.fragments.home.hotel.images;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.widget.ImageView;
 
 import com.android.volley.RequestQueue;
@@ -23,6 +24,7 @@ public class HotelImagesClient {
     private RequestQueue queue;
 
     public HotelImagesClient(Context context){
+        Log.d("HotelImagesClient","constructor");
         this.context = context;
         this.queue = Volley.newRequestQueue(this.context);
     }
@@ -45,6 +47,7 @@ public class HotelImagesClient {
                 hil.imageError(error.getMessage());
             }
         });
+        this.queue.add(imageRequest);
     }
 
 

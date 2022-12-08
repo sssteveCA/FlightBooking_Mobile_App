@@ -2,6 +2,7 @@ package com.example.flightbooking.fragments.home.hotel.images;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,12 +22,14 @@ public class HotelImagesAdapter extends RecyclerView.Adapter<HotelImagesAdapter.
     private ArrayList<Bitmap> bmps;
 
     public HotelImagesAdapter(ArrayList<Bitmap> bmps){
+        Log.d("HotelImagesAdapter","constructor");
         this.bmps = bmps;
     }
 
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
+        Log.d("HotelImagesAdapter","onCreateViewHolder");
         LayoutInflater li = LayoutInflater.from(parent.getContext());
         View view = li.inflate(R.layout.row_imageview,parent,false);
          return new ViewHolder(view);
@@ -34,6 +37,7 @@ public class HotelImagesAdapter extends RecyclerView.Adapter<HotelImagesAdapter.
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        Log.d("HotelImagesAdapter","onBindViewHolder");
         holder.imageView.setImageBitmap(this.bmps.get(position));
     }
 
@@ -48,6 +52,7 @@ public class HotelImagesAdapter extends RecyclerView.Adapter<HotelImagesAdapter.
 
         public ViewHolder(@NonNull View itemView) {
             super(itemView);
+            Log.d("HotelImagesAdapter","ViewHolder constructor");
             this.mView = itemView;
             this.imageView = itemView.findViewById(R.id.dlg_img_rv_iv);
         }
