@@ -233,22 +233,6 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
     }
 
     /**
-     * Add the button that show the hotel images to the constaint layout
-     */
-    private void setHotelInfoImagesButton(ConstraintSet cs){
-        if(this.hfv.getBtShowImages() == null){
-            //this.hfv.createHotelImagesButton(this.context);
-            this.hfv.getCl().addView(this.hfv.getBtShowImages());
-            cs.clone(this.hfv.getCl());
-            cs.connect(this.hfv.getBtShowImages().getId(),ConstraintSet.TOP,this.hfv.getCl().getId(), ConstraintSet.TOP,2300);
-            cs.connect(this.hfv.getBtShowImages().getId(),ConstraintSet.LEFT,ConstraintSet.PARENT_ID,ConstraintSet.LEFT,20);
-            cs.connect(this.hfv.getBtShowImages().getId(),ConstraintSet.RIGHT,ConstraintSet.PARENT_ID,ConstraintSet.RIGHT,20);
-            cs.constrainHeight(this.hfv.getBtShowImages().getId(),ConstraintSet.WRAP_CONTENT);
-            cs.applyTo(this.hfv.getCl());
-        }//if(this.hfv.getBtShowImages() == null){
-    }
-
-    /**
      * Set the table in the layout that display the information about a hotel
      * @param country
      * @param city
