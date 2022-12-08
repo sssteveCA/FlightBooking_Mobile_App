@@ -17,7 +17,7 @@ public class HotelImagesModel {
      * When all requests finish (successful or not)
      */
     public interface RequestsFinish{
-        public void onFinish();
+        public void onFinish(ArrayList<Bitmap> images);
     }
 
     private Context context;
@@ -76,14 +76,14 @@ public class HotelImagesModel {
                     this_him.fetchedImages.add(image);
                     this_him.fetched++;
                     if(this_him.fetched >= this_him.images)
-                        rf.onFinish();
+                        rf.onFinish(this_him.fetchedImages);
                 }
                 @Override
                 public void imageError(String message) {
                     Log.e("HotelImagesModel","executeRequests errore => "+message);
                     this_him.fetched++;
                     if(this_him.fetched >= this_him.images)
-                        rf.onFinish();
+                        rf.onFinish(this_him.fetchedImages);
                 }
             });
         }
