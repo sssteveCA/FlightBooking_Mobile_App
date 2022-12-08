@@ -19,6 +19,7 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TableLayout;
 
@@ -147,7 +148,8 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
                 new AbstractMap.SimpleImmutableEntry<>("rooms", (EditText)v.findViewById(R.id.frag_hotel_et_rooms)),
                 new AbstractMap.SimpleImmutableEntry<>("people", (EditText)v.findViewById(R.id.frag_hotel_et_people)),
                 new AbstractMap.SimpleImmutableEntry<>("search", (Button)v.findViewById(R.id.frag_hotel_bt_search)),
-                new AbstractMap.SimpleImmutableEntry<>("images", (Button)v.findViewById(R.id.frag_hotel_bt_hotel_images))
+                new AbstractMap.SimpleImmutableEntry<>("images", (Button)v.findViewById(R.id.frag_hotel_bt_hotel_images)),
+                new AbstractMap.SimpleImmutableEntry<>("pb_images", (ProgressBar)v.findViewById(R.id.frag_hotel_pb_hotel_images))
         );
         return items;
     }
@@ -177,9 +179,12 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
             int nImages = (int)hotelInfo.get("images");
             this.him = new HotelImagesModel(this.context,country,city,hotel,nImages);
             HotelFragment this_hf = this;
+            HotelFragmentView this_hfv = this.hfv;
+            this_hfv.getPbShowImages().setVisibility(View.VISIBLE);
             this.him.executeRequests(new HotelImagesModel.RequestsFinish() {
                 @Override
                 public void onFinish(ArrayList<Bitmap> images) {
+                    this_hfv.getPbShowImages().setVisibility(View.GONE);
                     Log.d("HotelFragment","hotelImagesRequests onFinish");
                     if(images.size() > 0){
                         ImagesDialog imagesDialog = new ImagesDialog(this_hf.context,this_hf.ma.getSupportFragmentManager(),"Immagini hotel",images);

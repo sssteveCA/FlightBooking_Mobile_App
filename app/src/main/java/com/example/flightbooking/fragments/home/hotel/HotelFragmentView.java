@@ -32,9 +32,11 @@ public class HotelFragmentView {
     private ProgressBar pb_search;
     private TableLayout tl_info = null;
     private Button bt_show_images;
+    private ProgressBar pb_show_images;
 
     private static String[] itemsName = {
-            "layout","countries","cities","hotels","check_in","check_out", "rooms","people","search","images"
+            "layout","countries","cities","hotels","check_in","check_out",
+            "rooms","people","search","images","pb_images"
     };
 
     public HotelFragmentView(Map<String, View> items) throws MissingValuesException {
@@ -53,6 +55,7 @@ public class HotelFragmentView {
     public ProgressBar getPbSearch(){return this.pb_search;}
     public TableLayout getTlInfo(){return this.tl_info;}
     public Button getBtShowImages(){ return this.bt_show_images; }
+    public ProgressBar getPbShowImages(){ return this.pb_show_images; }
 
     public void setTlInfo(TableLayout tl_info){ this.tl_info = tl_info; }
 
@@ -72,6 +75,7 @@ public class HotelFragmentView {
         this.et_people = (EditText) items.get("et_people");
         this.bt_search = (Button) items.get("search");
         this.bt_show_images = (Button) items.get("images");
+        this.pb_show_images = (ProgressBar) items.get("pb_images");
     }
 
     /**
