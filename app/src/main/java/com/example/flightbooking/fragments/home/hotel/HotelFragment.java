@@ -117,6 +117,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
             this.hfv.getEtCkeckIn().setOnClickListener(this);
             this.hfv.getEtCkeckOut().setOnClickListener(this);
             this.hfv.getBtSearch().setOnClickListener(this);
+            this.hfv.getBtShowImages().setOnClickListener(this);
         } catch (MissingValuesException e) {
             Log.e("HotelFragment","MissingValuesException");
             e.printStackTrace();
@@ -145,7 +146,8 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
                 new AbstractMap.SimpleImmutableEntry<>("check_out", (EditText)v.findViewById(R.id.frag_hotel_et_check_out)),
                 new AbstractMap.SimpleImmutableEntry<>("rooms", (EditText)v.findViewById(R.id.frag_hotel_et_rooms)),
                 new AbstractMap.SimpleImmutableEntry<>("people", (EditText)v.findViewById(R.id.frag_hotel_et_people)),
-                new AbstractMap.SimpleImmutableEntry<>("search", (Button)v.findViewById(R.id.frag_hotel_bt_search))
+                new AbstractMap.SimpleImmutableEntry<>("search", (Button)v.findViewById(R.id.frag_hotel_bt_search)),
+                new AbstractMap.SimpleImmutableEntry<>("images", (Button)v.findViewById(R.id.frag_hotel_bt_hotel_images))
         );
         return items;
     }
@@ -235,7 +237,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
      */
     private void setHotelInfoImagesButton(ConstraintSet cs){
         if(this.hfv.getBtShowImages() == null){
-            this.hfv.createHotelImagesButton(this.context);
+            //this.hfv.createHotelImagesButton(this.context);
             this.hfv.getCl().addView(this.hfv.getBtShowImages());
             cs.clone(this.hfv.getCl());
             cs.connect(this.hfv.getBtShowImages().getId(),ConstraintSet.TOP,this.hfv.getCl().getId(), ConstraintSet.TOP,2300);
@@ -243,7 +245,6 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
             cs.connect(this.hfv.getBtShowImages().getId(),ConstraintSet.RIGHT,ConstraintSet.PARENT_ID,ConstraintSet.RIGHT,20);
             cs.constrainHeight(this.hfv.getBtShowImages().getId(),ConstraintSet.WRAP_CONTENT);
             cs.applyTo(this.hfv.getCl());
-            this.hfv.getBtShowImages().setOnClickListener(this);
         }//if(this.hfv.getBtShowImages() == null){
     }
 
@@ -268,7 +269,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         cs.connect(this.hfv.getTlInfo().getId(), ConstraintSet.RIGHT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT, 20);
         cs.constrainHeight(this.hfv.getTlInfo().getId(), ConstraintSet.WRAP_CONTENT);
         cs.applyTo(this.hfv.getCl());
-        this.setHotelInfoImagesButton(cs);
+        //this.setHotelInfoImagesButton(cs);
     }
 
     /**
@@ -304,8 +305,9 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
                 country = (String) this.hfv.getSpCountries().getSelectedItem();
                 city = (String) this.hfv.getSpCities().getSelectedItem();
                 hotel = (String) adapterView.getItemAtPosition(i);
-
                 this.setHotelInfoTable(country,city,hotel);
+                break;
+            default:
                 break;
         }
     }
@@ -329,14 +331,13 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
                 break;
             case R.id.frag_hotel_bt_search:
                 break;
+            case R.id.frag_hotel_bt_hotel_images:
+                String country = (String) this.hfv.getSpCountries().getSelectedItem();
+                String city = (String) this.hfv.getSpCities().getSelectedItem();
+                String hotel = (String) this.hfv.getSpHotels().getSelectedItem();
+                this.hotelImagesRequests(country,city,hotel);
+                break;
             default:
-                if(view.getId() == this.hfv.getBtShowImages().getId()){
-                    //Log.d("HotelFragment","onClick getBtShowImages");
-                    String country = (String) this.hfv.getSpCountries().getSelectedItem();
-                    String city = (String) this.hfv.getSpCities().getSelectedItem();
-                    String hotel = (String) this.hfv.getSpHotels().getSelectedItem();
-                    this.hotelImagesRequests(country,city,hotel);
-                }//if(view.getId() == this.hfv.getBtShowImages().getId()){
                 break;
         }
     }

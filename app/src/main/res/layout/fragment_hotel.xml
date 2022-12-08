@@ -8,7 +8,8 @@
 
     <ScrollView
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="match_parent"
+        android:backgroundTint="@android:color/holo_green_dark">
 
         <androidx.constraintlayout.widget.ConstraintLayout
             android:id="@+id/frag_hotel_cl"
@@ -223,6 +224,20 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/frag_hotel_tv_people" />
+
+            <Button
+                android:id="@+id/frag_hotel_bt_hotel_images"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="200dp"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="@android:color/holo_green_dark"
+                android:padding="15dp"
+                android:text="MOSTRA IMMAGINI"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frag_hotel_bt_search" />
 
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
