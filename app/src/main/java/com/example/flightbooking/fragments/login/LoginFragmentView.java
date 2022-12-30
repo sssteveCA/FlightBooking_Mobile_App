@@ -20,7 +20,7 @@ public class LoginFragmentView {
         this.bt_login = bt_login;
         this.bt_reset = bt_reset;
         this.pb = pb;
-        this.et_email.setText("admin@mail.com");
+        this.et_email.setText("user@mail.com");
         this.et_password.setText("12345678");
 
     }

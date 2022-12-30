@@ -146,7 +146,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
                     @Override
                     public void loginError(String message) {
                         this_lf.lfv.getPb().setVisibility(View.GONE);
-                        this_lf.lfv.getEtPassword().setText("");
+                        //this_lf.lfv.getEtPassword().setText("");
                         MessageDialog md = new MessageDialog(this_lf.context,"Login",message);
                     }
                 });

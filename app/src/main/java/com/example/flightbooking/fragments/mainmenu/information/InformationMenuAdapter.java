@@ -20,10 +20,10 @@ public class InformationMenuAdapter  extends BaseExpandableListAdapter {
     private List<String> elv_items;
     private HashMap<String, List<MenuItem>> elv_containers;
 
-    public InformationMenuAdapter(Context context, List<String> inf_items, HashMap<String, List<MenuItem>> inf_containers){
+    public InformationMenuAdapter(Context context, List<String> elv_items, HashMap<String, List<MenuItem>> elv_containers){
         this.context = context;
-        this.elv_items = inf_items;
-        this.elv_containers = inf_containers;
+        this.elv_items = elv_items;
+        this.elv_containers = elv_containers;
     }
 
     @Override
@@ -66,7 +66,7 @@ public class InformationMenuAdapter  extends BaseExpandableListAdapter {
         String listTitle = (String) getGroup(i);
         if(view == null){
             LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = layoutInflater.inflate(R.layout.row_logged_profile_elv_title,null);
+            view = layoutInflater.inflate(R.layout.row_information_elv_title,null);
         }//if(view == null){
         TextView tv_elv_title = view.findViewById(R.id.main_menu_information_elv_tv_title);
         tv_elv_title.setTypeface(null, Typeface.BOLD);
