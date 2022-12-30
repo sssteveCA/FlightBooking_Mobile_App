@@ -69,7 +69,7 @@ public class MainMenuLoggedProfileAdapter extends BaseExpandableListAdapter {
                     getSystemService(Context.LAYOUT_INFLATER_SERVICE);
             view = layoutInflater.inflate(R.layout.row_logged_profile_elv_title, null);
         }//if(view == null){
-        TextView tv_elv_title = (TextView) view.findViewById(R.id.main_menu_logged_elv_tv_title);
+        TextView tv_elv_title = view.findViewById(R.id.main_menu_logged_elv_tv_title);
         tv_elv_title.setTypeface(null, Typeface.BOLD);
         tv_elv_title.setText(listTitle);
         return view;

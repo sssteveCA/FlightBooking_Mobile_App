@@ -1,11 +1,14 @@
 package com.example.flightbooking.fragments.mainmenu.information;
 
 import android.content.Context;
+import android.graphics.Typeface;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.BaseExpandableListAdapter;
+import android.widget.TextView;
 
+import com.example.flightbooking.R;
 import com.example.flightbooking.models.MenuItem;
 
 import java.util.HashMap;
@@ -63,13 +66,21 @@ public class InformationMenuAdapter  extends BaseExpandableListAdapter {
         String listTitle = (String) getGroup(i);
         if(view == null){
             LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = layoutInflater.inflate(0,null);
+            view = layoutInflater.inflate(R.layout.row_logged_profile_elv_title,null);
         }//if(view == null){
+        TextView tv_elv_title = view.findViewById(R.id.main_menu_information_elv_tv_title);
+        tv_elv_title.setTypeface(null, Typeface.BOLD);
+        tv_elv_title.setText(listTitle);
         return null;
     }
 
     @Override
     public View getChildView(int i, int i1, boolean b, View view, ViewGroup viewGroup) {
+        final MenuItem expandedListText = (MenuItem) getChild(i,i1);
+        if(view == null){
+            LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
+            view = layoutInflater.inflate(0,null);
+        }//if(view == null){
         return null;
     }
 
