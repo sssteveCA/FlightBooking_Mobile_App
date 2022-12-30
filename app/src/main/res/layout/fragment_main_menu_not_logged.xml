@@ -45,7 +45,7 @@
             android:textColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@id/main_menu_frag_lv_1"
+            app:layout_constraintTop_toBottomOf="@id/main_menu_information_elv"
             app:rippleColor="@color/black"
             tools:ignore="TextContrastCheck" />
 

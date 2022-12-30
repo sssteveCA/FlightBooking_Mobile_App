@@ -54,7 +54,7 @@
             android:textColor="#000000"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"
-            app:layout_constraintTop_toBottomOf="@+id/main_menu_logged_frag_profile_elv"
+            app:layout_constraintTop_toBottomOf="@+id/main_menu_logged_information_elv"
             app:rippleColor="@color/black" />
     </androidx.constraintlayout.widget.ConstraintLayout>
 </FrameLayout>
