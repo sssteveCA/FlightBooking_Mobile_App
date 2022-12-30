@@ -17,14 +17,34 @@
             android:orientation="vertical"
             android:paddingBottom="60dp">
 
+            <androidx.constraintlayout.widget.ConstraintLayout
+                android:layout_width="match_parent"
+                android:layout_height="match_parent">
+
+                <TextView
+                    android:id="@+id/frag_contacts_tv_header"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginTop="30dp"
+                    android:layout_marginBottom="40dp"
+                    android:gravity="center"
+                    android:text="CHI SIAMO"
+                    android:textSize="22sp"
+                    android:textStyle="bold"
+                    app:layout_constraintBottom_toBottomOf="parent"
+                    app:layout_constraintEnd_toEndOf="parent"
+                    app:layout_constraintStart_toStartOf="parent"
+                    app:layout_constraintTop_toTopOf="parent" />
+            </androidx.constraintlayout.widget.ConstraintLayout>
+
             <ImageView
-                android:id="@+id/imageView2"
+                android:id="@+id/frag_contacts_iv_fb"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:src="@drawable/flightbookinglogo" />
 
             <TextView
-                android:id="@+id/textView2"
+                android:id="@+id/frag_contacts_tv_desc"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:inputType="textMultiLine"
