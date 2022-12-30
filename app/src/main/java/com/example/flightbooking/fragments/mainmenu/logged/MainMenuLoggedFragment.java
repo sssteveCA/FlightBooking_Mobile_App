@@ -33,6 +33,7 @@ import com.example.flightbooking.models.MenuItem;
 import com.example.flightbooking.models.response.login.Auth;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -237,7 +238,12 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
                     dialogInterface.dismiss();
                 }
             });
-        }}
+        }}//if(label.equals(MainMenuLoggedProfileModel.items[2])){{
+        else if(Arrays.asList(InformationMenuModel.items).contains(label)){
+            this.changeMenuVisibility();
+            this.mmlm.setLastLabelClicked(label);
+            this.itemClickListener.mainMenuItemClick(label, null);
+        }
         return false;
     }
 }

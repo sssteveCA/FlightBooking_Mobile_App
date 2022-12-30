@@ -20,10 +20,12 @@ import com.example.flightbooking.R;
 import com.example.flightbooking.fragments.mainmenu.information.InformationMenuAdapter;
 import com.example.flightbooking.fragments.mainmenu.information.InformationMenuModel;
 import com.example.flightbooking.fragments.mainmenu.information.InformationMenuView;
+import com.example.flightbooking.fragments.mainmenu.logged.MainMenuLoggedModel;
 import com.example.flightbooking.interfaces.OnMainMenuItemClick;
 import com.example.flightbooking.models.MenuItem;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.HashMap;
 import java.util.List;
 
@@ -188,6 +190,13 @@ public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickL
     //ExpandableListView.OnChildClickListener
     @Override
     public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
+        MenuItem mi = (MenuItem) expandableListView.getExpandableListAdapter().getChild(i,i1);
+        String label = mi.getLabel();
+        if(Arrays.asList(InformationMenuModel.items).contains(label)){
+            this.changeMenuVisibility();
+            this.mmnlm.setLastLabelClicked(label);
+            this.itemClickListener.mainMenuItemClick(label, null);
+        }
         return false;
     }
 }
