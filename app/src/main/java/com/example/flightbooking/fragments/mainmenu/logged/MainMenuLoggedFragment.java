@@ -116,14 +116,16 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
         Button bt_1 = view.findViewById(R.id.main_menu_logged_frag_bt_1);
         ListView lv_1 = view.findViewById(R.id.main_menu_logged_frag_lv_1);
         ExpandableListView elv_profile = view.findViewById(R.id.main_menu_logged_frag_profile_elv);
+        ExpandableListView elv_info = view.findViewById(R.id.main_menu_logged_information_elv);
         this.setMenuItems(lv_1,bt_1);
         this.setMenuProfileItems(elv_profile);
+        this.setMenuInfoItems(elv_info);
         this.setMenuItemsListeners();
         return view;
     }
 
     /**
-     * Set the non profile logged menu items part
+     * Set the non profile/non information logged menu items part
      * @param lv_1
      * @param bt_1
      */
@@ -135,6 +137,10 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
         this.mmlv.getMenu().setAdapter(mmla);
     }
 
+    /**
+     * Set the information expandable menu item
+     * @param elv_info
+     */
     private void setMenuInfoItems(ExpandableListView elv_info){
         this.imm = new InformationMenuModel();
         this.imv = new InformationMenuView(elv_info);
@@ -176,12 +182,14 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
             this.mmlm.setMenuStatus(MainMenuLoggedModel.MENU_SHOWN);
             this.mmlv.getMenu().setVisibility(View.VISIBLE);
             this.mmlpv.getElvProfile().setVisibility(View.VISIBLE);
+            this.imv.getElvInfo().setVisibility(View.VISIBLE);
             this.mmlv.getShowHide().setText("Chiudi il menu");
         }//if(status == MainMenuModel.MENU_HIDDEN){
         else{
             this.mmlm.setMenuStatus(MainMenuLoggedModel.MENU_HIDDEN);
             this.mmlv.getMenu().setVisibility(View.GONE);
             this.mmlpv.getElvProfile().setVisibility(View.GONE);
+            this.imv.getElvInfo().setVisibility(View.GONE);
             this.mmlv.getShowHide().setText("Apri il menu");
         }
     }

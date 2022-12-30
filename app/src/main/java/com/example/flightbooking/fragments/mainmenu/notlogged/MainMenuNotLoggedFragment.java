@@ -12,22 +12,32 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.Button;
+import android.widget.ExpandableListView;
 import android.widget.ListView;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
+import com.example.flightbooking.fragments.mainmenu.information.InformationMenuAdapter;
+import com.example.flightbooking.fragments.mainmenu.information.InformationMenuModel;
+import com.example.flightbooking.fragments.mainmenu.information.InformationMenuView;
 import com.example.flightbooking.interfaces.OnMainMenuItemClick;
 import com.example.flightbooking.models.MenuItem;
+
+import java.util.ArrayList;
+import java.util.HashMap;
+import java.util.List;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link MainMenuNotLoggedFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener{
+public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener, ExpandableListView.OnChildClickListener{
 
     private MainMenuNotLoggedModel mmnlm;
     private MainMenuNotLoggedView mmnlv;
+    private InformationMenuModel imm;
+    private InformationMenuView imv;
     private Context ctx;
     public OnMainMenuItemClick itemClickListener = null;
 
@@ -91,14 +101,46 @@ public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickL
         View view = inflater.inflate(R.layout.fragment_main_menu_not_logged, container, false);
         Button bt_1 = view.findViewById(R.id.main_menu_frag_bt_1);
         ListView lv_1 = view.findViewById(R.id.main_menu_frag_lv_1);
+        ExpandableListView elv_info = view.findViewById(R.id.main_menu_information_elv);
+        this.setMenuItems(lv_1,bt_1);
+        this.setMenuInfoItems(elv_info);
+        this.setMenuItemsListeners();
+        return view;
+    }
+
+    /**
+     * Set the non information logged menu items part
+     * @param lv_1
+     * @param bt_1
+     */
+    private void setMenuItems(ListView lv_1, Button bt_1){
         this.mmnlm = new MainMenuNotLoggedModel(this.ctx);
         this.mmnlm.setMenuStatus(MainMenuNotLoggedModel.MENU_HIDDEN);
         MainMenuNotLoggedAdapter mma = new MainMenuNotLoggedAdapter(this.ctx,R.layout.row,this.mmnlm.getMenuItems());
         this.mmnlv = new MainMenuNotLoggedView(lv_1,bt_1);
         this.mmnlv.getMenu().setAdapter(mma);
+    }
+
+    /**
+     * Set the information expandable menu item
+     * @param elv_info
+     */
+    private void setMenuInfoItems(ExpandableListView elv_info){
+        this.imm = new InformationMenuModel();
+        this.imv = new InformationMenuView(elv_info);
+        HashMap<String, List<MenuItem>> infoMenuMap = this.imm.getInfoSubmenuItems();
+        List<String> infoMenuTitles = new ArrayList<String>(infoMenuMap.keySet());
+        InformationMenuAdapter ima = new InformationMenuAdapter(this.ctx, infoMenuTitles, infoMenuMap);
+        this.imv.getElvInfo().setAdapter(ima);
+        this.imv.getElvInfo().setOnChildClickListener(this);
+    }
+
+    /**
+     * Set listeners for menu item views
+     */
+    private void setMenuItemsListeners(){
         this.mmnlv.getShowHide().setOnClickListener(this);
         this.mmnlv.getMenu().setOnItemClickListener(this);
-        return view;
     }
 
     //View.OnClickListener
@@ -122,11 +164,13 @@ public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickL
         if(status == MainMenuNotLoggedModel.MENU_HIDDEN){
             this.mmnlm.setMenuStatus(MainMenuNotLoggedModel.MENU_SHOWN);
             this.mmnlv.getMenu().setVisibility(View.VISIBLE);
+            this.imv.getElvInfo().setVisibility(View.VISIBLE);
             this.mmnlv.getShowHide().setText("Chiudi il menu");
         }//if(status == MainMenuModel.MENU_HIDDEN){
         else{
             this.mmnlm.setMenuStatus(MainMenuNotLoggedModel.MENU_HIDDEN);
             this.mmnlv.getMenu().setVisibility(View.GONE);
+            this.imv.getElvInfo().setVisibility(View.GONE);
             this.mmnlv.getShowHide().setText("Apri il menu");
         }
     }
@@ -139,5 +183,11 @@ public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickL
         this.changeMenuVisibility();
         this.mmnlm.setLastLabelClicked(label);
         this.itemClickListener.mainMenuItemClick(label, null);
+    }
+
+    //ExpandableListView.OnChildClickListener
+    @Override
+    public boolean onChildClick(ExpandableListView expandableListView, View view, int i, int i1, long l) {
+        return false;
     }
 }

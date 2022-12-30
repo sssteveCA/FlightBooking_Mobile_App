@@ -19,6 +19,7 @@ public class InformationMenuModel {
 
     public InformationMenuModel(){
         this.info_submenu_items = new HashMap<>();
+        this.setMenu();
     }
 
     public HashMap<String, List<MenuItem>> getInfoSubmenuItems(){return this.info_submenu_items;}
