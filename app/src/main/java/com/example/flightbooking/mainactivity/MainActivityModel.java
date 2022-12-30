@@ -50,6 +50,8 @@ public class MainActivityModel {
             return FragmentLabels.ABOUT_US.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.CONTACTS.getPackageName()))
             return FragmentLabels.CONTACTS.getLabelName();
+        else if(class_name.equalsIgnoreCase(FragmentPackages.COOKIE_POLICY.getPackageName()))
+            return FragmentLabels.COOKIE_POLICY.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.FLIGHTS.getPackageName()))
             return FragmentLabels.FLIGHTS.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.LOGIN.getPackageName()))
@@ -58,8 +60,12 @@ public class MainActivityModel {
             return FragmentLabels.NEWS.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.NO_CONNECTION.getPackageName()))
             return FragmentLabels.NO_CONNECTION.getLabelName();
+        else if(class_name.equalsIgnoreCase(FragmentPackages.PRIVACY_POLICY.getPackageName()))
+            return FragmentLabels.PRIVACY_POLICY.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.SUBSCRIBE.getPackageName()))
             return FragmentLabels.SUBSCRIBE.getLabelName();
+        else if(class_name.equalsIgnoreCase(FragmentPackages.TERMS.getPackageName()))
+            return FragmentLabels.TERMS.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.TICKET_PREVIEW.getPackageName()))
             return FragmentLabels.TICKET_PREVIEW.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.VERIFY.getPackageName()))
@@ -79,6 +85,8 @@ public class MainActivityModel {
             return FragmentPackages.ABOUT_US.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.CONTACTS.getLabelName()))
             return FragmentPackages.CONTACTS.getPackageName();
+        else if(label.equalsIgnoreCase(FragmentLabels.COOKIE_POLICY.getLabelName()))
+            return FragmentPackages.COOKIE_POLICY.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.FLIGHTS.getLabelName()))
             return FragmentPackages.FLIGHTS.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.LOGIN.getLabelName()))
@@ -87,8 +95,12 @@ public class MainActivityModel {
             return FragmentPackages.NEWS.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.NO_CONNECTION.getLabelName()))
             return FragmentPackages.NO_CONNECTION.getPackageName();
+        else if(label.equalsIgnoreCase(FragmentLabels.PRIVACY_POLICY.getLabelName()))
+            return FragmentPackages.PRIVACY_POLICY.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.SUBSCRIBE.getLabelName()))
             return FragmentPackages.SUBSCRIBE.getPackageName();
+        else if(label.equalsIgnoreCase(FragmentLabels.TERMS.getLabelName()))
+            return FragmentPackages.TERMS.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.TICKET_PREVIEW.getLabelName()))
             return FragmentPackages.TICKET_PREVIEW.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.VERIFY.getLabelName()))
