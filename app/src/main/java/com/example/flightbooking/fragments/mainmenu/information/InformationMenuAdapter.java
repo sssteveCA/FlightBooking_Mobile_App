@@ -71,7 +71,7 @@ public class InformationMenuAdapter  extends BaseExpandableListAdapter {
         TextView tv_elv_title = view.findViewById(R.id.main_menu_information_elv_tv_title);
         tv_elv_title.setTypeface(null, Typeface.BOLD);
         tv_elv_title.setText(listTitle);
-        return null;
+        return view;
     }
 
     @Override
@@ -79,9 +79,11 @@ public class InformationMenuAdapter  extends BaseExpandableListAdapter {
         final MenuItem expandedListText = (MenuItem) getChild(i,i1);
         if(view == null){
             LayoutInflater layoutInflater = (LayoutInflater) this.context.getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = layoutInflater.inflate(0,null);
+            view = layoutInflater.inflate(R.layout.row_information_item,null);
         }//if(view == null){
-        return null;
+        TextView tv_elv_item = view.findViewById(R.id.main_menu_information_item_tv);
+        tv_elv_item.setText(expandedListText.getLabel());
+        return view;
     }
 
     @Override
