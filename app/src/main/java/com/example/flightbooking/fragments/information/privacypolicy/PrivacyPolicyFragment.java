@@ -1,21 +1,30 @@
 package com.example.flightbooking.fragments.information.privacypolicy;
 
+import android.app.Activity;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
+import com.example.flightbooking.enums.FragmentLabels;
+import com.example.flightbooking.interfaces.OnMainMenuItemClick;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link PrivacyPolicyFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PrivacyPolicyFragment extends Fragment {
+public class PrivacyPolicyFragment extends Fragment implements View.OnClickListener {
+
+    private PrivacyPolicyView ppv;
+    public OnMainMenuItemClick onMainMenuItemClick;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -49,6 +58,12 @@ public class PrivacyPolicyFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(@NonNull Activity activity) {
+        super.onAttach(activity);
+        this.onMainMenuItemClick = (MainActivity)activity;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -61,6 +76,20 @@ public class PrivacyPolicyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_privacy_policy, container, false);
+        View v = inflater.inflate(R.layout.fragment_privacy_policy, container, false);
+        Button bt_back = v.findViewById(R.id.frag_privacyp_bt_back);
+        this.ppv = new PrivacyPolicyView(bt_back);
+        this.ppv.getBtBack().setOnClickListener(this);
+        return v;
+    }
+
+    //View.OnClickListener
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
+            case R.id.frag_privacyp_bt_back:
+                this.onMainMenuItemClick.mainMenuItemClick(FragmentLabels.HOME.getLabelName(), null);
+                break;
+        }
     }
 }
