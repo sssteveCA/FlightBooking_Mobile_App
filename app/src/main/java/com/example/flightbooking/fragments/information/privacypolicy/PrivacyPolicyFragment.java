@@ -24,7 +24,7 @@ import com.example.flightbooking.interfaces.OnMainMenuItemClick;
 public class PrivacyPolicyFragment extends Fragment implements View.OnClickListener {
 
     private PrivacyPolicyView ppv;
-    public OnMainMenuItemClick onMainMenuItemClick;
+    public OnMainMenuItemClick onMainMenuItemClick = null;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
