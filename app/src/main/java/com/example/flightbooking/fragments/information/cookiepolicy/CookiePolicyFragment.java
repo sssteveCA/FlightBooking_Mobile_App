@@ -1,21 +1,30 @@
 package com.example.flightbooking.fragments.information.cookiepolicy;
 
+import android.app.Activity;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
+import com.example.flightbooking.enums.FragmentLabels;
+import com.example.flightbooking.interfaces.OnMainMenuItemClick;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link CookiePolicyFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CookiePolicyFragment extends Fragment {
+public class CookiePolicyFragment extends Fragment implements View.OnClickListener {
+
+    private CookiePolicyView cpv;
+    public OnMainMenuItemClick onMainMenuItemClick = null;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -49,6 +58,12 @@ public class CookiePolicyFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(@NonNull Activity activity) {
+        super.onAttach(activity);
+        this.onMainMenuItemClick = (MainActivity)activity;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -61,6 +76,19 @@ public class CookiePolicyFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_cookie_policy, container, false);
+        View v = inflater.inflate(R.layout.fragment_cookie_policy, container, false);
+        Button bt_back = v.findViewById(R.id.frag_cookiep_bt_back);
+        this.cpv = new CookiePolicyView(bt_back);
+        this.cpv.getBtBack().setOnClickListener(this);
+        return v;
+    }
+
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
+            case R.id.frag_cookiep_bt_back:
+                this.onMainMenuItemClick.mainMenuItemClick(FragmentLabels.HOME.getLabelName(),null);
+                break;
+        }
     }
 }
