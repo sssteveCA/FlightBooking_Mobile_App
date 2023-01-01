@@ -22,6 +22,7 @@ import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.dialogs.MessageDialog;
 import com.example.flightbooking.enums.FragmentLabels;
+import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.interfaces.LoginObserver;
 import com.example.flightbooking.models.response.login.Auth;
 
@@ -38,7 +39,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
     private LoginFragmentModel lfm;
     private LoginFragmentView lfv;
     private Context context;
-    private LoginObserver lo;
+    public LoginObserver lo = null;
+    public FragmentChange fc = null;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -76,6 +78,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
     public void onAttach(@NonNull Activity activity) {
         super.onAttach(activity);
         this.lo = (MainActivity)activity;
+        this.fc = (MainActivity)activity;
     }
 
     @Override
@@ -103,10 +106,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
         CheckBox cb_show_pass = view.findViewById(R.id.frag_login_cb_show_pass);
         Button bt_login = view.findViewById(R.id.frag_login_bt_login);
         Button bt_reset = view.findViewById(R.id.frag_login_bt_reset);
+        Button bt_back = view.findViewById(R.id.frag_login_bt_back);
         ProgressBar pb = view.findViewById(R.id.frag_login_pb);
-        this.lfv = new LoginFragmentView(et_email,et_password,cb_show_pass,bt_login,bt_reset,pb);
+        this.lfv = new LoginFragmentView(et_email,et_password,cb_show_pass,bt_login,bt_reset,bt_back,pb);
         this.lfv.getBtLogin().setOnClickListener(this);
         this.lfv.getBtReset().setOnClickListener(this);
+        this.lfv.getBtBack().setOnClickListener(this);
         this.lfv.getCbShowPass().setOnCheckedChangeListener(this);
         return view;
     }
@@ -153,6 +158,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
                 break;
             case R.id.frag_login_bt_reset:
                 this.lfv.resetAll();
+                break;
+            case R.id.frag_login_bt_back:
+                this.fc.fragmentChange(FragmentLabels.TERMS.getLabelName(), FragmentLabels.HOME.getLabelName(), true, null);
                 break;
         }
     }
