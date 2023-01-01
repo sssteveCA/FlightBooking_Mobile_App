@@ -116,25 +116,13 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
         return view;
     }
 
-    /**
-     * Set the login body data
-     * @return the Map with the login data
-     */
-    private Map<String, String> setLoginBody(){
-        Map<String, String> loginBody = Map.ofEntries(
-                new AbstractMap.SimpleImmutableEntry<String, String>("email", this.lfv.getEtEmail().getText().toString()),
-                new AbstractMap.SimpleImmutableEntry<String, String>("password", this.lfv.getEtPassword().getText().toString())
-        );
-        return loginBody;
-    }
-
     //View.OnClickListener
     @Override
     public void onClick(View view) {
         LoginFragment this_lf = this;
         switch(view.getId()){
             case R.id.frag_login_bt_login:
-                Map<String, String> loginData = this.setLoginBody();
+                Map<String, String> loginData = LoginFragmentMethods.setLoginBody(this_lf.lfv);
                 this_lf.lfv.getPb().setVisibility(View.VISIBLE);
                 this_lf.lfm.loginRequest(loginData, new LoginFragmentModel.LoginResponse() {
                     @Override
