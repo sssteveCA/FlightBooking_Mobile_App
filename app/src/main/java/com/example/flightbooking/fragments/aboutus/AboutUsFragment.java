@@ -1,21 +1,30 @@
 package com.example.flightbooking.fragments.aboutus;
 
+import android.app.Activity;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
 
+import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
+import com.example.flightbooking.enums.FragmentLabels;
+import com.example.flightbooking.interfaces.OnMainMenuItemClick;
 
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link AboutUsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class AboutUsFragment extends Fragment {
+public class AboutUsFragment extends Fragment implements View.OnClickListener {
+
+    private AboutUsView auv;
+    public OnMainMenuItemClick onMainMenuItemClick = null;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -49,6 +58,12 @@ public class AboutUsFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(@NonNull Activity activity) {
+        super.onAttach(activity);
+        this.onMainMenuItemClick = (MainActivity)activity;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -61,6 +76,21 @@ public class AboutUsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_about_us, container, false);
+        View v = inflater.inflate(R.layout.fragment_about_us, container, false);
+        Button bt_back = v.findViewById(R.id.frag_aboutus_bt_back);
+        this.auv = new AboutUsView(bt_back);
+        this.auv.getBtBack().setOnClickListener(this);
+        return v;
+    }
+
+
+    //View.OnClickListener
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
+            case R.id.frag_aboutus_bt_back:
+                this.onMainMenuItemClick.mainMenuItemClick(FragmentLabels.HOME.getLabelName(), null);
+                break;
+        }
     }
 }
