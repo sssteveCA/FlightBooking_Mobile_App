@@ -175,7 +175,7 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
             case R.id.frag_subsc_bt_reset:
                 this.sfv.resetAll();
                 break;
-            case R.id.frag_news_bt_back:
+            case R.id.frag_subsc_bt_back:
                 fc.fragmentChange(FragmentLabels.SUBSCRIBE.getLabelName(), FragmentLabels.HOME.getLabelName(), true,null);
                 break;
         }

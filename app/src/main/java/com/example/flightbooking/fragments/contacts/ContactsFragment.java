@@ -1,5 +1,6 @@
 package com.example.flightbooking.fragments.contacts;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -13,8 +14,11 @@ import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
 
+import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.dialogs.MessageDialog;
+import com.example.flightbooking.enums.FragmentLabels;
+import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.models.response.Message;
 
 import java.util.Map;
@@ -28,9 +32,10 @@ import java.util.stream.Stream;
  */
 public class ContactsFragment extends Fragment implements View.OnClickListener {
 
-    ContactsFragmentModel cfm;
-    ContactsFragmentView cfv;
+    private ContactsFragmentModel cfm;
+    private ContactsFragmentView cfv;
     private Context context;
+    public FragmentChange fc = null;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -65,6 +70,12 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public void onAttach(@NonNull Activity activity) {
+        super.onAttach(activity);
+        this.fc = (MainActivity)activity;
+    }
+
+    @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         this.context = context;
@@ -90,10 +101,12 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
         EditText et_message = view.findViewById(R.id.frag_cont_et_message);
         Button bt_send = view.findViewById(R.id.frag_cont_bt_send);
         Button bt_reset = view.findViewById(R.id.frag_cont_bt_reset);
+        Button bt_back = view.findViewById(R.id.frag_cont_bt_back);
         ProgressBar pb = view.findViewById(R.id.frag_cont_pb);
-        this.cfv = new ContactsFragmentView(et_name,et_from,et_subject,et_message,bt_send,bt_reset,pb);
+        this.cfv = new ContactsFragmentView(et_name,et_from,et_subject,et_message,bt_send,bt_reset,bt_back,pb);
         this.cfv.getBtSend().setOnClickListener(this);
         this.cfv.getBtReset().setOnClickListener(this);
+        this.cfv.getBtBack().setOnClickListener(this);
         return view;
     }
 
@@ -135,6 +148,9 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
                 break;
             case R.id.frag_cont_bt_reset:
                 this.cfv.resetAll();
+                break;
+            case R.id.frag_cont_bt_back:
+                this.fc.fragmentChange(FragmentLabels.CONTACTS.getLabelName(), FragmentLabels.HOME.getLabelName(), true, null);
                 break;
         }
     }

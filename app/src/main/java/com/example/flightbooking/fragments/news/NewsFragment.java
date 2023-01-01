@@ -25,7 +25,7 @@ import com.example.flightbooking.interfaces.OnMainMenuItemClick;
 public class NewsFragment extends Fragment implements  View.OnClickListener {
 
     private NewsView nv;
-    private FragmentChange fc = null;
+    public FragmentChange fc = null;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

@@ -2,7 +2,7 @@
 <FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto"
     xmlns:tools="http://schemas.android.com/tools"
-    android:id="@+id/frag_cont_bt_back"
+    android:id="@+id/frag_cont"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     android:background="#FFFFFF"
@@ -132,12 +132,12 @@
                 android:backgroundTint="#F44336"
                 android:padding="15sp"
                 android:text="Annulla"
-                app:layout_constraintEnd_toStartOf="@+id/button"
+                app:layout_constraintEnd_toStartOf="@+id/frag_cont_bt_back"
                 app:layout_constraintStart_toEndOf="@+id/frag_cont_bt_send"
                 app:layout_constraintTop_toBottomOf="@+id/frag_cont_et_message" />
 
             <Button
-                android:id="@+id/button"
+                android:id="@+id/frag_cont_bt_back"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"

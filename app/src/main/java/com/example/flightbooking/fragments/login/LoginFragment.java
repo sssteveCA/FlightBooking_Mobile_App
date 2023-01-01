@@ -160,7 +160,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
                 this.lfv.resetAll();
                 break;
             case R.id.frag_login_bt_back:
-                this.fc.fragmentChange(FragmentLabels.TERMS.getLabelName(), FragmentLabels.HOME.getLabelName(), true, null);
+                this.fc.fragmentChange(FragmentLabels.LOGIN.getLabelName(), FragmentLabels.HOME.getLabelName(), true, null);
                 break;
         }
     }
