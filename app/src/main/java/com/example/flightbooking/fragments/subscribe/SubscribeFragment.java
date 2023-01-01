@@ -119,21 +119,6 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
         return view;
     }
 
-    /**
-     * Set the subscribe body data
-     * @return the Map with the subscribe data
-     */
-    private Map<String, String> setSubscribeBody(){
-        Map<String, String> subscribeValues = Stream.of(new Object[][]{
-                {"username", this.sfv.getEtUsername().getText().toString()},
-                {"email", this.sfv.getEtEmailAddress().getText().toString()},
-                {"conf_email", this.sfv.getEtEmailAddressConf().getText().toString()},
-                {"password", this.sfv.getEtPassword().getText().toString()},
-                {"conf_password", this.sfv.getEtPasswordConf().getText().toString()}
-        }).collect(Collectors.toMap(data -> (String) data[0], data -> (String) data[1]));
-        return subscribeValues;
-    }
-
     //View.OnClickListener
     @Override
     public void onClick(View view) {
@@ -146,7 +131,7 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
                     public void onClick(DialogInterface dialogInterface, int i) {
                         //Yes button pressed
                         //Log.i("SubscribeFragment"," Yes button pressed");
-                        Map<String, String> post_data = sf_this.setSubscribeBody();
+                        Map<String, String> post_data = SubscribeFragmentMethods.setSubscribeBody(sf_this.sfv);
                         sf_this.sfv.getPb().setVisibility(View.VISIBLE);
                         sf_this.sfm.subscribeRequest(post_data, new SubscribeFragmentModel.SubscribeResponse() {
                             @Override
