@@ -11,6 +11,7 @@ import android.widget.Spinner;
 import android.widget.TextView;
 
 import com.example.flightbooking.R;
+import com.example.flightbooking.common.Generic;
 import com.example.flightbooking.models.requests.flights.FlightSearch;
 
 import java.util.AbstractMap;
@@ -19,17 +20,6 @@ import java.util.List;
 import java.util.Map;
 
 public class FlightsFragmentMethods {
-
-    /**
-     * Create an ArrayAdapter from list
-     * @param items
-     * @return
-     */
-    public static ArrayAdapter<String> arrayAdapterFromList(Context context, List<String> items){
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(context,android.R.layout.simple_spinner_item,items);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        return adapter;
-    }
 
     /**
      * Create a Map with Flights Fragment views reference
@@ -64,7 +54,7 @@ public class FlightsFragmentMethods {
      */
     public static void setAirportsList(Context context, String country, FlightsFragmentModel.AirportsRequest ar, FlightsFragmentModel ffm, FlightsFragmentView ffv){
         LinkedList<String> airports = ffm.getAirportsOfCountry(country);
-        ArrayAdapter<String> airportsAdapter = FlightsFragmentMethods.arrayAdapterFromList(context, airports);
+        ArrayAdapter<String> airportsAdapter = Generic.arrayAdapterFromList(context, airports);
         if(ar == FlightsFragmentModel.AirportsRequest.DEPARTURE){
             ffv.getSpDepAirport().setAdapter(airportsAdapter);
         }//if(ar == FlightsFragmentModel.AirportsRequest.DEPARTURE){

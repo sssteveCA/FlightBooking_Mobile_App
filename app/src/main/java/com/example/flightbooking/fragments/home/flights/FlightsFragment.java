@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
+import com.example.flightbooking.common.Generic;
 import com.example.flightbooking.dialogs.DatePicker;
 import com.example.flightbooking.dialogs.MessageDialog;
 import com.example.flightbooking.enums.FragmentLabels;
@@ -142,7 +143,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
             @Override
             public void companiesResponse(List<String> companies) {
                 //Log.d("FlightsFragment","companiesRequest getCompanies response => "+companies);
-                ArrayAdapter<String> companiesAdapter = FlightsFragmentMethods.arrayAdapterFromList(ff_temp.context,companies);
+                ArrayAdapter<String> companiesAdapter = Generic.arrayAdapterFromList(ff_temp.context,companies);
                 ffv_temp.getSpCompanies().setAdapter(companiesAdapter);
             }
             @Override
@@ -166,7 +167,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
                 //Log.i("FlightsFragment","loadAirportsData airports request => "+airports);
                 LinkedList<String> countries = ffm_temp.getAirportsCountries();
                 //Log.i("FlightsFragment","loadAirportsData airports request linkedlist => "+countries);
-                ArrayAdapter<String> countriesAdapter = FlightsFragmentMethods.arrayAdapterFromList(ff_temp.context, countries);
+                ArrayAdapter<String> countriesAdapter = Generic.arrayAdapterFromList(ff_temp.context, countries);
                 ffv_temp.getSpDepCountry().setAdapter(countriesAdapter);
                 ffv_temp.getSpArrCountry().setAdapter(countriesAdapter);
                 String initialCountry = countries.getFirst();

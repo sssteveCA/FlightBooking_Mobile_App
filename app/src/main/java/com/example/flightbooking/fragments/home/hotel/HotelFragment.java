@@ -25,6 +25,7 @@ import android.widget.TableLayout;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
+import com.example.flightbooking.common.Generic;
 import com.example.flightbooking.dialogs.DatePickerHotel;
 import com.example.flightbooking.dialogs.ImagesDialog;
 import com.example.flightbooking.dialogs.MessageDialog;
@@ -111,7 +112,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         View v =  inflater.inflate(R.layout.fragment_hotel, container, false);
         this.hfm = new HotelFragmentModel(this.context);
         try {
-            this.hfv = new HotelFragmentView(this.hotelItems(v));
+            this.hfv = new HotelFragmentView(HotelFragmentMethods.hotelItems(v));
             this.hfv.getSpCountries().setOnItemSelectedListener(this);
             this.hfv.getSpCities().setOnItemSelectedListener(this);
             this.hfv.getSpHotels().setOnItemSelectedListener(this);
@@ -130,39 +131,6 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
     public void onResume() {
         super.onResume();
         this.loadHotelsData();
-    }
-
-    /**
-     * Create a Map with Hotel view references
-     * @param v
-     * @return
-     */
-    private Map<String, View> hotelItems(View v){
-        Map<String, View> items = Map.ofEntries(
-                new AbstractMap.SimpleImmutableEntry<>("layout", (ConstraintLayout)v.findViewById(R.id.frag_hotel_cl)),
-                new AbstractMap.SimpleImmutableEntry<>("countries", (Spinner)v.findViewById(R.id.frag_hotel_sp_countries)),
-                new AbstractMap.SimpleImmutableEntry<>("cities", (Spinner)v.findViewById(R.id.frag_hotel_sp_cities)),
-                new AbstractMap.SimpleImmutableEntry<>("hotels", (Spinner)v.findViewById(R.id.frag_hotel_sp_hotels)),
-                new AbstractMap.SimpleImmutableEntry<>("check_in", (EditText)v.findViewById(R.id.frag_hotel_et_check_in)),
-                new AbstractMap.SimpleImmutableEntry<>("check_out", (EditText)v.findViewById(R.id.frag_hotel_et_check_out)),
-                new AbstractMap.SimpleImmutableEntry<>("rooms", (EditText)v.findViewById(R.id.frag_hotel_et_rooms)),
-                new AbstractMap.SimpleImmutableEntry<>("people", (EditText)v.findViewById(R.id.frag_hotel_et_people)),
-                new AbstractMap.SimpleImmutableEntry<>("search", (Button)v.findViewById(R.id.frag_hotel_bt_search)),
-                new AbstractMap.SimpleImmutableEntry<>("images", (Button)v.findViewById(R.id.frag_hotel_bt_hotel_images)),
-                new AbstractMap.SimpleImmutableEntry<>("pb_images", (ProgressBar)v.findViewById(R.id.frag_hotel_pb_hotel_images))
-        );
-        return items;
-    }
-
-    /**
-     * Create an ArrayAdapter from list
-     * @param items
-     * @return
-     */
-    private ArrayAdapter<String> arrayAdapterFromList(List<String> items){
-        ArrayAdapter<String> adapter = new ArrayAdapter<>(this.context, android.R.layout.simple_spinner_item,items);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        return adapter;
     }
 
     /**
@@ -212,11 +180,11 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
             @Override
             public void hotelInfoResponse(JsonObject hotels) {
                 LinkedList<String> countries = hfm_temp.getHotelsCountries();
-                ArrayAdapter<String> countriesAdapter = hf_temp.arrayAdapterFromList(countries);
+                ArrayAdapter<String> countriesAdapter = Generic.arrayAdapterFromList(hf_temp.context,countries);
                 hfv_temp.getSpCountries().setAdapter(countriesAdapter);
                 String initialCity = countries.getFirst();
                 //Log.d("HotelFragment","loadHotelsData initialCity => "+initialCity);
-                hf_temp.setCitiesList(initialCity);
+                HotelFragmentMethods.setCitiesList(hf_temp.context,initialCity,hfm_temp,hfv_temp);
             }
             @Override
             public void hotelInfoError(String message) {
@@ -225,54 +193,6 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         });
     }
 
-    /**
-     * Set a list of city in the proper dropdown widget
-     * @param country the country of the cities to display
-     */
-    private void setCitiesList(String country){
-        LinkedList<String> cities = this.hfm.getHotelCitiesOfCountry(country);
-        ArrayAdapter<String> citiesAdapter = this.arrayAdapterFromList(cities);
-        this.hfv.getSpCities().setAdapter(citiesAdapter);
-        String firstCity = cities.getFirst();
-        this.setHotelsList(country,firstCity);
-    }
-
-    /**
-     * Set the table in the layout that display the information about a hotel
-     * @param country
-     * @param city
-     * @param hotel
-     */
-    private void setHotelInfoTable(String country, String city, String hotel){
-        if(this.hfv.getTlInfo() != null){
-            this.hfv.getCl().removeView(this.hfv.getTlInfo());
-            this.hfv.setTlInfo(null);
-        }//if(this.hfv.getTlInfo() != null){
-        HashMap<String, Object> info = this.hfm.getHotelInfo(country,city,hotel);
-        this.hfv.createHotelInfoTable(this.context,info);
-        ConstraintSet cs = new ConstraintSet();
-        cs.clone(this.hfv.getCl());
-        this.hfv.getCl().addView(this.hfv.getTlInfo());
-        cs.connect(this.hfv.getTlInfo().getId(), ConstraintSet.TOP, this.hfv.getBtSearch().getId(), ConstraintSet.BOTTOM, 40);
-        cs.connect(this.hfv.getTlInfo().getId(), ConstraintSet.LEFT, ConstraintSet.PARENT_ID,ConstraintSet.LEFT,20);
-        cs.connect(this.hfv.getTlInfo().getId(), ConstraintSet.RIGHT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT, 20);
-        cs.constrainHeight(this.hfv.getTlInfo().getId(), ConstraintSet.WRAP_CONTENT);
-        cs.applyTo(this.hfv.getCl());
-        //this.setHotelInfoImagesButton(cs);
-    }
-
-    /**
-     * Set a list of hotels in the proper dropdown widget
-     * @param country the country to search the hotels
-     * @param city the city of the hotels to display
-     */
-    private void setHotelsList(String country, String city){
-        LinkedList<String> hotels = this.hfm.getHotelsOfCity(country,city);
-        ArrayAdapter hotelsAdapter = this.arrayAdapterFromList(hotels);
-        this.hfv.getSpHotels().setAdapter(hotelsAdapter);
-        String firstHotel = hotels.getFirst();
-        this.setHotelInfoTable(country,city,firstHotel);
-    }
 
 
     //AdapterView.OnItemSelectedListener
@@ -282,19 +202,19 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         switch(adapterView.getId()){
             case R.id.frag_hotel_sp_countries:
                 country = (String) adapterView.getItemAtPosition(i);
-                this.setCitiesList(country);
+                HotelFragmentMethods.setCitiesList(this.context,country,this.hfm,this.hfv);
                 break;
             case R.id.frag_hotel_sp_cities:
                 country = (String) this.hfv.getSpCountries().getSelectedItem();
                 city = (String) adapterView.getItemAtPosition(i);
 
-                this.setHotelsList(country,city);
+                HotelFragmentMethods.setHotelsList(this.context,country,city,this.hfm,this.hfv);
                 break;
             case R.id.frag_hotel_sp_hotels:
                 country = (String) this.hfv.getSpCountries().getSelectedItem();
                 city = (String) this.hfv.getSpCities().getSelectedItem();
                 hotel = (String) adapterView.getItemAtPosition(i);
-                this.setHotelInfoTable(country,city,hotel);
+                HotelFragmentMethods.setHotelInfoTable(this.context,country,city,hotel,this.hfm,this.hfv);
                 break;
             default:
                 break;
@@ -313,10 +233,10 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         HotelFragmentView this_hfv = this.hfv;
         switch(view.getId()){
             case R.id.frag_hotel_et_check_in:
-                this_hf.showDatePickerDialog(this_hfv.getEtCkeckIn().getText().toString(), HotelFragmentModel.EditTextsDate.CKECK_IN);
+                HotelFragmentMethods.showDatePickerDialog(this_hfv.getEtCkeckIn().getText().toString(), this_hf, HotelFragmentModel.EditTextsDate.CKECK_IN, this_hf.ma);
                 break;
             case R.id.frag_hotel_et_check_out:
-                this_hf.showDatePickerDialog(this_hfv.getEtCkeckOut().getText().toString(), HotelFragmentModel.EditTextsDate.CHECK_OUT);
+                HotelFragmentMethods.showDatePickerDialog(this_hfv.getEtCkeckOut().getText().toString(), this_hf,HotelFragmentModel.EditTextsDate.CHECK_OUT, this_hf.ma);
                 break;
             case R.id.frag_hotel_bt_search:
                 break;
@@ -329,16 +249,6 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
             default:
                 break;
         }
-    }
-
-    /**
-     * Show a date picker dialog and pass the date inserted from EditText if exists
-     * @param inputDate
-     * @param etd
-     */
-    private void showDatePickerDialog(String inputDate, HotelFragmentModel.EditTextsDate etd){
-        DialogFragment df = new DatePickerHotel(inputDate,this,etd);
-        df.show(this.ma.getSupportFragmentManager(),"DatePickerDialog");
     }
 
     @Override
