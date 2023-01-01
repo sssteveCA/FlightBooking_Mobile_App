@@ -96,46 +96,10 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
         Button bt_book = view.findViewById(R.id.frag_tprev_bt_book);
         Button bt_back = view.findViewById(R.id.frag_tprev_bt_back);
         this.tpfv = new TicketPreviewFragmentView(this.context,bt_book,bt_back);
-        this.setTable(view);
+        TicketPreviewFragmentMethods.setTable(this.context,view,this.tpfm,this.tpfv);
         this.tpfv.getBtBook().setOnClickListener(this);
         this.tpfv.getBtBack().setOnClickListener(this);
         return view;
-    }
-
-    /**
-     * Set the Table view and its children
-     * @param flight
-     */
-    private void setTableLayout(Map.Entry<String, HashMap<String, Object>> flight, TicketPreviewViews tpv){
-        TableLayout tl = new TableLayout(this.context);
-        this.tpfv.setTable(tl);
-        LinearLayout.LayoutParams linear_lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
-        linear_lp.setMargins(0,10,0,0);
-        tl.setLayoutParams(linear_lp);
-        for(Map.Entry<String, Object> flight_info: flight.getValue().entrySet()){
-            //Loop over each info of single flight
-            TableRow tr = this.tpfv.flightTableRow(flight_info, tpv);
-            this.tpfv.getTable().addView(tr);
-        }//for(Map.Entry<String, Object> flight_info: flight.getValue().entrySet()){
-        this.tpfv.getContainer().addView(this.tpfv.getTable());
-    }
-
-    /**
-     * Set the table with the entry data from previous fragment
-     * @param v
-     */
-    private void setTable(View v){
-        LinearLayout ll = v.findViewById(R.id.frag_tprev_llayout);
-        this.tpfv.setContainer(ll);
-        HashMap<String, TicketPreviewViews> flights_map = new HashMap<>();
-        for(Map.Entry<String, HashMap<String, Object>> flight: this.tpfm.getFlights().entrySet()){
-            //Loop over flights list HashMap
-            TicketPreviewViews tpv = new TicketPreviewViews();
-            this.tpfv.setTvTableCaption(flight.getKey());
-            this.setTableLayout(flight,tpv);
-            flights_map.put(flight.getKey(),tpv);
-        }//for(Map.Entry<String, HashMap<String, Object>> flight: this.tpfm.getFlights().entrySet()){
-        this.tpfv.setFlightsInfoViews(flights_map);
     }
 
     //View.OnClickListener
