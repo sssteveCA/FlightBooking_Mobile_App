@@ -14,6 +14,7 @@ import android.widget.Button;
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.enums.FragmentLabels;
+import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.interfaces.OnMainMenuItemClick;
 
 /**
@@ -24,7 +25,7 @@ import com.example.flightbooking.interfaces.OnMainMenuItemClick;
 public class NewsFragment extends Fragment implements  View.OnClickListener {
 
     private NewsView nv;
-    private OnMainMenuItemClick onMainMenuItemClick = null;
+    private FragmentChange fc = null;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,7 +61,7 @@ public class NewsFragment extends Fragment implements  View.OnClickListener {
     @Override
     public void onAttach(@NonNull Activity activity) {
         super.onAttach(activity);
-        this.onMainMenuItemClick = (MainActivity) activity;
+        this.fc = (MainActivity) activity;
     }
 
     @Override
@@ -88,7 +89,7 @@ public class NewsFragment extends Fragment implements  View.OnClickListener {
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.frag_news_bt_back:
-                this.onMainMenuItemClick.mainMenuItemClick(FragmentLabels.HOME.getLabelName(), null);
+                this.fc.fragmentChange(FragmentLabels.NEWS.getLabelName(), FragmentLabels.HOME.getLabelName(), true,null);
                 break;
         }
     }

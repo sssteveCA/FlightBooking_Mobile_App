@@ -14,6 +14,7 @@ import android.widget.Button;
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.enums.FragmentLabels;
+import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.interfaces.OnMainMenuItemClick;
 
 /**
@@ -24,7 +25,7 @@ import com.example.flightbooking.interfaces.OnMainMenuItemClick;
 public class PrivacyPolicyFragment extends Fragment implements View.OnClickListener {
 
     private PrivacyPolicyView ppv;
-    public OnMainMenuItemClick onMainMenuItemClick = null;
+    public FragmentChange fc = null;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -60,7 +61,7 @@ public class PrivacyPolicyFragment extends Fragment implements View.OnClickListe
     @Override
     public void onAttach(@NonNull Activity activity) {
         super.onAttach(activity);
-        this.onMainMenuItemClick = (MainActivity)activity;
+        this.fc = (MainActivity)activity;
     }
 
     @Override
@@ -88,7 +89,7 @@ public class PrivacyPolicyFragment extends Fragment implements View.OnClickListe
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.frag_privacyp_bt_back:
-                this.onMainMenuItemClick.mainMenuItemClick(FragmentLabels.HOME.getLabelName(), null);
+                this.fc.fragmentChange(FragmentLabels.PRIVACY_POLICY.getLabelName(), FragmentLabels.HOME.getLabelName(), true,null);
                 break;
         }
     }

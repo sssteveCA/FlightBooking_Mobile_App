@@ -109,10 +109,12 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
         CheckBox cb_show_pass = view.findViewById(R.id.frag_subsc_cb_show_pass);
         Button bt_subscribe = view.findViewById(R.id.frag_subsc_bt_subscribe);
         Button bt_reset = view.findViewById(R.id.frag_subsc_bt_reset);
+        Button bt_back = view.findViewById(R.id.frag_subsc_bt_back);
         ProgressBar pb = view.findViewById(R.id.frag_subsc_pb);
-        this.sfv = new SubscribeFragmentView(et_username,et_email_address,et_email_address_conf,et_password,et_password_conf,cb_show_pass,bt_subscribe,bt_reset,pb);
+        this.sfv = new SubscribeFragmentView(et_username,et_email_address,et_email_address_conf,et_password,et_password_conf,cb_show_pass,bt_subscribe,bt_reset,bt_back,pb);
         this.sfv.getBtSubscribe().setOnClickListener(this);
         this.sfv.getBtReset().setOnClickListener(this);
+        this.sfv.getBtBack().setOnClickListener(this);
         this.sfv.getCbShowPass().setOnCheckedChangeListener(this);
         return view;
     }
@@ -172,6 +174,9 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
                 break;
             case R.id.frag_subsc_bt_reset:
                 this.sfv.resetAll();
+                break;
+            case R.id.frag_news_bt_back:
+                fc.fragmentChange(FragmentLabels.SUBSCRIBE.getLabelName(), FragmentLabels.HOME.getLabelName(), true,null);
                 break;
         }
     }
