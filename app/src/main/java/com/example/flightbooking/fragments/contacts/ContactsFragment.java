@@ -110,27 +110,13 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
         return view;
     }
 
-    /**
-     * Set the contacts body data for request
-     * @return the Map with the contacts body data
-     */
-    private Map<String, String> contactsBody(){
-        Map<String, String> body = Stream.of(new String[][]{
-                {"name", this.cfv.getEtName().getText().toString()},
-                {"email", this.cfv.getEtFrom().getText().toString()},
-                {"subject", this.cfv.getEtSubject().getText().toString()},
-                {"message", this.cfv.getEtMessage().getText().toString()}
-        }).collect(Collectors.toMap(data -> data[0], data -> data[1]));
-        return body;
-    }
-
     //View.OnClickListener
     @Override
     public void onClick(View view) {
         ContactsFragment this_cf = this;
         switch(view.getId()){
             case R.id.frag_cont_bt_send:
-                Map<String, String> contactsData = this.contactsBody();
+                Map<String, String> contactsData = ContactsFragmentMethods.contactsBody(this.cfv);
                 this_cf.cfv.getPb().setVisibility(View.VISIBLE);
                 this_cf.cfm.contactsRequest(contactsData, new ContactsFragmentModel.ContactsResponse() {
                     @Override
