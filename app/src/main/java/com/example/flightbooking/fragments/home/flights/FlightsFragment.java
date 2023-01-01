@@ -108,7 +108,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
         View view = inflater.inflate(R.layout.fragment_flights, container, false);
         this.ffm = new FlightsFragmentModel(getActivity());
         try {
-            this.ffv = new FlightsFragmentView(this.menuItemsMap(view));
+            this.ffv = new FlightsFragmentView(FlightsFragmentMethods.menuItemsMap(view));
             //Check the roundtrip radio button for default
             this.ffv.getRgFlightTypes().check(R.id.frag_flights_rb_roundtrip);
             this.ffv.getRgFlightTypes().setOnCheckedChangeListener(this);
@@ -131,43 +131,6 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     }
 
     /**
-     * Create an ArrayAdapter from list
-     * @param items
-     * @return
-     */
-    private ArrayAdapter<String> arrayAdapterFromList(List<String> items){
-        ArrayAdapter<String> adapter = new ArrayAdapter<String>(this.context,android.R.layout.simple_spinner_item,items);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
-        return adapter;
-    }
-
-    /**
-     * Create a Map with Flights Fragment views reference
-     * @param v
-     * @return
-     */
-    private Map<String, View> menuItemsMap(View v){
-        Map<String, View> flightsItems = Map.ofEntries(
-                new AbstractMap.SimpleImmutableEntry<>("flight_types", (RadioGroup)v.findViewById(R.id.frag_flights_rg_flight_types)),
-                new AbstractMap.SimpleImmutableEntry<>("companies",(Spinner)v.findViewById(R.id.frag_flights_sp_companies)),
-                new AbstractMap.SimpleImmutableEntry<>("dep_country", (Spinner)v.findViewById(R.id.frag_flights_sp_dep_country)),
-                new AbstractMap.SimpleImmutableEntry<>("dep_airport", (Spinner)v.findViewById(R.id.frag_flights_sp_dep_airport)),
-                new AbstractMap.SimpleImmutableEntry<>("arr_country", (Spinner)v.findViewById(R.id.frag_flights_sp_arr_country)),
-                new AbstractMap.SimpleImmutableEntry<>("arr_airport", (Spinner)v.findViewById(R.id.frag_flights_sp_arr_airport)),
-                new AbstractMap.SimpleImmutableEntry<>("out_date", (EditText) v.findViewById(R.id.frag_flights_et_out_date)),
-                new AbstractMap.SimpleImmutableEntry<>("ret_date_tv", (TextView)v.findViewById(R.id.frag_flights_tv_ret_date)),
-                new AbstractMap.SimpleImmutableEntry<>("ret_date_et", (EditText)v.findViewById(R.id.frag_flights_et_ret_date)),
-                new AbstractMap.SimpleImmutableEntry<>("adults", (EditText)v.findViewById(R.id.frag_flights_et_adults)),
-                new AbstractMap.SimpleImmutableEntry<>("teenagers", (EditText)v.findViewById(R.id.frag_flights_et_teenagers)),
-                new AbstractMap.SimpleImmutableEntry<>("childrens", (EditText)v.findViewById(R.id.frag_flights_et_childrens)),
-                new AbstractMap.SimpleImmutableEntry<>("newborns", (EditText)v.findViewById(R.id.frag_flights_et_newborns)),
-                new AbstractMap.SimpleImmutableEntry<>("search", (Button)v.findViewById(R.id.frag_flights_bt_search)),
-                new AbstractMap.SimpleImmutableEntry<>("progress_bar", (ProgressBar)v.findViewById(R.id.frag_flights_pb_search))
-        );
-        return flightsItems;
-    }
-
-    /**
      * Get the available flight companies list
      */
     private void companiesRequest(){
@@ -179,7 +142,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
             @Override
             public void companiesResponse(List<String> companies) {
                 //Log.d("FlightsFragment","companiesRequest getCompanies response => "+companies);
-                ArrayAdapter<String> companiesAdapter = ff_temp.arrayAdapterFromList(companies);
+                ArrayAdapter<String> companiesAdapter = FlightsFragmentMethods.arrayAdapterFromList(ff_temp.context,companies);
                 ffv_temp.getSpCompanies().setAdapter(companiesAdapter);
             }
             @Override
@@ -203,63 +166,18 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
                 //Log.i("FlightsFragment","loadAirportsData airports request => "+airports);
                 LinkedList<String> countries = ffm_temp.getAirportsCountries();
                 //Log.i("FlightsFragment","loadAirportsData airports request linkedlist => "+countries);
-                ArrayAdapter<String> countriesAdapter = ff_temp.arrayAdapterFromList(countries);
+                ArrayAdapter<String> countriesAdapter = FlightsFragmentMethods.arrayAdapterFromList(ff_temp.context, countries);
                 ffv_temp.getSpDepCountry().setAdapter(countriesAdapter);
                 ffv_temp.getSpArrCountry().setAdapter(countriesAdapter);
                 String initialCountry = countries.getFirst();
-                ff_temp.setAirportsList(initialCountry, FlightsFragmentModel.AirportsRequest.DEPARTURE);
-                ff_temp.setAirportsList(initialCountry, FlightsFragmentModel.AirportsRequest.ARRIVAL);
+                FlightsFragmentMethods.setAirportsList(ff_temp.context, initialCountry, FlightsFragmentModel.AirportsRequest.DEPARTURE, ffm_temp, ffv_temp);
+                FlightsFragmentMethods.setAirportsList(ff_temp.context, initialCountry, FlightsFragmentModel.AirportsRequest.ARRIVAL,ffm_temp,ffv_temp);
             }
             @Override
             public void airportsError(String message) {
 
             }
         });
-    }
-
-    /**
-     * Set a list of bookable airports
-     * @param country the country of the airports to display
-     * @param ar the option to choose the dropdown to fill
-     */
-    private void setAirportsList(String country, FlightsFragmentModel.AirportsRequest ar){
-        LinkedList<String> airports = this.ffm.getAirportsOfCountry(country);
-        ArrayAdapter<String> airportsAdapter = this.arrayAdapterFromList(airports);
-        if(ar == FlightsFragmentModel.AirportsRequest.DEPARTURE){
-            this.ffv.getSpDepAirport().setAdapter(airportsAdapter);
-        }//if(ar == FlightsFragmentModel.AirportsRequest.DEPARTURE){
-        else{
-            this.ffv.getSpArrAirport().setAdapter(airportsAdapter);
-        }
-    }
-
-    /**
-     * Se the body for flightsearch POST request
-     * @return
-     */
-    private FlightSearch setFlightSearchBody(){
-        FlightSearch fs = new FlightSearch();
-        if(this.ffv.getRgFlightTypes().getCheckedRadioButtonId() == R.id.frag_flights_rb_oneway)
-           fs.flight_type = "oneway";
-        else
-            fs.flight_type = "roundtrip";
-        fs.company_name = this.ffv.getSpCompanies().getSelectedItem().toString();
-        fs.from_country = this.ffv.getSpDepCountry().getSelectedItem().toString();
-        fs.from_airport = this.ffv.getSpDepAirport().getSelectedItem().toString();
-        fs.to_country = this.ffv.getSpArrCountry().getSelectedItem().toString();
-        fs.to_airport = this.ffv.getSpArrAirport().getSelectedItem().toString();
-        if(fs.flight_type == "oneway") {
-            fs.oneway_date = this.ffv.getEtOutDate().getText().toString();
-        }
-        else{
-            fs.roundtrip_start_date = this.ffv.getEtOutDate().getText().toString();
-            fs.roundtrip_end_date = this.ffv.getEtRetDate().getText().toString();
-        }
-        fs.adults = Integer.valueOf(this.ffv.getEtAdults().getText().toString());
-        fs.teenagers = Integer.valueOf(this.ffv.getEtTeenagers().getText().toString());
-        fs.children = Integer.valueOf(this.ffv.getEtChildrens().getText().toString());
-        fs.newborns = Integer.valueOf(this.ffv.getEtNewborns().getText().toString());
-        return fs;
     }
 
     /**
@@ -279,7 +197,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
         switch(view.getId()){
             case R.id.frag_flights_bt_search:
                 if(this.ffm.getConnectionStatus()){
-                    FlightSearch fs = this.setFlightSearchBody();
+                    FlightSearch fs = FlightsFragmentMethods.setFlightSearchBody(this_ffv);
                     this_ffv.getPbSearch().setVisibility(View.VISIBLE);
                     this.ffm.flightTicketPreview(fs, new FlightsFragmentModel.GetFlightInfo() {
                         @Override
@@ -341,12 +259,12 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
         if(adapterView == this.ffv.getSpDepCountry()){
           //Item selected from country departure spinner
             FlightsFragmentModel.AirportsRequest flight_type = FlightsFragmentModel.AirportsRequest.DEPARTURE;
-            this.setAirportsList(country, flight_type);
+            FlightsFragmentMethods.setAirportsList(this.context,country, flight_type, this.ffm, this.ffv);
         }
         else if(adapterView == this.ffv.getSpArrCountry()){
             //Item selected from country arrival spinner
             FlightsFragmentModel.AirportsRequest flight_type = FlightsFragmentModel.AirportsRequest.ARRIVAL;
-            this.setAirportsList(country,flight_type);
+            FlightsFragmentMethods.setAirportsList(this.context,country,flight_type,this.ffm,this.ffv);
         }
     }
 
