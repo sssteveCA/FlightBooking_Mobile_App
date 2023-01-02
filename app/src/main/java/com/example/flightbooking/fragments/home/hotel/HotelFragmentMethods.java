@@ -74,19 +74,12 @@ public class HotelFragmentMethods {
      */
     public static void setHotelInfoTable(Context context,String country, String city, String hotel,HotelFragmentModel hfm,HotelFragmentView hfv){
         if(hfv.getTlInfo() != null){
-            hfv.getCl().removeView(hfv.getTlInfo());
+            hfv.getLlTable().removeView(hfv.getTlInfo());
             hfv.setTlInfo(null);
         }//if(hfv.getTlInfo() != null){
         HashMap<String, Object> info = hfm.getHotelInfo(country,city,hotel);
         hfv.createHotelInfoTable(context,info);
-        ConstraintSet cs = new ConstraintSet();
-        cs.clone(hfv.getCl());
-        hfv.getCl().addView(hfv.getTlInfo());
-        cs.connect(hfv.getTlInfo().getId(), ConstraintSet.TOP, hfv.getBtSearch().getId(), ConstraintSet.BOTTOM, 40);
-        cs.connect(hfv.getTlInfo().getId(), ConstraintSet.LEFT, ConstraintSet.PARENT_ID,ConstraintSet.LEFT,20);
-        cs.connect(hfv.getTlInfo().getId(), ConstraintSet.RIGHT, ConstraintSet.PARENT_ID, ConstraintSet.RIGHT, 20);
-        cs.constrainHeight(hfv.getTlInfo().getId(), ConstraintSet.WRAP_CONTENT);
-        cs.applyTo(hfv.getCl());
+        hfv.getLlTable().addView(hfv.getTlInfo());
         //this.setHotelInfoImagesButton(cs);
     }
 
