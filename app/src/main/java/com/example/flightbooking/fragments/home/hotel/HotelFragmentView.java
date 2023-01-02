@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.EditText;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 import android.widget.TableLayout;
@@ -30,13 +31,14 @@ public class HotelFragmentView {
     private EditText et_check_in,et_check_out,et_rooms,et_people;
     private Button bt_search;
     private ProgressBar pb_search;
+    private LinearLayout ll_table;
     private TableLayout tl_info = null;
     private Button bt_show_images;
     private ProgressBar pb_show_images;
 
     private static String[] itemsName = {
             "layout","countries","cities","hotels","check_in","check_out",
-            "rooms","people","search","images","pb_images"
+            "rooms","people","ll_table","search","images","pb_images"
     };
 
     public HotelFragmentView(Map<String, View> items) throws MissingValuesException {
@@ -53,6 +55,7 @@ public class HotelFragmentView {
     public EditText getEtPeople(){return this.et_people;}
     public Button getBtSearch(){return this.bt_search;}
     public ProgressBar getPbSearch(){return this.pb_search;}
+    public LinearLayout getLlTable(){return this.ll_table;}
     public TableLayout getTlInfo(){return this.tl_info;}
     public Button getBtShowImages(){ return this.bt_show_images; }
     public ProgressBar getPbShowImages(){ return this.pb_show_images; }
@@ -73,6 +76,7 @@ public class HotelFragmentView {
         this.et_check_out = (EditText) items.get("check_out");
         this.et_rooms = (EditText) items.get("et_rooms");
         this.et_people = (EditText) items.get("et_people");
+        this.ll_table = (LinearLayout) items.get("ll_table");
         this.bt_search = (Button) items.get("search");
         this.bt_show_images = (Button) items.get("images");
         this.pb_show_images = (ProgressBar) items.get("pb_images");
