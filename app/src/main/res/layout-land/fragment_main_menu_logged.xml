@@ -1,0 +1,57 @@
+<?xml version="1.0" encoding="utf-8"?>
+<FrameLayout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    xmlns:tools="http://schemas.android.com/tools"
+    android:layout_width="match_parent"
+    android:layout_height="match_parent"
+    tools:context=".fragments.mainmenu.logged.MainMenuLoggedFragment">
+
+    <ScrollView
+        android:layout_width="match_parent"
+        android:layout_height="match_parent">
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="vertical" >
+
+            <Button
+                android:id="@+id/main_menu_logged_frag_bt_1"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="100dp"
+                android:layout_marginEnd="100dp"
+                android:backgroundTint="#009688"
+                android:text="APRI IL MENU"
+                android:textColor="#000000"
+                android:visibility="gone"
+                app:rippleColor="@color/black" />
+
+            <ListView
+                android:id="@+id/main_menu_logged_frag_lv_1"
+                android:layout_width="match_parent"
+                android:layout_height="280dp"
+                android:visibility="visible">
+
+            </ListView>
+
+            <ExpandableListView
+                android:id="@+id/main_menu_logged_frag_profile_elv"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:visibility="visible">
+
+            </ExpandableListView>
+
+            <ExpandableListView
+                android:id="@+id/main_menu_logged_information_elv"
+                android:layout_width="match_parent"
+                android:layout_height="200dp"
+                android:visibility="visible">
+
+            </ExpandableListView>
+
+        </LinearLayout>
+    </ScrollView>
+
+</FrameLayout>
