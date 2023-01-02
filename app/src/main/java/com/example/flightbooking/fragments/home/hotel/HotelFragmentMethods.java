@@ -32,7 +32,6 @@ public class HotelFragmentMethods {
      */
     public static Map<String, View> hotelItems(View v){
         Map<String, View> items = Map.ofEntries(
-                new AbstractMap.SimpleImmutableEntry<>("layout", (ConstraintLayout)v.findViewById(R.id.frag_hotel_cl)),
                 new AbstractMap.SimpleImmutableEntry<>("countries", (Spinner)v.findViewById(R.id.frag_hotel_sp_countries)),
                 new AbstractMap.SimpleImmutableEntry<>("cities", (Spinner)v.findViewById(R.id.frag_hotel_sp_cities)),
                 new AbstractMap.SimpleImmutableEntry<>("hotels", (Spinner)v.findViewById(R.id.frag_hotel_sp_hotels)),
