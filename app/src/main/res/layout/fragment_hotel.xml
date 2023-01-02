@@ -111,22 +111,6 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/frag_hotel_tv_rooms" />
 
-            <Button
-                android:id="@+id/frag_hotel_bt_search"
-                android:layout_width="wrap_content"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="20dp"
-                android:backgroundTint="#F44336"
-                android:padding="15dp"
-                android:paddingBottom="60dp"
-                android:text="Cerca"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintHorizontal_bias="0.498"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_hotel_et_people" />
-
             <TextView
                 android:id="@+id/frag_hotel_tv_countries"
                 android:layout_width="0dp"
@@ -225,17 +209,44 @@
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/frag_hotel_tv_people" />
 
+            <LinearLayout
+                android:id="@+id/frag_hotel_ll_table"
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="40dp"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frag_hotel_et_people"></LinearLayout>
+
+            <Button
+                android:id="@+id/frag_hotel_bt_search"
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="20dp"
+                android:layout_marginTop="40dp"
+                android:layout_marginEnd="20dp"
+                android:backgroundTint="#F44336"
+                android:padding="15dp"
+                android:paddingBottom="60dp"
+                android:text="Cerca"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.498"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frag_hotel_ll_table" />
+
             <Button
                 android:id="@+id/frag_hotel_bt_hotel_images"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
-                android:layout_marginTop="250dp"
+                android:layout_marginTop="36dp"
                 android:layout_marginEnd="20dp"
                 android:backgroundTint="@android:color/holo_green_dark"
                 android:padding="15dp"
                 android:text="MOSTRA IMMAGINI"
                 app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintHorizontal_bias="0.497"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/frag_hotel_bt_search" />
 
