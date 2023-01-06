@@ -1,0 +1,12 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <style name="headerTopConstraint" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:layout_marginTop">30dp</item>
+    </style>
+    <style name="inputLabelTopConstraint" parent="@style/Widget.AppCompat.EditText">
+        <item name="android:layout_margin">10dp</item>
+    </style>
+    <style name="viewTopConstraint">
+        <item name="android:layout_marginTop">40dp</item>
+    </style>
+</resources>
