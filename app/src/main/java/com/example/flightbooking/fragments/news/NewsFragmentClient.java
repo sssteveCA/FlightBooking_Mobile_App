@@ -13,7 +13,7 @@ public class NewsFragmentClient {
     }
 
     private Retrofit retrofit;
-    public NewsFragmentInterface nfi;
+    private NewsFragmentInterface nfi;
 
     public NewsFragmentClient(){
         this.retrofit = new Retrofit.Builder()

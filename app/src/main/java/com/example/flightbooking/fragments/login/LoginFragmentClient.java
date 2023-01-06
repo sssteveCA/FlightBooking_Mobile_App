@@ -21,7 +21,7 @@ public class LoginFragmentClient {
 
     private OkHttpClient client;
     private Retrofit retrofit;
-    public LoginFragmentInterface lfi;
+    private LoginFragmentInterface lfi;
 
     public LoginFragmentClient(){
         //this.client = Connection.clientTimeOptions();

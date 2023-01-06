@@ -18,7 +18,7 @@ public class SubscribeFragmentClient {
     }
 
     private Retrofit retrofit;
-    public SubscribeFragmentInterface sfi;
+    private SubscribeFragmentInterface sfi;
 
     public SubscribeFragmentClient(){
         this.retrofit = new Retrofit.Builder()

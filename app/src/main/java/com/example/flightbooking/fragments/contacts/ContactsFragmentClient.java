@@ -22,7 +22,7 @@ public class ContactsFragmentClient {
 
     private OkHttpClient client;
     private Retrofit retrofit;
-    public ContactsFragmentInterface cfi;
+    private ContactsFragmentInterface cfi;
 
     public ContactsFragmentClient(){
         //this.client = Connection.clientTimeOptions();

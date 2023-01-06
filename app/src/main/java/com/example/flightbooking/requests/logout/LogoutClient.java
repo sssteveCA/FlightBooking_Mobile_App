@@ -23,7 +23,7 @@ public class LogoutClient {
 
     private Retrofit retrofit;
     private String token;
-    public LogoutInterface li;
+    private LogoutInterface li;
 
     public LogoutClient(String token){
         this.token = token;
