@@ -47,7 +47,7 @@
                 style="@style/viewTopConstraint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:padding="15dp"
+                android:padding="@dimen/bt_padding"
                 android:text="INDIETRO"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
