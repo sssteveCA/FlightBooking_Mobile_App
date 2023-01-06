@@ -10,6 +10,8 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ScrollView;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
@@ -78,8 +80,9 @@ public class NewsFragment extends Fragment implements  View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_news, container, false);
+        LinearLayout ll_news_list = v.findViewById(R.id.frag_news_ll_news_list);
         Button bt_back = v.findViewById(R.id.frag_news_bt_back);
-        this.nv = new NewsView(bt_back);
+        this.nv = new NewsView(ll_news_list,bt_back);
         this.nv.getBtBack().setOnClickListener(this);
         return v;
     }
