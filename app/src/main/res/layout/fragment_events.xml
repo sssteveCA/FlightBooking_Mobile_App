@@ -16,9 +16,9 @@
 
             <TextView
                 android:id="@+id/frag_ev_header"
+                style="@style/headerTopConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:gravity="center"
                 android:text="EVENTI"
                 android:textSize="22sp"

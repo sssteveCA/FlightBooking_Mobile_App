@@ -17,9 +17,9 @@
 
             <TextView
                 android:id="@+id/frag_privacyp_tv_header"
+                style="@style/headerTopConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:gravity="center"
                 android:text="PRIVACY POLICY"
                 android:textSize="22sp"
@@ -30,9 +30,9 @@
 
             <ScrollView
                 android:id="@+id/scrollView3"
+                style="@style/viewTopConstraint"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
-                android:layout_marginTop="40dp"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/frag_privacyp_tv_header">
@@ -45,10 +45,10 @@
 
             <Button
                 android:id="@+id/frag_privacyp_bt_back"
+                style="@style/viewTopConstraint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
-                android:padding="15dp"
+                android:padding="@dimen/bt_padding"
                 android:text="INDIETRO"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

@@ -19,9 +19,9 @@
 
             <TextView
                 android:id="@+id/frag_tprev_tv_header"
+                style="@style/headerTopConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:gravity="center"
                 android:text="PREZZI VOLI SELEZIONATI"
                 android:textSize="22sp"
@@ -32,9 +32,9 @@
 
             <LinearLayout
                 android:id="@+id/frag_tprev_llayout"
+                style="@style/viewTopConstraint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="40dp"
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -54,7 +54,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginEnd="50sp"
                     android:backgroundTint="#2196F3"
-                    android:padding="15sp"
+                    android:padding="@dimen/bt_padding"
                     android:text="Prenota" />
 
                 <Button
@@ -63,7 +63,7 @@
                     android:layout_height="wrap_content"
                     android:layout_marginStart="50sp"
                     android:backgroundTint="#F44336"
-                    android:padding="15sp"
+                    android:padding="@dimen/bt_padding"
                     android:text="Indietro" />
             </LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>

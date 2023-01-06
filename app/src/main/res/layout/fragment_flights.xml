@@ -18,9 +18,9 @@
 
             <TextView
                 android:id="@+id/frag_flights_tv_header"
+                style="@style/headerTopConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:text="VOLI"
                 android:textAlignment="center"
                 android:textSize="22sp"
@@ -31,11 +31,9 @@
 
             <RadioGroup
                 android:id="@+id/frag_flights_rg_flight_types"
+                style="@style/rgFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="20dp"
                 android:orientation="horizontal"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintHorizontal_bias="0.0"
@@ -58,11 +56,9 @@
 
             <TextView
                 android:id="@+id/frag_flights_tv_companies"
+                style="@style/labelFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="20dp"
                 android:text="Compagnia aerea"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -70,23 +66,19 @@
 
             <Spinner
                 android:id="@+id/frag_flights_sp_companies"
+                style="@style/inputFormConstraint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:padding="20sp"
+                android:padding="@dimen/sp_padding"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/frag_flights_tv_companies" />
 
             <TextView
                 android:id="@+id/frag_flights_tv_dep_country"
+                style="@style/labelFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="20dp"
                 android:text="Paese di partenza"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -94,23 +86,19 @@
 
             <Spinner
                 android:id="@+id/frag_flights_sp_dep_country"
+                style="@style/inputFormConstraint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:padding="20sp"
+                android:padding="@dimen/sp_padding"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/frag_flights_tv_dep_country" />
 
             <TextView
                 android:id="@+id/frag_flights_tv_dep_airport"
+                style="@style/labelGroupFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
                 android:text="Aereoporto di partenza"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -118,23 +106,19 @@
 
             <Spinner
                 android:id="@+id/frag_flights_sp_dep_airport"
+                style="@style/inputFormConstraint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:padding="20sp"
+                android:padding="@dimen/sp_padding"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/frag_flights_tv_dep_airport" />
 
             <TextView
                 android:id="@+id/frag_flights_tv_arr_country"
+                style="@style/labelFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="20dp"
                 android:text="Paese di destinazione"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -142,23 +126,19 @@
 
             <Spinner
                 android:id="@+id/frag_flights_sp_arr_country"
+                style="@style/inputFormConstraint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:padding="20sp"
+                android:padding="@dimen/sp_padding"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/frag_flights_tv_arr_country" />
 
             <TextView
                 android:id="@+id/frag_flights_tv_arr_airport"
+                style="@style/labelGroupFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="20dp"
-                android:layout_marginEnd="20dp"
                 android:text="Paese di destinazione"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -166,23 +146,19 @@
 
             <Spinner
                 android:id="@+id/frag_flights_sp_arr_airport"
+                style="@style/inputFormConstraint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="10dp"
-                android:layout_marginEnd="20dp"
-                android:padding="20sp"
+                android:padding="@dimen/sp_padding"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toBottomOf="@+id/frag_flights_tv_arr_airport" />
 
             <TextView
                 android:id="@+id/frag_flights_tv_out_date"
+                style="@style/labelFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
-                android:layout_marginTop="40dp"
-                android:layout_marginEnd="20dp"
                 android:text="Andata"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
@@ -190,6 +166,7 @@
 
             <EditText
                 android:id="@+id/frag_flights_et_out_date"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -205,6 +182,7 @@
 
             <TextView
                 android:id="@+id/frag_flights_tv_ret_date"
+                style="@style/labelGroupFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -217,6 +195,7 @@
 
             <EditText
                 android:id="@+id/frag_flights_et_ret_date"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -232,6 +211,7 @@
 
             <TextView
                 android:id="@+id/frag_flights_tv_adults"
+                style="@style/labelFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -244,6 +224,7 @@
 
             <EditText
                 android:id="@+id/frag_flights_et_adults"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -258,6 +239,7 @@
 
             <TextView
                 android:id="@+id/frag_flights_tv_teenagers"
+                style="@style/labelGroupFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -270,6 +252,7 @@
 
             <EditText
                 android:id="@+id/frag_flights_et_teenagers"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -284,6 +267,7 @@
 
             <TextView
                 android:id="@+id/frag_flights_tv_childrens"
+                style="@style/labelGroupFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -296,6 +280,7 @@
 
             <EditText
                 android:id="@+id/frag_flights_et_childrens"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -310,6 +295,7 @@
 
             <TextView
                 android:id="@+id/frag_flights_tv_newborns"
+                style="@style/labelGroupFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -322,6 +308,7 @@
 
             <EditText
                 android:id="@+id/frag_flights_et_newborns"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -336,13 +323,14 @@
 
             <Button
                 android:id="@+id/frag_flights_bt_search"
+                style="@style/viewTopConstraint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
                 android:layout_marginTop="40dp"
                 android:layout_marginEnd="20dp"
                 android:backgroundTint="#F44336"
-                android:padding="15dp"
+                android:padding="@dimen/bt_padding"
                 android:text="CERCA"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"

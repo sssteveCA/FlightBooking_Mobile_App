@@ -15,7 +15,7 @@
             android:id="@+id/no_conn_frag_tv_1"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="136dp"
+            android:layout_marginTop="140dp"
             android:text="Connetti il tuo dispositivo ad Internet e riprova"
             android:textSize="16sp"
             android:textStyle="bold"
@@ -25,10 +25,10 @@
 
         <Button
             android:id="@+id/no_conn_frag_bt_retry"
+            style="@style/viewTopConstraint"
             android:layout_width="wrap_content"
             android:layout_height="wrap_content"
-            android:layout_marginTop="30dp"
-            android:padding="15dp"
+            android:padding="@dimen/bt_padding"
             android:text="RIPROVA"
             app:layout_constraintEnd_toEndOf="parent"
             app:layout_constraintStart_toStartOf="parent"

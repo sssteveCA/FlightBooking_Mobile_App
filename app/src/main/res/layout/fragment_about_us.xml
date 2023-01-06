@@ -23,9 +23,9 @@
 
                 <TextView
                     android:id="@+id/frag_aboutus_tv_header"
+                    style="@style/headerTopConstraint"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginTop="30dp"
                     android:layout_marginBottom="40dp"
                     android:gravity="center"
                     android:text="CHI SIAMO"
@@ -69,7 +69,7 @@
                     android:id="@+id/frag_aboutus_bt_back"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:padding="15dp"
+                    android:padding="@dimen/bt_padding"
                     android:text="INDIETRO" />
             </LinearLayout>
 
