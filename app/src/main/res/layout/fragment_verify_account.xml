@@ -16,7 +16,6 @@
 
             <TextView
                 android:id="@+id/frag_verAcc_tv_header"
-                style="@style/headerTopConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -46,7 +45,6 @@
                 style="@style/viewTopConstraint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
                 android:padding="15dp"
                 android:text="Torna alla home"
                 app:layout_constraintEnd_toEndOf="parent"
