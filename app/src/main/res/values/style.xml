@@ -1,10 +1,32 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
+    <style name="cbFormConstraint" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+    </style>
+    <style name="inputFormConstraint" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:layout_marginTop">10dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+    </style>
+    <style name="labelFormConstraint" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:layout_marginTop">40dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+    </style>
+    <style name="labelGroupFormConstraint" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:layout_marginTop">40dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
+    </style>
     <style name="headerTopConstraint" parent="@style/Widget.AppCompat.TextView">
         <item name="android:layout_marginTop">30dp</item>
     </style>
-    <style name="inputLabelTopConstraint" parent="@style/Widget.AppCompat.EditText">
-        <item name="android:layout_margin">10dp</item>
+    <style name="rgFormConstraint" parent="@style/Widget.AppCompat.TextView">
+        <item name="android:layout_marginTop">40dp</item>
+        <item name="android:layout_marginLeft">20dp</item>
+        <item name="android:layout_marginRight">20dp</item>
     </style>
     <style name="viewTopConstraint">
         <item name="android:layout_marginTop">40dp</item>

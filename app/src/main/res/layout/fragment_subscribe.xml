@@ -18,6 +18,7 @@
 
             <TextView
                 android:id="@+id/frag_subsc_tv_header"
+                style="@style/headerTopConstraint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -31,6 +32,7 @@
 
             <TextView
                 android:id="@+id/frag_subsc_tv_username"
+                style="@style/labelFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -44,6 +46,7 @@
 
             <EditText
                 android:id="@+id/frag_subsc_et_username"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -57,6 +60,7 @@
 
             <TextView
                 android:id="@+id/frag_subsc_tv_email_address"
+                style="@style/labelFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -70,6 +74,7 @@
 
             <EditText
                 android:id="@+id/frag_subsc_et_email_address"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -83,6 +88,7 @@
 
             <TextView
                 android:id="@+id/frag_subsc_tv_email_address_conf"
+                style="@style/labelFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -96,6 +102,7 @@
 
             <EditText
                 android:id="@+id/frag_subsc_et_email_address_conf"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -109,6 +116,7 @@
 
             <TextView
                 android:id="@+id/frag_subsc_tv_password"
+                style="@style/labelFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -122,6 +130,7 @@
 
             <EditText
                 android:id="@+id/frag_subsc_et_password"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -135,6 +144,7 @@
 
             <TextView
                 android:id="@+id/frag_subsc_tv_password_conf"
+                style="@style/labelFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -148,6 +158,7 @@
 
             <EditText
                 android:id="@+id/frag_subsc_et_password_conf"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -161,6 +172,7 @@
 
             <Button
                 android:id="@+id/frag_subsc_bt_subscribe"
+                style="@style/viewTopConstraint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -173,6 +185,7 @@
 
             <Button
                 android:id="@+id/frag_subsc_bt_reset"
+                style="@style/viewTopConstraint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
@@ -187,6 +200,7 @@
 
             <Button
                 android:id="@+id/frag_subsc_bt_back"
+                style="@style/viewTopConstraint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
@@ -198,6 +212,7 @@
 
             <CheckBox
                 android:id="@+id/frag_subsc_cb_show_pass"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"

@@ -19,6 +19,7 @@
 
             <TextView
                 android:id="@+id/frag_hotel_header"
+                style="@style/headerTopConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -32,6 +33,7 @@
 
             <TextView
                 android:id="@+id/frag_hotel_tv_check_in"
+                style="@style/labelFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -46,6 +48,7 @@
 
             <EditText
                 android:id="@+id/frag_hotel_et_check_in"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -60,6 +63,7 @@
 
             <TextView
                 android:id="@+id/frag_hotel_tv_check_out"
+                style="@style/labelFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -73,6 +77,7 @@
 
             <EditText
                 android:id="@+id/frag_hotel_et_check_out"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -87,6 +92,7 @@
 
             <TextView
                 android:id="@+id/frag_hotel_tv_rooms"
+                style="@style/labelFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -100,6 +106,7 @@
 
             <EditText
                 android:id="@+id/frag_hotel_et_rooms"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -113,6 +120,7 @@
 
             <TextView
                 android:id="@+id/frag_hotel_tv_countries"
+                style="@style/labelFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -126,6 +134,7 @@
 
             <Spinner
                 android:id="@+id/frag_hotel_sp_countries"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -137,6 +146,7 @@
 
             <TextView
                 android:id="@+id/frag_hotel_tv_cities"
+                style="@style/labelFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -150,6 +160,7 @@
 
             <Spinner
                 android:id="@+id/frag_hotel_sp_cities"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -161,6 +172,7 @@
 
             <TextView
                 android:id="@+id/frag_hotel_tv_hotels"
+                style="@style/labelFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -174,6 +186,7 @@
 
             <Spinner
                 android:id="@+id/frag_hotel_sp_hotels"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -185,6 +198,7 @@
 
             <TextView
                 android:id="@+id/frag_hotel_tv_people"
+                style="@style/labelFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -198,6 +212,7 @@
 
             <EditText
                 android:id="@+id/frag_hotel_et_people"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -211,6 +226,7 @@
 
             <LinearLayout
                 android:id="@+id/frag_hotel_ll_table"
+                style="@style/viewTopConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
@@ -221,6 +237,7 @@
 
             <Button
                 android:id="@+id/frag_hotel_bt_search"
+                style="@style/viewTopConstraint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -237,6 +254,7 @@
 
             <Button
                 android:id="@+id/frag_hotel_bt_hotel_images"
+                style="@style/viewTopConstraint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"

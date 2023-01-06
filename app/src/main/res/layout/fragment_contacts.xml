@@ -19,6 +19,7 @@
 
             <TextView
                 android:id="@+id/frag_cont_tv_header"
+                style="@style/headerTopConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -32,6 +33,7 @@
 
             <TextView
                 android:id="@+id/frag_cont_tv_from"
+                style="@style/labelFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -46,6 +48,7 @@
 
             <EditText
                 android:id="@+id/frag_cont_et_from"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -59,6 +62,7 @@
 
             <TextView
                 android:id="@+id/frag_cont_tv_subject"
+                style="@style/labelFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -72,6 +76,7 @@
 
             <EditText
                 android:id="@+id/frag_cont_et_subject"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -85,6 +90,7 @@
 
             <TextView
                 android:id="@+id/frag_cont_tv_message"
+                style="@style/labelFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -98,6 +104,7 @@
 
             <EditText
                 android:id="@+id/frag_cont_et_message"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -114,6 +121,7 @@
 
             <Button
                 android:id="@+id/frag_cont_bt_send"
+                style="@style/viewTopConstraint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -126,6 +134,7 @@
 
             <Button
                 android:id="@+id/frag_cont_bt_reset"
+                style="@style/viewTopConstraint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
@@ -138,6 +147,7 @@
 
             <Button
                 android:id="@+id/frag_cont_bt_back"
+                style="@style/viewTopConstraint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
@@ -149,6 +159,7 @@
 
             <TextView
                 android:id="@+id/frag_cont_tv_name"
+                style="@style/labelFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -162,6 +173,7 @@
 
             <EditText
                 android:id="@+id/frag_cont_et_name"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"

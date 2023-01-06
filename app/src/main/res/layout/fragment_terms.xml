@@ -17,6 +17,7 @@
 
             <TextView
                 android:id="@+id/frag_terms_tv_header"
+                style="@style/headerTopConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="30dp"
@@ -30,6 +31,7 @@
 
             <ScrollView
                 android:id="@+id/scrollView4"
+                style="@style/viewTopConstraint"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
                 android:layout_marginTop="40dp"
@@ -43,6 +45,7 @@
 
             <Button
                 android:id="@+id/frag_terms_bt_back"
+                style="@style/viewTopConstraint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"

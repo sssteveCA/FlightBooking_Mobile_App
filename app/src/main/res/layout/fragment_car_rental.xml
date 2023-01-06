@@ -46,6 +46,7 @@
 
             <TextView
                 android:id="@+id/frag_crent_tv_pickup_date"
+                style="@style/labelFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -58,9 +59,10 @@
 
             <EditText
                 android:id="@+id/frag_crent_et_pickup_date"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="20dp"
+                android:layout_marginStart="20sp"
                 android:layout_marginTop="10dp"
                 android:layout_marginEnd="20dp"
                 android:ems="10"
@@ -71,6 +73,7 @@
 
             <TextView
                 android:id="@+id/frag_crent_tv_delivery_date"
+                style="@style/labelFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -83,6 +86,7 @@
 
             <EditText
                 android:id="@+id/frag_crent_et_delivery_date"
+                style="@style/inputFormConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"
@@ -96,6 +100,7 @@
 
             <Button
                 android:id="@+id/frag_crent_bt_go"
+                style="@style/viewTopConstraint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="20dp"

@@ -16,6 +16,7 @@
 
             <TextView
                 android:id="@+id/frag_news_tv_header"
+                style="@style/headerTopConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
@@ -29,6 +30,7 @@
 
             <ScrollView
                 android:id="@+id/scrollView5"
+                style="@style/viewTopConstraint"
                 android:layout_width="match_parent"
                 android:layout_height="350dp"
                 android:layout_marginTop="40dp"
@@ -44,6 +46,7 @@
 
             <Button
                 android:id="@+id/frag_news_bt_back"
+                style="@style/viewTopConstraint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginTop="40dp"
