@@ -11,13 +11,11 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.ScrollView;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.interfaces.FragmentChange;
-import com.example.flightbooking.interfaces.OnMainMenuItemClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,7 +24,7 @@ import com.example.flightbooking.interfaces.OnMainMenuItemClick;
  */
 public class NewsFragment extends Fragment implements  View.OnClickListener {
 
-    private NewsView nv;
+    private NewsFragmentView nv;
     public FragmentChange fc = null;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -82,7 +80,7 @@ public class NewsFragment extends Fragment implements  View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_news, container, false);
         LinearLayout ll_news_list = v.findViewById(R.id.frag_news_ll_news_list);
         Button bt_back = v.findViewById(R.id.frag_news_bt_back);
-        this.nv = new NewsView(ll_news_list,bt_back);
+        this.nv = new NewsFragmentView(ll_news_list,bt_back);
         this.nv.getBtBack().setOnClickListener(this);
         return v;
     }
