@@ -1,6 +1,7 @@
 package com.example.flightbooking.fragments.home.hotel;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -26,18 +27,6 @@ import java.util.Map;
 
 public class HotelFragmentMethods {
 
-    public static HotelSearch setHotelSearchBody(HotelFragmentView hfv){
-        HotelSearch hs = new HotelSearch();
-        hs.country = (String) hfv.getSpCountries().getSelectedItem();
-        hs.city = (String) hfv.getSpCities().getSelectedItem();
-        hs.hotel = (String) hfv.getSpHotels().getSelectedItem();
-        hs.checkin = hfv.getEtCkeckIn().getText().toString();
-        hs.checkout = hfv.getEtCkeckOut().getText().toString();
-        hs.rooms = Integer.valueOf(hfv.getEtRooms().getText().toString());
-        hs.people = Integer.valueOf(hfv.getEtPeople().getText().toString());
-        return hs;
-    }
-
     /**
      * Create a Map with Hotel view references
      * @param v
@@ -53,9 +42,9 @@ public class HotelFragmentMethods {
                 new AbstractMap.SimpleImmutableEntry<>("rooms", (EditText)v.findViewById(R.id.frag_hotel_et_rooms)),
                 new AbstractMap.SimpleImmutableEntry<>("people", (EditText)v.findViewById(R.id.frag_hotel_et_people)),
                 new AbstractMap.SimpleImmutableEntry<>("ll_table",(LinearLayout)v.findViewById(R.id.frag_hotel_ll_table)),
-                new AbstractMap.SimpleImmutableEntry<>("search", (Button)v.findViewById(R.id.frag_hotel_bt_search)),
-                new AbstractMap.SimpleImmutableEntry<>("pb_search", (ProgressBar)v.findViewById(R.id.frag_hotel_pb_info_search)),
-                new AbstractMap.SimpleImmutableEntry<>("images", (Button)v.findViewById(R.id.frag_hotel_bt_hotel_images)),
+                new AbstractMap.SimpleImmutableEntry<>("bt_search", (Button)v.findViewById(R.id.frag_hotel_bt_search)),
+                new AbstractMap.SimpleImmutableEntry<>("pb_search", (ProgressBar)v.findViewById(R.id.frag_hotel_pb_search)),
+                new AbstractMap.SimpleImmutableEntry<>("bt_images", (Button)v.findViewById(R.id.frag_hotel_bt_hotel_images)),
                 new AbstractMap.SimpleImmutableEntry<>("pb_images", (ProgressBar)v.findViewById(R.id.frag_hotel_pb_hotel_images))
         );
         return items;
@@ -110,6 +99,28 @@ public class HotelFragmentMethods {
         hfv.getSpHotels().setAdapter(hotelsAdapter);
         String firstHotel = hotels.getFirst();
         HotelFragmentMethods.setHotelInfoTable(context,country,city,firstHotel,hfm,hfv);
+    }
+
+    /**
+     * Set the request body to execute the hotel info preview request
+     * @param hfv the class that cointains the views references
+     * @return a class that represent the payload
+     */
+    public static HotelSearch setHotelSearchBody(HotelFragmentView hfv){
+        HotelSearch hs = new HotelSearch();
+        hs.country = (String) hfv.getSpCountries().getSelectedItem();
+        hs.city = (String) hfv.getSpCities().getSelectedItem();
+        hs.hotel = (String) hfv.getSpHotels().getSelectedItem();
+        Log.i("HotelFragmentMethods","setHotelSearchBody 1");
+        hs.checkin = hfv.getEtCkeckIn().getText().toString();
+        Log.i("HotelFragmentMethods","setHotelSearchBody 2");
+        hs.checkout = hfv.getEtCkeckOut().getText().toString();
+        Log.i("HotelFragmentMethods","setHotelSearchBody 3");
+        hs.rooms = Integer.valueOf(hfv.getEtRooms().getText().toString());
+        Log.i("HotelFragmentMethods","setHotelSearchBody 4");
+        hs.people = Integer.valueOf(hfv.getEtPeople().getText().toString());
+        Log.i("HotelFragmentMethods","setHotelSearchBody 5");
+        return hs;
     }
 
     /**

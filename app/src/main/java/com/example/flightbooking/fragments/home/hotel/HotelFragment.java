@@ -185,6 +185,8 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
             public void hotelPreviewResponse(HotelInfo hi) {
                 try{
                     if(hi.done == true){
+                        Log.i("HotelFragment","hotelInfoRequest data hotel => "+hi.data.hotel);
+                        Log.i("HotelFragment","hotelInfoRequest data price => "+hi.data.price);
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("hotelInfo",hi.data);
                     }//if(hi.done == true){
@@ -192,6 +194,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
                         MessageDialog md = new MessageDialog(this_hf.context,"Informazioni stanza albergo", hi.message);
                     }
                 }catch(Exception e){
+                    Log.e("HotelFragment", "hotelInfoRequest exception => "+e.getMessage());
                     MessageDialog md = new MessageDialog(this_hf.context,"Informazioni stanza albergo", Globals.ERR_REQUEST);
                 }
             }

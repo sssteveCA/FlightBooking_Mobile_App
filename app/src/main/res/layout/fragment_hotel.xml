@@ -226,7 +226,7 @@
                 app:layout_constraintTop_toBottomOf="@+id/frag_hotel_bt_search" />
 
             <ProgressBar
-                android:id="@+id/frag_hotel_pb_info_search"
+                android:id="@+id/frag_hotel_pb_search"
                 style="@style/viewTopConstraint"
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
