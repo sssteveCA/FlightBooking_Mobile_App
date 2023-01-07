@@ -20,16 +20,10 @@ public class MainActivityView {
 
 
     private MainActivity ma;
-    private ProgressBar pb;
 
-    public MainActivityView(MainActivity ma, ProgressBar pb){
+    public MainActivityView(MainActivity ma){
         this.ma = ma;
-        this.pb = pb;
-
     }
-
-    public ProgressBar getPb(){return this.pb;}
-    public void setPb(ProgressBar pb){this.pb = pb;}
 
     public void removeFragment(int container){
         FragmentManager fm = this.ma.getSupportFragmentManager();

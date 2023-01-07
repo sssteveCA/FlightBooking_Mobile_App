@@ -37,8 +37,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
         this.mam = new MainActivityModel(this);
-        ProgressBar pb = findViewById(R.id.main_activity_pb);
-        this.mav = new MainActivityView(this,pb);
+        this.mav = new MainActivityView(this);
     }
 
     @Override
