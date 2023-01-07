@@ -5,12 +5,15 @@ import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
@@ -79,8 +82,11 @@ public class NewsFragment extends Fragment implements  View.OnClickListener {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_news, container, false);
         LinearLayout ll_news_list = v.findViewById(R.id.frag_news_ll_news_list);
+        TextView tv_message = ll_news_list.findViewById(R.id.frag_news_tv_message);
+        RecyclerView rv_posts = ll_news_list.findViewById(R.id.frag_news_rv_posts);
+        ProgressBar pb = ll_news_list.findViewById(R.id.frag_news_pb);
         Button bt_back = v.findViewById(R.id.frag_news_bt_back);
-        this.nv = new NewsFragmentView(ll_news_list,bt_back);
+        this.nv = new NewsFragmentView(ll_news_list,tv_message,rv_posts,pb,bt_back);
         this.nv.getBtBack().setOnClickListener(this);
         return v;
     }
