@@ -1,6 +1,7 @@
 package com.example.flightbooking.fragments.news;
 
 import com.example.flightbooking.interfaces.Globals;
+import com.example.flightbooking.models.response.news.GetPosts;
 import com.example.flightbooking.models.response.news.Post;
 
 import java.util.List;
@@ -14,7 +15,7 @@ public class NewsFragmentClient {
 
     public interface NewsFragmentInterface{
         @GET(Globals.API_ROUTES_PREFIX+"/")
-        Call<List<Post>> getPosts();
+        Call<GetPosts> getPosts();
     }
 
     private Retrofit retrofit;
