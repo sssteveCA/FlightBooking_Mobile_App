@@ -178,29 +178,34 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
      */
     private void hotelInfoRequest(){
         HotelFragment this_hf = this;
+        HotelFragmentView this_hfv = this.hfv;
         HotelSearch hs = HotelFragmentMethods.setHotelSearchBody(this.hfv);
-        this.hfv.getPbSearch().setVisibility(View.VISIBLE);
+        this_hfv.getPbSearch().setVisibility(View.VISIBLE);
         this.hfm.hotelPreviewRequest(hs, new HotelFragmentModel.GetHotelPreviewInfo() {
             @Override
             public void hotelPreviewResponse(HotelInfo hi) {
                 try{
                     if(hi.done == true){
-                        Log.i("HotelFragment","hotelInfoRequest data hotel => "+hi.data.hotel);
-                        Log.i("HotelFragment","hotelInfoRequest data price => "+hi.data.price);
+                        //Log.i("HotelFragment","hotelInfoRequest data hotel => "+hi.data.hotel);
+                        //Log.i("HotelFragment","hotelInfoRequest data price => "+hi.data.price);
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("hotelInfo",hi.data);
+                        this_hfv.getPbSearch().setVisibility(View.GONE);
                     }//if(hi.done == true){
                     else{
                         MessageDialog md = new MessageDialog(this_hf.context,"Informazioni stanza albergo", hi.message);
+                        this_hfv.getPbSearch().setVisibility(View.GONE);
                     }
                 }catch(Exception e){
                     Log.e("HotelFragment", "hotelInfoRequest exception => "+e.getMessage());
                     MessageDialog md = new MessageDialog(this_hf.context,"Informazioni stanza albergo", Globals.ERR_REQUEST);
+                    this_hfv.getPbSearch().setVisibility(View.GONE);
                 }
             }
             @Override
             public void hotelPreviewError(String message) {
                 MessageDialog md = new MessageDialog(this_hf.context,"Informazioni stanza albergo", message);
+                this_hfv.getPbSearch().setVisibility(View.GONE);
             }
         });
     }
