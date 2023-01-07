@@ -1,6 +1,8 @@
 package com.example.flightbooking.models.requests.flights;
 
-//This class is used by retrofit when user wants to get ticket info before the payment
+/**
+ * This class is used by retrofit when user wants to get flights ticket info before the payment
+ */
 public class FlightSearch {
     public String flight_type;
     public String company_name;
