@@ -19,6 +19,7 @@ import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.interfaces.FragmentChange;
+import com.example.flightbooking.models.response.news.GetPosts;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -27,7 +28,8 @@ import com.example.flightbooking.interfaces.FragmentChange;
  */
 public class NewsFragment extends Fragment implements  View.OnClickListener {
 
-    private NewsFragmentView nv;
+    private NewsFragmentModel nfm;
+    private NewsFragmentView nfv;
     public FragmentChange fc = null;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -41,6 +43,7 @@ public class NewsFragment extends Fragment implements  View.OnClickListener {
 
     public NewsFragment() {
         // Required empty public constructor
+        this.nfm = new NewsFragmentModel();
     }
 
     /**
@@ -86,9 +89,42 @@ public class NewsFragment extends Fragment implements  View.OnClickListener {
         RecyclerView rv_posts = ll_news_list.findViewById(R.id.frag_news_rv_posts);
         ProgressBar pb = ll_news_list.findViewById(R.id.frag_news_pb);
         Button bt_back = v.findViewById(R.id.frag_news_bt_back);
-        this.nv = new NewsFragmentView(ll_news_list,tv_message,rv_posts,pb,bt_back);
-        this.nv.getBtBack().setOnClickListener(this);
+        this.nfv = new NewsFragmentView(ll_news_list,tv_message,rv_posts,pb,bt_back);
+        this.nfv.getBtBack().setOnClickListener(this);
         return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        this.getPostsRequest();
+
+    }
+
+    /**
+     * Perform the HTTP request to get the posts list
+     */
+    private void getPostsRequest(){
+        NewsFragmentView this_nfv = this.nfv;
+        this_nfv.getPb().setVisibility(View.VISIBLE);
+        this.nfm.postsRequest(new NewsFragmentModel.GetPostsResponse() {
+            @Override
+            public void getPostsSuccess(GetPosts posts) {
+                if(posts.done == true && posts.empty == false){
+                    this_nfv.getPb().setVisibility(View.GONE);
+                }//if(posts.done == true && posts.empty == false){
+                else{
+                    this_nfv.getPb().setVisibility(View.GONE);
+                    this_nfv.getTvMessage().setText(posts.message);
+
+                }
+            }
+            @Override
+            public void getPostsError(String message) {
+                this_nfv.getPb().setVisibility(View.GONE);
+                this_nfv.getTvMessage().setText(message);
+            }
+        });
     }
 
     //View.OnClickListener

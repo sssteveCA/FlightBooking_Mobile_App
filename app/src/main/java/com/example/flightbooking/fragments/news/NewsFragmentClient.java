@@ -14,7 +14,7 @@ import retrofit2.http.GET;
 public class NewsFragmentClient {
 
     public interface NewsFragmentInterface{
-        @GET(Globals.API_ROUTES_PREFIX+"/")
+        @GET(Globals.API_ROUTES_PREFIX+"/news")
         Call<GetPosts> getPosts();
     }
 

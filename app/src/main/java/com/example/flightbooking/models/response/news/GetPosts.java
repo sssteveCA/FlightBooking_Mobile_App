@@ -18,6 +18,9 @@ public class GetPosts {
     @SerializedName("status")
     @Expose
     public String status;
+    @SerializedName("message")
+    @Expose
+    public String message;
     @SerializedName("n_posts")
     @Expose
     public Integer nPosts;
