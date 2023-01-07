@@ -169,6 +169,10 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         }
     }
 
+    private void hotelInfoRequest(){
+
+    }
+
     /**
      * Do the HTTP request to get the full bookable hotels info
      */

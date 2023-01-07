@@ -17,6 +17,7 @@ import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.common.Generic;
 import com.example.flightbooking.dialogs.DatePickerHotel;
+import com.example.flightbooking.models.requests.hotel.HotelSearch;
 
 import java.util.AbstractMap;
 import java.util.HashMap;
@@ -24,6 +25,18 @@ import java.util.LinkedList;
 import java.util.Map;
 
 public class HotelFragmentMethods {
+
+    public static HotelSearch setHotelSearchBody(HotelFragmentView hfv){
+        HotelSearch hs = new HotelSearch();
+        hs.country = (String) hfv.getSpCountries().getSelectedItem();
+        hs.city = (String) hfv.getSpCities().getSelectedItem();
+        hs.hotel = (String) hfv.getSpHotels().getSelectedItem();
+        hs.checkin = hfv.getEtCkeckIn().getText().toString();
+        hs.checkout = hfv.getEtCkeckOut().getText().toString();
+        hs.rooms = Integer.valueOf(hfv.getEtRooms().getText().toString());
+        hs.people = Integer.valueOf(hfv.getEtPeople().getText().toString());
+        return hs;
+    }
 
     /**
      * Create a Map with Hotel view references
@@ -41,6 +54,7 @@ public class HotelFragmentMethods {
                 new AbstractMap.SimpleImmutableEntry<>("people", (EditText)v.findViewById(R.id.frag_hotel_et_people)),
                 new AbstractMap.SimpleImmutableEntry<>("ll_table",(LinearLayout)v.findViewById(R.id.frag_hotel_ll_table)),
                 new AbstractMap.SimpleImmutableEntry<>("search", (Button)v.findViewById(R.id.frag_hotel_bt_search)),
+                new AbstractMap.SimpleImmutableEntry<>("pb_search", (ProgressBar)v.findViewById(R.id.frag_hotel_pb_info_search)),
                 new AbstractMap.SimpleImmutableEntry<>("images", (Button)v.findViewById(R.id.frag_hotel_bt_hotel_images)),
                 new AbstractMap.SimpleImmutableEntry<>("pb_images", (ProgressBar)v.findViewById(R.id.frag_hotel_pb_hotel_images))
         );

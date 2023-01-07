@@ -37,7 +37,7 @@ public class HotelFragmentView {
 
     private static String[] itemsName = {
             "countries","cities","hotels","check_in","check_out",
-            "rooms","people","ll_table","search","images","pb_images"
+            "rooms","people","ll_table","search","pb_search","images","pb_images"
     };
 
     public HotelFragmentView(Map<String, View> items) throws MissingValuesException {
@@ -75,6 +75,7 @@ public class HotelFragmentView {
         this.et_people = (EditText) items.get("et_people");
         this.ll_table = (LinearLayout) items.get("ll_table");
         this.bt_search = (Button) items.get("search");
+        this.pb_search = (ProgressBar) items.get("pb_search");
         this.bt_show_images = (Button) items.get("images");
         this.pb_show_images = (ProgressBar) items.get("pb_images");
     }
