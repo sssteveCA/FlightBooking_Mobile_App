@@ -58,7 +58,7 @@ public class NewsFragmentModel {
                     String message = "";
                     try {
                         String jsonString = response.errorBody().string();
-                        Log.e("NewsFragmentModel", "postsRequest error body => "+jsonString);
+                        //Log.e("NewsFragmentModel", "postsRequest error body => "+jsonString);
                         JsonElement je = JsonParser.parseString(jsonString);
                         JsonObject jo = je.getAsJsonObject();
                         message = jo.get(Globals.KEY_MESSAGE).getAsString();
@@ -74,8 +74,7 @@ public class NewsFragmentModel {
 
             @Override
             public void onFailure(Call<GetPosts> call, Throwable t) {
-                String message = Globals.ERR_NEWS;
-                gpr.getPostsError(message);
+                gpr.getPostsError(Globals.ERR_NEWS);
             }
         });
     }

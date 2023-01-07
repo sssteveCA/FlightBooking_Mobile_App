@@ -4,8 +4,12 @@ import android.content.Context;
 import android.util.Log;
 
 import com.example.flightbooking.common.Connection;
+import com.example.flightbooking.interfaces.Globals;
+import com.example.flightbooking.models.requests.hotel.HotelSearch;
+import com.example.flightbooking.models.response.hotel.HotelInfo;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+import com.google.gson.JsonParser;
 
 import java.io.IOException;
 import java.util.HashMap;
@@ -38,6 +42,11 @@ public class HotelFragmentModel {
     public interface GetHotelsInfo{
         public void hotelInfoResponse(JsonObject hotels);
         public void hotelInfoError(String message);
+    }
+
+    public interface GetHotelPreviewInfo{
+        public void hotelPreviewResponse(HotelInfo hi);
+        public void hotelPreviewError(String message);
     }
 
     private Context context;
@@ -175,6 +184,42 @@ public class HotelFragmentModel {
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
                 ghi.hotelInfoError(t.getMessage());
+            }
+        });
+    }
+
+    /**
+     * Perform the HTTP request to get a price preview of booked hotel
+     * @param hs the request body
+     * @param ghpi the listener called when the request ends
+     */
+    public void hotelPreviewRequest(HotelSearch hs, GetHotelPreviewInfo ghpi){
+        this.hfc.getHfi().hotelPrice(hs).enqueue(new Callback<HotelInfo>() {
+            @Override
+            public void onResponse(Call<HotelInfo> call, Response<HotelInfo> response) {
+                if(response.isSuccessful()){
+                    ghpi.hotelPreviewResponse(response.body());
+                }
+                else{
+                    String message = "";
+                    try {
+                        String jsonString = response.errorBody().string();
+                        JsonElement je = JsonParser.parseString(jsonString);
+                        JsonObject jo = je.getAsJsonObject();
+                        message = jo.get(Globals.KEY_MESSAGE).getAsString();
+                        if(message == null) message = Globals.ERR_REQUEST;
+                    } catch (IOException e) {
+                        e.printStackTrace();
+                        message = Globals.ERR_REQUEST;
+                    } finally {
+                        ghpi.hotelPreviewError(message);
+                    }
+                }
+            }
+
+            @Override
+            public void onFailure(Call<HotelInfo> call, Throwable t) {
+                ghpi.hotelPreviewError(Globals.ERR_REQUEST);
             }
         });
     }
