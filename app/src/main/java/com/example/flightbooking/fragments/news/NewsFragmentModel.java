@@ -1,5 +1,7 @@
 package com.example.flightbooking.fragments.news;
 
+import android.util.Log;
+
 import com.example.flightbooking.fragments.contacts.ContactsFragmentClient;
 import com.example.flightbooking.fragments.contacts.ContactsFragmentModel;
 import com.example.flightbooking.interfaces.Globals;
@@ -49,12 +51,14 @@ public class NewsFragmentModel {
             @Override
             public void onResponse(Call<GetPosts> call, Response<GetPosts> response) {
                 if(response.isSuccessful()){
-                    gpr.getPostsSuccess(response.body());
+                    GetPosts gp = response.body();
+                    gpr.getPostsSuccess(gp);
                 }
                 else{
                     String message = "";
                     try {
                         String jsonString = response.errorBody().string();
+                        Log.e("NewsFragmentModel", "postsRequest error body => "+jsonString);
                         JsonElement je = JsonParser.parseString(jsonString);
                         JsonObject jo = je.getAsJsonObject();
                         message = jo.get(Globals.KEY_MESSAGE).getAsString();

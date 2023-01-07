@@ -19,6 +19,7 @@ import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.interfaces.FragmentChange;
+import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.response.news.GetPosts;
 
 /**
@@ -110,13 +111,18 @@ public class NewsFragment extends Fragment implements  View.OnClickListener {
         this.nfm.postsRequest(new NewsFragmentModel.GetPostsResponse() {
             @Override
             public void getPostsSuccess(GetPosts posts) {
-                if(posts.done == true && posts.empty == false){
+                try{
+                    if(posts.done == true && posts.empty == false){
+                        this_nfv.getPb().setVisibility(View.GONE);
+                    }//if(posts.done == true && posts.empty == false){
+                    else{
+                        this_nfv.getPb().setVisibility(View.GONE);
+                        this_nfv.getTvMessage().setText(posts.message);
+                    }
+                }
+                catch(Exception e){
                     this_nfv.getPb().setVisibility(View.GONE);
-                }//if(posts.done == true && posts.empty == false){
-                else{
-                    this_nfv.getPb().setVisibility(View.GONE);
-                    this_nfv.getTvMessage().setText(posts.message);
-
+                    this_nfv.getTvMessage().setText(Globals.ERR_NEWS);
                 }
             }
             @Override
