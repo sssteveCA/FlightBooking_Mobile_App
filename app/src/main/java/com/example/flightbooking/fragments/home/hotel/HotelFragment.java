@@ -25,6 +25,7 @@ import android.widget.TableLayout;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
+import com.example.flightbooking.common.Connection;
 import com.example.flightbooking.common.Generic;
 import com.example.flightbooking.dialogs.DatePickerHotel;
 import com.example.flightbooking.dialogs.ImagesDialog;
@@ -271,6 +272,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
                 HotelFragmentMethods.showDatePickerDialog(this_hfv.getEtCkeckOut().getText().toString(), this_hf,HotelFragmentModel.EditTextsDate.CHECK_OUT, this_hf.ma);
                 break;
             case R.id.frag_hotel_bt_search:
+                if(Connection.checkInternet(this.context)) this.hotelInfoRequest();
                 break;
             case R.id.frag_hotel_bt_hotel_images:
                 String country = (String) this.hfv.getSpCountries().getSelectedItem();

@@ -23,6 +23,7 @@ import android.widget.TextView;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
+import com.example.flightbooking.common.Connection;
 import com.example.flightbooking.common.Generic;
 import com.example.flightbooking.dialogs.DatePicker;
 import com.example.flightbooking.dialogs.MessageDialog;
@@ -153,6 +154,40 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
         });
     }
 
+    /**
+     * Do the HTTP request to get the preview about some booked flights
+     */
+    private void flightInfoRequest(){
+        Context this_context = this.context;
+        FlightsFragmentView this_ffv = this.ffv;
+        FlightSearch fs = FlightsFragmentMethods.setFlightSearchBody(this_ffv);
+        this_ffv.getPbSearch().setVisibility(View.VISIBLE);
+        this.ffm.flightTicketPreview(fs, new FlightsFragmentModel.GetFlightInfo() {
+            @Override
+            public void getTicketPreviewResponse(FlightInfo fp) {
+                this_ffv.getPbSearch().setVisibility(View.GONE);
+                //Log.i("FlightsFragment","getTicketPreviewResponse");
+                if(fp != null){
+                    if(fp.flightType != null && fp.flightType.equals("oneway")){
+                    }
+                    else if(fp.flightType != null && fp.flightType.equals("roundtrip")){
+                    }
+                    Bundle bundle = new Bundle();
+                    bundle.putSerializable("flightinfo",fp);
+                    fc.fragmentChange(FragmentLabels.FLIGHTS.getLabelName(), FragmentLabels.TICKET_PREVIEW.getLabelName(),true,bundle);
+                }//if(fp != null){
+                else{
+                    MessageDialog md = new MessageDialog(this_context,"Errore","Si è verificato un errore durante l'esecuzione della richiesta");
+                }
+            }
+            @Override
+            public void getTicketPreviewError(String message) {
+                this_ffv.getPbSearch().setVisibility(View.GONE);
+                MessageDialog md = new MessageDialog(getActivity(),"Errore",message);
+            }
+        });
+    }
+
 
     /**
      * Do the HTTP request to get the full bookable airports info
@@ -193,42 +228,9 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     //View.OnClickListener
     @Override
     public void onClick(View view) {
-        Context this_context = this.context;
-        FlightsFragmentView this_ffv = this.ffv;
         switch(view.getId()){
             case R.id.frag_flights_bt_search:
-                if(this.ffm.getConnectionStatus()){
-                    FlightSearch fs = FlightsFragmentMethods.setFlightSearchBody(this_ffv);
-                    this_ffv.getPbSearch().setVisibility(View.VISIBLE);
-                    this.ffm.flightTicketPreview(fs, new FlightsFragmentModel.GetFlightInfo() {
-                        @Override
-                        public void getTicketPreviewResponse(FlightInfo fp) {
-                            this_ffv.getPbSearch().setVisibility(View.GONE);
-                            //Log.i("FlightsFragment","getTicketPreviewResponse");
-                            if(fp != null){
-                                if(fp.flightType != null && fp.flightType.equals("oneway")){
-                                }
-                                else if(fp.flightType != null && fp.flightType.equals("roundtrip")){
-                                }
-                                Bundle bundle = new Bundle();
-                                bundle.putSerializable("flightinfo",fp);
-                                fc.fragmentChange(FragmentLabels.FLIGHTS.getLabelName(), FragmentLabels.TICKET_PREVIEW.getLabelName(),true,bundle);
-                            }//if(fp != null){
-                            else{
-                                MessageDialog md = new MessageDialog(this_context,"Errore","Si è verificato un errore durante l'esecuzione della richiesta");
-                            }
-                        }
-                        @Override
-                        public void getTicketPreviewError(String message) {
-                            this_ffv.getPbSearch().setVisibility(View.GONE);
-                            MessageDialog md = new MessageDialog(getActivity(),"Errore",message);
-                        }
-                    });
-                }//if(this.ffm.getConnectionStatus()){
-                else{
-                    fc.fragmentChange(FragmentLabels.FLIGHTS.getLabelName(), FragmentLabels.FLIGHTS.getLabelName(), false,null);
-                }
-
+                if(Connection.checkInternet(this.context)) this.flightInfoRequest();
                 break;
             case R.id.frag_flights_et_out_date:
                 this.showDatePickerDialog(this.ffv.getEtOutDate().getText().toString(), FlightsFragmentModel.EditTextsDate.OUTDATE);

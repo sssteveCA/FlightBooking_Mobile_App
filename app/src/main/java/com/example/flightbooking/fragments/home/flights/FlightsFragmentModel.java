@@ -73,14 +73,6 @@ public class FlightsFragmentModel {
     }
     public void setSelCountry(String sel_country){this.sel_country = sel_country;}
 
-    /***
-     *
-     *  Check if phone is connected to internet
-     * @return boolean
-     */
-    public boolean getConnectionStatus(){
-        return Connection.checkInternet(this.context);
-    }
 
     /**
      * Check if single property passes the validation
