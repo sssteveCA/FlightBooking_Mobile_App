@@ -6,6 +6,10 @@ import com.example.flightbooking.models.response.news.Post;
 
 import java.util.List;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class NewsFragmentModel {
 
     public interface GetPostsResponse{
@@ -29,4 +33,12 @@ public class NewsFragmentModel {
     }
 
     public NewsFragmentClient getNfc(){return this.nfc;}
+
+    /**
+     * Execute the HTTP request to get the posts list
+     * @param gpr the listener called when the request returns a response
+     */
+    public void postsRequest(GetPostsResponse gpr){
+
+    }
 }
