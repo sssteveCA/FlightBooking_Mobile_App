@@ -31,6 +31,9 @@ import com.example.flightbooking.dialogs.ImagesDialog;
 import com.example.flightbooking.dialogs.MessageDialog;
 import com.example.flightbooking.exception.MissingValuesException;
 import com.example.flightbooking.fragments.home.hotel.images.HotelImagesModel;
+import com.example.flightbooking.interfaces.Globals;
+import com.example.flightbooking.models.requests.hotel.HotelSearch;
+import com.example.flightbooking.models.response.hotel.HotelInfo;
 import com.google.gson.JsonObject;
 
 import java.util.AbstractMap;
@@ -169,8 +172,33 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         }
     }
 
+    /**
+     * Do the HTTP request to get the preview about a booked hotel
+     */
     private void hotelInfoRequest(){
-
+        HotelFragment this_hf = this;
+        HotelSearch hs = HotelFragmentMethods.setHotelSearchBody(this.hfv);
+        this.hfv.getPbSearch().setVisibility(View.VISIBLE);
+        this.hfm.hotelPreviewRequest(hs, new HotelFragmentModel.GetHotelPreviewInfo() {
+            @Override
+            public void hotelPreviewResponse(HotelInfo hi) {
+                try{
+                    if(hi.done == true){
+                        Bundle bundle = new Bundle();
+                        bundle.putSerializable("hotelInfo",hi.data);
+                    }//if(hi.done == true){
+                    else{
+                        MessageDialog md = new MessageDialog(this_hf.context,"Informazioni stanza albergo", hi.message);
+                    }
+                }catch(Exception e){
+                    MessageDialog md = new MessageDialog(this_hf.context,"Informazioni stanza albergo", Globals.ERR_REQUEST);
+                }
+            }
+            @Override
+            public void hotelPreviewError(String message) {
+                MessageDialog md = new MessageDialog(this_hf.context,"Informazioni stanza albergo", message);
+            }
+        });
     }
 
     /**
