@@ -12,12 +12,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.TableLayout;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.interfaces.FragmentChange;
-import com.example.flightbooking.models.response.hotel.Hotel;
 import com.example.flightbooking.models.response.hotel.HotelInfo;
 
 /**
@@ -91,9 +91,10 @@ public class HotelInfoPreviewFragment extends Fragment implements View.OnClickLi
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_hotel_info_preview, container, false);
         LinearLayout ll_table = v.findViewById(R.id.frag_hiprev_ll_table);
+        TableLayout tl_hoteldata = ll_table.findViewById(R.id.frag_hiprev_tl_table);
         Button bt_book = v.findViewById(R.id.frag_hiprev_bt_book);
         Button bt_back = v.findViewById(R.id.frag_hiprev_bt_back);
-        this.hipfv = new HotelInfoPreviewFragmentView(this.context,ll_table,bt_book,bt_back);
+        this.hipfv = new HotelInfoPreviewFragmentView(this.context,ll_table,tl_hoteldata,bt_book,bt_back);
         HotelInfoPreviewFragmentMethods.setTable(this.context,this.hipfm,this.hipfv);
         this.hipfv.getBtBook().setOnClickListener(this);
         this.hipfv.getBtBack().setOnClickListener(this);

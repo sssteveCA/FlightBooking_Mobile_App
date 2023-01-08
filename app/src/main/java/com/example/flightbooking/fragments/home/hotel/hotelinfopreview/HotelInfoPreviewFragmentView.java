@@ -19,9 +19,10 @@ public class HotelInfoPreviewFragmentView {
     private Button bt_book;
     private Button bt_back;
 
-    public HotelInfoPreviewFragmentView(Context context,LinearLayout ll_table, Button bt_book, Button bt_back){
+    public HotelInfoPreviewFragmentView(Context context,LinearLayout ll_table,TableLayout table, Button bt_book, Button bt_back){
         this.context = context;
         this.ll_table = ll_table;
+        this.table = table;
         this.bt_book = bt_book;
         this.bt_back = bt_back;
     }
