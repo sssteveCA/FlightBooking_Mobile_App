@@ -91,10 +91,9 @@ public class HotelInfoPreviewFragment extends Fragment implements View.OnClickLi
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_hotel_info_preview, container, false);
         LinearLayout ll_table = v.findViewById(R.id.frag_hiprev_ll_table);
-        TableLayout tl_hoteldata = ll_table.findViewById(R.id.frag_hiprev_tl_table);
         Button bt_book = v.findViewById(R.id.frag_hiprev_bt_book);
         Button bt_back = v.findViewById(R.id.frag_hiprev_bt_back);
-        this.hipfv = new HotelInfoPreviewFragmentView(this.context,ll_table,tl_hoteldata,bt_book,bt_back);
+        this.hipfv = new HotelInfoPreviewFragmentView(this.context,ll_table,bt_book,bt_back);
         HotelInfoPreviewFragmentMethods.setTable(this.context,this.hipfm,this.hipfv);
         this.hipfv.getBtBook().setOnClickListener(this);
         this.hipfv.getBtBack().setOnClickListener(this);
@@ -108,7 +107,7 @@ public class HotelInfoPreviewFragment extends Fragment implements View.OnClickLi
             case R.id.frag_hiprev_bt_book:
                 break;
             case R.id.frag_hiprev_bt_back:
-                this.fc.fragmentChange(FragmentLabels.HOTELINFO_PREVIEW.getLabelName(),FragmentLabels.HOTELS.getLabelName(), true,null);
+                this.fc.fragmentChange(FragmentLabels.HOTELINFO_PREVIEW.getLabelName(),FragmentLabels.HOME.getLabelName(), true,null);
                 break;
         }
     }

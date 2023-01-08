@@ -37,30 +37,30 @@ public class HotelInfoPreviewFragmentModel {
      * @param key The label of the current row
      * @param value The value of the current row
      */
-    public void setHiptvTableValues(String key, String value){
+    public void setHiptvTableValues(String key, Object value){
         if(key.equalsIgnoreCase("Paese")){
-            this.hiptv.country = value; return;
+            this.hiptv.country = (String) value; return;
         }
         else if(key.equalsIgnoreCase("Città")){
-            this.hiptv.city = value; return;
+            this.hiptv.city = (String) value; return;
         }
         else if(key.equalsIgnoreCase("Albergo")) {
-            this.hiptv.hotel = value; return;
+            this.hiptv.hotel = (String) value; return;
         }
         else if(key.equalsIgnoreCase("Data check-in")){
-            this.hiptv.checkin = value; return;
+            this.hiptv.checkin = (String) value; return;
         }
         else if(key.equalsIgnoreCase("Data check-out")){
-            this.hiptv.checkout = value; return;
+            this.hiptv.checkout = (String) value; return;
         }
         else if(key.equalsIgnoreCase("Persone")){
-            this.hiptv.people = value; return;
+            this.hiptv.people = (Integer) value; return;
         }
         else if(key.equalsIgnoreCase("Stanze")){
-            this.hiptv.rooms = value; return;
+            this.hiptv.rooms = (Integer) value; return;
         }
         else if(key.equalsIgnoreCase("Prezzo"))
-            this.hiptv.price = value;
+            this.hiptv.price = (Double) value;
     }
 
     /**
@@ -95,11 +95,11 @@ public class HotelInfoPreviewFragmentModel {
         if(key.equalsIgnoreCase("country")) return "Paese";
         if(key.equalsIgnoreCase("city")) return "Città";
         if(key.equalsIgnoreCase("hotel")) return "Albergo";
-        if(key.equalsIgnoreCase("")) return "Data check-in";
-        if(key.equalsIgnoreCase("")) return "Data check-out";
-        if(key.equalsIgnoreCase("")) return "Persone";
-        if(key.equalsIgnoreCase("")) return "Stanze";
-        if(key.equalsIgnoreCase("")) return "Prezzo";
+        if(key.equalsIgnoreCase("checkin")) return "Data check-in";
+        if(key.equalsIgnoreCase("checkout")) return "Data check-out";
+        if(key.equalsIgnoreCase("people")) return "Persone";
+        if(key.equalsIgnoreCase("rooms")) return "Stanze";
+        if(key.equalsIgnoreCase("price")) return "Prezzo";
         return "";
     }
 

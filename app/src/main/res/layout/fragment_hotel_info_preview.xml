@@ -35,30 +35,7 @@
                 android:orientation="vertical"
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_hiprev_tv_header">
-
-                <TableLayout
-                    android:id="@+id/frag_hiprev_tl_table"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent">
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-
-                    <TableRow
-                        android:layout_width="match_parent"
-                        android:layout_height="match_parent" />
-                </TableLayout>
-            </LinearLayout>
+                app:layout_constraintTop_toBottomOf="@+id/frag_hiprev_tv_header"/>
 
             <LinearLayout
                 style="@style/viewTopConstraint"
@@ -66,7 +43,9 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="horizontal"
-                app:layout_constraintTop_toTopOf="@+id/frag_hiprev_ll_table">
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frag_hiprev_ll_table">
 
                 <Button
                     android:id="@+id/frag_hiprev_bt_book"

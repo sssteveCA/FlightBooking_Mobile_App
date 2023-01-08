@@ -12,6 +12,7 @@ import java.util.Map;
 public class HotelInfoPreviewFragmentMethods {
 
     public static void setTable(Context context, HotelInfoPreviewFragmentModel hipfm, HotelInfoPreviewFragmentView hipfv){
+        hipfv.setTvTableCaption("Preventivo");
         HotelInfoPreviewFragmentMethods.setTableLayout(context, hipfm.getTableData(), hipfm, hipfv);
     }
 
@@ -29,7 +30,7 @@ public class HotelInfoPreviewFragmentMethods {
         for(Map.Entry<String, Object> td_set: hotelData.entrySet()){
             TableRow tr = hipfv.hotelInfoTableRow(td_set.getKey(), td_set.getValue());
             hipfv.getTable().addView(tr);
-            hipfm.setHiptvTableValues(td_set.getKey(), (String) td_set.getValue());
+            hipfm.setHiptvTableValues(td_set.getKey(), td_set.getValue());
         }//for(Map.Entry<String, Object> td_set: hotelData.entrySet()){
         hipfv.getLlTable().addView(hipfv.getTable());
     }

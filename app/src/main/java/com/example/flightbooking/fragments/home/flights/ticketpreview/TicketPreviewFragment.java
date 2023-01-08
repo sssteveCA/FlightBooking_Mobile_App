@@ -109,7 +109,7 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
             case R.id.frag_tprev_bt_book:
                 break;
             case R.id.frag_tprev_bt_back:
-                fc.fragmentChange(FragmentLabels.TICKET_PREVIEW.getLabelName(), FragmentLabels.FLIGHTS.getLabelName(), true,null);
+                fc.fragmentChange(FragmentLabels.TICKET_PREVIEW.getLabelName(), FragmentLabels.HOME.getLabelName(), true,null);
                 break;
         }
     }

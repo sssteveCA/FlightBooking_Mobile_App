@@ -9,8 +9,8 @@ public class HotelInfoPreviewTableValues {
     public String hotel;
     public String checkin;
     public String checkout;
-    public String people;
-    public String rooms;
-    public String price;
+    public Integer people;
+    public Integer rooms;
+    public Double price;
 
 }
