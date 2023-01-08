@@ -13,7 +13,7 @@ public class HotelInfo implements Serializable {
     @SerializedName("message")
     @Expose
     public String message;
-    @SerializedName("data")
+    @SerializedName("response")
     @Expose
-    public Hotel data;
+    public HotelResponse response;
 }
