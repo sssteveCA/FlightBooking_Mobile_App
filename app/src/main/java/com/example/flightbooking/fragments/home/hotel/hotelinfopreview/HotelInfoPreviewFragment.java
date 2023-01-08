@@ -1,6 +1,7 @@
 package com.example.flightbooking.fragments.home.hotel.hotelinfopreview;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -26,6 +27,7 @@ import com.example.flightbooking.models.response.hotel.HotelInfo;
  */
 public class HotelInfoPreviewFragment extends Fragment implements View.OnClickListener {
 
+    private Context context;
     private HotelInfo hi;
     private FragmentChange fc = null;
     private HotelInfoPreviewFragmentModel hipfm;
@@ -69,6 +71,12 @@ public class HotelInfoPreviewFragment extends Fragment implements View.OnClickLi
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -85,7 +93,7 @@ public class HotelInfoPreviewFragment extends Fragment implements View.OnClickLi
         LinearLayout ll_table = v.findViewById(R.id.frag_hiprev_ll_table);
         Button bt_book = v.findViewById(R.id.frag_hiprev_bt_book);
         Button bt_back = v.findViewById(R.id.frag_hiprev_bt_back);
-        this.hipfv = new HotelInfoPreviewFragmentView(ll_table,bt_book,bt_back);
+        this.hipfv = new HotelInfoPreviewFragmentView(this.context,ll_table,bt_book,bt_back);
         this.hipfv.getBtBook().setOnClickListener(this);
         this.hipfv.getBtBack().setOnClickListener(this);
         return v;
