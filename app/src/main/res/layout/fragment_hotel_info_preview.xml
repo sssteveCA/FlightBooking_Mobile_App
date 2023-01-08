@@ -28,7 +28,7 @@
                 app:layout_constraintTop_toTopOf="parent" />
 
             <LinearLayout
-                android:id="@+id/frag_hiprev_ll"
+                android:id="@+id/frag_hiprev_ll_table"
                 style="@style/viewTopConstraint"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
@@ -45,7 +45,7 @@
                 android:layout_height="match_parent"
                 android:gravity="center"
                 android:orientation="horizontal"
-                app:layout_constraintTop_toTopOf="@+id/frag_hiprev_ll">
+                app:layout_constraintTop_toTopOf="@+id/frag_hiprev_ll_table">
 
                 <Button
                     android:id="@+id/frag_hiprev_bt_book"
