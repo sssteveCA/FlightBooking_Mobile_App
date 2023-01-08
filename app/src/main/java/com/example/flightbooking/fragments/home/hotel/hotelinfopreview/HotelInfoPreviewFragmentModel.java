@@ -11,8 +11,10 @@ public class HotelInfoPreviewFragmentModel {
     private HotelInfo hi;
     private String session_id;
     private HashMap<String, Object> table_data;
+    private HotelInfoPreviewTableValues hiptv;
 
     public HotelInfoPreviewFragmentModel(HotelInfo hi){
+        this.hiptv = new HotelInfoPreviewTableValues();
         this.hi = hi;
         this.session_id = this.hi.response.session_id;
         try {
@@ -25,6 +27,38 @@ public class HotelInfoPreviewFragmentModel {
 
     public String getSessionId(){return this.session_id;}
     public HashMap<String, Object> getTableData(){return this.table_data;}
+    public HotelInfoPreviewTableValues getHiptv(){return this.hiptv;}
+
+    /**
+     * Set each property of the HotelInfoPreviewTableValues (needed for the next request)
+     * @param key The label of the current row
+     * @param value The value of the current row
+     */
+    public void setHiptvTableValues(String key, String value){
+        if(key.equalsIgnoreCase("Paese")){
+            this.hiptv.country = value; return;
+        }
+        else if(key.equalsIgnoreCase("Città")){
+            this.hiptv.city = value; return;
+        }
+        else if(key.equalsIgnoreCase("Albergo")) {
+            this.hiptv.hotel = value; return;
+        }
+        else if(key.equalsIgnoreCase("Data check-in")){
+            this.hiptv.checkin = value; return;
+        }
+        else if(key.equalsIgnoreCase("Data check-out")){
+            this.hiptv.checkout = value; return;
+        }
+        else if(key.equalsIgnoreCase("Persone")){
+            this.hiptv.people = value; return;
+        }
+        else if(key.equalsIgnoreCase("Stanze")){
+            this.hiptv.rooms = value; return;
+        }
+        else if(key.equalsIgnoreCase("Prezzo"))
+            this.hiptv.price = value;
+    }
 
     /**
      * Set the data to show in the TableLayout view
@@ -65,5 +99,7 @@ public class HotelInfoPreviewFragmentModel {
         if(key.equalsIgnoreCase("")) return "Prezzo";
         return "";
     }
+
+
 
 }
