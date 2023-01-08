@@ -1,7 +1,9 @@
 package com.example.flightbooking.fragments.home.hotel.hotelinfopreview;
 
+import android.app.Activity;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
@@ -10,7 +12,9 @@ import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
+import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.models.response.hotel.Hotel;
 import com.example.flightbooking.models.response.hotel.HotelInfo;
@@ -59,6 +63,12 @@ public class HotelInfoPreviewFragment extends Fragment implements View.OnClickLi
     }
 
     @Override
+    public void onAttach(@NonNull Activity activity) {
+        super.onAttach(activity);
+        this.fc = (MainActivity)activity;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -88,6 +98,7 @@ public class HotelInfoPreviewFragment extends Fragment implements View.OnClickLi
             case R.id.frag_hiprev_bt_book:
                 break;
             case R.id.frag_hiprev_bt_back:
+                this.fc.fragmentChange(FragmentLabels.HOTELINFO_PREVIEW.getLabelName(),FragmentLabels.HOTELS.getLabelName(), true,null);
                 break;
         }
     }

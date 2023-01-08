@@ -54,6 +54,12 @@ public class MainActivityModel {
             return FragmentLabels.COOKIE_POLICY.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.FLIGHTS.getPackageName()))
             return FragmentLabels.FLIGHTS.getLabelName();
+        else if(class_name.equalsIgnoreCase(FragmentPackages.HOME.getPackageName()))
+            return FragmentLabels.HOME.getLabelName();
+        else if(class_name.equalsIgnoreCase(FragmentPackages.HOTELINFO_PREVIEW.getPackageName()))
+            return FragmentLabels.HOTELINFO_PREVIEW.getLabelName();
+        else if(class_name.equalsIgnoreCase(FragmentPackages.HOTELS.getPackageName()))
+            return FragmentLabels.HOTELS.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.LOGIN.getPackageName()))
             return FragmentLabels.LOGIN.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.NEWS.getPackageName()))
@@ -89,6 +95,12 @@ public class MainActivityModel {
             return FragmentPackages.COOKIE_POLICY.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.FLIGHTS.getLabelName()))
             return FragmentPackages.FLIGHTS.getPackageName();
+        else if(label.equalsIgnoreCase(FragmentLabels.HOME.getLabelName()))
+            return FragmentPackages.HOME.getPackageName();
+        else if(label.equalsIgnoreCase(FragmentLabels.HOTELINFO_PREVIEW.getLabelName()))
+            return FragmentPackages.HOTELINFO_PREVIEW.getPackageName();
+        else if(label.equalsIgnoreCase(FragmentLabels.HOTELS.getLabelName()))
+            return FragmentPackages.HOTELS.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.LOGIN.getLabelName()))
             return FragmentPackages.LOGIN.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.NEWS.getLabelName()))
