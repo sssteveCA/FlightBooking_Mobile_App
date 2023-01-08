@@ -3,7 +3,9 @@ package com.example.flightbooking.models.response.hotel;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class HotelInfo {
+import java.io.Serializable;
+
+public class HotelInfo implements Serializable {
 
     @SerializedName("done")
     @Expose

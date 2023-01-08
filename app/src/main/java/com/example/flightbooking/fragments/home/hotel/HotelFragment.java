@@ -189,7 +189,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
                         //Log.i("HotelFragment","hotelInfoRequest data hotel => "+hi.data.hotel);
                         //Log.i("HotelFragment","hotelInfoRequest data price => "+hi.data.price);
                         Bundle bundle = new Bundle();
-                        bundle.putSerializable("hotelInfo",hi.data);
+                        bundle.putSerializable("hotelInfo",hi);
                         this_hfv.getPbSearch().setVisibility(View.GONE);
                     }//if(hi.done == true){
                     else{

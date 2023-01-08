@@ -35,7 +35,7 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
     private TicketPreviewFragmentModel tpfm;
     private TicketPreviewFragmentView tpfv;
     private Context context;
-    public FragmentChange fc = null;
+    private FragmentChange fc = null;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER

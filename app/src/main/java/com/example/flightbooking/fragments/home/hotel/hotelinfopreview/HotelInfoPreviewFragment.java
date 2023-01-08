@@ -9,6 +9,9 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.flightbooking.R;
+import com.example.flightbooking.interfaces.FragmentChange;
+import com.example.flightbooking.models.response.hotel.Hotel;
+import com.example.flightbooking.models.response.hotel.HotelInfo;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +19,10 @@ import com.example.flightbooking.R;
  * create an instance of this fragment.
  */
 public class HotelInfoPreviewFragment extends Fragment {
+
+    private HotelInfo hi;
+    private FragmentChange fc = null;
+    private HotelInfoPreviewFragmentModel hipfm;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -52,8 +59,7 @@ public class HotelInfoPreviewFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            this.hi = (HotelInfo) getArguments().getSerializable("hotelinfo");
         }
     }
 
