@@ -4,7 +4,8 @@ package com.example.flightbooking.interfaces;
  * Values used throughtout the application
  */
 public interface Globals {
-    String BASE_URL = "http://ec2-3-12-208-246.us-east-2.compute.amazonaws.com/"; //Base URL which this app does requests
+    //String BASE_URL = "http://ec2-3-12-208-246.us-east-2.compute.amazonaws.com/"; //Base URL which this app does requests
+    String BASE_URL = "http://192.168.0.23:8000"; //Base URL which this app does requests
     String API_ROUTES_PREFIX = "/api/v1";
     String IMG_FOLDER = "/img";
     String HOTEL_IMG_FOLDER = Globals.IMG_FOLDER+"/hotels";

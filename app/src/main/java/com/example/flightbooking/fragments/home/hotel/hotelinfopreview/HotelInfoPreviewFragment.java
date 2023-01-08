@@ -80,7 +80,7 @@ public class HotelInfoPreviewFragment extends Fragment implements View.OnClickLi
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            this.hi = (HotelInfo) getArguments().getSerializable("hotelinfo");
+            this.hi = (HotelInfo) getArguments().getSerializable("hotelInfo");
             this.hipfm = new HotelInfoPreviewFragmentModel(this.hi);
         }
     }

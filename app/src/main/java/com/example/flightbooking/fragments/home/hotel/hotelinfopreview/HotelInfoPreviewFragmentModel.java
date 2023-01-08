@@ -1,5 +1,7 @@
 package com.example.flightbooking.fragments.home.hotel.hotelinfopreview;
 
+import android.util.Log;
+
 import com.example.flightbooking.models.response.hotel.Hotel;
 import com.example.flightbooking.models.response.hotel.HotelInfo;
 
@@ -16,6 +18,7 @@ public class HotelInfoPreviewFragmentModel {
     public HotelInfoPreviewFragmentModel(HotelInfo hi){
         this.hiptv = new HotelInfoPreviewTableValues();
         this.hi = hi;
+        Log.i("HotelInfoPrevievFragmentModel","constructor hi done => "+this.hi.done);
         this.session_id = this.hi.response.session_id;
         try {
             this.table_data = this.setHotelInfoHashMap();
