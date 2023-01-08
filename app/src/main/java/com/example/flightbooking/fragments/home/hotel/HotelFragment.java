@@ -30,8 +30,10 @@ import com.example.flightbooking.common.Generic;
 import com.example.flightbooking.dialogs.DatePickerHotel;
 import com.example.flightbooking.dialogs.ImagesDialog;
 import com.example.flightbooking.dialogs.MessageDialog;
+import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.exception.MissingValuesException;
 import com.example.flightbooking.fragments.home.hotel.images.HotelImagesModel;
+import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.requests.hotel.HotelSearch;
 import com.example.flightbooking.models.response.hotel.HotelInfo;
@@ -65,6 +67,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
     private HotelFragmentView hfv;
     private HotelImagesModel him;
     private MainActivity ma;
+    private FragmentChange fc = null;
 
     public HotelFragment() {
         // Required empty public constructor
@@ -98,6 +101,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
     public void onAttach(@NonNull Activity activity) {
         super.onAttach(activity);
         this.ma = (MainActivity) activity;
+        this.fc = (MainActivity)activity;
     }
 
     @Override
@@ -191,6 +195,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("hotelInfo",hi);
                         this_hfv.getPbSearch().setVisibility(View.GONE);
+                        this_hf.fc.fragmentChange(FragmentLabels.HOTELS.getLabelName(), FragmentLabels.HOTELINFO_PREVIEW.getLabelName(), true, bundle);
                     }//if(hi.done == true){
                     else{
                         MessageDialog md = new MessageDialog(this_hf.context,"Informazioni stanza albergo", hi.message);
