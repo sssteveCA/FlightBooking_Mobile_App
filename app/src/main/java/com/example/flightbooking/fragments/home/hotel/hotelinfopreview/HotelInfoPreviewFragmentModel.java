@@ -69,9 +69,9 @@ public class HotelInfoPreviewFragmentModel {
      * @throws IllegalAccessException
      */
     private HashMap<String, Object> setHotelInfoHashMap() throws IllegalAccessException {
+        HashMap<String, Object> data = new HashMap<>();
         Hotel hotel = this.hi.response.hotel;
         if(hotel != null){
-            HashMap<String, Object> data = new HashMap<>();
             Class<?> hotel_class = hotel.getClass();
             Field[] hotel_fields = hotel_class.getDeclaredFields();
             for(Field field: hotel_fields){
@@ -83,7 +83,7 @@ public class HotelInfoPreviewFragmentModel {
                 }
             }//for(Field field: hotel_fields){
         }//if(hotel != null){
-        return null;
+        return data;
     }
 
     /**
