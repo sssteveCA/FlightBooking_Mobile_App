@@ -94,6 +94,7 @@ public class HotelInfoPreviewFragment extends Fragment implements View.OnClickLi
         Button bt_book = v.findViewById(R.id.frag_hiprev_bt_book);
         Button bt_back = v.findViewById(R.id.frag_hiprev_bt_back);
         this.hipfv = new HotelInfoPreviewFragmentView(this.context,ll_table,bt_book,bt_back);
+        HotelInfoPreviewFragmentMethods.setTable(this.context,this.hipfm,this.hipfv);
         this.hipfv.getBtBook().setOnClickListener(this);
         this.hipfv.getBtBack().setOnClickListener(this);
         return v;

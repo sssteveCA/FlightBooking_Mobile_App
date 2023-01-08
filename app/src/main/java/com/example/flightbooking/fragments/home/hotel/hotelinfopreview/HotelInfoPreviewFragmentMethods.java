@@ -12,16 +12,25 @@ import java.util.Map;
 public class HotelInfoPreviewFragmentMethods {
 
     public static void setTable(Context context, HotelInfoPreviewFragmentModel hipfm, HotelInfoPreviewFragmentView hipfv){
-
+        HotelInfoPreviewFragmentMethods.setTableLayout(context, hipfm.getTableData(), hipfm, hipfv);
     }
 
-    public static void setTableLayout(Context context, HashMap<String, Object> hotelData, HotelInfoPreviewFragmentView hipfv){
+    /**
+     * Set the TableLayout and its children
+     * @param context
+     * @param hotelData
+     * @param hipfm
+     * @param hipfv
+     */
+    public static void setTableLayout(Context context, HashMap<String, Object> hotelData, HotelInfoPreviewFragmentModel hipfm, HotelInfoPreviewFragmentView hipfv){
         LinearLayout.LayoutParams linear_lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         linear_lp.setMargins(0,10,0,0);
         hipfv.getTable().setLayoutParams(linear_lp);
         for(Map.Entry<String, Object> td_set: hotelData.entrySet()){
             TableRow tr = hipfv.hotelInfoTableRow(td_set.getKey(), td_set.getValue());
             hipfv.getTable().addView(tr);
+            hipfm.setHiptvTableValues(td_set.getKey(), (String) td_set.getValue());
         }//for(Map.Entry<String, Object> td_set: hotelData.entrySet()){
+        hipfv.getLlTable().addView(hipfv.getTable());
     }
 }
