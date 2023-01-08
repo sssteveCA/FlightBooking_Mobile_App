@@ -79,7 +79,6 @@ public class TicketPreviewFragmentModel {
      * @return
      */
     private String setRowTitle(String key){
-        String title = "";
         if(key.equalsIgnoreCase("companyName"))
             return "Compagnia aerea";
         if(key.equalsIgnoreCase("departureCountry"))
@@ -104,6 +103,6 @@ public class TicketPreviewFragmentModel {
             return "Neonati";
         if(key.equalsIgnoreCase("flightPrice"))
             return "Prezzo";
-        return title;
+        return "";
     }
 }
