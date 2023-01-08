@@ -87,26 +87,26 @@ public class TicketPreviewFragmentView {
      */
     private void setTpfvTableViews(String key, TextView tv, TicketPreviewViews tpv){
         if(key.equalsIgnoreCase("Compagnia aerea"))
-            tpv.setTvCompanyName(tv);
+            tpv.tv_company_name = tv;
         if(key.equalsIgnoreCase("Paese di partenza"))
-            tpv.setTvDepartureCountry(tv);
+            tpv.tv_departure_country = tv;
         if(key.equalsIgnoreCase("Aereoporto di partenza"))
-            tpv.setTvDepartureAirport(tv);
+            tpv.tv_departure_airport = tv;
         if(key.equalsIgnoreCase("Data del volo"))
-            tpv.setTvFlightDate(tv);
+            tpv.tv_flight_date = tv;
         if(key.equalsIgnoreCase("Paese di arrivo"))
-            tpv.setTvArrivalCountry(tv);
+            tpv.tv_arrival_country = tv;
         if(key.equalsIgnoreCase("Aereoporto di arrivo"))
-            tpv.setTvArrivalAirport(tv);
+            tpv.tv_arrival_airport = tv;
         if(key.equalsIgnoreCase("Adulti"))
-            tpv.setTvAdults(tv);
+            tpv.tv_adults = tv;
         if(key.equalsIgnoreCase("Adolescenti"))
-            tpv.setTvTeenagers(tv);
+            tpv.tv_teenagers = tv;
         if(key.equalsIgnoreCase("Bambini"))
-            tpv.setTvChildren(tv);
+            tpv.tv_chidren = tv;
         if(key.equalsIgnoreCase("Neonati"))
-            tpv.setTvNewborns(tv);
+            tpv.tv_newborns = tv;
         if(key.equalsIgnoreCase("Prezzo"))
-            tpv.setTvFlightPrice(tv);
+            tpv.tv_flight_price = tv;
     }
 }
