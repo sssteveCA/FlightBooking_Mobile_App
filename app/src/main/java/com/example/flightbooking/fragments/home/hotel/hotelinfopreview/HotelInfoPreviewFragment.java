@@ -7,6 +7,8 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.Button;
+import android.widget.LinearLayout;
 
 import com.example.flightbooking.R;
 import com.example.flightbooking.interfaces.FragmentChange;
@@ -18,11 +20,12 @@ import com.example.flightbooking.models.response.hotel.HotelInfo;
  * Use the {@link HotelInfoPreviewFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class HotelInfoPreviewFragment extends Fragment {
+public class HotelInfoPreviewFragment extends Fragment implements View.OnClickListener {
 
     private HotelInfo hi;
     private FragmentChange fc = null;
     private HotelInfoPreviewFragmentModel hipfm;
+    private HotelInfoPreviewFragmentView hipfv;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -69,6 +72,23 @@ public class HotelInfoPreviewFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_hotel_info_preview, container, false);
+        LinearLayout ll_table = v.findViewById(R.id.frag_hiprev_ll_table);
+        Button bt_book = v.findViewById(R.id.frag_hiprev_bt_book);
+        Button bt_back = v.findViewById(R.id.frag_hiprev_bt_back);
+        this.hipfv = new HotelInfoPreviewFragmentView(ll_table,bt_book,bt_back);
+        this.hipfv.getBtBook().setOnClickListener(this);
+        this.hipfv.getBtBack().setOnClickListener(this);
         return v;
+    }
+
+    //View.OnClickListener
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
+            case R.id.frag_hiprev_bt_book:
+                break;
+            case R.id.frag_hiprev_bt_back:
+                break;
+        }
     }
 }
