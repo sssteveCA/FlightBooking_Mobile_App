@@ -7,23 +7,17 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
-import android.widget.TableLayout;
-import android.widget.TableRow;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.models.response.flights.FlightInfo;
-
-import java.util.HashMap;
-import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -93,11 +87,11 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_ticket_preview, container, false);
-        LinearLayout ll_table = view.findViewById(R.id.frag_tprev_llayout);
+        LinearLayout ll_table = view.findViewById(R.id.frag_tprev_ll_table);
         Button bt_book = view.findViewById(R.id.frag_tprev_bt_book);
         Button bt_back = view.findViewById(R.id.frag_tprev_bt_back);
         this.tpfv = new TicketPreviewFragmentView(this.context,ll_table,bt_book,bt_back);
-        TicketPreviewFragmentMethods.setTable(this.tpfm,this.tpfv);
+        TicketPreviewFragmentMethods.setTable(this.context,this.tpfm,this.tpfv);
         this.tpfv.getBtBook().setOnClickListener(this);
         this.tpfv.getBtBack().setOnClickListener(this);
         return view;

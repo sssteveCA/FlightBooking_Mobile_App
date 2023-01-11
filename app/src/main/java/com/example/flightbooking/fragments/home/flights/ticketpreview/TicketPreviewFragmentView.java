@@ -11,6 +11,7 @@ import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
 
+import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.Map;
 
@@ -19,26 +20,24 @@ public class TicketPreviewFragmentView {
 
     private Context context;
     private LinearLayout ll_table;
-    private TableLayout table;
+    private ArrayList<TableLayout> tables;
     private HashMap<String, TicketPreviewTableValues> flights_info_views = new HashMap<>();
     private Button bt_book, bt_back;
 
     public TicketPreviewFragmentView(Context ctx, LinearLayout ll_table, Button bt_book, Button bt_back){
         this.context = ctx;
         this.ll_table = ll_table;
-        this.table = new TableLayout(this.context);
+        this.tables = new ArrayList<>();
         this.bt_book = bt_book;
         this.bt_back = bt_back;
     }
 
     public LinearLayout getLlTable(){return this.ll_table;}
-    public TableLayout getTable(){return this.table;}
+    public ArrayList<TableLayout> getTables(){return this.tables;}
     public HashMap<String, TicketPreviewTableValues> getFlightInfoViews(){return this.flights_info_views;}
     public Button getBtBook(){return this.bt_book;}
     public Button getBtBack(){return this.bt_back;}
 
-    public void setLlTable(LinearLayout ll_table){this.ll_table = ll_table;}
-    public void setTable(TableLayout table){this.table = table;}
     public void setFlightsInfoViews(HashMap<String, TicketPreviewTableValues> flights_info_views){this.flights_info_views = flights_info_views;}
 
     /**
