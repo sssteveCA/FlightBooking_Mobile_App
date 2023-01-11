@@ -13,6 +13,7 @@ public class TicketPreviewFragmentModel {
     private String session_id;
     private String flight_type;
     private HashMap<String, HashMap<String, Object>> flights;
+    private TicketPreviewTableValues tptv;
 
     public TicketPreviewFragmentModel(FlightInfo fi){
         this.fi = fi;
@@ -28,6 +29,7 @@ public class TicketPreviewFragmentModel {
     public String getFlightType(){return this.flight_type;}
     public String getSessionId(){return this.session_id;}
     public HashMap<String, HashMap<String, Object>> getFlights(){return this.flights;}
+    public TicketPreviewTableValues getTptv(){return this.tptv;}
 
     /**
      * Set the flights HashMap from FlightInfo properties
@@ -104,5 +106,36 @@ public class TicketPreviewFragmentModel {
         if(key.equalsIgnoreCase("flightPrice"))
             return "Prezzo";
         return "";
+    }
+
+    /**
+     * Assign needed views to TicketPreviewTableValues object
+     * @param key
+     * @param val
+     * @param tpv,
+     */
+    public void setTpfvTableValues(String key, Object val){
+        if(key.equalsIgnoreCase("Compagnia aerea"))
+            this.tptv.company_name = (String) val;
+        if(key.equalsIgnoreCase("Paese di partenza"))
+            this.tptv.departure_country = (String) val;
+        if(key.equalsIgnoreCase("Aereoporto di partenza"))
+            this.tptv.departure_airport = (String) val;
+        if(key.equalsIgnoreCase("Data del volo"))
+            this.tptv.flight_date = (String) val;
+        if(key.equalsIgnoreCase("Paese di arrivo"))
+            this.tptv.arrival_country = (String) val;
+        if(key.equalsIgnoreCase("Aereoporto di arrivo"))
+            this.tptv.arrival_airport = (String) val;
+        if(key.equalsIgnoreCase("Adulti"))
+            this.tptv.adults = (String) val;
+        if(key.equalsIgnoreCase("Adolescenti"))
+            this.tptv.teenagers = (String) val;
+        if(key.equalsIgnoreCase("Bambini"))
+            this.tptv.chidren = (String) val;
+        if(key.equalsIgnoreCase("Neonati"))
+            this.tptv.newborns = (String) val;
+        if(key.equalsIgnoreCase("Prezzo"))
+            this.tptv.flight_price = (String) val;
     }
 }

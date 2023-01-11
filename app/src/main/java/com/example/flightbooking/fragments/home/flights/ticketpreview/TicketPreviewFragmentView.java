@@ -56,13 +56,11 @@ public class TicketPreviewFragmentView {
 
     /**
      * Set single row to be added to the TableLayout
-     * @param flight_info
-     * @param tpv
+     * @param key
+     * @param val
      * @return TableRow view
      */
-    public TableRow flightTableRow(Map.Entry<String, Object> flight_info, TicketPreviewTableValues tpv){
-        String key = flight_info.getKey();
-        String value = flight_info.getValue().toString();
+    public TableRow flightTableRow(String key, Object val){
         TableRow tr = new TableRow(this.context);
         TextView tv_row_name = new TextView(this.context);
         tv_row_name.setText(key);
@@ -71,42 +69,12 @@ public class TicketPreviewFragmentView {
         tv_row_name.setTextSize(TypedValue.COMPLEX_UNIT_SP, 16);
         tr.addView(tv_row_name);
         TextView tv_row_field = new TextView(this.context);
-        tv_row_field.setText(value);
+        tv_row_field.setText(val.toString());
         tv_row_field.setPadding(10,20,10,20);
         tv_row_field.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
         tr.addView(tv_row_field);
-        this.setTpfvTableViews(key,tv_row_field.getText().toString(),tpv);
         return tr;
     }
 
-    /**
-     * Assign needed views to TicketPreviewTableValues object
-     * @param key
-     * @param val
-     * @param tpv,
-     */
-    private void setTpfvTableViews(String key, String val, TicketPreviewTableValues tpv){
-        if(key.equalsIgnoreCase("Compagnia aerea"))
-            tpv.company_name = val;
-        if(key.equalsIgnoreCase("Paese di partenza"))
-            tpv.departure_country = val;
-        if(key.equalsIgnoreCase("Aereoporto di partenza"))
-            tpv.departure_airport = val;
-        if(key.equalsIgnoreCase("Data del volo"))
-            tpv.flight_date = val;
-        if(key.equalsIgnoreCase("Paese di arrivo"))
-            tpv.arrival_country = val;
-        if(key.equalsIgnoreCase("Aereoporto di arrivo"))
-            tpv.arrival_airport = val;
-        if(key.equalsIgnoreCase("Adulti"))
-            tpv.adults = val;
-        if(key.equalsIgnoreCase("Adolescenti"))
-            tpv.teenagers = val;
-        if(key.equalsIgnoreCase("Bambini"))
-            tpv.chidren = val;
-        if(key.equalsIgnoreCase("Neonati"))
-            tpv.newborns = val;
-        if(key.equalsIgnoreCase("Prezzo"))
-            tpv.flight_price = val;
-    }
+
 }

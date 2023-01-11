@@ -24,10 +24,10 @@ public class TicketPreviewFragmentMethods {
         HashMap<String, TicketPreviewTableValues> flights_map = new HashMap<>();
         for(Map.Entry<String, HashMap<String, Object>> flight: tpfm.getFlights().entrySet()){
             //Loop over flights list HashMap
-            TicketPreviewTableValues tpv = new TicketPreviewTableValues();
+            TicketPreviewTableValues tptv = new TicketPreviewTableValues();
             tpfv.setTvTableCaption(flight.getKey());
-            TicketPreviewFragmentMethods.setTableLayout(context,flight,tpv,tpfv);
-            flights_map.put(flight.getKey(),tpv);
+            TicketPreviewFragmentMethods.setTableLayout(context,flight,tpfm,tpfv);
+            flights_map.put(flight.getKey(),tptv);
         }//for(Map.Entry<String, HashMap<String, Object>> flight: tpfm.getFlights().entrySet()){
         tpfv.setFlightsInfoViews(flights_map);
     }
@@ -36,7 +36,7 @@ public class TicketPreviewFragmentMethods {
      * Set the Table view and its children
      * @param flight
      */
-    public static void setTableLayout(Context context, Map.Entry<String, HashMap<String, Object>> flight, TicketPreviewTableValues tptv, TicketPreviewFragmentView tpfv){
+    public static void setTableLayout(Context context, Map.Entry<String, HashMap<String, Object>> flight, TicketPreviewFragmentModel tpfm, TicketPreviewFragmentView tpfv){
         TableLayout tl = new TableLayout(context);
         tpfv.setTable(tl);
         LinearLayout.LayoutParams linear_lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
@@ -44,8 +44,9 @@ public class TicketPreviewFragmentMethods {
         tl.setLayoutParams(linear_lp);
         for(Map.Entry<String, Object> flight_info: flight.getValue().entrySet()){
             //Loop over each info of single flight
-            TableRow tr = tpfv.flightTableRow(flight_info, tptv);
+            TableRow tr = tpfv.flightTableRow(flight_info.getKey(), flight_info.getValue());
             tpfv.getTable().addView(tr);
+            tpfm.setTpfvTableValues(flight_info.getKey(), flight_info.getValue());
         }//for(Map.Entry<String, Object> flight_info: flight.getValue().entrySet()){
         tpfv.getContainer().addView(tpfv.getTable());
     }
