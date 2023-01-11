@@ -20,7 +20,7 @@ public class TicketPreviewFragmentView {
     private Context context;
     private LinearLayout container;
     private TableLayout table;
-    private HashMap<String, TicketPreviewViews> flights_info_views = new HashMap<>();
+    private HashMap<String, TicketPreviewTableValues> flights_info_views = new HashMap<>();
     private Button bt_book, bt_back;
 
     public TicketPreviewFragmentView(Context ctx, Button bt_book, Button bt_back){
@@ -31,13 +31,13 @@ public class TicketPreviewFragmentView {
 
     public LinearLayout getContainer(){return this.container;}
     public TableLayout getTable(){return this.table;}
-    public HashMap<String, TicketPreviewViews> getFlightInfoViews(){return this.flights_info_views;}
+    public HashMap<String, TicketPreviewTableValues> getFlightInfoViews(){return this.flights_info_views;}
     public Button getBtBook(){return this.bt_book;}
     public Button getBtBack(){return this.bt_back;}
 
     public void setContainer(LinearLayout container){this.container = container;}
     public void setTable(TableLayout table){this.table = table;}
-    public void setFlightsInfoViews(HashMap<String, TicketPreviewViews> flights_info_views){this.flights_info_views = flights_info_views;}
+    public void setFlightsInfoViews(HashMap<String, TicketPreviewTableValues> flights_info_views){this.flights_info_views = flights_info_views;}
 
     /**
      * Add a TextView caption to TableLayout
@@ -60,7 +60,7 @@ public class TicketPreviewFragmentView {
      * @param tpv
      * @return TableRow view
      */
-    public TableRow flightTableRow(Map.Entry<String, Object> flight_info, TicketPreviewViews tpv){
+    public TableRow flightTableRow(Map.Entry<String, Object> flight_info, TicketPreviewTableValues tpv){
         String key = flight_info.getKey();
         String value = flight_info.getValue().toString();
         TableRow tr = new TableRow(this.context);
@@ -75,38 +75,38 @@ public class TicketPreviewFragmentView {
         tv_row_field.setPadding(10,20,10,20);
         tv_row_field.setTextSize(TypedValue.COMPLEX_UNIT_SP,16);
         tr.addView(tv_row_field);
-        this.setTpfvTableViews(key,tv_row_field,tpv);
+        this.setTpfvTableViews(key,tv_row_field.getText().toString(),tpv);
         return tr;
     }
 
     /**
-     * Assign needed views to TicketPreviewViews object
+     * Assign needed views to TicketPreviewTableValues object
      * @param key
-     * @param tv
+     * @param val
      * @param tpv,
      */
-    private void setTpfvTableViews(String key, TextView tv, TicketPreviewViews tpv){
+    private void setTpfvTableViews(String key, String val, TicketPreviewTableValues tpv){
         if(key.equalsIgnoreCase("Compagnia aerea"))
-            tpv.tv_company_name = tv;
+            tpv.company_name = val;
         if(key.equalsIgnoreCase("Paese di partenza"))
-            tpv.tv_departure_country = tv;
+            tpv.departure_country = val;
         if(key.equalsIgnoreCase("Aereoporto di partenza"))
-            tpv.tv_departure_airport = tv;
+            tpv.departure_airport = val;
         if(key.equalsIgnoreCase("Data del volo"))
-            tpv.tv_flight_date = tv;
+            tpv.flight_date = val;
         if(key.equalsIgnoreCase("Paese di arrivo"))
-            tpv.tv_arrival_country = tv;
+            tpv.arrival_country = val;
         if(key.equalsIgnoreCase("Aereoporto di arrivo"))
-            tpv.tv_arrival_airport = tv;
+            tpv.arrival_airport = val;
         if(key.equalsIgnoreCase("Adulti"))
-            tpv.tv_adults = tv;
+            tpv.adults = val;
         if(key.equalsIgnoreCase("Adolescenti"))
-            tpv.tv_teenagers = tv;
+            tpv.teenagers = val;
         if(key.equalsIgnoreCase("Bambini"))
-            tpv.tv_chidren = tv;
+            tpv.chidren = val;
         if(key.equalsIgnoreCase("Neonati"))
-            tpv.tv_newborns = tv;
+            tpv.newborns = val;
         if(key.equalsIgnoreCase("Prezzo"))
-            tpv.tv_flight_price = tv;
+            tpv.flight_price = val;
     }
 }
