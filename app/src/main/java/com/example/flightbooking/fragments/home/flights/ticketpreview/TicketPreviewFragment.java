@@ -93,10 +93,11 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_ticket_preview, container, false);
+        LinearLayout ll_table = view.findViewById(R.id.frag_tprev_llayout);
         Button bt_book = view.findViewById(R.id.frag_tprev_bt_book);
         Button bt_back = view.findViewById(R.id.frag_tprev_bt_back);
-        this.tpfv = new TicketPreviewFragmentView(this.context,bt_book,bt_back);
-        TicketPreviewFragmentMethods.setTable(this.context,view,this.tpfm,this.tpfv);
+        this.tpfv = new TicketPreviewFragmentView(this.context,ll_table,bt_book,bt_back);
+        TicketPreviewFragmentMethods.setTable(this.context,this.tpfm,this.tpfv);
         this.tpfv.getBtBook().setOnClickListener(this);
         this.tpfv.getBtBack().setOnClickListener(this);
         return view;

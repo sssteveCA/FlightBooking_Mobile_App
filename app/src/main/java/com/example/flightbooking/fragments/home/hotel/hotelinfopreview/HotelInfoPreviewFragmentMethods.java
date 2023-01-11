@@ -13,17 +13,16 @@ public class HotelInfoPreviewFragmentMethods {
 
     public static void setTable(Context context, HotelInfoPreviewFragmentModel hipfm, HotelInfoPreviewFragmentView hipfv){
         hipfv.setTvTableCaption("Preventivo");
-        HotelInfoPreviewFragmentMethods.setTableLayout(context, hipfm.getTableData(), hipfm, hipfv);
+        HotelInfoPreviewFragmentMethods.setTableLayout(hipfm.getTableData(), hipfm, hipfv);
     }
 
     /**
      * Set the TableLayout and its children
-     * @param context
      * @param hotelData
      * @param hipfm
      * @param hipfv
      */
-    public static void setTableLayout(Context context, HashMap<String, Object> hotelData, HotelInfoPreviewFragmentModel hipfm, HotelInfoPreviewFragmentView hipfv){
+    public static void setTableLayout(HashMap<String, Object> hotelData, HotelInfoPreviewFragmentModel hipfm, HotelInfoPreviewFragmentView hipfv){
         LinearLayout.LayoutParams linear_lp = new LinearLayout.LayoutParams(ViewGroup.LayoutParams.MATCH_PARENT, ViewGroup.LayoutParams.WRAP_CONTENT);
         linear_lp.setMargins(0,10,0,0);
         hipfv.getTable().setLayoutParams(linear_lp);

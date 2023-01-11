@@ -18,24 +18,26 @@ import java.util.Map;
 public class TicketPreviewFragmentView {
 
     private Context context;
-    private LinearLayout container;
+    private LinearLayout ll_table;
     private TableLayout table;
     private HashMap<String, TicketPreviewTableValues> flights_info_views = new HashMap<>();
     private Button bt_book, bt_back;
 
-    public TicketPreviewFragmentView(Context ctx, Button bt_book, Button bt_back){
+    public TicketPreviewFragmentView(Context ctx, LinearLayout ll_table, Button bt_book, Button bt_back){
         this.context = ctx;
+        this.ll_table = ll_table;
+        this.table = new TableLayout(this.context);
         this.bt_book = bt_book;
         this.bt_back = bt_back;
     }
 
-    public LinearLayout getContainer(){return this.container;}
+    public LinearLayout getLlTable(){return this.ll_table;}
     public TableLayout getTable(){return this.table;}
     public HashMap<String, TicketPreviewTableValues> getFlightInfoViews(){return this.flights_info_views;}
     public Button getBtBook(){return this.bt_book;}
     public Button getBtBack(){return this.bt_back;}
 
-    public void setContainer(LinearLayout container){this.container = container;}
+    public void setLlTable(LinearLayout ll_table){this.ll_table = ll_table;}
     public void setTable(TableLayout table){this.table = table;}
     public void setFlightsInfoViews(HashMap<String, TicketPreviewTableValues> flights_info_views){this.flights_info_views = flights_info_views;}
 
@@ -51,7 +53,7 @@ public class TicketPreviewFragmentView {
         table_caption.setText(caption.toUpperCase());
         table_caption.setTextSize(TypedValue.COMPLEX_UNIT_SP, 20);
         table_caption.setGravity(Gravity.CENTER);
-        this.getContainer().addView(table_caption);
+        this.getLlTable().addView(table_caption);
     }
 
     /**

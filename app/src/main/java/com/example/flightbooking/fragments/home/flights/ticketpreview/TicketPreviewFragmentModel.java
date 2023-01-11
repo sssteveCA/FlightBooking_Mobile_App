@@ -112,7 +112,6 @@ public class TicketPreviewFragmentModel {
      * Assign needed views to TicketPreviewTableValues object
      * @param key
      * @param val
-     * @param tpv,
      */
     public void setTpfvTableValues(String key, Object val){
         if(key.equalsIgnoreCase("Compagnia aerea"))
