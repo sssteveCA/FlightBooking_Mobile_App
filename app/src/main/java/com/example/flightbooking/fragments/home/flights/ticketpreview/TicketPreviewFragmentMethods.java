@@ -16,11 +16,10 @@ public class TicketPreviewFragmentMethods {
 
     /**
      * Set the table with the entry data from previous fragment
-     * @param context
      * @param tpfm
      * @param tpfv
      */
-    public static void setTable(Context context, TicketPreviewFragmentModel tpfm, TicketPreviewFragmentView tpfv){
+    public static void setTable(TicketPreviewFragmentModel tpfm, TicketPreviewFragmentView tpfv){
         HashMap<String, TicketPreviewTableValues> flights_map = new HashMap<>();
         for(Map.Entry<String, HashMap<String, Object>> flight: tpfm.getFlights().entrySet()){
             //Loop over flights list HashMap

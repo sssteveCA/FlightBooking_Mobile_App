@@ -19,6 +19,7 @@ public class TicketPreviewFragmentModel {
         this.fi = fi;
         this.session_id = fi.sessionId;
         this.flight_type = fi.flightType;
+        this.tptv = new TicketPreviewTableValues();
         try {
             this.setHashMap();
         } catch (IllegalAccessException e) {

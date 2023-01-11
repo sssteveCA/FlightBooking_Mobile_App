@@ -97,7 +97,7 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
         Button bt_book = view.findViewById(R.id.frag_tprev_bt_book);
         Button bt_back = view.findViewById(R.id.frag_tprev_bt_back);
         this.tpfv = new TicketPreviewFragmentView(this.context,ll_table,bt_book,bt_back);
-        TicketPreviewFragmentMethods.setTable(this.context,this.tpfm,this.tpfv);
+        TicketPreviewFragmentMethods.setTable(this.tpfm,this.tpfv);
         this.tpfv.getBtBook().setOnClickListener(this);
         this.tpfv.getBtBack().setOnClickListener(this);
         return view;
