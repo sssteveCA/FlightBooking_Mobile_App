@@ -7,10 +7,10 @@ public class TicketPreviewTableValues {
     public String flight_date;
     public String arrival_country;
     public String arrival_airport;
-    public String adults;
-    public String teenagers;
-    public String chidren;
-    public String newborns;
-    public String flight_price;
+    public Integer adults;
+    public Integer teenagers;
+    public Integer chidren;
+    public Integer newborns;
+    public Float flight_price;
 
 }

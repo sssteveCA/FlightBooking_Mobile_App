@@ -128,14 +128,14 @@ public class TicketPreviewFragmentModel {
         if(key.equalsIgnoreCase("Aereoporto di arrivo"))
             this.tptv.arrival_airport = (String) val;
         if(key.equalsIgnoreCase("Adulti"))
-            this.tptv.adults = (String) val;
+            this.tptv.adults = (Integer) val;
         if(key.equalsIgnoreCase("Adolescenti"))
-            this.tptv.teenagers = (String) val;
+            this.tptv.teenagers = (Integer) val;
         if(key.equalsIgnoreCase("Bambini"))
-            this.tptv.chidren = (String) val;
+            this.tptv.chidren = (Integer) val;
         if(key.equalsIgnoreCase("Neonati"))
-            this.tptv.newborns = (String) val;
+            this.tptv.newborns = (Integer) val;
         if(key.equalsIgnoreCase("Prezzo"))
-            this.tptv.flight_price = (String) val;
+            this.tptv.flight_price = (Float) val;
     }
 }
