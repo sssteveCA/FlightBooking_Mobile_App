@@ -4,11 +4,13 @@ import android.os.Bundle;
 
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.flightbooking.R;
+import com.example.flightbooking.models.response.flightevents.GetFlightEventsResponse;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +18,8 @@ import com.example.flightbooking.R;
  * create an instance of this fragment.
  */
 public class EventsFragment extends Fragment {
+
+    private EventsFragmentModel efm;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -28,6 +32,7 @@ public class EventsFragment extends Fragment {
 
     public EventsFragment() {
         // Required empty public constructor
+        this.efm = new EventsFragmentModel();
     }
 
     /**
@@ -62,5 +67,28 @@ public class EventsFragment extends Fragment {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         return inflater.inflate(R.layout.fragment_events, container, false);
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        this.eventsRequest();
+    }
+
+    /**
+     * Get the events associated with a flight
+     */
+    private void eventsRequest(){
+        this.efm.getEventsRequest(new EventsFragmentModel.GetEventsResponse() {
+            @Override
+            public void eventsSuccess(GetFlightEventsResponse gfer) {
+                Log.i("EventsFragment","eventsRequest eventsSuccess done => "+gfer.done);
+                Log.i("EventsFragment","eventsRequest eventsSuccess empty => "+gfer.empty);
+            }
+            @Override
+            public void eventsError(String message) {
+                Log.e("EventsFragment", "eventsRequest eventsError => "+message);
+            }
+        });
     }
 }
