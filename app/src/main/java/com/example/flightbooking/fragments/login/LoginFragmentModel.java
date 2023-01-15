@@ -52,7 +52,7 @@ public class LoginFragmentModel {
                             //Log.d("LoginFragmentModel","loginRequest errorBody => "+jsonString);
                             JsonElement je = JsonParser.parseString(jsonString);
                             JsonObject jo = je.getAsJsonObject();
-                            String message = jo.get("message").getAsString();
+                            String message = jo.get(Globals.KEY_MESSAGE).getAsString();
                             lr.loginError(message);
                         } catch (IOException e) {
                             e.printStackTrace();

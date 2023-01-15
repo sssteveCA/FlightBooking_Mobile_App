@@ -61,7 +61,7 @@ public class ContactsFragmentModel {
                             String jsonString = response.errorBody().string();
                             JsonElement je = JsonParser.parseString(jsonString);
                             JsonObject jo = je.getAsJsonObject();
-                            message = jo.get("message").getAsString();
+                            message = jo.get(Globals.KEY_MESSAGE).getAsString();
                             if(message == null) message = Globals.ERR_CONTACTS;
                         } catch (IOException e) {
                             e.printStackTrace();

@@ -52,7 +52,7 @@ public class SubscribeFragmentModel {
                             String jsonString = response.errorBody().string();
                             JsonElement jsonEl = JsonParser.parseString(jsonString);
                             JsonObject jsonObj = jsonEl.getAsJsonObject();
-                            String message = jsonObj.get("message").getAsString();
+                            String message = jsonObj.get(Globals.KEY_MESSAGE).getAsString();
                             //Log.i("SubscribeFragmentModel","subscribeRequest error => "+jsonString);
                             sr.subscribeError(message);
                         } catch (IOException e) {

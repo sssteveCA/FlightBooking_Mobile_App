@@ -55,7 +55,7 @@ public class LogoutModel {
                         //Log.d("LogoutModel","logoutRequest onResponse ERROR jsonString => "+jsonString);
                         JsonElement je = JsonParser.parseString(jsonString);
                         JsonObject jo = je.getAsJsonObject();
-                        message = jo.get("message").getAsString();
+                        message = jo.get(Globals.KEY_MESSAGE).getAsString();
                         if(message == null) message = Globals.ERR_LOGOUT;
                     } catch (IOException e) {
                         e.printStackTrace();
