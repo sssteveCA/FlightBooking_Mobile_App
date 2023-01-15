@@ -10,6 +10,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.GridView;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.flightbooking.R;
@@ -74,7 +75,8 @@ public class EventsFragment extends Fragment {
         LinearLayout ll = v.findViewById(R.id.frag_events_ll);
         TextView tv_message = ll.findViewById(R.id.frag_events_tv_message);
         GridView gv = ll.findViewById(R.id.frag_events_gv);
-        this.efv = new EventsFragmentView(ll,tv_message,gv);
+        ProgressBar pb = ll.findViewById(R.id.frag_events_pb);
+        this.efv = new EventsFragmentView(ll,tv_message,gv,pb);
         return v;
     }
 
@@ -89,15 +91,18 @@ public class EventsFragment extends Fragment {
      */
     private void eventsRequest(){
         EventsFragmentView this_efv = this.efv;
+        this_efv.getPb().setVisibility(View.VISIBLE);
         this.efm.getEventsRequest(new EventsFragmentModel.GetEventsResponse() {
             @Override
             public void eventsSuccess(GetFlightEventsResponse gfer) {
-                Log.i("EventsFragment","eventsRequest eventsSuccess done => "+gfer.done);
-                Log.i("EventsFragment","eventsRequest eventsSuccess empty => "+gfer.empty);
+                /*Log.i("EventsFragment","eventsRequest eventsSuccess done => "+gfer.done);
+                Log.i("EventsFragment","eventsRequest eventsSuccess empty => "+gfer.empty);*/
+                this_efv.getPb().setVisibility(View.GONE);
             }
             @Override
             public void eventsError(String message) {
-                Log.e("EventsFragment", "eventsRequest eventsError => "+message);
+//                Log.e("EventsFragment", "eventsRequest eventsError => "+message);
+                this_efv.getPb().setVisibility(View.GONE);
                 this_efv.getTvMessage().setText(message);
             }
         });
