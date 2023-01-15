@@ -15,7 +15,7 @@
             android:layout_height="wrap_content">
 
             <TextView
-                android:id="@+id/frag_ev_header"
+                android:id="@+id/frag_events_tv_header"
                 style="@style/headerTopConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
@@ -26,6 +26,16 @@
                 app:layout_constraintEnd_toEndOf="parent"
                 app:layout_constraintStart_toStartOf="parent"
                 app:layout_constraintTop_toTopOf="parent" />
+
+            <LinearLayout
+                android:id="@+id/frag_events_ll"
+                style="@style/viewTopConstraint"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:orientation="vertical"
+                app:layout_constraintEnd_toEndOf="parent"
+                app:layout_constraintStart_toStartOf="parent"
+                app:layout_constraintTop_toBottomOf="@+id/frag_events_tv_header"></LinearLayout>
         </androidx.constraintlayout.widget.ConstraintLayout>
     </ScrollView>
 </FrameLayout>
