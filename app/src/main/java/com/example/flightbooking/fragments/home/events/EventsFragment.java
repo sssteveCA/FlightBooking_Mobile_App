@@ -8,6 +8,9 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.GridView;
+import android.widget.LinearLayout;
+import android.widget.TextView;
 
 import com.example.flightbooking.R;
 import com.example.flightbooking.models.response.flightevents.GetFlightEventsResponse;
@@ -20,6 +23,7 @@ import com.example.flightbooking.models.response.flightevents.GetFlightEventsRes
 public class EventsFragment extends Fragment {
 
     private EventsFragmentModel efm;
+    private EventsFragmentView efv;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -66,7 +70,12 @@ public class EventsFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_events, container, false);
+        View v = inflater.inflate(R.layout.fragment_events, container, false);
+        LinearLayout ll = v.findViewById(R.id.frag_events_ll);
+        TextView tv_message = ll.findViewById(R.id.frag_events_tv_message);
+        GridView gv = ll.findViewById(R.id.frag_events_gv);
+        this.efv = new EventsFragmentView(ll,tv_message,gv);
+        return v;
     }
 
     @Override
@@ -79,6 +88,7 @@ public class EventsFragment extends Fragment {
      * Get the events associated with a flight
      */
     private void eventsRequest(){
+        EventsFragmentView this_efv = this.efv;
         this.efm.getEventsRequest(new EventsFragmentModel.GetEventsResponse() {
             @Override
             public void eventsSuccess(GetFlightEventsResponse gfer) {
@@ -88,6 +98,7 @@ public class EventsFragment extends Fragment {
             @Override
             public void eventsError(String message) {
                 Log.e("EventsFragment", "eventsRequest eventsError => "+message);
+                this_efv.getTvMessage().setText(message);
             }
         });
     }
