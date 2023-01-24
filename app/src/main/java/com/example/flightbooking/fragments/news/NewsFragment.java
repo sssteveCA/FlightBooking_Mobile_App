@@ -1,10 +1,12 @@
 package com.example.flightbooking.fragments.news;
 
 import android.app.Activity;
+import android.content.Context;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
+import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
 import android.view.LayoutInflater;
@@ -31,6 +33,7 @@ public class NewsFragment extends Fragment implements  View.OnClickListener {
 
     private NewsFragmentModel nfm;
     private NewsFragmentView nfv;
+    private Context context;
     public FragmentChange fc = null;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -72,6 +75,12 @@ public class NewsFragment extends Fragment implements  View.OnClickListener {
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -106,6 +115,7 @@ public class NewsFragment extends Fragment implements  View.OnClickListener {
      * Perform the HTTP request to get the posts list
      */
     private void getPostsRequest(){
+        NewsFragment this_nf = this;
         NewsFragmentView this_nfv = this.nfv;
         this_nfv.getPb().setVisibility(View.VISIBLE);
         this.nfm.postsRequest(new NewsFragmentModel.GetPostsResponse() {
@@ -114,6 +124,10 @@ public class NewsFragment extends Fragment implements  View.OnClickListener {
                 try{
                     if(posts.done == true && posts.empty == false){
                         this_nfv.getPb().setVisibility(View.GONE);
+                        NewsFragmentAdapter nfa = new NewsFragmentAdapter(posts.posts);
+                        this_nfv.getRvPosts().setAdapter(nfa);
+                        this_nfv.getRvPosts().setHasFixedSize(true);
+                        this_nfv.getRvPosts().setLayoutManager(new LinearLayoutManager(this_nf.context));
                     }//if(posts.done == true && posts.empty == false){
                     else{
                         this_nfv.getPb().setVisibility(View.GONE);
