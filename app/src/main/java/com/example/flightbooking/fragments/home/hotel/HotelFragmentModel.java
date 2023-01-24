@@ -24,21 +24,6 @@ import retrofit2.Response;
 
 public class HotelFragmentModel {
 
-    public interface GetCountries{
-        public void countriesResponse(List<String> countries);
-        public void countriesError(String message);
-    }
-
-    public interface GetCities{
-        public void citiesResponse(List<String> cities);
-        public void citiesError(String message);
-    }
-
-    public interface GetHotels{
-        public void hotelsResponse(List<String> hotels);
-        public void hotelsError(String message);
-    }
-
     public interface GetHotelsInfo{
         public void hotelInfoResponse(JsonObject hotels);
         public void hotelInfoError(String message);

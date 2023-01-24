@@ -9,6 +9,7 @@ import androidx.fragment.app.Fragment;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -29,7 +30,7 @@ import com.example.flightbooking.models.response.news.GetPosts;
  * Use the {@link NewsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class NewsFragment extends Fragment implements  View.OnClickListener {
+public class NewsFragment extends Fragment implements  View.OnClickListener, NewsFragmentAdapter.PostItemClickListener {
 
     private NewsFragmentModel nfm;
     private NewsFragmentView nfv;
@@ -124,7 +125,7 @@ public class NewsFragment extends Fragment implements  View.OnClickListener {
                 try{
                     if(posts.done == true && posts.empty == false){
                         this_nfv.getPb().setVisibility(View.GONE);
-                        NewsFragmentAdapter nfa = new NewsFragmentAdapter(posts.posts);
+                        NewsFragmentAdapter nfa = new NewsFragmentAdapter(posts.posts,this_nf);
                         this_nfv.getRvPosts().setAdapter(nfa);
                         this_nfv.getRvPosts().setHasFixedSize(true);
                         this_nfv.getRvPosts().setLayoutManager(new LinearLayoutManager(this_nf.context));
@@ -155,5 +156,11 @@ public class NewsFragment extends Fragment implements  View.OnClickListener {
                 this.fc.fragmentChange(FragmentLabels.NEWS.getLabelName(), FragmentLabels.HOME.getLabelName(), true,null);
                 break;
         }
+    }
+
+    //NewsFragmentAdapter.PostItemClickListener
+    @Override
+    public void click(int index) {
+        //Log.d("NewsFragment","Post item click index => "+index);
     }
 }
