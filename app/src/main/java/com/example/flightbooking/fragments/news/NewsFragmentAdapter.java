@@ -1,5 +1,6 @@
 package com.example.flightbooking.fragments.news;
 
+import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.TextView;
@@ -24,18 +25,23 @@ public class NewsFragmentAdapter extends RecyclerView.Adapter<NewsFragmentAdapte
     @NonNull
     @Override
     public ViewHolder onCreateViewHolder(@NonNull ViewGroup parent, int viewType) {
-        return null;
+        LayoutInflater li = LayoutInflater.from(parent.getContext());
+        View postView = li.inflate(R.layout.row_post_item,parent,false);
+        return new ViewHolder(postView);
     }
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
-
+        holder.tv_title.setText(this.posts.get(position).title);
+        holder.tv_excerpt.setText(this.posts.get(position).excerpt);
+        holder.tv_updated_at.setText(this.posts.get(position).updatedAt);
     }
 
     @Override
     public int getItemCount() {
-        return 0;
+        return posts.size();
     }
+
 
     class ViewHolder extends RecyclerView.ViewHolder{
 
