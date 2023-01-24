@@ -21,10 +21,10 @@ public class Post {
     public String content;
     @SerializedName("categories")
     @Expose
-    public List<String> categories = null;
+    public String categories = null;
     @SerializedName("tags")
     @Expose
-    public List<String> tags = null;
+    public String tags = null;
     @SerializedName("created_at")
     @Expose
     public String createdAt;
