@@ -17,6 +17,7 @@ import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.models.response.news.Post;
 
 import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -81,7 +82,7 @@ public class PostFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_post, container, false);
-        HashMap<String,View> viewsMap = (HashMap<String, View>) PostFragmentMethods.definePostViews(v);
+        HashMap<String,View> viewsMap = new HashMap<>(PostFragmentMethods.definePostViews(v));
         this.pfv = new PostFragmentView(viewsMap);
         this.pfv.getBtBack().setOnClickListener(this);
         return v;
