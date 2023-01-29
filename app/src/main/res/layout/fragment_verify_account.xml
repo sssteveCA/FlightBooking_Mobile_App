@@ -18,7 +18,7 @@
                 android:id="@+id/frag_verAcc_tv_header"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="30dp"
+                android:layout_marginTop="@dimen/tv_header_top_constraint"
                 android:gravity="center"
                 android:text="VERIFICA IL TUO ACCOUNT"
                 android:textSize="22sp"

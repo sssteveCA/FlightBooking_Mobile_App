@@ -16,9 +16,9 @@
 
             <TextView
                 android:id="@+id/frag_news_tv_header"
-                style="@style/headerTopConstraint"
                 android:layout_width="0dp"
                 android:layout_height="wrap_content"
+                android:layout_marginTop="@dimen/tv_header_top_constraint"
                 android:gravity="center"
                 android:text="NEWS"
                 android:textSize="22sp"
