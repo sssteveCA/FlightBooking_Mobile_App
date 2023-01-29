@@ -5,21 +5,16 @@ import androidx.fragment.app.Fragment;
 
 import android.os.Bundle;
 import android.util.Log;
-import android.widget.ProgressBar;
 
-import com.example.flightbooking.dialogs.MessageDialog;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.fragments.mainmenu.logged.MainMenuLoggedFragment;
 import com.example.flightbooking.fragments.mainmenu.notlogged.MainMenuNotLoggedFragment;
 import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.interfaces.LoginObserver;
 import com.example.flightbooking.interfaces.OnMainMenuItemClick;
-import com.example.flightbooking.mainactivity.MainActivityModel;
-import com.example.flightbooking.mainactivity.MainActivityView;
 import com.example.flightbooking.fragments.noconnection.NoConnectionFragment;
 import com.example.flightbooking.models.response.Message;
 import com.example.flightbooking.models.response.login.Auth;
-import com.example.flightbooking.models.logout.Logout;
 import com.example.flightbooking.requests.logout.LogoutModel;
 
 import java.lang.reflect.Constructor;

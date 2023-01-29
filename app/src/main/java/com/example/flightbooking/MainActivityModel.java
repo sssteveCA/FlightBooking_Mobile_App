@@ -1,4 +1,4 @@
-package com.example.flightbooking.mainactivity;
+package com.example.flightbooking;
 
 import android.content.Context;
 import android.util.Log;
