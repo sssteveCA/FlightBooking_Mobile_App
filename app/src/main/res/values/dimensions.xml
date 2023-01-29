@@ -1,6 +1,7 @@
 <?xml version="1.0" encoding="utf-8"?>
 <resources>
     <dimen name="bt_padding">15dp</dimen>
-    <dimen name="sp_padding">20sp</dimen>
+    <dimen name="item_margin_top">20dp</dimen>
+    <dimen name="sp_padding">20dp</dimen>
     <dimen name="tv_header_top_constraint">30dp</dimen>
 </resources>

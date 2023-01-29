@@ -9,6 +9,7 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.flightbooking.R;
+import com.example.flightbooking.models.response.news.Post;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +17,9 @@ import com.example.flightbooking.R;
  * create an instance of this fragment.
  */
 public class PostFragment extends Fragment {
+
+    private Post post;
+    private PostFragmentView pfv;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -54,6 +58,7 @@ public class PostFragment extends Fragment {
         if (getArguments() != null) {
             mParam1 = getArguments().getString(ARG_PARAM1);
             mParam2 = getArguments().getString(ARG_PARAM2);
+            this.post = (Post) getArguments().getSerializable("post");
         }
     }
 
