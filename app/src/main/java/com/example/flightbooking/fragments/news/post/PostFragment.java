@@ -1,14 +1,19 @@
 package com.example.flightbooking.fragments.news.post;
 
+import android.app.Activity;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
+import com.example.flightbooking.enums.FragmentLabels;
+import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.models.response.news.Post;
 
 import java.util.HashMap;
@@ -18,10 +23,11 @@ import java.util.HashMap;
  * Use the {@link PostFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class PostFragment extends Fragment {
+public class PostFragment extends Fragment implements View.OnClickListener {
 
     private Post post;
     private PostFragmentView pfv;
+    private FragmentChange fc;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -55,6 +61,12 @@ public class PostFragment extends Fragment {
     }
 
     @Override
+    public void onAttach(@NonNull Activity activity) {
+        super.onAttach(activity);
+        this.fc = (MainActivity) activity;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -70,6 +82,18 @@ public class PostFragment extends Fragment {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_post, container, false);
         HashMap<String,View> viewsMap = (HashMap<String, View>) PostFragmentMethods.definePostViews(v);
+        this.pfv = new PostFragmentView(viewsMap);
+        this.pfv.getBtBack().setOnClickListener(this);
         return v;
+    }
+
+    //View.OnClickListener
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
+            case R.id.frag_post_bt_back:
+                this.fc.fragmentChange(FragmentLabels.POST.getLabelName(), FragmentLabels.NEWS.getLabelName(), true,null);
+                break;
+        }
     }
 }
