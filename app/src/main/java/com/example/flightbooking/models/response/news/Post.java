@@ -3,9 +3,10 @@ package com.example.flightbooking.models.response.news;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
+import java.io.Serializable;
 import java.util.List;
 
-public class Post {
+public class Post implements Serializable {
 
     @SerializedName("id")
     @Expose

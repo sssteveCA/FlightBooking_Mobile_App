@@ -3,7 +3,7 @@ package com.example.flightbooking.enums;
 public enum FragmentLabels {
     ABOUT_US("Chi siamo"), CONTACTS("Contatti"), COOKIE_POLICY("Cookie Policy"), FLIGHTS("Voli"), LOGIN("Login"), HOME("Home"),
     HOTELINFO_PREVIEW("HotelInfoPreview"), HOTELS("Alberghi"),
-    NEWS("News"), NO_CONNECTION("NoConnection"), PRIVACY_POLICY("Privacy Policy"), TICKET_PREVIEW("TicketPreview"), SUBSCRIBE("Registrati"), TERMS("Termini e condizioni"), VERIFY("Verifica");
+    NEWS("News"), NO_CONNECTION("NoConnection"), POST("Post"), PRIVACY_POLICY("Privacy Policy"), TICKET_PREVIEW("TicketPreview"), SUBSCRIBE("Registrati"), TERMS("Termini e condizioni"), VERIFY("Verifica");
 
 
     private String label_name;

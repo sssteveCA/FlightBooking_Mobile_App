@@ -10,6 +10,7 @@ public enum FragmentPackages {
     HOTELS("com.example.flightbooking.fragments.home.hotel.HotelFragment"),
     LOGIN("com.example.flightbooking.fragments.login.LoginFragment"),
     NEWS("com.example.flightbooking.fragments.news.NewsFragment"),
+    POST("com.example.flightbooking.fragments.news.post.PostFragment"),
     NO_CONNECTION("com.example.flightbooking.fragments.noconnection.NoConnectionFragment"),
     PRIVACY_POLICY("com.example.flightbooking.fragments.information.privacypolicy.PrivacyPolicyFragment"),
     SUBSCRIBE("com.example.flightbooking.fragments.subscribe.SubscribeFragment"),

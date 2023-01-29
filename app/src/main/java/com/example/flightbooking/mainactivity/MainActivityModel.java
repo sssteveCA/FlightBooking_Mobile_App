@@ -66,6 +66,8 @@ public class MainActivityModel {
             return FragmentLabels.NEWS.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.NO_CONNECTION.getPackageName()))
             return FragmentLabels.NO_CONNECTION.getLabelName();
+        else if(class_name.equalsIgnoreCase(FragmentPackages.POST.getPackageName()))
+            return FragmentLabels.POST.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.PRIVACY_POLICY.getPackageName()))
             return FragmentLabels.PRIVACY_POLICY.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.SUBSCRIBE.getPackageName()))
@@ -107,6 +109,8 @@ public class MainActivityModel {
             return FragmentPackages.NEWS.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.NO_CONNECTION.getLabelName()))
             return FragmentPackages.NO_CONNECTION.getPackageName();
+        else if(label.equalsIgnoreCase(FragmentLabels.POST.getLabelName()))
+            return FragmentPackages.POST.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.PRIVACY_POLICY.getLabelName()))
             return FragmentPackages.PRIVACY_POLICY.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.SUBSCRIBE.getLabelName()))
