@@ -11,6 +11,8 @@ import android.view.ViewGroup;
 import com.example.flightbooking.R;
 import com.example.flightbooking.models.response.news.Post;
 
+import java.util.HashMap;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link PostFragment#newInstance} factory method to
@@ -66,6 +68,8 @@ public class PostFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_post, container, false);
+        View v = inflater.inflate(R.layout.fragment_post, container, false);
+        HashMap<String,View> viewsMap = (HashMap<String, View>) PostFragmentMethods.definePostViews(v);
+        return v;
     }
 }

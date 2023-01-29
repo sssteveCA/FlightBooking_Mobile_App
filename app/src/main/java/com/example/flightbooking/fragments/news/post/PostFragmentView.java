@@ -17,7 +17,7 @@ public class PostFragmentView {
     private Button bt_back;
 
     public PostFragmentView(HashMap<String, View> views){
-
+        this.assign(views);
     }
 
     public TextView getTvTitle(){return this.tv_title;}
@@ -27,4 +27,14 @@ public class PostFragmentView {
     public TextView getTvCreatedAt(){return this.tv_created_at;}
     public TextView getTvUpdatedAt(){return this.tv_updated_at;}
     public Button getBtBack(){return this.bt_back;}
+
+    private void assign(HashMap<String,View> views){
+        this.tv_title = (TextView) views.get("tv_title");
+        this.tv_content = (TextView) views.get("tv_content");
+        this.tv_categories = (TextView) views.get("tv_categories");
+        this.tv_tags = (TextView) views.get("tv_tags");
+        this.tv_created_at = (TextView) views.get("tv_created_at");
+        this.tv_updated_at = (TextView) views.get("tv_updated_at");
+        this.bt_back = (Button) views.get("bt_back");
+    }
 }
