@@ -24,6 +24,7 @@ import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.response.news.GetPosts;
+import com.example.flightbooking.models.response.news.Post;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -160,7 +161,7 @@ public class NewsFragment extends Fragment implements  View.OnClickListener, New
 
     //NewsFragmentAdapter.PostItemClickListener
     @Override
-    public void click(int index) {
+    public void click(Post post) {
         //Log.d("NewsFragment","Post item click index => "+index);
     }
 }

@@ -17,7 +17,7 @@ import java.util.List;
 public class NewsFragmentAdapter extends RecyclerView.Adapter<NewsFragmentAdapter.ViewHolder> {
 
     public interface PostItemClickListener{
-        public void click(int index);
+        public void click(Post post);
     }
 
     private List<Post> posts = Collections.emptyList();
@@ -38,6 +38,7 @@ public class NewsFragmentAdapter extends RecyclerView.Adapter<NewsFragmentAdapte
 
     @Override
     public void onBindViewHolder(@NonNull ViewHolder holder, int position) {
+        NewsFragmentAdapter this_nfa = this;
         final int index = holder.getBindingAdapterPosition();
         holder.tv_title.setText(this.posts.get(position).title);
         holder.tv_excerpt.setText(this.posts.get(position).excerpt);
@@ -45,7 +46,8 @@ public class NewsFragmentAdapter extends RecyclerView.Adapter<NewsFragmentAdapte
         holder.view.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                picl.click(index);
+                Post post = this_nfa.posts.get(index);
+                picl.click(post);
             }
         });
     }
