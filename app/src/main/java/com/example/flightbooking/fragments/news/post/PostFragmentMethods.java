@@ -3,6 +3,7 @@ package com.example.flightbooking.fragments.news.post;
 import android.view.View;
 
 import com.example.flightbooking.R;
+import com.example.flightbooking.models.response.news.Post;
 
 import java.util.AbstractMap;
 import java.util.Map;
@@ -12,7 +13,7 @@ public class PostFragmentMethods {
     /**
      * Create a map that contains the objects associated with the PostFragment layout
      * @param v the container of the views
-     * @return
+     * @return the map with the view references
      */
     public static Map<String, View> definePostViews(View v){
         Map<String, View> map = Map.ofEntries(
@@ -25,5 +26,19 @@ public class PostFragmentMethods {
                 new AbstractMap.SimpleImmutableEntry<String,View>("bt_back",v.findViewById(R.id.frag_post_bt_back))
         );
         return map;
+    }
+
+    /**
+     * Set the TextViews value with the corresponding Post model values
+     * @param pfv the view instance of the PostFragment class
+     * @param post the model with the data to assign to aech view
+     */
+    public static void setViewsContent(PostFragmentView pfv, Post post){
+        pfv.getTvTitle().setText(post.title);
+        pfv.getTvContent().setText(post.content);
+        pfv.getTvCategories().setText("CATEGORIE: "+post.categories);
+        pfv.getTvTags().setText("TAG: "+post.tags);
+        pfv.getTvCreatedAt().setText("DATA CREAZIONE: "+post.createdAt);
+        pfv.getTvUpdatedAt().setText("ULTIMO AGGIORNAMENTO: "+post.updatedAt);
     }
 }

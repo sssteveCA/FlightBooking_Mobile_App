@@ -84,6 +84,7 @@ public class PostFragment extends Fragment implements View.OnClickListener {
         View v = inflater.inflate(R.layout.fragment_post, container, false);
         HashMap<String,View> viewsMap = new HashMap<>(PostFragmentMethods.definePostViews(v));
         this.pfv = new PostFragmentView(viewsMap);
+        PostFragmentMethods.setViewsContent(this.pfv,this.post);
         this.pfv.getBtBack().setOnClickListener(this);
         return v;
     }
