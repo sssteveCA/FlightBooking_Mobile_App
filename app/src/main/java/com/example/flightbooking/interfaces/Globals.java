@@ -17,6 +17,7 @@ public interface Globals {
 
     //Messages
     String ERR_CONTACTS = "Siamo spiacenti, si è verificato un errore durante l'invio della mail";
+    String ERR_COOKIE_POLICY = "Impossibile mostrare la cookie policy";
     String ERR_EVENTS = "Errore durante il caricamento degli eventi";
     String ERR_NEWS = "Errore durante il caricamento delle notizie";
     String ERR_INVALID_DATA_FORMAT = "Uno o più dati inseriti non hanno un formato valido, riprova";
