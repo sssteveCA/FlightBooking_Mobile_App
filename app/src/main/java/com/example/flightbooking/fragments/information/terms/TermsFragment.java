@@ -9,13 +9,15 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.interfaces.FragmentChange;
-import com.example.flightbooking.interfaces.OnMainMenuItemClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,7 +26,7 @@ import com.example.flightbooking.interfaces.OnMainMenuItemClick;
  */
 public class TermsFragment extends Fragment implements View.OnClickListener {
 
-    private TermsView tv;
+    private TermsFragmentView tv;
     public FragmentChange fc = null;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -78,8 +80,11 @@ public class TermsFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_terms, container, false);
+        TextView tv_message = v.findViewById(R.id.frag_terms_tv_message);
+        WebView wv_content = v.findViewById(R.id.frag_terms_wv_content);
         Button bt_back = v.findViewById(R.id.frag_terms_bt_back);
-        this.tv = new TermsView(bt_back);
+        ProgressBar pb = v.findViewById(R.id.frag_terms_pb);
+        this.tv = new TermsFragmentView(tv_message,wv_content,bt_back,pb);
         this.tv.getBtBack().setOnClickListener(this);
         return v;
     }
