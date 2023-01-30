@@ -12,6 +12,8 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TextView;
 
 import com.example.flightbooking.MainActivity;
@@ -91,7 +93,8 @@ public class CookiePolicyFragment extends Fragment implements View.OnClickListen
         TextView tv_message = v.findViewById(R.id.frag_cookiep_tv_message);
         WebView wv_content = v.findViewById(R.id.frag_cookiep_wv_content);
         Button bt_back = v.findViewById(R.id.frag_cookiep_bt_back);
-        this.cpfv = new CookiePolicyFragmentView(tv_message,wv_content,bt_back);
+        ProgressBar pb = v.findViewById(R.id.frag_cookiep_pb);
+        this.cpfv = new CookiePolicyFragmentView(tv_message,wv_content,bt_back,pb);
         this.cpfv.getBtBack().setOnClickListener(this);
         return v;
     }
@@ -101,14 +104,17 @@ public class CookiePolicyFragment extends Fragment implements View.OnClickListen
      */
     private void cookiePolicyContent(){
         CookiePolicyFragmentView this_cpfv = this.cpfv;
+        this_cpfv.getPb().setVisibility(View.VISIBLE);
         this.cpfm.getCookiePolicyRequest(new CookiePolicyFragmentModel.GetCookiePolicyResponse() {
             @Override
             public void getCookiePolicySuccess(String cookie_policy) {
+                this_cpfv.getPb().setVisibility(View.GONE);
                 String encodedContent = Base64.encodeToString(cookie_policy.getBytes(),Base64.NO_PADDING);
                 this_cpfv.getWvContent().loadData(encodedContent,"text/html","base64");
             }
             @Override
             public void getCookiePolicyError(String message) {
+                this_cpfv.getPb().setVisibility(View.GONE);
                 this_cpfv.getTvMessage().setText(message);
             }
         });
