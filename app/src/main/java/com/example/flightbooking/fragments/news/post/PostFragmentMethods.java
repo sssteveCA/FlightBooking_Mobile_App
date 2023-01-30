@@ -1,5 +1,6 @@
 package com.example.flightbooking.fragments.news.post;
 
+import android.util.Base64;
 import android.view.View;
 
 import com.example.flightbooking.R;
@@ -35,7 +36,8 @@ public class PostFragmentMethods {
      */
     public static void setViewsContent(PostFragmentView pfv, Post post){
         pfv.getTvTitle().setText(post.title);
-        pfv.getTvContent().setText(post.content);
+        String encodedContent = Base64.encodeToString(post.content.getBytes(),Base64.NO_PADDING);
+        pfv.getWvContent().loadData(encodedContent,"text/html","base64");
         pfv.getTvCategories().setText("CATEGORIE: "+post.categories);
         pfv.getTvTags().setText("TAG: "+post.tags);
         pfv.getTvCreatedAt().setText("DATA CREAZIONE: "+post.createdAt);
