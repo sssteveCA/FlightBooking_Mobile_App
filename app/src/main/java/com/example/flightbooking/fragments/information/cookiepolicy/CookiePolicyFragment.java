@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.TextView;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
@@ -87,9 +88,10 @@ public class CookiePolicyFragment extends Fragment implements View.OnClickListen
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_cookie_policy, container, false);
+        TextView tv_message = v.findViewById(R.id.frag_cookiep_tv_message);
         WebView wv_content = v.findViewById(R.id.frag_cookiep_wv_content);
         Button bt_back = v.findViewById(R.id.frag_cookiep_bt_back);
-        this.cpfv = new CookiePolicyFragmentView(wv_content,bt_back);
+        this.cpfv = new CookiePolicyFragmentView(tv_message,wv_content,bt_back);
         this.cpfv.getBtBack().setOnClickListener(this);
         return v;
     }
@@ -107,7 +109,7 @@ public class CookiePolicyFragment extends Fragment implements View.OnClickListen
             }
             @Override
             public void getCookiePolicyError(String message) {
-
+                this_cpfv.getTvMessage().setText(message);
             }
         });
     }
