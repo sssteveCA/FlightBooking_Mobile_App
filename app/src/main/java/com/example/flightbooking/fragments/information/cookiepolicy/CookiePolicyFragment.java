@@ -15,7 +15,6 @@ import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.interfaces.FragmentChange;
-import com.example.flightbooking.interfaces.OnMainMenuItemClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,7 +23,7 @@ import com.example.flightbooking.interfaces.OnMainMenuItemClick;
  */
 public class CookiePolicyFragment extends Fragment implements View.OnClickListener {
 
-    private CookiePolicyView cpv;
+    private CookiePolicyFragmentView cpv;
     public FragmentChange fc = null;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -79,7 +78,7 @@ public class CookiePolicyFragment extends Fragment implements View.OnClickListen
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_cookie_policy, container, false);
         Button bt_back = v.findViewById(R.id.frag_cookiep_bt_back);
-        this.cpv = new CookiePolicyView(bt_back);
+        this.cpv = new CookiePolicyFragmentView(bt_back);
         this.cpv.getBtBack().setOnClickListener(this);
         return v;
     }
