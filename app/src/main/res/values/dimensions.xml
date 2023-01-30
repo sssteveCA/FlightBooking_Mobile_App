@@ -2,6 +2,7 @@
 <resources>
     <dimen name="bt_padding">15dp</dimen>
     <dimen name="item_margin_top">20dp</dimen>
+    <dimen name="pb_full_width_height">100dp</dimen>
     <dimen name="sp_padding">20dp</dimen>
     <dimen name="tv_header_top_constraint">30dp</dimen>
 </resources>

@@ -43,7 +43,7 @@
                     android:id="@+id/frag_cookiep_pb"
                     style="?android:attr/progressBarStyle"
                     android:layout_width="match_parent"
-                    android:layout_height="100dp"
+                    android:layout_height="@dimen/pb_full_width_height"
                     tools:visibility="gone" />
 
                 <TextView

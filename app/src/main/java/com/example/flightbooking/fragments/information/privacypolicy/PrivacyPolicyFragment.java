@@ -9,7 +9,10 @@ import androidx.fragment.app.Fragment;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.webkit.WebView;
 import android.widget.Button;
+import android.widget.ProgressBar;
+import android.widget.TextView;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
@@ -77,8 +80,11 @@ public class PrivacyPolicyFragment extends Fragment implements View.OnClickListe
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_privacy_policy, container, false);
+        TextView tv_message = v.findViewById(R.id.frag_privacyp_tv_message);
+        WebView wv_content = v.findViewById(R.id.frag_privacyp_wv_content);
         Button bt_back = v.findViewById(R.id.frag_privacyp_bt_back);
-        this.ppv = new PrivacyPolicyFragmentView(bt_back);
+        ProgressBar pb = v.findViewById(R.id.frag_privacyp_pb);
+        this.ppv = new PrivacyPolicyFragmentView(tv_message,wv_content,bt_back,pb);
         this.ppv.getBtBack().setOnClickListener(this);
         return v;
     }
