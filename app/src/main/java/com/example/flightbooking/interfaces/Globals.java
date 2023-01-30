@@ -22,6 +22,7 @@ public interface Globals {
     String ERR_NEWS = "Errore durante il caricamento delle notizie";
     String ERR_INVALID_DATA_FORMAT = "Uno o più dati inseriti non hanno un formato valido, riprova";
     String ERR_LOGOUT = "Si è verificato un errore durante la disconnessione dell'account";
+    String ERR_PRIVACY_POLICY = "Impossibile mostrare la privacy policy";
     String ERR_REQUEST = "Siamo spiacenti, si è verificato un errore durante l'esecuzione della richiesta";
 
 }

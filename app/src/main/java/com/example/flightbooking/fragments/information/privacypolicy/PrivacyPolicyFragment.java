@@ -15,7 +15,6 @@ import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.interfaces.FragmentChange;
-import com.example.flightbooking.interfaces.OnMainMenuItemClick;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -24,7 +23,7 @@ import com.example.flightbooking.interfaces.OnMainMenuItemClick;
  */
 public class PrivacyPolicyFragment extends Fragment implements View.OnClickListener {
 
-    private PrivacyPolicyView ppv;
+    private PrivacyPolicyFragmentView ppv;
     public FragmentChange fc = null;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -79,7 +78,7 @@ public class PrivacyPolicyFragment extends Fragment implements View.OnClickListe
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_privacy_policy, container, false);
         Button bt_back = v.findViewById(R.id.frag_privacyp_bt_back);
-        this.ppv = new PrivacyPolicyView(bt_back);
+        this.ppv = new PrivacyPolicyFragmentView(bt_back);
         this.ppv.getBtBack().setOnClickListener(this);
         return v;
     }
