@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -24,7 +25,8 @@ import com.example.flightbooking.interfaces.FragmentChange;
  */
 public class CookiePolicyFragment extends Fragment implements View.OnClickListener {
 
-    private CookiePolicyFragmentView cpv;
+    private CookiePolicyFragmentModel cpfm;
+    private CookiePolicyFragmentView cpfv;
     public FragmentChange fc = null;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -38,6 +40,7 @@ public class CookiePolicyFragment extends Fragment implements View.OnClickListen
 
     public CookiePolicyFragment() {
         // Required empty public constructor
+        this.cpfm = new CookiePolicyFragmentModel();
     }
 
     /**
@@ -74,15 +77,39 @@ public class CookiePolicyFragment extends Fragment implements View.OnClickListen
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        this.cookiePolicyContent();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_cookie_policy, container, false);
         WebView wv_content = v.findViewById(R.id.frag_cookiep_wv_content);
         Button bt_back = v.findViewById(R.id.frag_cookiep_bt_back);
-        this.cpv = new CookiePolicyFragmentView(wv_content,bt_back);
-        this.cpv.getBtBack().setOnClickListener(this);
+        this.cpfv = new CookiePolicyFragmentView(wv_content,bt_back);
+        this.cpfv.getBtBack().setOnClickListener(this);
         return v;
+    }
+
+    /**
+     * Perform the HTTP request to get the cookie policy content and display it in a WebView
+     */
+    private void cookiePolicyContent(){
+        CookiePolicyFragmentView this_cpfv = this.cpfv;
+        this.cpfm.getCookiePolicyRequest(new CookiePolicyFragmentModel.GetCookiePolicyResponse() {
+            @Override
+            public void getCookiePolicySuccess(String cookie_policy) {
+                String encodedContent = Base64.encodeToString(cookie_policy.getBytes(),Base64.NO_PADDING);
+                this_cpfv.getWvContent().loadData(encodedContent,"text/html","base64");
+            }
+            @Override
+            public void getCookiePolicyError(String message) {
+
+            }
+        });
     }
 
     @Override
