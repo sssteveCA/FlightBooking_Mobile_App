@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ import com.example.flightbooking.R;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.interfaces.FragmentChange;
 
+import java.nio.charset.StandardCharsets;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link TermsFragment#newInstance} factory method to
@@ -26,7 +29,8 @@ import com.example.flightbooking.interfaces.FragmentChange;
  */
 public class TermsFragment extends Fragment implements View.OnClickListener {
 
-    private TermsFragmentView tv;
+    private TermsFragmentModel tfm;
+    private TermsFragmentView tfv;
     public FragmentChange fc = null;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -40,6 +44,7 @@ public class TermsFragment extends Fragment implements View.OnClickListener {
 
     public TermsFragment() {
         // Required empty public constructor
+        this.tfm = new TermsFragmentModel();
     }
 
     /**
@@ -84,9 +89,36 @@ public class TermsFragment extends Fragment implements View.OnClickListener {
         WebView wv_content = v.findViewById(R.id.frag_terms_wv_content);
         Button bt_back = v.findViewById(R.id.frag_terms_bt_back);
         ProgressBar pb = v.findViewById(R.id.frag_terms_pb);
-        this.tv = new TermsFragmentView(tv_message,wv_content,bt_back,pb);
-        this.tv.getBtBack().setOnClickListener(this);
+        this.tfv = new TermsFragmentView(tv_message,wv_content,bt_back,pb);
+        this.tfv.getBtBack().setOnClickListener(this);
         return v;
+    }
+
+    @Override
+    public void onResume() {
+        super.onResume();
+        this.termsContent();
+    }
+
+    /**
+     * Perform the HTTP request to get the terms and condition content and display it in a WebView
+     */
+    private void termsContent(){
+        TermsFragmentView this_tfv  = this.tfv;
+        this_tfv.getPb().setVisibility(View.VISIBLE);
+        this.tfm.getTermsRequest(new TermsFragmentModel.GetTermsResponse() {
+            @Override
+            public void getTermsSuccess(String terms) {
+                this_tfv.getPb().setVisibility(View.GONE);
+                String encodedContent = Base64.encodeToString(terms.getBytes(),Base64.NO_PADDING);
+                this_tfv.getWvContent().loadData(encodedContent,"text/html","base64");
+            }
+            @Override
+            public void getTermsError(String message) {
+                this_tfv.getPb().setVisibility(View.GONE);
+                this_tfv.getTvMessage().setText(message);
+            }
+        });
     }
 
     //View.OnClickListener
