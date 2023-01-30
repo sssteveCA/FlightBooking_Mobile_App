@@ -6,6 +6,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Base64;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -19,6 +20,8 @@ import com.example.flightbooking.R;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.interfaces.FragmentChange;
 
+import java.nio.charset.StandardCharsets;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link PrivacyPolicyFragment#newInstance} factory method to
@@ -26,7 +29,8 @@ import com.example.flightbooking.interfaces.FragmentChange;
  */
 public class PrivacyPolicyFragment extends Fragment implements View.OnClickListener {
 
-    private PrivacyPolicyFragmentView ppv;
+    private PrivacyPolicyFragmentModel ppfm;
+    private PrivacyPolicyFragmentView ppfv;
     public FragmentChange fc = null;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -40,6 +44,7 @@ public class PrivacyPolicyFragment extends Fragment implements View.OnClickListe
 
     public PrivacyPolicyFragment() {
         // Required empty public constructor
+        this.ppfm = new PrivacyPolicyFragmentModel();
     }
 
     /**
@@ -76,6 +81,12 @@ public class PrivacyPolicyFragment extends Fragment implements View.OnClickListe
     }
 
     @Override
+    public void onResume() {
+        super.onResume();
+        this.privacyPolicyContent();
+    }
+
+    @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
@@ -84,9 +95,30 @@ public class PrivacyPolicyFragment extends Fragment implements View.OnClickListe
         WebView wv_content = v.findViewById(R.id.frag_privacyp_wv_content);
         Button bt_back = v.findViewById(R.id.frag_privacyp_bt_back);
         ProgressBar pb = v.findViewById(R.id.frag_privacyp_pb);
-        this.ppv = new PrivacyPolicyFragmentView(tv_message,wv_content,bt_back,pb);
-        this.ppv.getBtBack().setOnClickListener(this);
+        this.ppfv = new PrivacyPolicyFragmentView(tv_message,wv_content,bt_back,pb);
+        this.ppfv.getBtBack().setOnClickListener(this);
         return v;
+    }
+
+    /**
+     * Perform the HTTP request to get the privacy policy content and display it in a WebView
+     */
+    private void privacyPolicyContent(){
+        PrivacyPolicyFragmentView this_ppfv = this.ppfv;
+        this_ppfv.getPb().setVisibility(View.VISIBLE);
+        this.ppfm.getPrivacyPolicyRequest(new PrivacyPolicyFragmentModel.GetPrivacyPolicyResponse() {
+            @Override
+            public void getPrivacyPolicySuccess(String privacy_policy) {
+                this_ppfv.getPb().setVisibility(View.GONE);
+                String encodedContent = Base64.encodeToString(privacy_policy.getBytes(),Base64.NO_PADDING);
+                this_ppfv.getWvContent().loadData(encodedContent,"text/html","base64");
+            }
+            @Override
+            public void getPrivacyPolicyError(String message) {
+                this_ppfv.getPb().setVisibility(View.GONE);
+                this_ppfv.getTvMessage().setText(message);
+            }
+        });
     }
 
     //View.OnClickListener
