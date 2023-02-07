@@ -1,6 +1,7 @@
 package com.example.flightbooking.fragments.home.events;
 
 import android.content.Context;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -21,31 +22,33 @@ public class EventsFragmentAdapter extends ArrayAdapter<FlightEvent> {
     }
 
     @Override
-    public View getView(int pos, View view, ViewGroup vg){
-        return this.getViewOptimize(pos,view,vg);
+    public View getView(int pos, View convertView, ViewGroup vg){
+        return this.getViewOptimize(pos,convertView,vg);
     }
 
-    public View getViewOptimize(int pos, View view, ViewGroup vg){
+    public View getViewOptimize(int pos, View convertView, ViewGroup vg){
         ViewHolder vh = null;
-        if(view ==  null){
+        if(convertView ==  null){
             LayoutInflater li = (LayoutInflater) getContext().getSystemService(Context.LAYOUT_INFLATER_SERVICE);
-            view = li.inflate(R.layout.row_event_item,null);
+            convertView = li.inflate(R.layout.row_event_item,null);
             vh = new ViewHolder();
-            vh.image = view.findViewById(R.id.row_event_item_image);
-            vh.name = view.findViewById(R.id.row_event_item_title);
-            vh.date = view.findViewById(R.id.row_event_item_date);
-            vh.city = view.findViewById(R.id.row_event_item_city);
-            vh.price = view.findViewById(R.id.row_event_item_price);
-        }//if(view ==  null){
+            vh.image = convertView.findViewById(R.id.row_event_item_image);
+            vh.name = convertView.findViewById(R.id.row_event_item_title);
+            vh.date = convertView.findViewById(R.id.row_event_item_date);
+            vh.city = convertView.findViewById(R.id.row_event_item_city);
+            vh.price = convertView.findViewById(R.id.row_event_item_price);
+            convertView.setTag(vh);
+        }//if(convertView ==  null){
         else{
-            vh = (ViewHolder) view.getTag();
+            vh = (ViewHolder) convertView.getTag();
         }
         FlightEvent fe = getItem(pos);
+        //Log.i("EventsFragmentAdapter","getViewOptimize fe name => "+fe.name);
         vh.name.setText(fe.name);
         vh.date.setText(fe.date);
         vh.city.setText(fe.city);
         vh.price.setText(fe.price+"€");
-        return view;
+        return convertView;
     }
 
     private class ViewHolder{
