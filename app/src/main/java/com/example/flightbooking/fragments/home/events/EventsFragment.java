@@ -1,7 +1,9 @@
 package com.example.flightbooking.fragments.home.events;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -23,6 +25,7 @@ import com.example.flightbooking.models.response.flightevents.GetFlightEventsRes
  */
 public class EventsFragment extends Fragment {
 
+    private Context context;
     private EventsFragmentModel efm;
     private EventsFragmentView efv;
 
@@ -56,6 +59,12 @@ public class EventsFragment extends Fragment {
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
     }
 
     @Override
@@ -98,6 +107,7 @@ public class EventsFragment extends Fragment {
                 /*Log.i("EventsFragment","eventsRequest eventsSuccess done => "+gfer.done);
                 Log.i("EventsFragment","eventsRequest eventsSuccess empty => "+gfer.empty);*/
                 this_efv.getPb().setVisibility(View.GONE);
+
             }
             @Override
             public void eventsError(String message) {
