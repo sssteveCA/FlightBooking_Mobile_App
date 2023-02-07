@@ -100,6 +100,8 @@ public class TermsFragment extends Fragment implements View.OnClickListener {
         this.termsContent();
     }
 
+
+
     /**
      * Perform the HTTP request to get the terms and condition content and display it in a WebView
      */
