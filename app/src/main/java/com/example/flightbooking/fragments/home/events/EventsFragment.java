@@ -99,6 +99,7 @@ public class EventsFragment extends Fragment {
      * Get the events associated with a flight
      */
     private void eventsRequest(){
+        EventsFragment this_ef = this;
         EventsFragmentView this_efv = this.efv;
         this_efv.getPb().setVisibility(View.VISIBLE);
         this.efm.getEventsRequest(new EventsFragmentModel.GetEventsResponse() {
@@ -107,7 +108,8 @@ public class EventsFragment extends Fragment {
                 /*Log.i("EventsFragment","eventsRequest eventsSuccess done => "+gfer.done);
                 Log.i("EventsFragment","eventsRequest eventsSuccess empty => "+gfer.empty);*/
                 this_efv.getPb().setVisibility(View.GONE);
-
+                EventsFragmentAdapter efa = new EventsFragmentAdapter(this_ef.context,R.layout.row_event_item,gfer.list);
+                this_efv.getGv().setAdapter(efa);
             }
             @Override
             public void eventsError(String message) {
