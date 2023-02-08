@@ -1,5 +1,7 @@
 package com.example.flightbooking.interfaces;
 
+import android.provider.Settings;
+
 /**
  * Values used throughtout the application
  */
@@ -9,6 +11,7 @@ public interface Globals {
     String API_ROUTES_PREFIX = "/api/v1";
     String IMG_FOLDER = "/img";
     String HOTEL_IMG_FOLDER = Globals.IMG_FOLDER+"/hotels";
+    String FLIGHT_EVENTS_IMG_FOLDER = Globals.IMG_FOLDER+"/flightevents";
 
     //keys
     String KEY_DONE = "done";
