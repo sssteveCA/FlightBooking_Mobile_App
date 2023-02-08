@@ -6,60 +6,56 @@
     android:layout_height="match_parent"
     tools:context=".fragments.home.events.EventsFragment">
 
-    <ScrollView
+    <androidx.constraintlayout.widget.ConstraintLayout
         android:layout_width="match_parent"
-        android:layout_height="match_parent">
+        android:layout_height="wrap_content">
 
-        <androidx.constraintlayout.widget.ConstraintLayout
+        <TextView
+            android:id="@+id/frag_events_tv_header"
+            android:layout_width="0dp"
+            android:layout_height="wrap_content"
+            android:layout_marginTop="@dimen/tv_header_top_constraint"
+            android:gravity="center"
+            android:text="EVENTI"
+            android:textSize="22sp"
+            android:textStyle="bold"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toTopOf="parent" />
+
+        <LinearLayout
+            android:id="@+id/frag_events_ll"
+            style="@style/viewTopConstraint"
             android:layout_width="match_parent"
-            android:layout_height="wrap_content">
+            android:layout_height="match_parent"
+            android:orientation="vertical"
+            android:paddingBottom="60sp"
+            app:layout_constraintEnd_toEndOf="parent"
+            app:layout_constraintStart_toStartOf="parent"
+            app:layout_constraintTop_toBottomOf="@+id/frag_events_tv_header">
+
+            <ProgressBar
+                android:id="@+id/frag_events_pb"
+                style="?android:attr/progressBarStyle"
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:visibility="gone" />
 
             <TextView
-                android:id="@+id/frag_events_tv_header"
-                android:layout_width="0dp"
+                android:id="@+id/frag_events_tv_message"
+                android:layout_width="match_parent"
                 android:layout_height="wrap_content"
-                android:layout_marginTop="@dimen/tv_header_top_constraint"
                 android:gravity="center"
-                android:text="EVENTI"
-                android:textSize="22sp"
-                android:textStyle="bold"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toTopOf="parent" />
+                android:textSize="16sp"
+                android:textStyle="bold" />
 
-            <LinearLayout
-                android:id="@+id/frag_events_ll"
-                style="@style/viewTopConstraint"
+            <GridView
+                android:id="@+id/frag_events_gv"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:orientation="vertical"
-                android:paddingBottom="60sp"
-                app:layout_constraintEnd_toEndOf="parent"
-                app:layout_constraintStart_toStartOf="parent"
-                app:layout_constraintTop_toBottomOf="@+id/frag_events_tv_header">
+                android:numColumns="1" />
 
-                <ProgressBar
-                    android:id="@+id/frag_events_pb"
-                    style="?android:attr/progressBarStyle"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:visibility="gone" />
+        </LinearLayout>
+    </androidx.constraintlayout.widget.ConstraintLayout>
 
-                <TextView
-                    android:id="@+id/frag_events_tv_message"
-                    android:layout_width="match_parent"
-                    android:layout_height="wrap_content"
-                    android:gravity="center"
-                    android:textSize="16sp"
-                    android:textStyle="bold" />
-
-                <GridView
-                    android:id="@+id/frag_events_gv"
-                    android:layout_width="match_parent"
-                    android:layout_height="match_parent"
-                    android:numColumns="1" />
-
-            </LinearLayout>
-        </androidx.constraintlayout.widget.ConstraintLayout>
-    </ScrollView>
 </FrameLayout>
