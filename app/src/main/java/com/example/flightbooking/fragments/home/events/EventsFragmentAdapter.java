@@ -77,7 +77,8 @@ public class EventsFragmentAdapter extends ArrayAdapter<FlightEvent> {
      * @param imageView the view
      */
     private void fetchImage(String filename,ImageView imageView){
-        String url = Globals.FLIGHT_EVENTS_IMG_FOLDER+"/"+filename;
+        String url = Globals.BASE_URL+Globals.FLIGHT_EVENTS_IMG_FOLDER+"/"+filename;
+        Log.i("EventsFragmentAdapter","fetchImage url => "+url);
         ImageRequest imageRequest = new ImageRequest(url, new Response.Listener<Bitmap>() {
             @Override
             public void onResponse(Bitmap response) {
