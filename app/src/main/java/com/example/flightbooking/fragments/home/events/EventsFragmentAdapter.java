@@ -2,6 +2,8 @@ package com.example.flightbooking.fragments.home.events;
 
 import android.content.Context;
 import android.graphics.Bitmap;
+import android.graphics.drawable.BitmapDrawable;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
@@ -62,7 +64,7 @@ public class EventsFragmentAdapter extends ArrayAdapter<FlightEvent> {
         vh.date.setText(fe.date);
         vh.city.setText(fe.city);
         vh.price.setText(fe.price+"€");
-        this.onButtonClick(vh.button,fe);
+        this.onButtonClick(vh.button,vh.image,fe);
         return convertView;
     }
 
@@ -102,11 +104,14 @@ public class EventsFragmentAdapter extends ArrayAdapter<FlightEvent> {
      * @param button
      * @param fe
      */
-    private void onButtonClick(Button button, FlightEvent fe){
+    private void onButtonClick(Button button, ImageView iv, FlightEvent fe){
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
                 Log.i("EventsFragmentAdapter", "onButtonClick");
+                Bundle bundle = new Bundle();
+                bundle.putSerializable("flightEvent",fe);
+                bundle.putParcelable("image",((BitmapDrawable)iv.getDrawable()).getBitmap());
             }
         });
     }

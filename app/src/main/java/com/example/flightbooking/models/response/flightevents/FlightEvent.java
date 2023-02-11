@@ -3,7 +3,9 @@ package com.example.flightbooking.models.response.flightevents;
 import com.google.gson.annotations.Expose;
 import com.google.gson.annotations.SerializedName;
 
-public class FlightEvent {
+import java.io.Serializable;
+
+public class FlightEvent implements Serializable {
 
     @SerializedName("id")
     @Expose
