@@ -1,15 +1,20 @@
 package com.example.flightbooking.fragments.home.events.singleevent;
 
+import android.app.Activity;
 import android.graphics.Bitmap;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 
+import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
+import com.example.flightbooking.enums.FragmentLabels;
+import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.models.response.flightevents.FlightEvent;
 
 import java.util.HashMap;
@@ -24,6 +29,7 @@ public class SingleEventFragment extends Fragment implements View.OnClickListene
     private FlightEvent fe;
     private Bitmap bitmap;
     private SingleEventFragmentView sefv;
+    private FragmentChange fc;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -57,6 +63,12 @@ public class SingleEventFragment extends Fragment implements View.OnClickListene
     }
 
     @Override
+    public void onAttach(@NonNull Activity activity) {
+        super.onAttach(activity);
+        this.fc = (MainActivity)activity;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -75,12 +87,17 @@ public class SingleEventFragment extends Fragment implements View.OnClickListene
         HashMap<String, View> items = (HashMap<String, View>) SingleEventFragmentMethods.setViews(v);
         this.sefv = new SingleEventFragmentView(items);
         SingleEventFragmentMethods.assignDataToItems(this.sefv,this.fe,this.bitmap);
+        this.sefv.getBtBack().setOnClickListener(this);
         return v;
     }
 
     //View.OnClickListener
     @Override
     public void onClick(View view) {
-
+        switch(view.getId()){
+            case R.id.frag_single_ev_bt_back:
+                this.fc.fragmentChange(FragmentLabels.SINGLE_EVENT.getLabelName(), FragmentLabels.HOME.getLabelName(), true, null);
+                break;
+        }
     }
 }
