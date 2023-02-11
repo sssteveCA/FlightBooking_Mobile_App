@@ -74,6 +74,7 @@ public class SingleEventFragment extends Fragment implements View.OnClickListene
         View v = inflater.inflate(R.layout.fragment_single_event, container, false);
         HashMap<String, View> items = (HashMap<String, View>) SingleEventFragmentMethods.setViews(v);
         this.sefv = new SingleEventFragmentView(items);
+        SingleEventFragmentMethods.assignDataToItems(this.sefv,this.fe,this.bitmap);
         return v;
     }
 

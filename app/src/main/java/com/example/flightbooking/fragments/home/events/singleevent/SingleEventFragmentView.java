@@ -1,10 +1,13 @@
 package com.example.flightbooking.fragments.home.events.singleevent;
 
+import android.graphics.Bitmap;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import com.example.flightbooking.models.response.flightevents.FlightEvent;
 
 import java.util.HashMap;
 
