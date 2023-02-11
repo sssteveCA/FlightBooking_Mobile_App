@@ -4,6 +4,7 @@ public enum FragmentLabels {
     ABOUT_US("Chi siamo"),
     CONTACTS("Contatti"),
     COOKIE_POLICY("Cookie Policy"),
+    EVENTS("Events"),
     FLIGHTS("Voli"),
     LOGIN("Login"),
     HOME("Home"),

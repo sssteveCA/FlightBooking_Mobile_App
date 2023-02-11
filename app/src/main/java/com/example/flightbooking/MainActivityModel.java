@@ -52,6 +52,8 @@ public class MainActivityModel {
             return FragmentLabels.CONTACTS.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.COOKIE_POLICY.getPackageName()))
             return FragmentLabels.COOKIE_POLICY.getLabelName();
+        else if(class_name.equalsIgnoreCase(FragmentPackages.EVENTS.getPackageName()))
+            return FragmentLabels.EVENTS.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.FLIGHTS.getPackageName()))
             return FragmentLabels.FLIGHTS.getLabelName();
         else if(class_name.equalsIgnoreCase(FragmentPackages.HOME.getPackageName()))
@@ -97,6 +99,8 @@ public class MainActivityModel {
             return FragmentPackages.CONTACTS.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.COOKIE_POLICY.getLabelName()))
             return FragmentPackages.COOKIE_POLICY.getPackageName();
+        else if(label.equalsIgnoreCase(FragmentLabels.EVENTS.getLabelName()))
+            return FragmentPackages.EVENTS.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.FLIGHTS.getLabelName()))
             return FragmentPackages.FLIGHTS.getPackageName();
         else if(label.equalsIgnoreCase(FragmentLabels.HOME.getLabelName()))

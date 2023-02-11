@@ -4,6 +4,7 @@ public enum FragmentPackages {
     ABOUT_US("com.example.flightbooking.fragments.aboutus.AboutUsFragment"),
     CONTACTS("com.example.flightbooking.fragments.contacts.ContactsFragment"),
     COOKIE_POLICY("com.example.flightbooking.fragments.information.cookiepolicy.CookiePolicyFragment"),
+    EVENTS("com.example.flightbooking.fragments.home.events.EventsFragment"),
     FLIGHTS("com.example.flightbooking.fragments.home.flights.FlightsFragment"),
     HOME("com.example.flightbooking.fragments.home.HomeFragment"),
     HOTELINFO_PREVIEW("com.example.flightbooking.fragments.home.hotel.hotelinfopreview.HotelInfoPreviewFragment"),

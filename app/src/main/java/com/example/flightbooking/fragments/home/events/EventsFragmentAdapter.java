@@ -122,7 +122,7 @@ public class EventsFragmentAdapter extends ArrayAdapter<FlightEvent> {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                Log.i("EventsFragmentAdapter", "onButtonClick");
+                //Log.i("EventsFragmentAdapter", "onButtonClick");
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("flightEvent",fe);
                 bundle.putParcelable("image",((BitmapDrawable)iv.getDrawable()).getBitmap());

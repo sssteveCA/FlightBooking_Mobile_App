@@ -1,5 +1,6 @@
 package com.example.flightbooking.fragments.home.events;
 
+import android.app.Activity;
 import android.content.Context;
 import android.os.Bundle;
 
@@ -17,7 +18,10 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 
+import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
+import com.example.flightbooking.enums.FragmentLabels;
+import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.models.response.flightevents.GetFlightEventsResponse;
 
 /**
@@ -30,6 +34,7 @@ public class EventsFragment extends Fragment implements EventsFragmentAdapter.On
     private Context context;
     private EventsFragmentModel efm;
     private EventsFragmentView efv;
+    private FragmentChange fc;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -61,6 +66,12 @@ public class EventsFragment extends Fragment implements EventsFragmentAdapter.On
         args.putString(ARG_PARAM2, param2);
         fragment.setArguments(args);
         return fragment;
+    }
+
+    @Override
+    public void onAttach(@NonNull Activity activity) {
+        super.onAttach(activity);
+        this.fc = (MainActivity)activity;
     }
 
     @Override
@@ -126,6 +137,7 @@ public class EventsFragment extends Fragment implements EventsFragmentAdapter.On
     //EventsFragmentAdapter.OnItemButtonClick
     @Override
     public void itemButtonClick(Bundle bundle) {
-        Log.i("EventsFragment","itemButtonClick");
+        //Log.i("EventsFragment","itemButtonClick");
+        this.fc.fragmentChange(FragmentLabels.EVENTS.getLabelName(), FragmentLabels.SINGLE_EVENT.getLabelName(), true,bundle);
     }
 }
