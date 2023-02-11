@@ -11,6 +11,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
+import android.widget.Button;
 import android.widget.GridView;
 import android.widget.LinearLayout;
 import android.widget.ProgressBar;
@@ -24,7 +25,7 @@ import com.example.flightbooking.models.response.flightevents.GetFlightEventsRes
  * Use the {@link EventsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class EventsFragment extends Fragment implements AdapterView.OnItemClickListener {
+public class EventsFragment extends Fragment {
 
     private Context context;
     private EventsFragmentModel efm;
@@ -111,7 +112,6 @@ public class EventsFragment extends Fragment implements AdapterView.OnItemClickL
                 this_efv.getPb().setVisibility(View.GONE);
                 EventsFragmentAdapter efa = new EventsFragmentAdapter(this_ef.context,R.layout.row_event_item,gfer.list);
                 this_efv.getGv().setAdapter(efa);
-                this_efv.getGv().setOnItemClickListener(this);
             }
             @Override
             public void eventsError(String message) {
@@ -122,9 +122,4 @@ public class EventsFragment extends Fragment implements AdapterView.OnItemClickL
         });
     }
 
-    //AdapterView.OnItemClickListener
-    @Override
-    public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
-
-    }
 }

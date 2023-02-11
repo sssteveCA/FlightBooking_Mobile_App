@@ -7,6 +7,7 @@ import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
 import android.widget.ArrayAdapter;
+import android.widget.Button;
 import android.widget.ImageView;
 import android.widget.TextView;
 
@@ -48,6 +49,7 @@ public class EventsFragmentAdapter extends ArrayAdapter<FlightEvent> {
             vh.date = convertView.findViewById(R.id.row_event_item_date);
             vh.city = convertView.findViewById(R.id.row_event_item_city);
             vh.price = convertView.findViewById(R.id.row_event_item_price);
+            vh.button = convertView.findViewById(R.id.row_event_item_button);
             convertView.setTag(vh);
         }//if(convertView ==  null){
         else{
@@ -60,6 +62,7 @@ public class EventsFragmentAdapter extends ArrayAdapter<FlightEvent> {
         vh.date.setText(fe.date);
         vh.city.setText(fe.city);
         vh.price.setText(fe.price+"€");
+        this.onButtonClick(vh.button,fe);
         return convertView;
     }
 
@@ -69,6 +72,7 @@ public class EventsFragmentAdapter extends ArrayAdapter<FlightEvent> {
         public TextView date;
         public TextView city;
         public TextView price;
+        public Button button;
     }
 
     /**
@@ -91,5 +95,19 @@ public class EventsFragmentAdapter extends ArrayAdapter<FlightEvent> {
             }
         });
         this.queue.add(imageRequest);
+    }
+
+    /**
+     * View more info of the events when a button of the gridview is clicked
+     * @param button
+     * @param fe
+     */
+    private void onButtonClick(Button button, FlightEvent fe){
+        button.setOnClickListener(new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                Log.i("EventsFragmentAdapter", "onButtonClick");
+            }
+        });
     }
 }
