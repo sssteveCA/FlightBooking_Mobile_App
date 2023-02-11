@@ -111,15 +111,15 @@ public class HotelFragmentMethods {
         hs.country = (String) hfv.getSpCountries().getSelectedItem();
         hs.city = (String) hfv.getSpCities().getSelectedItem();
         hs.hotel = (String) hfv.getSpHotels().getSelectedItem();
-        Log.i("HotelFragmentMethods","setHotelSearchBody 1");
+        //Log.i("HotelFragmentMethods","setHotelSearchBody 1");
         hs.checkin = hfv.getEtCkeckIn().getText().toString();
-        Log.i("HotelFragmentMethods","setHotelSearchBody 2");
+        //Log.i("HotelFragmentMethods","setHotelSearchBody 2");
         hs.checkout = hfv.getEtCkeckOut().getText().toString();
-        Log.i("HotelFragmentMethods","setHotelSearchBody 3");
+        //Log.i("HotelFragmentMethods","setHotelSearchBody 3");
         hs.rooms = Integer.valueOf(hfv.getEtRooms().getText().toString());
-        Log.i("HotelFragmentMethods","setHotelSearchBody 4");
+        //Log.i("HotelFragmentMethods","setHotelSearchBody 4");
         hs.people = Integer.valueOf(hfv.getEtPeople().getText().toString());
-        Log.i("HotelFragmentMethods","setHotelSearchBody 5");
+        //Log.i("HotelFragmentMethods","setHotelSearchBody 5");
         return hs;
     }
 

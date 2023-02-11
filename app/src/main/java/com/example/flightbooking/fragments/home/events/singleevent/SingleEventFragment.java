@@ -17,7 +17,7 @@ import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.models.response.flightevents.FlightEvent;
 
-import java.util.HashMap;
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -84,7 +84,7 @@ public class SingleEventFragment extends Fragment implements View.OnClickListene
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_single_event, container, false);
-        HashMap<String, View> items = (HashMap<String, View>) SingleEventFragmentMethods.setViews(v);
+        Map<String, View> items = SingleEventFragmentMethods.setViews(v);
         this.sefv = new SingleEventFragmentView(items);
         SingleEventFragmentMethods.assignDataToItems(this.sefv,this.fe,this.bitmap);
         this.sefv.getBtBack().setOnClickListener(this);

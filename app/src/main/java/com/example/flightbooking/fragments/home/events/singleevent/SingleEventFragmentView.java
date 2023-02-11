@@ -10,6 +10,7 @@ import android.widget.TextView;
 import com.example.flightbooking.models.response.flightevents.FlightEvent;
 
 import java.util.HashMap;
+import java.util.Map;
 
 public class SingleEventFragmentView {
 
@@ -22,7 +23,7 @@ public class SingleEventFragmentView {
     private Button bt_book;
     private Button bt_back;
 
-    public SingleEventFragmentView(HashMap<String, View> items){
+    public SingleEventFragmentView(Map<String, View> items){
         this.assignItems(items);
     }
 
@@ -35,7 +36,7 @@ public class SingleEventFragmentView {
     public Button getBtBook(){return this.bt_book;}
     public Button getBtBack(){return this.bt_back;}
 
-    private void assignItems(HashMap<String, View> items){
+    private void assignItems(Map<String, View> items){
         this.tv_title = (TextView) items.get("tv_title");
         this.tv_date = (TextView) items.get("tv_date");
         this.tv_link = (TextView) items.get("tv_link");
