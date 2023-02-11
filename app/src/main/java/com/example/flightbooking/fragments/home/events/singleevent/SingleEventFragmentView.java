@@ -20,7 +20,7 @@ public class SingleEventFragmentView {
     private Button bt_back;
 
     public SingleEventFragmentView(HashMap<String, View> items){
-
+        this.assignItems(items);
     }
 
     public TextView getTvTitle(){return this.tv_title;}
@@ -31,4 +31,15 @@ public class SingleEventFragmentView {
     public EditText getEtQuantity(){return this.et_quantity;}
     public Button getBtBook(){return this.bt_book;}
     public Button getBtBack(){return this.bt_back;}
+
+    private void assignItems(HashMap<String, View> items){
+        this.tv_title = (TextView) items.get("tv_title");
+        this.tv_date = (TextView) items.get("tv_date");
+        this.tv_link = (TextView) items.get("tv_link");
+        this.iv_image = (ImageView) items.get("iv_image");
+        this.tv_price = (TextView) items.get("tv_price");
+        this.et_quantity = (EditText) items.get("et_quantity");
+        this.bt_book = (Button) items.get("bt_book");
+        this.bt_back = (Button)items.get("bt_back");
+    }
 }
