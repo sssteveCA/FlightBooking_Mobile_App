@@ -13,6 +13,7 @@ public enum FragmentPackages {
     POST("com.example.flightbooking.fragments.news.post.PostFragment"),
     NO_CONNECTION("com.example.flightbooking.fragments.noconnection.NoConnectionFragment"),
     PRIVACY_POLICY("com.example.flightbooking.fragments.information.privacypolicy.PrivacyPolicyFragment"),
+    SINGLE_EVENT("com.example.flightbooking.fragments.home.events.singleevent.SingleEventFragment"),
     SUBSCRIBE("com.example.flightbooking.fragments.subscribe.SubscribeFragment"),
     TERMS("com.example.flightbooking.fragments.information.terms.TermsFragment"),
     TICKET_PREVIEW("com.example.flightbooking.fragments.home.flights.ticketpreview.TicketPreviewFragment"),
