@@ -25,7 +25,7 @@ import com.example.flightbooking.models.response.flightevents.GetFlightEventsRes
  * Use the {@link EventsFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class EventsFragment extends Fragment {
+public class EventsFragment extends Fragment implements EventsFragmentAdapter.OnItemButtonClick {
 
     private Context context;
     private EventsFragmentModel efm;
@@ -103,6 +103,7 @@ public class EventsFragment extends Fragment {
     private void eventsRequest(){
         EventsFragment this_ef = this;
         EventsFragmentView this_efv = this.efv;
+        EventsFragmentAdapter.OnItemButtonClick this_oibc = this;
         this_efv.getPb().setVisibility(View.VISIBLE);
         this.efm.getEventsRequest(new EventsFragmentModel.GetEventsResponse() {
             @Override
@@ -110,7 +111,7 @@ public class EventsFragment extends Fragment {
                 /*Log.i("EventsFragment","eventsRequest eventsSuccess done => "+gfer.done);
                 Log.i("EventsFragment","eventsRequest eventsSuccess empty => "+gfer.empty);*/
                 this_efv.getPb().setVisibility(View.GONE);
-                EventsFragmentAdapter efa = new EventsFragmentAdapter(this_ef.context,R.layout.row_event_item,gfer.list);
+                EventsFragmentAdapter efa = new EventsFragmentAdapter(this_oibc,this_ef.context,R.layout.row_event_item,gfer.list);
                 this_efv.getGv().setAdapter(efa);
             }
             @Override
@@ -122,4 +123,9 @@ public class EventsFragment extends Fragment {
         });
     }
 
+    //EventsFragmentAdapter.OnItemButtonClick
+    @Override
+    public void itemButtonClick(Bundle bundle) {
+        Log.i("EventsFragment","itemButtonClick");
+    }
 }

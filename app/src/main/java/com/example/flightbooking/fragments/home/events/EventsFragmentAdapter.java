@@ -28,10 +28,23 @@ import java.util.List;
 
 public class EventsFragmentAdapter extends ArrayAdapter<FlightEvent> {
 
-    private RequestQueue queue;
+    /**
+     * Listener for single flight event data display
+     */
+    public interface OnItemButtonClick{
+        /**
+         * Callback invoked when the button of a GridView item is cliked
+         * @param bundle the data to pass
+         */
+        public void itemButtonClick(Bundle bundle);
+    }
 
-    public EventsFragmentAdapter(@NonNull Context context, int resource, @NonNull List<FlightEvent> objects) {
+    private RequestQueue queue;
+    private OnItemButtonClick oibc;
+
+    public EventsFragmentAdapter(OnItemButtonClick oibc, @NonNull Context context, int resource, @NonNull List<FlightEvent> objects) {
         super(context, resource, objects);
+        this.oibc = oibc;
         this.queue = Volley.newRequestQueue(context);
     }
 
@@ -105,6 +118,7 @@ public class EventsFragmentAdapter extends ArrayAdapter<FlightEvent> {
      * @param fe
      */
     private void onButtonClick(Button button, ImageView iv, FlightEvent fe){
+        OnItemButtonClick this_oibc = this.oibc;
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
@@ -112,6 +126,7 @@ public class EventsFragmentAdapter extends ArrayAdapter<FlightEvent> {
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("flightEvent",fe);
                 bundle.putParcelable("image",((BitmapDrawable)iv.getDrawable()).getBitmap());
+                this_oibc.itemButtonClick(bundle);
             }
         });
     }
