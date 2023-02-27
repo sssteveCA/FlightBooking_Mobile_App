@@ -75,6 +75,12 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
     }
 
     @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("et_email",this.lfv.getEtEmail().getText().toString());
+    }
+
+    @Override
     public void onAttach(@NonNull Activity activity) {
         super.onAttach(activity);
         this.lo = (MainActivity)activity;
@@ -109,6 +115,9 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
         Button bt_back = view.findViewById(R.id.frag_login_bt_back);
         ProgressBar pb = view.findViewById(R.id.frag_login_pb);
         this.lfv = new LoginFragmentView(et_email,et_password,cb_show_pass,bt_login,bt_reset,bt_back,pb);
+        if(savedInstanceState != null){
+            this.lfv.getEtEmail().setText(savedInstanceState.getString("et_email"));
+        }
         this.lfv.getBtLogin().setOnClickListener(this);
         this.lfv.getBtReset().setOnClickListener(this);
         this.lfv.getBtBack().setOnClickListener(this);

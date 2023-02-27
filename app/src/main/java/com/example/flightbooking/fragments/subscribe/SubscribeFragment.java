@@ -76,6 +76,14 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
     }
 
     @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("et_username",this.sfv.getEtUsername().getText().toString());
+        outState.putString("et_email_address",this.sfv.getEtEmailAddress().getText().toString());
+        outState.putString("et_email_address_conf",this.sfv.getEtEmailAddressConf().getText().toString());
+    }
+
+    @Override
     public void onAttach(@NonNull Activity activity) {
         super.onAttach(activity);
         this.fc = (MainActivity)activity;
@@ -112,6 +120,11 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
         Button bt_back = view.findViewById(R.id.frag_subsc_bt_back);
         ProgressBar pb = view.findViewById(R.id.frag_subsc_pb);
         this.sfv = new SubscribeFragmentView(et_username,et_email_address,et_email_address_conf,et_password,et_password_conf,cb_show_pass,bt_subscribe,bt_reset,bt_back,pb);
+        if(savedInstanceState != null){
+            this.sfv.getEtUsername().setText(savedInstanceState.getString("et_username"));
+            this.sfv.getEtEmailAddress().setText(savedInstanceState.getString("et_email_address"));
+            this.sfv.getEtEmailAddressConf().setText(savedInstanceState.getString("et_email_address_conf"));
+        }
         this.sfv.getBtSubscribe().setOnClickListener(this);
         this.sfv.getBtReset().setOnClickListener(this);
         this.sfv.getBtBack().setOnClickListener(this);
