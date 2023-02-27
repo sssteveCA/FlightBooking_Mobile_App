@@ -70,6 +70,15 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
     }
 
     @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("name",this.cfv.getEtName().getText().toString());
+        outState.putString("from",this.cfv.getEtFrom().getText().toString());
+        outState.putString("subject",this.cfv.getEtFrom().getText().toString());
+        outState.putString("message",this.cfv.getEtMessage().getText().toString());
+    }
+
+    @Override
     public void onAttach(@NonNull Activity activity) {
         super.onAttach(activity);
         this.fc = (MainActivity)activity;
@@ -104,6 +113,12 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
         Button bt_back = view.findViewById(R.id.frag_cont_bt_back);
         ProgressBar pb = view.findViewById(R.id.frag_cont_pb);
         this.cfv = new ContactsFragmentView(et_name,et_from,et_subject,et_message,bt_send,bt_reset,bt_back,pb);
+        if(savedInstanceState != null){
+           this.cfv.getEtName().setText(savedInstanceState.getString("name"));
+           this.cfv.getEtFrom().setText(savedInstanceState.getString("from"));
+           this.cfv.getEtSubject().setText(savedInstanceState.getString("subject"));
+           this.cfv.getEtMessage().setText(savedInstanceState.getString("message"));
+        }
         this.cfv.getBtSend().setOnClickListener(this);
         this.cfv.getBtReset().setOnClickListener(this);
         this.cfv.getBtBack().setOnClickListener(this);
