@@ -77,10 +77,10 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
         outState.putString("et_username",this.sfv.getEtUsername().getText().toString());
         outState.putString("et_email_address",this.sfv.getEtEmailAddress().getText().toString());
         outState.putString("et_email_address_conf",this.sfv.getEtEmailAddressConf().getText().toString());
+        super.onSaveInstanceState(outState);
     }
 
     @Override

@@ -76,8 +76,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
         outState.putString("et_email",this.lfv.getEtEmail().getText().toString());
+        super.onSaveInstanceState(outState);
     }
 
     @Override

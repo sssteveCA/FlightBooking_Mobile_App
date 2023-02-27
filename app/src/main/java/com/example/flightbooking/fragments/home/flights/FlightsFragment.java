@@ -85,13 +85,13 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
         outState.putString("out_date", this.ffv.getEtOutDate().getText().toString());
         outState.putString("ret_date", this.ffv.getEtRetDate().getText().toString());
         outState.putString("et_adults", this.ffv.getEtAdults().getText().toString());
         outState.putString("et_teenagers", this.ffv.getEtTeenagers().getText().toString());
         outState.putString("out_date", this.ffv.getEtChildrens().getText().toString());
         outState.putString("out_date", this.ffv.getEtNewborns().getText().toString());
+        super.onSaveInstanceState(outState);
     }
 
     @Override

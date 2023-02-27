@@ -71,11 +71,11 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
         outState.putString("name",this.cfv.getEtName().getText().toString());
         outState.putString("from",this.cfv.getEtFrom().getText().toString());
         outState.putString("subject",this.cfv.getEtFrom().getText().toString());
         outState.putString("message",this.cfv.getEtMessage().getText().toString());
+        super.onSaveInstanceState(outState);
     }
 
     @Override

@@ -93,7 +93,6 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        super.onSaveInstanceState(outState);
         outState.putInt("sp_countries",this.hfv.getSpCountries().getSelectedItemPosition());
         outState.putInt("sp_cities",this.hfv.getSpCities().getSelectedItemPosition());
         outState.putInt("sp_hotels",this.hfv.getSpHotels().getSelectedItemPosition());
@@ -101,6 +100,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         outState.putString("et_check_out",this.hfv.getEtCkeckOut().getText().toString());
         outState.putString("et_rooms",this.hfv.getEtRooms().getText().toString());
         outState.putString("et_people",this.hfv.getEtPeople().getText().toString());
+        super.onSaveInstanceState(outState);
     }
 
     @Override
