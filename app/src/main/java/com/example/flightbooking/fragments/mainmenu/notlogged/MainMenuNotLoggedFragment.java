@@ -163,22 +163,19 @@ public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickL
      * Change menu visibility (show/hide) if orientation is portait
      */
     public void changeMenuVisibility(){
-        int orientation = this.getResources().getConfiguration().orientation;
-        if(orientation == Configuration.ORIENTATION_PORTRAIT){
-            int status = this.mmnlm.getMenuStatus();
-            if(status == MainMenuNotLoggedModel.MENU_HIDDEN){
-                this.mmnlm.setMenuStatus(MainMenuNotLoggedModel.MENU_SHOWN);
-                this.mmnlv.getMenu().setVisibility(View.VISIBLE);
-                this.imv.getElvInfo().setVisibility(View.VISIBLE);
-                this.mmnlv.getShowHide().setText("Chiudi il menu");
-            }//if(status == MainMenuModel.MENU_HIDDEN){
-            else{
-                this.mmnlm.setMenuStatus(MainMenuNotLoggedModel.MENU_HIDDEN);
-                this.mmnlv.getMenu().setVisibility(View.GONE);
-                this.imv.getElvInfo().setVisibility(View.GONE);
-                this.mmnlv.getShowHide().setText("Apri il menu");
-            }
-        }//if(orientation == Configuration.ORIENTATION_PORTRAIT){
+        int status = this.mmnlm.getMenuStatus();
+        if(status == MainMenuNotLoggedModel.MENU_HIDDEN){
+            this.mmnlm.setMenuStatus(MainMenuNotLoggedModel.MENU_SHOWN);
+            this.mmnlv.getMenu().setVisibility(View.VISIBLE);
+            this.imv.getElvInfo().setVisibility(View.VISIBLE);
+            this.mmnlv.getShowHide().setText("Chiudi il menu");
+        }//if(status == MainMenuModel.MENU_HIDDEN){
+        else{
+            this.mmnlm.setMenuStatus(MainMenuNotLoggedModel.MENU_HIDDEN);
+            this.mmnlv.getMenu().setVisibility(View.GONE);
+            this.imv.getElvInfo().setVisibility(View.GONE);
+            this.mmnlv.getShowHide().setText("Apri il menu");
+        }
     }
 
     //AdapterView.OnItemClickListener

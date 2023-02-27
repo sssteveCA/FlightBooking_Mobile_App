@@ -179,24 +179,21 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
      * Change menu visibility (show/hide) if orientation is portait
      */
     public void changeMenuVisibility(){
-        int orientation = this.getResources().getConfiguration().orientation;
-        if(orientation == Configuration.ORIENTATION_PORTRAIT){
-            int status = this.mmlm.getMenuStatus();
-            if(status == MainMenuLoggedModel.MENU_HIDDEN){
-                this.mmlm.setMenuStatus(MainMenuLoggedModel.MENU_SHOWN);
-                this.mmlv.getMenu().setVisibility(View.VISIBLE);
-                this.mmlpv.getElvProfile().setVisibility(View.VISIBLE);
-                this.imv.getElvInfo().setVisibility(View.VISIBLE);
-                this.mmlv.getShowHide().setText("Chiudi il menu");
-            }//if(status == MainMenuModel.MENU_HIDDEN){
-            else{
-                this.mmlm.setMenuStatus(MainMenuLoggedModel.MENU_HIDDEN);
-                this.mmlv.getMenu().setVisibility(View.GONE);
-                this.mmlpv.getElvProfile().setVisibility(View.GONE);
-                this.imv.getElvInfo().setVisibility(View.GONE);
-                this.mmlv.getShowHide().setText("Apri il menu");
-            }
-        }//if(orientation == Configuration.ORIENTATION_PORTRAIT){
+        int status = this.mmlm.getMenuStatus();
+        if(status == MainMenuLoggedModel.MENU_HIDDEN){
+            this.mmlm.setMenuStatus(MainMenuLoggedModel.MENU_SHOWN);
+            this.mmlv.getMenu().setVisibility(View.VISIBLE);
+            this.mmlpv.getElvProfile().setVisibility(View.VISIBLE);
+            this.imv.getElvInfo().setVisibility(View.VISIBLE);
+            this.mmlv.getShowHide().setText("Chiudi il menu");
+        }//if(status == MainMenuModel.MENU_HIDDEN){
+        else{
+            this.mmlm.setMenuStatus(MainMenuLoggedModel.MENU_HIDDEN);
+            this.mmlv.getMenu().setVisibility(View.GONE);
+            this.mmlpv.getElvProfile().setVisibility(View.GONE);
+            this.imv.getElvInfo().setVisibility(View.GONE);
+            this.mmlv.getShowHide().setText("Apri il menu");
+        }
     }
 
     @Override
