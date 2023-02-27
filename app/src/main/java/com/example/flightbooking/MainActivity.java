@@ -1,8 +1,10 @@
 package com.example.flightbooking;
 
+import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 
