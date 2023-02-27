@@ -92,6 +92,18 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
     }
 
     @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putInt("sp_countries",this.hfv.getSpCountries().getSelectedItemPosition());
+        outState.putInt("sp_cities",this.hfv.getSpCities().getSelectedItemPosition());
+        outState.putInt("sp_hotels",this.hfv.getSpHotels().getSelectedItemPosition());
+        outState.putString("et_check_in",this.hfv.getEtCkeckIn().getText().toString());
+        outState.putString("et_check_out",this.hfv.getEtCkeckOut().getText().toString());
+        outState.putString("et_rooms",this.hfv.getEtRooms().getText().toString());
+        outState.putString("et_people",this.hfv.getEtPeople().getText().toString());
+    }
+
+    @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         this.context = context;
@@ -121,6 +133,15 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         this.hfm = new HotelFragmentModel(this.context);
         try {
             this.hfv = new HotelFragmentView(HotelFragmentMethods.hotelItems(v));
+            if(savedInstanceState != null){
+                this.hfv.getSpCountries().setSelection(savedInstanceState.getInt("sp_coutries"));
+                this.hfv.getSpCities().setSelection(savedInstanceState.getInt("sp_cities"));
+                this.hfv.getSpHotels().setSelection(savedInstanceState.getInt("sp_hotels"));
+                this.hfv.getEtCkeckIn().setSelection(savedInstanceState.getInt("et_check_in"));
+                this.hfv.getEtCkeckOut().setSelection(savedInstanceState.getInt("et_check_out"));
+                this.hfv.getEtRooms().setSelection(savedInstanceState.getInt("et_rooms"));
+                this.hfv.getEtPeople().setSelection(savedInstanceState.getInt("et_people"));
+            }//if(savedInstanceState != null){
             this.hfv.getSpCountries().setOnItemSelectedListener(this);
             this.hfv.getSpCities().setOnItemSelectedListener(this);
             this.hfv.getSpHotels().setOnItemSelectedListener(this);
