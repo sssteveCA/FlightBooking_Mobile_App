@@ -84,6 +84,17 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     }
 
     @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putString("out_date", this.ffv.getEtOutDate().getText().toString());
+        outState.putString("ret_date", this.ffv.getEtRetDate().getText().toString());
+        outState.putString("et_adults", this.ffv.getEtAdults().getText().toString());
+        outState.putString("et_teenagers", this.ffv.getEtTeenagers().getText().toString());
+        outState.putString("out_date", this.ffv.getEtChildrens().getText().toString());
+        outState.putString("out_date", this.ffv.getEtNewborns().getText().toString());
+    }
+
+    @Override
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         this.context = context;
@@ -111,6 +122,14 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
         this.ffm = new FlightsFragmentModel(getActivity());
         try {
             this.ffv = new FlightsFragmentView(FlightsFragmentMethods.menuItemsMap(view));
+            if(savedInstanceState != null){
+                this.ffv.getEtOutDate().setText(savedInstanceState.getString("out_date"));
+                this.ffv.getEtRetDate().setText(savedInstanceState.getString("ret_date"));
+                this.ffv.getEtAdults().setText(savedInstanceState.getString("et_adults"));
+                this.ffv.getEtTeenagers().setText(savedInstanceState.getString("et_teenagers"));
+                this.ffv.getEtChildrens().setText(savedInstanceState.getString("out_date"));
+                this.ffv.getEtNewborns().setText(savedInstanceState.getString("out_date"));
+            }
             //Check the roundtrip radio button for default
             this.ffv.getRgFlightTypes().check(R.id.frag_flights_rb_roundtrip);
             this.ffv.getRgFlightTypes().setOnCheckedChangeListener(this);
