@@ -5,10 +5,12 @@ import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
 import android.content.DialogInterface;
+import android.content.Intent;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.flightbooking.activities.close.CloseActivity;
 import com.example.flightbooking.dialogs.ConfirmDialog;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.fragments.mainmenu.logged.MainMenuLoggedFragment;
@@ -54,6 +56,9 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
             @Override
             public void onClick(DialogInterface dialogInterface, int i) {
                 dialogInterface.dismiss();
+                Intent exitIntent = new Intent(MainActivity.this, CloseActivity.class);
+                exitIntent.setFlags(Intent.FLAG_ACTIVITY_CLEAR_TASK|Intent.FLAG_ACTIVITY_NEW_TASK);
+                startActivity(exitIntent);
             }
         }, new DialogInterface.OnClickListener() {
             @Override
