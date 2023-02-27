@@ -4,10 +4,12 @@ import androidx.annotation.NonNull;
 import androidx.appcompat.app.AppCompatActivity;
 import androidx.fragment.app.Fragment;
 
+import android.content.DialogInterface;
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.util.Log;
 
+import com.example.flightbooking.dialogs.ConfirmDialog;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.fragments.mainmenu.logged.MainMenuLoggedFragment;
 import com.example.flightbooking.fragments.mainmenu.notlogged.MainMenuNotLoggedFragment;
@@ -42,6 +44,23 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
         super.onResume();
         this.setMenu();
         this.setFragments(FragmentLabels.HOME.getLabelName(),null);
+    }
+
+    @Override
+    public void onBackPressed() {
+        //Log.d("Main Activity", "On Back Pressed");
+        ConfirmDialog cd = new ConfirmDialog(this,"Esci dall'applicazione","Sei sicuro di voler chiudere l'applicazione?");
+        cd.setDialog(new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        }, new DialogInterface.OnClickListener() {
+            @Override
+            public void onClick(DialogInterface dialogInterface, int i) {
+                dialogInterface.dismiss();
+            }
+        });
     }
 
     @Override
