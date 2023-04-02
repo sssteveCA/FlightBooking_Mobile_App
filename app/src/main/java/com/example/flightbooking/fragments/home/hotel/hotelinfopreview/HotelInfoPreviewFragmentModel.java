@@ -5,9 +5,14 @@ import android.util.Log;
 import com.example.flightbooking.fragments.home.flights.hotel.BookHotelResponse;
 import com.example.flightbooking.fragments.home.flights.hotel.Hotel;
 import com.example.flightbooking.fragments.home.flights.hotel.HotelInfo;
+import com.example.flightbooking.models.requests.hotel.BookHotelRequest;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
+
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
 
 public class HotelInfoPreviewFragmentModel {
 
@@ -20,12 +25,16 @@ public class HotelInfoPreviewFragmentModel {
     private String session_id;
     private HashMap<String, Object> table_data;
     private HotelInfoPreviewTableValues hiptv;
+    private HotelInfoPreviewFragmentClient hipfc;
 
     public HotelInfoPreviewFragmentModel(HotelInfo hi){
         this.hiptv = new HotelInfoPreviewTableValues();
-        this.hi = hi;
-        Log.i("HotelInfoPrevievFragmentModel","constructor hi done => "+this.hi.done);
-        this.session_id = this.hi.response.session_id;
+        if(this.hi != null){
+            this.hi = hi;
+            Log.i("HotelInfoPrevievFragmentModel","constructor hi done => "+this.hi.done);
+            this.session_id = this.hi.response.session_id;
+        }
+        this.hipfc = new HotelInfoPreviewFragmentClient();
         try {
             this.table_data = this.setHotelInfoHashMap();
         } catch (IllegalAccessException e) {
@@ -39,6 +48,25 @@ public class HotelInfoPreviewFragmentModel {
     public HotelInfoPreviewTableValues getHiptv(){return this.hiptv;}
 
 
+    /**
+     * Perform the HTTP request to book the previewed hotel rooms
+     * @param bh_req
+     * @param bh_resi
+     */
+    public void bookHotelRequest(BookHotelRequest bh_req, BookHotelResponseInterface bh_resi){
+        this.hipfc.getHipfi().bookhotel(bh_req).enqueue(new Callback<BookHotelResponse>() {
+            @Override
+            public void onResponse(Call<BookHotelResponse> call, Response<BookHotelResponse> response) {
+                if(response.isSuccessful())
+                    bh_resi.bookHotelResponse(response.body());
+                else bh_resi.bookHotelError();
+            }
+            @Override
+            public void onFailure(Call<BookHotelResponse> call, Throwable t) {
+                bh_resi.bookHotelError();
+            }
+        });
+    }
 
     /**
      * Set each property of the HotelInfoPreviewTableValues (needed for the next request)

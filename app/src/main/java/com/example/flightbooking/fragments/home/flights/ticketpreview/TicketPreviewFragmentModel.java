@@ -57,10 +57,8 @@ public class TicketPreviewFragmentModel {
         this.tpfc.getTpfi().bookflight(bf_req).enqueue(new Callback<BookFlightResponse>() {
             @Override
             public void onResponse(Call<BookFlightResponse> call, Response<BookFlightResponse> response) {
-                if(response.isSuccessful()){
-                    BookFlightResponse bfr = response.body();
-                    bf_resi.bookFlightResponse(bfr);
-                }
+                if(response.isSuccessful())
+                    bf_resi.bookFlightResponse(response.body());
                 else bf_resi.bookFlightError();
             }
             @Override
