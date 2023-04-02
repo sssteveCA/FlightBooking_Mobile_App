@@ -123,21 +123,11 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
         try {
             this.ffv = new FlightsFragmentView(FlightsFragmentMethods.menuItemsMap(view));
             if(savedInstanceState != null){
-                this.ffv.getEtOutDate().setText(savedInstanceState.getString("out_date"));
-                this.ffv.getEtRetDate().setText(savedInstanceState.getString("ret_date"));
-                this.ffv.getEtAdults().setText(savedInstanceState.getString("et_adults"));
-                this.ffv.getEtTeenagers().setText(savedInstanceState.getString("et_teenagers"));
-                this.ffv.getEtChildrens().setText(savedInstanceState.getString("out_date"));
-                this.ffv.getEtNewborns().setText(savedInstanceState.getString("out_date"));
+                FlightsFragmentMethods.saveViewsValues(this.ffv,savedInstanceState);
             }
             //Check the roundtrip radio button for default
             this.ffv.getRgFlightTypes().check(R.id.frag_flights_rb_roundtrip);
-            this.ffv.getRgFlightTypes().setOnCheckedChangeListener(this);
-            this.ffv.getSpDepCountry().setOnItemSelectedListener(this);
-            this.ffv.getSpArrCountry().setOnItemSelectedListener(this);
-            this.ffv.getEtOutDate().setOnClickListener(this);
-            this.ffv.getEtRetDate().setOnClickListener(this);
-            this.ffv.getBtSearch().setOnClickListener(this);
+            FlightsFragmentMethods.setListeners(this.ffv,this);
         } catch (MissingValuesException e) {
             e.printStackTrace();
         }

@@ -1,6 +1,7 @@
 package com.example.flightbooking.fragments.home.flights;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.view.View;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
@@ -48,6 +49,20 @@ public class FlightsFragmentMethods {
     }
 
     /**
+     * Avoid losing FlightsFragment view data
+     * @param ffv
+     * @param savedInstanceState
+     */
+    public static void saveViewsValues(FlightsFragmentView ffv, Bundle savedInstanceState){
+        ffv.getEtOutDate().setText(savedInstanceState.getString("out_date"));
+        ffv.getEtRetDate().setText(savedInstanceState.getString("ret_date"));
+        ffv.getEtAdults().setText(savedInstanceState.getString("et_adults"));
+        ffv.getEtTeenagers().setText(savedInstanceState.getString("et_teenagers"));
+        ffv.getEtChildrens().setText(savedInstanceState.getString("out_date"));
+        ffv.getEtNewborns().setText(savedInstanceState.getString("out_date"));
+    }
+
+    /**
      * Set a list of bookable airports
      * @param country the country of the airports to display
      * @param ar the option to choose the dropdown to fill
@@ -90,5 +105,18 @@ public class FlightsFragmentMethods {
         fs.children = Integer.valueOf(ffv.getEtChildrens().getText().toString());
         fs.newborns = Integer.valueOf(ffv.getEtNewborns().getText().toString());
         return fs;
+    }
+
+    /**
+     * Set the listeners to FlightFragment views
+     * @param ffv
+     */
+    public static void setListeners(FlightsFragmentView ffv, FlightsFragment ff){
+        ffv.getRgFlightTypes().setOnCheckedChangeListener(ff);
+        ffv.getSpDepCountry().setOnItemSelectedListener(ff);
+        ffv.getSpArrCountry().setOnItemSelectedListener(ff);
+        ffv.getEtOutDate().setOnClickListener(ff);
+        ffv.getEtRetDate().setOnClickListener(ff);
+        ffv.getBtSearch().setOnClickListener(ff);
     }
 }
