@@ -15,9 +15,15 @@ import android.widget.LinearLayout;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
+import com.example.flightbooking.common.Connection;
 import com.example.flightbooking.enums.FragmentLabels;
+import com.example.flightbooking.fragments.home.flights.hotel.BookHotelResponse;
 import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.fragments.home.flights.hotel.HotelInfo;
+import com.example.flightbooking.interfaces.Globals;
+import com.example.flightbooking.interfaces.LoginObserver;
+import com.example.flightbooking.models.requests.hotel.BookHotelRequest;
+import com.example.flightbooking.models.response.login.Auth;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -26,9 +32,11 @@ import com.example.flightbooking.fragments.home.flights.hotel.HotelInfo;
  */
 public class HotelInfoPreviewFragment extends Fragment implements View.OnClickListener {
 
+    private Auth auth = null;
     private Context context;
-    private HotelInfo hi;
     private FragmentChange fc = null;
+    private HotelInfo hi;
+    private LoginObserver lo = null;
     private HotelInfoPreviewFragmentModel hipfm;
     private HotelInfoPreviewFragmentView hipfv;
 
@@ -67,6 +75,7 @@ public class HotelInfoPreviewFragment extends Fragment implements View.OnClickLi
     public void onAttach(@NonNull Activity activity) {
         super.onAttach(activity);
         this.fc = (MainActivity)activity;
+        this.lo = (LoginObserver)activity;
     }
 
     @Override
@@ -80,8 +89,8 @@ public class HotelInfoPreviewFragment extends Fragment implements View.OnClickLi
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             this.hi = (HotelInfo) getArguments().getSerializable("hotelInfo");
-            this.hipfm = new HotelInfoPreviewFragmentModel(this.hi);
         }
+        this.hipfm = new HotelInfoPreviewFragmentModel(this.hi);
     }
 
     @Override
@@ -99,11 +108,37 @@ public class HotelInfoPreviewFragment extends Fragment implements View.OnClickLi
         return v;
     }
 
+    /**
+     * Execute the request to book the selected hotel rooms
+     */
+    public void bookHotelRequest(){
+        if(this.hi != null && Connection.checkInternet(this.context)){
+            BookHotelRequest bhr = new BookHotelRequest();
+            bhr.sessionId = this.hi.response.session_id;
+            Auth this_auth = this.auth;
+            FragmentChange this_fc = this.fc;
+            LoginObserver this_lo = this.lo;
+            this.hipfm.bookHotelRequest(bhr, new HotelInfoPreviewFragmentModel.BookHotelResponseInterface() {
+                @Override
+                public void bookHotelResponse(BookHotelResponse bhr) {
+
+                }
+                @Override
+                public void bookHotelError() {
+                    Bundle bundle = new Bundle();
+                    bundle.putString(Globals.KEY_OLDFRAGMENT, FragmentLabels.HOTELINFO_PREVIEW.getLabelName());
+                    this_lo.onLogout(FragmentLabels.LOGIN.getLabelName(), bundle);
+                }
+            });
+        }//if(this.hi != null && Connection.checkInternet(this.context)){
+    }
+
     //View.OnClickListener
     @Override
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.frag_hiprev_bt_book:
+                this.bookHotelRequest();
                 break;
             case R.id.frag_hiprev_bt_back:
                 this.fc.fragmentChange(FragmentLabels.HOTELINFO_PREVIEW.getLabelName(),FragmentLabels.HOME.getLabelName(), true,null);
