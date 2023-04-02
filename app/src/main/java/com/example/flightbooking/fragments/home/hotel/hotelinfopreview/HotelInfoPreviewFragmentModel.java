@@ -2,6 +2,7 @@ package com.example.flightbooking.fragments.home.hotel.hotelinfopreview;
 
 import android.util.Log;
 
+import com.example.flightbooking.fragments.home.flights.hotel.BookHotelResponse;
 import com.example.flightbooking.fragments.home.flights.hotel.Hotel;
 import com.example.flightbooking.fragments.home.flights.hotel.HotelInfo;
 
@@ -9,6 +10,11 @@ import java.lang.reflect.Field;
 import java.util.HashMap;
 
 public class HotelInfoPreviewFragmentModel {
+
+    public interface BookHotelResponseInterface{
+        public void bookHotelResponse(BookHotelResponse bhr);
+        public void bookHotelError();
+    }
 
     private HotelInfo hi;
     private String session_id;
@@ -31,6 +37,8 @@ public class HotelInfoPreviewFragmentModel {
     public String getSessionId(){return this.session_id;}
     public HashMap<String, Object> getTableData(){return this.table_data;}
     public HotelInfoPreviewTableValues getHiptv(){return this.hiptv;}
+
+
 
     /**
      * Set each property of the HotelInfoPreviewTableValues (needed for the next request)
