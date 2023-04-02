@@ -30,7 +30,7 @@ import java.util.Map;
 public class HotelFragmentMethods {
 
     /**
-     * Create a Map with Hotel view references
+     * Create a Map with HotelFragment view references
      * @param v
      * @return
      */
