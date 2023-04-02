@@ -110,14 +110,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_login, container, false);
-        EditText et_email = view.findViewById(R.id.frag_login_et_email);
-        EditText et_password = view.findViewById(R.id.frag_login_et_password);
-        CheckBox cb_show_pass = view.findViewById(R.id.frag_login_cb_show_pass);
-        Button bt_login = view.findViewById(R.id.frag_login_bt_login);
-        Button bt_reset = view.findViewById(R.id.frag_login_bt_reset);
-        Button bt_back = view.findViewById(R.id.frag_login_bt_back);
-        ProgressBar pb = view.findViewById(R.id.frag_login_pb);
-        this.lfv = new LoginFragmentView(et_email,et_password,cb_show_pass,bt_login,bt_reset,bt_back,pb);
+        Map<String, View> views = LoginFragmentMethods.loginItems(view);
+        this.lfv = new LoginFragmentView(views);
         if(savedInstanceState != null){
             this.lfv.getEtEmail().setText(savedInstanceState.getString("et_email"));
         }

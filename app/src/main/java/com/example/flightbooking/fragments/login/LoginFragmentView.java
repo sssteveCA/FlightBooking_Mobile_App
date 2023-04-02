@@ -1,9 +1,12 @@
 package com.example.flightbooking.fragments.login;
 
+import android.view.View;
 import android.widget.Button;
 import android.widget.CheckBox;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+
+import java.util.Map;
 
 public class LoginFragmentView {
     private EditText et_email;
@@ -14,16 +17,8 @@ public class LoginFragmentView {
     private Button bt_back;
     private ProgressBar pb;
 
-    public LoginFragmentView(EditText et_email,EditText et_password,CheckBox cb_show_pass,Button bt_login,Button bt_reset, Button bt_back, ProgressBar pb){
-        this.et_email = et_email;
-        this.et_password = et_password;
-        this.cb_show_pass = cb_show_pass;
-        this.bt_login = bt_login;
-        this.bt_reset = bt_reset;
-        this.bt_back = bt_back;
-        this.pb = pb;
-        this.et_email.setText("user@mail.com");
-        this.et_password.setText("12345678");
+    public LoginFragmentView(Map<String,View> views){
+        this.assignViews(views);
 
     }
 
@@ -34,6 +29,18 @@ public class LoginFragmentView {
     public Button getBtReset(){return this.bt_reset;}
     public Button getBtBack(){return this.bt_back;}
     public ProgressBar getPb(){return this.pb;}
+
+    public void assignViews(Map<String, View> views){
+        this.et_email = (EditText) views.get("et_email");
+        this.et_password = (EditText) views.get("et_password");
+        this.cb_show_pass = (CheckBox) views.get("cb_show_pass");
+        this.bt_login = (Button) views.get("bt_login");
+        this.bt_reset = (Button) views.get("bt_reset");
+        this.bt_back = (Button) views.get("bt_back");
+        this.pb = (ProgressBar) views.get("pb");
+        this.et_email.setText("user@mail.com");
+        this.et_password.setText("12345678");
+    }
 
     /**
      * Clear all Login EditText values

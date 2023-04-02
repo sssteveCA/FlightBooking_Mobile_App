@@ -27,8 +27,7 @@ public class LoginFragmentMethods {
                 {"bt_reset",view.findViewById(R.id.frag_login_bt_login)},
                 {"bt_back",view.findViewById(R.id.frag_login_bt_back)},
                 {"pb",view.findViewById(R.id.frag_login_pb)}
-                }
-        ).collect(Collectors.toMap(data -> (String)data[0], data -> (View)data[1]));
+        }).collect(Collectors.toMap(data -> (String)data[0], data -> (View)data[1]));
     }
 
     /**
