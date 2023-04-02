@@ -17,6 +17,7 @@ public interface Globals {
     String KEY_DONE = "done";
     String KEY_EMPTY = "empty";
     String KEY_MESSAGE = "message";
+    String KEY_OLDFRAGMENT = "oldfragment";
 
     //Messages
     String ERR_CONTACTS = "Siamo spiacenti, si è verificato un errore durante l'invio della mail";

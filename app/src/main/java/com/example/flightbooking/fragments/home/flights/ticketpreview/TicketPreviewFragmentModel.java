@@ -3,6 +3,7 @@ package com.example.flightbooking.fragments.home.flights.ticketpreview;
 import com.example.flightbooking.models.requests.flights.BookFlightRequest;
 import com.example.flightbooking.models.response.flights.BookFlightResponse;
 import com.example.flightbooking.models.response.flights.FlightInfo;
+import com.example.flightbooking.models.response.login.Auth;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -18,6 +19,7 @@ public class TicketPreviewFragmentModel {
         public void bookFlightError();
     }
 
+    private Auth auth;
     private FlightInfo fi;
     private String session_id;
     private String flight_type;
@@ -25,8 +27,9 @@ public class TicketPreviewFragmentModel {
     private TicketPreviewTableValues tptv;
     private TicketPreviewFragmentClient tpfc;
 
-    public TicketPreviewFragmentModel(FlightInfo fi){
+    public TicketPreviewFragmentModel(FlightInfo fi, Auth auth){
         this.fi = fi;
+        this.auth = auth;
         if(this.fi != null){
             this.session_id = fi.sessionId;
             this.flight_type = fi.flightType;

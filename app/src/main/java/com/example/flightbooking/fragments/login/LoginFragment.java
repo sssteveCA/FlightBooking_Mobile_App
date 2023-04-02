@@ -23,6 +23,7 @@ import com.example.flightbooking.R;
 import com.example.flightbooking.dialogs.MessageDialog;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.interfaces.FragmentChange;
+import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.interfaces.LoginObserver;
 import com.example.flightbooking.models.response.login.Auth;
 
@@ -36,9 +37,11 @@ import java.util.Map;
  */
 public class LoginFragment extends Fragment implements View.OnClickListener, CompoundButton.OnCheckedChangeListener {
 
+    private Auth auth = null;
     private LoginFragmentModel lfm;
     private LoginFragmentView lfv;
     private Context context;
+    private String oldFragment = null;
     public LoginObserver lo = null;
     public FragmentChange fc = null;
 
@@ -97,8 +100,8 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+           //this.auth = (Auth) getArguments().getSerializable("auth");
+            this.oldFragment = (String) getArguments().getString(Globals.KEY_OLDFRAGMENT);
         }
     }
 
