@@ -7,11 +7,15 @@ import com.example.flightbooking.models.response.flights.FlightInfo;
 import java.lang.reflect.Field;
 import java.util.HashMap;
 
+import retrofit2.Call;
+import retrofit2.Callback;
+import retrofit2.Response;
+
 public class TicketPreviewFragmentModel {
 
-    public interface BookFlightResponse{
-        public void bookFlightResponse(BookFlightResponse bkr);
-        public void bookFlightError(String message);
+    public interface BookFlightResponseInterface{
+        public void bookFlightResponse(BookFlightResponse bfr);
+        public void bookFlightError();
     }
 
     private FlightInfo fi;
@@ -19,12 +23,14 @@ public class TicketPreviewFragmentModel {
     private String flight_type;
     private HashMap<String, HashMap<String, Object>> flights;
     private TicketPreviewTableValues tptv;
+    private TicketPreviewFragmentClient tpfc;
 
     public TicketPreviewFragmentModel(FlightInfo fi){
         this.fi = fi;
         this.session_id = fi.sessionId;
         this.flight_type = fi.flightType;
         this.tptv = new TicketPreviewTableValues();
+        this.tpfc = new TicketPreviewFragmentClient();
         try {
             this.setHashMap();
         } catch (IllegalAccessException e) {
@@ -39,10 +45,24 @@ public class TicketPreviewFragmentModel {
 
     /**
      * Perform the HTTP request to book the previewed flights
-     *
+     * @param bf_req
+     * @param bf_resi
      */
-    public void bookFlightRequest(BookFlightRequest bk){
-
+    public void bookFlightRequest(BookFlightRequest bf_req, BookFlightResponseInterface bf_resi){
+        this.tpfc.getTpfi().bookflight(bf_req).enqueue(new Callback<BookFlightResponse>() {
+            @Override
+            public void onResponse(Call<BookFlightResponse> call, Response<BookFlightResponse> response) {
+                if(response.isSuccessful()){
+                    BookFlightResponse bfr = response.body();
+                    bf_resi.bookFlightResponse(bfr);
+                }
+                else bf_resi.bookFlightError();
+            }
+            @Override
+            public void onFailure(Call<BookFlightResponse> call, Throwable t) {
+                bf_resi.bookFlightError();
+            }
+        });
     }
 
     /**
