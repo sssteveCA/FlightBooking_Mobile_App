@@ -145,7 +145,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
                         //Log.i("LoginFragment", "onClick loginResponse token => "+auth.token);
                         if(auth.status.equals("OK")){
                             Bundle bund = new Bundle();
-                            bund.putSerializable("auth",auth);
+                            bund.putSerializable(Globals.KEY_AUTH,auth);
                             this_lf.lo.onLogin(this_oldFragment, bund);
                         }
                     }

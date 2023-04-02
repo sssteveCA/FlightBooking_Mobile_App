@@ -16,6 +16,7 @@ import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.fragments.mainmenu.logged.MainMenuLoggedFragment;
 import com.example.flightbooking.fragments.mainmenu.notlogged.MainMenuNotLoggedFragment;
 import com.example.flightbooking.interfaces.FragmentChange;
+import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.interfaces.LoginObserver;
 import com.example.flightbooking.interfaces.OnMainMenuItemClick;
 import com.example.flightbooking.fragments.noconnection.NoConnectionFragment;
@@ -151,7 +152,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
 
     @Override
     public void onLogin(String label, Bundle auth_data) {
-        this.auth = (Auth) auth_data.getSerializable("auth");
+        this.auth = (Auth) auth_data.getSerializable(Globals.KEY_AUTH);
         /*Log.d("MainActivity", "auth status => "+auth.status);
         Log.d("MainActivity", "auth user name => "+auth.user.name);*/
         this.auth_data = auth_data;
@@ -163,7 +164,7 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
     @Override
     public void onLogout(String label, Bundle auth_data) {
         MainActivity this_ma = this;
-        this.auth = (Auth)auth_data.getSerializable("auth");
+        this.auth = (Auth)auth_data.getSerializable(Globals.KEY_AUTH);
         this.auth_data = auth_data;
         //Log.d("MainActivity", "onLogout token => "+this.auth.token);
         LogoutModel lm = new LogoutModel(this.auth.token);

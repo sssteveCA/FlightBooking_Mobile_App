@@ -28,6 +28,7 @@ import com.example.flightbooking.fragments.mainmenu.information.InformationMenuV
 import com.example.flightbooking.fragments.mainmenu.logged.profile.MainMenuLoggedProfileAdapter;
 import com.example.flightbooking.fragments.mainmenu.logged.profile.MainMenuLoggedProfileModel;
 import com.example.flightbooking.fragments.mainmenu.logged.profile.MainMenuLoggedProfileView;
+import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.interfaces.LoginObserver;
 import com.example.flightbooking.interfaces.OnMainMenuItemClick;
 import com.example.flightbooking.models.MenuItem;
@@ -104,7 +105,7 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            this.auth = (Auth) getArguments().getSerializable("auth");
+            this.auth = (Auth) getArguments().getSerializable(Globals.KEY_AUTH);
             //Log.d("MainMenuLoggedFragment", "auth status => "+auth.status);
             //Log.d("MainMenuLoggedFragment", "auth user name => "+auth.user.name);
         }
@@ -230,7 +231,7 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
                 public void onClick(DialogInterface dialogInterface, int i) {
                     dialogInterface.dismiss();
                     Bundle data = new Bundle();
-                    data.putSerializable("auth",this_mmlf.auth);
+                    data.putSerializable(Globals.KEY_AUTH,this_mmlf.auth);
                     this_mmlf.lo.onLogout(FragmentLabels.HOME.getLabelName(), data);
                 }
             }, new DialogInterface.OnClickListener() {

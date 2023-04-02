@@ -85,7 +85,7 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             this.fi = (FlightInfo) getArguments().getSerializable("flightinfo");
-            this.auth = (Auth) getArguments().getSerializable("auth");
+            this.auth = (Auth) getArguments().getSerializable(Globals.KEY_AUTH);
             //Log.d("TicketPreviewFragment","onCreate FlightInfo flight_type => "+fi.flightType);
             //Log.d("TicketPreviewFragment","onCreate flights HashMap => "+this.tpfm.getFlights());
         }

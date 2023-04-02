@@ -14,6 +14,7 @@ public interface Globals {
     String FLIGHT_EVENTS_IMG_FOLDER = Globals.IMG_FOLDER+"/flightevents";
 
     //keys
+    String KEY_AUTH = "auth";
     String KEY_DONE = "done";
     String KEY_EMPTY = "empty";
     String KEY_MESSAGE = "message";
