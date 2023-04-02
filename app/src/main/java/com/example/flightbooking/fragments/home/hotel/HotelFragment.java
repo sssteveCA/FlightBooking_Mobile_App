@@ -119,13 +119,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
             if(savedInstanceState != null){
                 HotelFragmentMethods.reassignViewValues(this.hfv,savedInstanceState);
             }//if(savedInstanceState != null){
-            this.hfv.getSpCountries().setOnItemSelectedListener(this);
-            this.hfv.getSpCities().setOnItemSelectedListener(this);
-            this.hfv.getSpHotels().setOnItemSelectedListener(this);
-            this.hfv.getEtCkeckIn().setOnClickListener(this);
-            this.hfv.getEtCkeckOut().setOnClickListener(this);
-            this.hfv.getBtSearch().setOnClickListener(this);
-            this.hfv.getBtShowImages().setOnClickListener(this);
+            HotelFragmentMethods.setListeners(this.hfv,this);
         } catch (MissingValuesException e) {
             Log.e("HotelFragment","MissingValuesException");
             e.printStackTrace();

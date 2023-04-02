@@ -140,7 +140,20 @@ public class HotelFragmentMethods {
         return hs;
     }
 
-
+    /**
+     * Set the listeners to HotelFragment views
+     * @param hfv
+     * @param hf
+     */
+    public static void setListeners(HotelFragmentView hfv, HotelFragment hf){
+        hfv.getSpCountries().setOnItemSelectedListener(hf);
+        hfv.getSpCities().setOnItemSelectedListener(hf);
+        hfv.getSpHotels().setOnItemSelectedListener(hf);
+        hfv.getEtCkeckIn().setOnClickListener(hf);
+        hfv.getEtCkeckOut().setOnClickListener(hf);
+        hfv.getBtSearch().setOnClickListener(hf);
+        hfv.getBtShowImages().setOnClickListener(hf);
+    }
 
     /**
      * Add the view values to the bundle to keep them

@@ -110,6 +110,7 @@ public class FlightsFragmentMethods {
     /**
      * Set the listeners to FlightFragment views
      * @param ffv
+     * @param ff
      */
     public static void setListeners(FlightsFragmentView ffv, FlightsFragment ff){
         ffv.getRgFlightTypes().setOnCheckedChangeListener(ff);
