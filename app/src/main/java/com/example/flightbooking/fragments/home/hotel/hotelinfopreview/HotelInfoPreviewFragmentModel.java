@@ -2,8 +2,8 @@ package com.example.flightbooking.fragments.home.hotel.hotelinfopreview;
 
 import android.util.Log;
 
-import com.example.flightbooking.models.response.hotel.Hotel;
-import com.example.flightbooking.models.response.hotel.HotelInfo;
+import com.example.flightbooking.fragments.home.flights.hotel.Hotel;
+import com.example.flightbooking.fragments.home.flights.hotel.HotelInfo;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;

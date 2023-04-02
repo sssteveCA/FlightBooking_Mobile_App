@@ -6,9 +6,6 @@ import android.graphics.Bitmap;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
-import androidx.constraintlayout.widget.ConstraintLayout;
-import androidx.constraintlayout.widget.ConstraintSet;
-import androidx.fragment.app.DialogFragment;
 import androidx.fragment.app.Fragment;
 
 import android.util.Log;
@@ -17,11 +14,6 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
-import android.widget.Button;
-import android.widget.EditText;
-import android.widget.ProgressBar;
-import android.widget.Spinner;
-import android.widget.TableLayout;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
@@ -36,15 +28,12 @@ import com.example.flightbooking.fragments.home.hotel.images.HotelImagesModel;
 import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.requests.hotel.HotelSearch;
-import com.example.flightbooking.models.response.hotel.HotelInfo;
+import com.example.flightbooking.fragments.home.flights.hotel.HotelInfo;
 import com.google.gson.JsonObject;
 
-import java.util.AbstractMap;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
-import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.

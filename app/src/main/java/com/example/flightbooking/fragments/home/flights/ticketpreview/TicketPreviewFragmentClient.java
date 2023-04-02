@@ -14,7 +14,7 @@ public class TicketPreviewFragmentClient {
 
     public interface TicketPreviewFragmentInterface{
         @POST(Globals.API_ROUTES_PREFIX+"/bookflight")
-        Call<BookFlightResponse> bookflight(@Body BookFlightRequest bk_req);
+        Call<BookFlightResponse> bookflight(@Body BookFlightRequest bf_req);
     }
 
     private Retrofit retrofit;

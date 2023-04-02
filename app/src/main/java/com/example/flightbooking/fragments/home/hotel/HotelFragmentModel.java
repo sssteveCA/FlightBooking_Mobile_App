@@ -1,12 +1,11 @@
 package com.example.flightbooking.fragments.home.hotel;
 
 import android.content.Context;
-import android.util.Log;
 
 import com.example.flightbooking.common.Connection;
 import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.requests.hotel.HotelSearch;
-import com.example.flightbooking.models.response.hotel.HotelInfo;
+import com.example.flightbooking.fragments.home.flights.hotel.HotelInfo;
 import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
 import com.google.gson.JsonParser;
@@ -14,7 +13,6 @@ import com.google.gson.JsonParser;
 import java.io.IOException;
 import java.util.HashMap;
 import java.util.LinkedList;
-import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
