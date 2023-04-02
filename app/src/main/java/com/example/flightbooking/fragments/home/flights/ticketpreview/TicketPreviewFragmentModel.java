@@ -28,6 +28,15 @@ public class TicketPreviewFragmentModel {
     private TicketPreviewFragmentClient tpfc;
 
     public TicketPreviewFragmentModel(FlightInfo fi, Auth auth){
+        this.assignValues(fi,auth);
+    }
+
+    public String getFlightType(){return this.flight_type;}
+    public String getSessionId(){return this.session_id;}
+    public HashMap<String, HashMap<String, Object>> getFlights(){return this.flights;}
+    public TicketPreviewTableValues getTptv(){return this.tptv;}
+
+    private void assignValues(FlightInfo fi, Auth auth){
         this.fi = fi;
         this.auth = auth;
         if(this.fi != null){
@@ -42,11 +51,6 @@ public class TicketPreviewFragmentModel {
             e.printStackTrace();
         }
     }
-
-    public String getFlightType(){return this.flight_type;}
-    public String getSessionId(){return this.session_id;}
-    public HashMap<String, HashMap<String, Object>> getFlights(){return this.flights;}
-    public TicketPreviewTableValues getTptv(){return this.tptv;}
 
     /**
      * Perform the HTTP request to book the previewed flights
