@@ -1,13 +1,18 @@
 package com.example.flightbooking.fragments.home.flights.ticketpreview;
 
-import android.util.Log;
-
+import com.example.flightbooking.models.requests.flights.BookFlightRequest;
+import com.example.flightbooking.models.response.flights.BookFlightResponse;
 import com.example.flightbooking.models.response.flights.FlightInfo;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
 
 public class TicketPreviewFragmentModel {
+
+    public interface BookFlightResponse{
+        public void bookFlightResponse(BookFlightResponse bkr);
+        public void bookFlightError(String message);
+    }
 
     private FlightInfo fi;
     private String session_id;
@@ -31,6 +36,14 @@ public class TicketPreviewFragmentModel {
     public String getSessionId(){return this.session_id;}
     public HashMap<String, HashMap<String, Object>> getFlights(){return this.flights;}
     public TicketPreviewTableValues getTptv(){return this.tptv;}
+
+    /**
+     * Perform the HTTP request to book the previewed flights
+     *
+     */
+    public void bookFlightRequest(BookFlightRequest bk){
+
+    }
 
     /**
      * Set the flights HashMap from FlightInfo properties

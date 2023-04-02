@@ -1,7 +1,7 @@
 package com.example.flightbooking.fragments.home.flights.ticketpreview;
 
 import com.example.flightbooking.interfaces.Globals;
-import com.example.flightbooking.models.requests.flights.BookFlight;
+import com.example.flightbooking.models.response.flights.BookFlightResponse;
 
 import retrofit2.Call;
 import retrofit2.Retrofit;
@@ -13,7 +13,7 @@ public class TicketPreviewFragmentClient {
 
     public interface TicketPreviewFragmentInterface{
         @POST(Globals.API_ROUTES_PREFIX+"/bookflight")
-        Call<String> bookflight(@Body BookFlight bk);
+        Call<BookFlightResponse> bookflight(@Body BookFlightResponse bk);
     }
 
     private Retrofit retrofit;

@@ -8,7 +8,7 @@ import java.util.List;
 /**
  * Response body for /api/bookflight route
  */
-public class BookFlight {
+public class BookFlightResponse {
 
     @SerializedName("done")
     @Expose
