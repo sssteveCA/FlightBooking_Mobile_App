@@ -6,6 +6,7 @@ import com.example.flightbooking.fragments.home.flights.hotel.BookHotelResponse;
 import com.example.flightbooking.fragments.home.flights.hotel.Hotel;
 import com.example.flightbooking.fragments.home.flights.hotel.HotelInfo;
 import com.example.flightbooking.models.requests.hotel.BookHotelRequest;
+import com.example.flightbooking.models.response.login.Auth;
 
 import java.lang.reflect.Field;
 import java.util.HashMap;
@@ -21,13 +22,24 @@ public class HotelInfoPreviewFragmentModel {
         public void bookHotelError();
     }
 
+    private Auth auth;
     private HotelInfo hi;
     private String session_id;
     private HashMap<String, Object> table_data;
     private HotelInfoPreviewTableValues hiptv;
     private HotelInfoPreviewFragmentClient hipfc;
 
-    public HotelInfoPreviewFragmentModel(HotelInfo hi){
+    public HotelInfoPreviewFragmentModel(HotelInfo hi, Auth auth){
+        this.assignValues(hi,auth);
+    }
+
+    public String getSessionId(){return this.session_id;}
+    public HashMap<String, Object> getTableData(){return this.table_data;}
+    public HotelInfoPreviewTableValues getHiptv(){return this.hiptv;}
+
+
+    private void assignValues(HotelInfo hi, Auth auth){
+        this.auth = auth;
         this.hiptv = new HotelInfoPreviewTableValues();
         if(this.hi != null){
             this.hi = hi;
@@ -42,11 +54,6 @@ public class HotelInfoPreviewFragmentModel {
             this.table_data = null;
         }
     }
-
-    public String getSessionId(){return this.session_id;}
-    public HashMap<String, Object> getTableData(){return this.table_data;}
-    public HotelInfoPreviewTableValues getHiptv(){return this.hiptv;}
-
 
     /**
      * Perform the HTTP request to book the previewed hotel rooms
