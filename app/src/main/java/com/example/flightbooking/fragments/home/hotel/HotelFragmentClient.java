@@ -2,7 +2,7 @@ package com.example.flightbooking.fragments.home.hotel;
 
 import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.requests.hotel.HotelSearch;
-import com.example.flightbooking.fragments.home.flights.hotel.HotelInfo;
+import com.example.flightbooking.models.response.hotel.HotelInfo;
 import com.google.gson.JsonObject;
 
 import retrofit2.Call;

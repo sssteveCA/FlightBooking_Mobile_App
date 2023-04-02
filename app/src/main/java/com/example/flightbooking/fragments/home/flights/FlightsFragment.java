@@ -123,7 +123,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
         try {
             this.ffv = new FlightsFragmentView(FlightsFragmentMethods.menuItemsMap(view));
             if(savedInstanceState != null){
-                FlightsFragmentMethods.saveViewsValues(this.ffv,savedInstanceState);
+                FlightsFragmentMethods.reassignViewsValues(this.ffv,savedInstanceState);
             }
             //Check the roundtrip radio button for default
             this.ffv.getRgFlightTypes().check(R.id.frag_flights_rb_roundtrip);

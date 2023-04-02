@@ -1,6 +1,7 @@
 package com.example.flightbooking.fragments.home.hotel;
 
 import android.content.Context;
+import android.os.Bundle;
 import android.util.Log;
 import android.view.View;
 import android.widget.ArrayAdapter;
@@ -10,6 +11,7 @@ import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.Spinner;
 
+import androidx.annotation.NonNull;
 import androidx.constraintlayout.widget.ConstraintLayout;
 import androidx.constraintlayout.widget.ConstraintSet;
 import androidx.fragment.app.DialogFragment;
@@ -48,6 +50,21 @@ public class HotelFragmentMethods {
                 new AbstractMap.SimpleImmutableEntry<>("pb_images", (ProgressBar)v.findViewById(R.id.frag_hotel_pb_hotel_images))
         );
         return items;
+    }
+
+    /**
+     * Reassign the saved values to the HotelFragment views
+     * @param hfv
+     * @param savedInstanceState
+     */
+    public static void reassignViewValues(HotelFragmentView hfv, Bundle savedInstanceState){
+        hfv.getSpCountries().setSelection(savedInstanceState.getInt("sp_coutries"));
+        hfv.getSpCities().setSelection(savedInstanceState.getInt("sp_cities"));
+        hfv.getSpHotels().setSelection(savedInstanceState.getInt("sp_hotels"));
+        hfv.getEtCkeckIn().setSelection(savedInstanceState.getInt("et_check_in"));
+        hfv.getEtCkeckOut().setSelection(savedInstanceState.getInt("et_check_out"));
+        hfv.getEtRooms().setSelection(savedInstanceState.getInt("et_rooms"));
+        hfv.getEtPeople().setSelection(savedInstanceState.getInt("et_people"));
     }
 
     /**
@@ -121,6 +138,22 @@ public class HotelFragmentMethods {
         hs.people = Integer.valueOf(hfv.getEtPeople().getText().toString());
         //Log.i("HotelFragmentMethods","setHotelSearchBody 5");
         return hs;
+    }
+
+
+
+    /**
+     * Add the view values to the bundle to keep them
+     * @param outState
+     */
+    public static void setSaveStateBundle(@NonNull Bundle outState, HotelFragmentView hfv){
+        outState.putInt("sp_countries",hfv.getSpCountries().getSelectedItemPosition());
+        outState.putInt("sp_cities",hfv.getSpCities().getSelectedItemPosition());
+        outState.putInt("sp_hotels",hfv.getSpHotels().getSelectedItemPosition());
+        outState.putString("et_check_in",hfv.getEtCkeckIn().getText().toString());
+        outState.putString("et_check_out",hfv.getEtCkeckOut().getText().toString());
+        outState.putString("et_rooms",hfv.getEtRooms().getText().toString());
+        outState.putString("et_people",hfv.getEtPeople().getText().toString());
     }
 
     /**

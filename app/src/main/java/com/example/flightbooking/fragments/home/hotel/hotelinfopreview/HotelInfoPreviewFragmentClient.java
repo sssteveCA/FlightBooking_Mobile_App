@@ -1,6 +1,6 @@
 package com.example.flightbooking.fragments.home.hotel.hotelinfopreview;
 
-import com.example.flightbooking.fragments.home.flights.hotel.BookHotelResponse;
+import com.example.flightbooking.models.response.hotel.BookHotelResponse;
 import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.requests.hotel.BookHotelRequest;
 

@@ -2,9 +2,9 @@ package com.example.flightbooking.fragments.home.hotel.hotelinfopreview;
 
 import android.util.Log;
 
-import com.example.flightbooking.fragments.home.flights.hotel.BookHotelResponse;
-import com.example.flightbooking.fragments.home.flights.hotel.Hotel;
-import com.example.flightbooking.fragments.home.flights.hotel.HotelInfo;
+import com.example.flightbooking.models.response.hotel.BookHotelResponse;
+import com.example.flightbooking.models.response.hotel.Hotel;
+import com.example.flightbooking.models.response.hotel.HotelInfo;
 import com.example.flightbooking.models.requests.hotel.BookHotelRequest;
 import com.example.flightbooking.models.response.login.Auth;
 

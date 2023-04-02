@@ -49,11 +49,11 @@ public class FlightsFragmentMethods {
     }
 
     /**
-     * Avoid losing FlightsFragment view data
+     * Reassign the saved values to the FlightsFragment views
      * @param ffv
      * @param savedInstanceState
      */
-    public static void saveViewsValues(FlightsFragmentView ffv, Bundle savedInstanceState){
+    public static void reassignViewsValues(FlightsFragmentView ffv, Bundle savedInstanceState){
         ffv.getEtOutDate().setText(savedInstanceState.getString("out_date"));
         ffv.getEtRetDate().setText(savedInstanceState.getString("ret_date"));
         ffv.getEtAdults().setText(savedInstanceState.getString("et_adults"));

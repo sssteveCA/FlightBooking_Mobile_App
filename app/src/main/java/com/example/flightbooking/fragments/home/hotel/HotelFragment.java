@@ -28,7 +28,7 @@ import com.example.flightbooking.fragments.home.hotel.images.HotelImagesModel;
 import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.requests.hotel.HotelSearch;
-import com.example.flightbooking.fragments.home.flights.hotel.HotelInfo;
+import com.example.flightbooking.models.response.hotel.HotelInfo;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
@@ -82,13 +82,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
 
     @Override
     public void onSaveInstanceState(@NonNull Bundle outState) {
-        outState.putInt("sp_countries",this.hfv.getSpCountries().getSelectedItemPosition());
-        outState.putInt("sp_cities",this.hfv.getSpCities().getSelectedItemPosition());
-        outState.putInt("sp_hotels",this.hfv.getSpHotels().getSelectedItemPosition());
-        outState.putString("et_check_in",this.hfv.getEtCkeckIn().getText().toString());
-        outState.putString("et_check_out",this.hfv.getEtCkeckOut().getText().toString());
-        outState.putString("et_rooms",this.hfv.getEtRooms().getText().toString());
-        outState.putString("et_people",this.hfv.getEtPeople().getText().toString());
+        HotelFragmentMethods.setSaveStateBundle(outState,this.hfv);
         super.onSaveInstanceState(outState);
     }
 
@@ -123,13 +117,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
         try {
             this.hfv = new HotelFragmentView(HotelFragmentMethods.hotelItems(v));
             if(savedInstanceState != null){
-                this.hfv.getSpCountries().setSelection(savedInstanceState.getInt("sp_coutries"));
-                this.hfv.getSpCities().setSelection(savedInstanceState.getInt("sp_cities"));
-                this.hfv.getSpHotels().setSelection(savedInstanceState.getInt("sp_hotels"));
-                this.hfv.getEtCkeckIn().setSelection(savedInstanceState.getInt("et_check_in"));
-                this.hfv.getEtCkeckOut().setSelection(savedInstanceState.getInt("et_check_out"));
-                this.hfv.getEtRooms().setSelection(savedInstanceState.getInt("et_rooms"));
-                this.hfv.getEtPeople().setSelection(savedInstanceState.getInt("et_people"));
+                HotelFragmentMethods.reassignViewValues(this.hfv,savedInstanceState);
             }//if(savedInstanceState != null){
             this.hfv.getSpCountries().setOnItemSelectedListener(this);
             this.hfv.getSpCities().setOnItemSelectedListener(this);
