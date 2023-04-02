@@ -1,8 +1,11 @@
 package com.example.flightbooking.fragments.contacts;
 
+import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.ProgressBar;
+
+import java.util.Map;
 
 public class ContactsFragmentView {
     private EditText et_name; //Customer's name
@@ -14,15 +17,8 @@ public class ContactsFragmentView {
     private Button bt_back;
     private ProgressBar pb;
 
-    public ContactsFragmentView(EditText et_name,EditText et_from,EditText et_subject, EditText et_message, Button bt_send, Button bt_reset, Button bt_back, ProgressBar pb){
-        this.et_name = et_name;
-        this.et_from = et_from;
-        this.et_subject = et_subject;
-        this.et_message = et_message;
-        this.bt_send = bt_send;
-        this.bt_reset = bt_reset;
-        this.bt_back = bt_back;
-        this.pb = pb;
+    public ContactsFragmentView(Map<String, View> views){
+        this.assignViews(views);
     }
 
     public EditText getEtName(){return this.et_name;}
@@ -33,6 +29,17 @@ public class ContactsFragmentView {
     public Button getBtReset(){return this.bt_reset;}
     public Button getBtBack(){return this.bt_back;}
     public ProgressBar getPb(){return this.pb;}
+
+    private void assignViews(Map<String, View> views){
+        this.et_name = (EditText) views.get("et_name");
+        this.et_from = (EditText) views.get("et_from");
+        this.et_subject = (EditText) views.get("et_subject");
+        this.et_message = (EditText) views.get("et_message");
+        this.bt_send = (Button) views.get("bt_send");
+        this.bt_reset = (Button) views.get("bt_reset");
+        this.bt_back = (Button) views.get("bt_back");
+        this.pb = (ProgressBar) views.get("pb");
+    }
 
     /**
      * Clear all Contacts EditText values

@@ -104,15 +104,8 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_contacts, container, false);
-        EditText et_name = view.findViewById(R.id.frag_cont_et_name);
-        EditText et_from = view.findViewById(R.id.frag_cont_et_from);
-        EditText et_subject = view.findViewById(R.id.frag_cont_et_subject);
-        EditText et_message = view.findViewById(R.id.frag_cont_et_message);
-        Button bt_send = view.findViewById(R.id.frag_cont_bt_send);
-        Button bt_reset = view.findViewById(R.id.frag_cont_bt_reset);
-        Button bt_back = view.findViewById(R.id.frag_cont_bt_back);
-        ProgressBar pb = view.findViewById(R.id.frag_cont_pb);
-        this.cfv = new ContactsFragmentView(et_name,et_from,et_subject,et_message,bt_send,bt_reset,bt_back,pb);
+        Map<String,View> viewItems = ContactsFragmentMethods.setViews(view);
+        this.cfv = new ContactsFragmentView(viewItems);
         if(savedInstanceState != null){
            this.cfv.getEtName().setText(savedInstanceState.getString("name"));
            this.cfv.getEtFrom().setText(savedInstanceState.getString("from"));
