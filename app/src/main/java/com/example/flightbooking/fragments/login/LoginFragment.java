@@ -132,6 +132,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
     @Override
     public void onClick(View view) {
         LoginFragment this_lf = this;
+        String this_oldFragment = this.oldFragment != null ? this.oldFragment : FragmentLabels.HOME.getLabelName() ;
         switch(view.getId()){
             case R.id.frag_login_bt_login:
                 Map<String, String> loginData = LoginFragmentMethods.setLoginBody(this_lf.lfv);
@@ -145,7 +146,7 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
                         if(auth.status.equals("OK")){
                             Bundle bund = new Bundle();
                             bund.putSerializable("auth",auth);
-                            this_lf.lo.onLogin(FragmentLabels.HOME.getLabelName(), bund);
+                            this_lf.lo.onLogin(this_oldFragment, bund);
                         }
                     }
                     @Override

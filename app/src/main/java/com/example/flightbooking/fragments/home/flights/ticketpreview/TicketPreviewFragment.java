@@ -19,6 +19,7 @@ import com.example.flightbooking.common.Connection;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.interfaces.Globals;
+import com.example.flightbooking.interfaces.LoginObserver;
 import com.example.flightbooking.models.requests.flights.BookFlightRequest;
 import com.example.flightbooking.models.response.flights.BookFlightResponse;
 import com.example.flightbooking.models.response.flights.FlightInfo;
@@ -35,6 +36,7 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
     private TicketPreviewFragmentView tpfv;
     private Context context;
     private FragmentChange fc = null;
+    private LoginObserver lo = null;
     private Auth auth = null;
 
     // TODO: Rename parameter arguments, choose names that match
@@ -75,6 +77,7 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
     public void onAttach(@NonNull Activity activity) {
         super.onAttach(activity);
         this.fc = (MainActivity)activity;
+        this.lo = (LoginObserver)activity;
     }
 
     @Override
@@ -113,6 +116,7 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
             bfr.sessionId = this.fi.sessionId;
             Auth this_auth = this.auth;
             FragmentChange this_fc = this.fc;
+            LoginObserver this_lo = this.lo;
             this.tpfm.bookFlightRequest(bfr, new TicketPreviewFragmentModel.BookFlightResponseInterface() {
                 @Override
                 public void bookFlightResponse(BookFlightResponse bfr) {
@@ -122,7 +126,7 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
                 public void bookFlightError() {
                     Bundle bundle = new Bundle();
                     bundle.putString(Globals.KEY_OLDFRAGMENT,FragmentLabels.TICKET_PREVIEW.getLabelName());
-                    this_fc.fragmentChange(FragmentLabels.TICKET_PREVIEW.getLabelName(), FragmentLabels.LOGIN.getLabelName(), false, bundle);
+                    this_lo.onLogout(FragmentLabels.LOGIN.getLabelName(),bundle);
                 }
             });
         }//if(this.fi != null && Connection.checkInternet(this.context)){
