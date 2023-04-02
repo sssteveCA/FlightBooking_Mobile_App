@@ -15,8 +15,11 @@ import android.widget.LinearLayout;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
+import com.example.flightbooking.common.Connection;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.interfaces.FragmentChange;
+import com.example.flightbooking.models.requests.flights.BookFlightRequest;
+import com.example.flightbooking.models.response.flights.BookFlightResponse;
 import com.example.flightbooking.models.response.flights.FlightInfo;
 
 /**
@@ -37,7 +40,7 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
     private static final String ARG_PARAM2 = "param2";
 
     // TODO: Rename and change types of parameters
-    private FlightInfo fi;
+    private FlightInfo fi = null;
 
     public TicketPreviewFragment() {
         // Required empty public constructor
@@ -77,9 +80,9 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
         if (getArguments() != null) {
             this.fi = (FlightInfo) getArguments().getSerializable("flightinfo");
             //Log.d("TicketPreviewFragment","onCreate FlightInfo flight_type => "+fi.flightType);
-            this.tpfm = new TicketPreviewFragmentModel(this.fi);
             //Log.d("TicketPreviewFragment","onCreate flights HashMap => "+this.tpfm.getFlights());
         }
+        this.tpfm = new TicketPreviewFragmentModel(this.fi);
     }
 
     @Override
@@ -97,11 +100,33 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
         return view;
     }
 
+    /**
+     * Execute the request to book the selected flights
+     */
+    private void bookFlightRequest(){
+        if(this.fi != null && Connection.checkInternet(this.context)){
+            BookFlightRequest bfr = new BookFlightRequest();
+            bfr.sessionId = this.fi.sessionId;
+            this.tpfm.bookFlightRequest(bfr, new TicketPreviewFragmentModel.BookFlightResponseInterface() {
+                @Override
+                public void bookFlightResponse(BookFlightResponse bfr) {
+
+                }
+                @Override
+                public void bookFlightError() {
+
+                }
+            });
+        }//if(this.fi != null && Connection.checkInternet(this.context)){
+
+    }
+
     //View.OnClickListener
     @Override
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.frag_tprev_bt_book:
+                this.bookFlightRequest();
                 break;
             case R.id.frag_tprev_bt_back:
                 fc.fragmentChange(FragmentLabels.TICKET_PREVIEW.getLabelName(), FragmentLabels.HOME.getLabelName(), true,null);

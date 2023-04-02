@@ -27,8 +27,10 @@ public class TicketPreviewFragmentModel {
 
     public TicketPreviewFragmentModel(FlightInfo fi){
         this.fi = fi;
-        this.session_id = fi.sessionId;
-        this.flight_type = fi.flightType;
+        if(this.fi != null){
+            this.session_id = fi.sessionId;
+            this.flight_type = fi.flightType;
+        }
         this.tptv = new TicketPreviewTableValues();
         this.tpfc = new TicketPreviewFragmentClient();
         try {
