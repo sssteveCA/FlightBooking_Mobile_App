@@ -26,6 +26,8 @@ import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.response.news.GetPosts;
 import com.example.flightbooking.models.response.news.Post;
 
+import java.util.Map;
+
 /**
  * A simple {@link Fragment} subclass.
  * Use the {@link NewsFragment#newInstance} factory method to
@@ -96,12 +98,8 @@ public class NewsFragment extends Fragment implements  View.OnClickListener, New
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View v = inflater.inflate(R.layout.fragment_news, container, false);
-        LinearLayout ll_news_list = v.findViewById(R.id.frag_news_ll_news_list);
-        TextView tv_message = ll_news_list.findViewById(R.id.frag_news_tv_message);
-        RecyclerView rv_posts = ll_news_list.findViewById(R.id.frag_news_rv_posts);
-        ProgressBar pb = ll_news_list.findViewById(R.id.frag_news_pb);
-        Button bt_back = v.findViewById(R.id.frag_news_bt_back);
-        this.nfv = new NewsFragmentView(ll_news_list,tv_message,rv_posts,pb,bt_back);
+        Map<String,View> views = NewsFragmentMethods.newsItems(v);
+        this.nfv = new NewsFragmentView(views);
         this.nfv.getBtBack().setOnClickListener(this);
         return v;
     }
