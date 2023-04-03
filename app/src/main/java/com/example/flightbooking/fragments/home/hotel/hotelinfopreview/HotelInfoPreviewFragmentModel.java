@@ -30,6 +30,7 @@ public class HotelInfoPreviewFragmentModel {
     private HotelInfoPreviewFragmentClient hipfc;
 
     public HotelInfoPreviewFragmentModel(HotelInfo hi, Auth auth){
+        Log.i("HotelInfoPreviewFragmentModel","constructor");
         this.assignValues(hi,auth);
     }
 
@@ -40,18 +41,19 @@ public class HotelInfoPreviewFragmentModel {
 
     private void assignValues(HotelInfo hi, Auth auth){
         this.auth = auth;
+        this.hi = hi;
         this.hiptv = new HotelInfoPreviewTableValues();
         if(this.hi != null){
             this.hi = hi;
             Log.i("HotelInfoPrevievFragmentModel","constructor hi done => "+this.hi.done);
             this.session_id = this.hi.response.session_id;
-        }
-        this.hipfc = new HotelInfoPreviewFragmentClient();
-        try {
-            this.table_data = this.setHotelInfoHashMap();
-        } catch (IllegalAccessException e) {
-            e.printStackTrace();
-            this.table_data = null;
+            this.hipfc = new HotelInfoPreviewFragmentClient();
+            try {
+                this.table_data = this.setHotelInfoHashMap();
+            } catch (IllegalAccessException e) {
+                e.printStackTrace();
+                this.table_data = null;
+            }
         }
     }
 
@@ -114,6 +116,7 @@ public class HotelInfoPreviewFragmentModel {
      */
     private HashMap<String, Object> setHotelInfoHashMap() throws IllegalAccessException {
         HashMap<String, Object> data = new HashMap<>();
+        Log.d("HotelInfoPreviewFragmentModel","setHotelInfoHashMap done => "+this.hi.done);
         Hotel hotel = this.hi.response.hotel;
         if(hotel != null){
             Class<?> hotel_class = hotel.getClass();

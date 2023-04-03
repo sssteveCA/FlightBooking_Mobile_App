@@ -52,7 +52,7 @@ public class HotelInfoPreviewFragment extends Fragment implements View.OnClickLi
     private String mParam2;
 
     public HotelInfoPreviewFragment() {
-        // Required empty public constructor
+        Log.d("HotelInfoPreviewFragment","constructor");
     }
 
     /**
@@ -93,6 +93,7 @@ public class HotelInfoPreviewFragment extends Fragment implements View.OnClickLi
             this.hi = (HotelInfo) getArguments().getSerializable("hotelInfo");
             this.auth = (Auth) getArguments().getSerializable(Globals.KEY_AUTH);
         }
+        Log.d("HotelInfoPreviewFragment","onCreate");
         this.hipfm = new HotelInfoPreviewFragmentModel(this.hi, this.auth);
     }
 

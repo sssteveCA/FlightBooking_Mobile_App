@@ -29,6 +29,7 @@ import com.example.flightbooking.interfaces.FragmentChange;
 import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.requests.hotel.HotelSearch;
 import com.example.flightbooking.models.response.hotel.HotelInfo;
+import com.example.flightbooking.models.response.login.Auth;
 import com.google.gson.JsonObject;
 
 import java.util.ArrayList;
@@ -51,6 +52,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
     private String mParam1;
     private String mParam2;
 
+    private Auth auth = null;
     private Context context;
     private HotelFragmentModel hfm;
     private HotelFragmentView hfv;
@@ -103,8 +105,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            this.auth = (Auth) getArguments().getSerializable(Globals.KEY_AUTH);
         }
     }
 
@@ -182,10 +183,11 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
             public void hotelPreviewResponse(HotelInfo hi) {
                 try{
                     if(hi.done == true){
-                        //Log.i("HotelFragment","hotelInfoRequest data hotel => "+hi.data.hotel);
-                        //Log.i("HotelFragment","hotelInfoRequest data price => "+hi.data.price);
+                        Log.i("HotelFragment","hotelInfoRequest data hotel => "+hi.response.hotel);
+                        Log.i("HotelFragment","hotelInfoRequest data price => "+hi.response.hotel.price);
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("hotelInfo",hi);
+                        bundle.putSerializable(Globals.KEY_AUTH,this_hf.auth);
                         this_hfv.getPbSearch().setVisibility(View.GONE);
                         this_hf.fc.fragmentChange(FragmentLabels.HOTELS.getLabelName(), FragmentLabels.HOTELINFO_PREVIEW.getLabelName(), true, bundle);
                     }//if(hi.done == true){
