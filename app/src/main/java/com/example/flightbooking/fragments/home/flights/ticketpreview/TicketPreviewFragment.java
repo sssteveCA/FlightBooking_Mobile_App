@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -124,11 +125,13 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
             this.tpfm.bookFlightRequest(bfr, new TicketPreviewFragmentModel.BookFlightResponseInterface() {
                 @Override
                 public void bookFlightResponse(BookFlightResponse bfr) {
-                    this_ptfv.getPb().setVisibility(View.GONE);
+                    this_ptfv.getPb().setVisibility(View.INVISIBLE);
+                    Log.i("TicketPreviewFragment","bookFlightRequest response done => "+bfr.done);
+                    Log.i("TicketPreviewFragment","bookFlightRequest response message => "+bfr.message);
                 }
                 @Override
                 public void bookFlightError() {
-                    this_ptfv.getPb().setVisibility(View.GONE);
+                    this_ptfv.getPb().setVisibility(View.INVISIBLE);
                     Bundle bundle = new Bundle();
                     bundle.putString(Globals.KEY_OLDFRAGMENT,FragmentLabels.TICKET_PREVIEW.getLabelName());
                     this_lo.onLogout(FragmentLabels.LOGIN.getLabelName(),bundle);

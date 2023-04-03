@@ -7,6 +7,7 @@ import android.os.Bundle;
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -126,11 +127,13 @@ public class HotelInfoPreviewFragment extends Fragment implements View.OnClickLi
             this.hipfm.bookHotelRequest(bhr, new HotelInfoPreviewFragmentModel.BookHotelResponseInterface() {
                 @Override
                 public void bookHotelResponse(BookHotelResponse bhr) {
-                    this_hipfv.getPb().setVisibility(View.GONE);
+                    this_hipfv.getPb().setVisibility(View.INVISIBLE);
+                    Log.i("HotelInfoPreviewFragment","bookFlightRequest response done => "+bhr.done);
+                    Log.i("HotelInfoPreviewFragment","bookFlightRequest response message => "+bhr.message);
                 }
                 @Override
                 public void bookHotelError() {
-                    this_hipfv.getPb().setVisibility(View.GONE);
+                    this_hipfv.getPb().setVisibility(View.INVISIBLE);
                     Bundle bundle = new Bundle();
                     bundle.putString(Globals.KEY_OLDFRAGMENT, FragmentLabels.HOTELINFO_PREVIEW.getLabelName());
                     this_lo.onLogout(FragmentLabels.LOGIN.getLabelName(), bundle);

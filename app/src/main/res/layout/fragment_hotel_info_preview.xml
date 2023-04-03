@@ -50,7 +50,6 @@
                 <LinearLayout
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginEnd="100sp"
                     android:gravity="center_vertical"
                     android:orientation="horizontal">
 
@@ -58,7 +57,7 @@
                         android:id="@+id/frag_hiprev_bt_book"
                         android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginEnd="50dp"
+                        android:layout_marginEnd="10dp"
                         android:backgroundTint="#2196F3"
                         android:padding="@dimen/bt_padding"
                         android:text="PRENOTA" />
@@ -67,7 +66,9 @@
                         android:id="@+id/frag_hiprev_pb"
                         style="?android:attr/progressBarStyle"
                         android:layout_width="wrap_content"
-                        android:layout_height="wrap_content" />
+                        android:layout_height="wrap_content"
+                        android:layout_marginEnd="50sp"
+                        android:visibility="invisible" />
                 </LinearLayout>
 
                 <Button
