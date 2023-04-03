@@ -67,16 +67,13 @@ public class MainMenuLoggedFragmentMethods {
 
     /**
      * Set the non profile/non information logged menu items part
-     * @param lv_1
-     * @param bt_1
      * @param mmlfm
      * @param mmlfv
      * @param ctx
      */
-    public static void setMenuItems(ListView lv_1, Button bt_1, MainMenuLoggedFragmentModel mmlfm, MainMenuLoggedFragmentView mmlfv, Context ctx){
+    public static void setMenuItems(MainMenuLoggedFragmentModel mmlfm, MainMenuLoggedFragmentView mmlfv, Context ctx){
         mmlfm.setMenuStatus(MainMenuLoggedFragmentModel.MENU_HIDDEN);
         MainMenuLoggedFragmentAdapter mmla = new MainMenuLoggedFragmentAdapter(ctx, R.layout.row_logged,mmlfm.getMenuItems());
-        mmlfv = new MainMenuLoggedFragmentView(lv_1,bt_1);
         mmlfv.getMenu().setAdapter(mmla);
     }
 

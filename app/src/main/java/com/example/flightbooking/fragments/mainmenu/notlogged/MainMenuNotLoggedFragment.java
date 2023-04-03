@@ -94,16 +94,8 @@ public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickL
         this.imm = new InformationMenuModel();
         this.imv = new InformationMenuView(elv_info);
         MainMenuNotLoggedFragmentMethods.setMenuInfoItems(this.imm,this.imv,this.ctx,this);
-        this.setMenuItemsListeners();
+        MainMenuNotLoggedFragmentMethods.setMenuItemsListeners(this.mmnlfv,this);
         return view;
-    }
-
-    /**
-     * Set listeners for menu item views
-     */
-    private void setMenuItemsListeners(){
-        this.mmnlfv.getShowHide().setOnClickListener(this);
-        this.mmnlfv.getMenu().setOnItemClickListener(this);
     }
 
     //View.OnClickListener
@@ -112,29 +104,10 @@ public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickL
 
         switch(view.getId()){
             case R.id.main_menu_frag_bt_1:
-                this.changeMenuVisibility();
+                MainMenuNotLoggedFragmentMethods.changeMenuVisibility(this.mmnlfm,this.mmnlfv,this.imv);
                 break;
             default:
                 break;
-        }
-    }
-
-    /**
-     * Change menu visibility (show/hide) if orientation is portait
-     */
-    public void changeMenuVisibility(){
-        int status = this.mmnlfm.getMenuStatus();
-        if(status == MainMenuNotLoggedFragmentModel.MENU_HIDDEN){
-            this.mmnlfm.setMenuStatus(MainMenuNotLoggedFragmentModel.MENU_SHOWN);
-            this.mmnlfv.getMenu().setVisibility(View.VISIBLE);
-            this.imv.getElvInfo().setVisibility(View.VISIBLE);
-            this.mmnlfv.getShowHide().setText("Chiudi il menu");
-        }//if(status == MainMenuModel.MENU_HIDDEN){
-        else{
-            this.mmnlfm.setMenuStatus(MainMenuNotLoggedFragmentModel.MENU_HIDDEN);
-            this.mmnlfv.getMenu().setVisibility(View.GONE);
-            this.imv.getElvInfo().setVisibility(View.GONE);
-            this.mmnlfv.getShowHide().setText("Apri il menu");
         }
     }
 
@@ -143,7 +116,7 @@ public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickL
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         MenuItem mi = (MenuItem) adapterView.getItemAtPosition(i);
         String label = mi.getLabel();
-        this.changeMenuVisibility();
+        MainMenuNotLoggedFragmentMethods.changeMenuVisibility(this.mmnlfm,this.mmnlfv,this.imv);
         this.mmnlfm.setLastLabelClicked(label);
         this.itemClickListener.mainMenuItemClick(label, null);
     }
@@ -154,7 +127,7 @@ public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickL
         MenuItem mi = (MenuItem) expandableListView.getExpandableListAdapter().getChild(i,i1);
         String label = mi.getLabel();
         if(Arrays.asList(InformationMenuModel.items).contains(label)){
-            this.changeMenuVisibility();
+            MainMenuNotLoggedFragmentMethods.changeMenuVisibility(this.mmnlfm,this.mmnlfv,this.imv);
             this.mmnlfm.setLastLabelClicked(label);
             this.itemClickListener.mainMenuItemClick(label, null);
         }

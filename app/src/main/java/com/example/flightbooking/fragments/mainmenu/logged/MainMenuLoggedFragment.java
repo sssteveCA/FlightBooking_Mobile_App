@@ -106,7 +106,8 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
         ListView lv_1 = view.findViewById(R.id.main_menu_logged_frag_lv_1);
         ExpandableListView elv_profile = view.findViewById(R.id.main_menu_logged_frag_profile_elv);
         ExpandableListView elv_info = view.findViewById(R.id.main_menu_logged_information_elv);
-        MainMenuLoggedFragmentMethods.setMenuItems(lv_1,bt_1,this.mmlfm,this.mmlfv,this.ctx);
+        this.mmlfv = new MainMenuLoggedFragmentView(lv_1,bt_1);
+        MainMenuLoggedFragmentMethods.setMenuItems(this.mmlfm,this.mmlfv,this.ctx);
         this.mmlpm = new MainMenuLoggedProfileModel(this.auth);
         this.mmlpv = new MainMenuLoggedProfileView(elv_profile);
         MainMenuLoggedFragmentMethods.setMenuProfileItems(this.mmlpm,this.mmlpv,this.ctx,this);
