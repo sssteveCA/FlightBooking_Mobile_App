@@ -7,6 +7,7 @@ import com.example.flightbooking.R;
 
 import java.util.AbstractMap;
 import java.util.Map;
+import java.util.Map.Entry;
 import java.util.stream.Collectors;
 import java.util.stream.Stream;
 
@@ -19,12 +20,12 @@ public class NewsFragmentMethods {
      */
     public static Map<String, View> newsItems(View v){
         LinearLayout ll_news_list = v.findViewById(R.id.frag_news_ll_news_list);
-        return Stream.of(
+        return Map.ofEntries(
                 new AbstractMap.SimpleImmutableEntry<>("ll_news_list",ll_news_list),
                 new AbstractMap.SimpleImmutableEntry<>("tv_message",ll_news_list.findViewById(R.id.frag_news_tv_message)),
                 new AbstractMap.SimpleImmutableEntry<>("rv_posts",ll_news_list.findViewById(R.id.frag_news_rv_posts)),
                 new AbstractMap.SimpleImmutableEntry<>("pb",ll_news_list.findViewById(R.id.frag_news_pb)),
                 new AbstractMap.SimpleImmutableEntry<>("bt_back",v.findViewById(R.id.frag_news_bt_back))
-        ).collect(Collectors.toMap(Map.Entry::getKey,Map.Entry::getValue));
+        );
     }
 }
