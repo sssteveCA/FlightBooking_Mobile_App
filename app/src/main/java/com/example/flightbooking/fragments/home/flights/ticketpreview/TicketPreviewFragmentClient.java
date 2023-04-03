@@ -8,13 +8,14 @@ import retrofit2.Call;
 import retrofit2.Retrofit;
 import retrofit2.converter.gson.GsonConverterFactory;
 import retrofit2.http.Body;
+import retrofit2.http.Header;
 import retrofit2.http.POST;
 
 public class TicketPreviewFragmentClient {
 
     public interface TicketPreviewFragmentInterface{
         @POST(Globals.API_ROUTES_PREFIX+"/bookflight")
-        Call<BookFlightResponse> bookflight(@Body BookFlightRequest bf_req);
+        Call<BookFlightResponse> bookflight(@Header("Authorization") String token, @Body BookFlightRequest bf_req);
     }
 
     private Retrofit retrofit;

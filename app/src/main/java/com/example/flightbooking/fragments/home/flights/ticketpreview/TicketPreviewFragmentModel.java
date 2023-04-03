@@ -58,7 +58,8 @@ public class TicketPreviewFragmentModel {
      * @param bf_resi
      */
     public void bookFlightRequest(BookFlightRequest bf_req, BookFlightResponseInterface bf_resi){
-        this.tpfc.getTpfi().bookflight(bf_req).enqueue(new Callback<BookFlightResponse>() {
+        String token = this.auth != null ? this.auth.token : "";
+        this.tpfc.getTpfi().bookflight(token,bf_req).enqueue(new Callback<BookFlightResponse>() {
             @Override
             public void onResponse(Call<BookFlightResponse> call, Response<BookFlightResponse> response) {
                 if(response.isSuccessful())

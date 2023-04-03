@@ -61,7 +61,8 @@ public class HotelInfoPreviewFragmentModel {
      * @param bh_resi
      */
     public void bookHotelRequest(BookHotelRequest bh_req, BookHotelResponseInterface bh_resi){
-        this.hipfc.getHipfi().bookhotel(bh_req).enqueue(new Callback<BookHotelResponse>() {
+        String token = this.auth != null ? this.auth.token : "";
+        this.hipfc.getHipfi().bookhotel(token,bh_req).enqueue(new Callback<BookHotelResponse>() {
             @Override
             public void onResponse(Call<BookHotelResponse> call, Response<BookHotelResponse> response) {
                 if(response.isSuccessful())
