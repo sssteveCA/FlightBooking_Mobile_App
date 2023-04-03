@@ -1,5 +1,6 @@
 package com.example.flightbooking.fragments.home;
 
+import android.os.Bundle;
 import android.view.View;
 import android.widget.Button;
 import android.widget.EditText;
@@ -35,7 +36,8 @@ public class HomeFragmentView {
      * Add or replace the fragment in Home Fragment container view
      * @param fragment
      */
-    public void updateFragment(Fragment fragment){
+    public void updateFragment(Fragment fragment, Bundle args){
+        fragment.setArguments(args);
         FragmentManager fm = this.ma.getSupportFragmentManager();
         Fragment current_fragment = fm.findFragmentById(R.id.frag_home_fragment_container);
         FragmentTransaction ft = fm.beginTransaction();
