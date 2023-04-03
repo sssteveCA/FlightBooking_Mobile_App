@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -18,19 +19,22 @@ public class HotelInfoPreviewFragmentView {
     private TableLayout table;
     private Button bt_book;
     private Button bt_back;
+    private ProgressBar pb;
 
-    public HotelInfoPreviewFragmentView(Context context,LinearLayout ll_table, Button bt_book, Button bt_back){
+    public HotelInfoPreviewFragmentView(Context context,LinearLayout ll_table, Button bt_book, Button bt_back,ProgressBar pb){
         this.context = context;
         this.ll_table = ll_table;
         this.table = new TableLayout(this.context);
         this.bt_book = bt_book;
         this.bt_back = bt_back;
+        this.pb = pb;
     }
 
     public LinearLayout getLlTable(){return this.ll_table;}
     public TableLayout getTable(){return this.table;}
     public Button getBtBook(){return this.bt_book;}
     public Button getBtBack(){return this.bt_back;}
+    public ProgressBar getPb(){return this.pb;}
 
     /**
      * Create a TableRow to add to TableLayout

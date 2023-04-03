@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
@@ -102,7 +103,8 @@ public class HotelInfoPreviewFragment extends Fragment implements View.OnClickLi
         LinearLayout ll_table = v.findViewById(R.id.frag_hiprev_ll_table);
         Button bt_book = v.findViewById(R.id.frag_hiprev_bt_book);
         Button bt_back = v.findViewById(R.id.frag_hiprev_bt_back);
-        this.hipfv = new HotelInfoPreviewFragmentView(this.context,ll_table,bt_book,bt_back);
+        ProgressBar pb = v.findViewById(R.id.frag_hiprev_pb);
+        this.hipfv = new HotelInfoPreviewFragmentView(this.context,ll_table,bt_book,bt_back,pb);
         HotelInfoPreviewFragmentMethods.setTable(this.context,this.hipfm,this.hipfv);
         this.hipfv.getBtBook().setOnClickListener(this);
         this.hipfv.getBtBack().setOnClickListener(this);
@@ -119,13 +121,16 @@ public class HotelInfoPreviewFragment extends Fragment implements View.OnClickLi
             Auth this_auth = this.auth;
             FragmentChange this_fc = this.fc;
             LoginObserver this_lo = this.lo;
+            HotelInfoPreviewFragmentView this_hipfv = this.hipfv;
+            this_hipfv.getPb().setVisibility(View.VISIBLE);
             this.hipfm.bookHotelRequest(bhr, new HotelInfoPreviewFragmentModel.BookHotelResponseInterface() {
                 @Override
                 public void bookHotelResponse(BookHotelResponse bhr) {
-
+                    this_hipfv.getPb().setVisibility(View.GONE);
                 }
                 @Override
                 public void bookHotelError() {
+                    this_hipfv.getPb().setVisibility(View.GONE);
                     Bundle bundle = new Bundle();
                     bundle.putString(Globals.KEY_OLDFRAGMENT, FragmentLabels.HOTELINFO_PREVIEW.getLabelName());
                     this_lo.onLogout(FragmentLabels.LOGIN.getLabelName(), bundle);
