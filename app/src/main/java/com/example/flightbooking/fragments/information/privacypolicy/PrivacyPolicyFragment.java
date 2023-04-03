@@ -33,15 +33,6 @@ public class PrivacyPolicyFragment extends Fragment implements View.OnClickListe
     private PrivacyPolicyFragmentView ppfv;
     public FragmentChange fc = null;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     public PrivacyPolicyFragment() {
         // Required empty public constructor
         this.ppfm = new PrivacyPolicyFragmentModel();
@@ -58,10 +49,6 @@ public class PrivacyPolicyFragment extends Fragment implements View.OnClickListe
     // TODO: Rename and change types and number of parameters
     public static PrivacyPolicyFragment newInstance(String param1, String param2) {
         PrivacyPolicyFragment fragment = new PrivacyPolicyFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -75,8 +62,6 @@ public class PrivacyPolicyFragment extends Fragment implements View.OnClickListe
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 

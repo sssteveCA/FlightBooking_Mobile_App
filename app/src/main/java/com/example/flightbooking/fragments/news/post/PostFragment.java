@@ -30,15 +30,6 @@ public class PostFragment extends Fragment implements View.OnClickListener {
     private PostFragmentView pfv;
     private FragmentChange fc;
 
-    // TODO: Rename parameter arguments, choose names that match
-    // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
-    private static final String ARG_PARAM1 = "param1";
-    private static final String ARG_PARAM2 = "param2";
-
-    // TODO: Rename and change types of parameters
-    private String mParam1;
-    private String mParam2;
-
     public PostFragment() {
         // Required empty public constructor
     }
@@ -54,10 +45,6 @@ public class PostFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename and change types and number of parameters
     public static PostFragment newInstance(String param1, String param2) {
         PostFragment fragment = new PostFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -71,8 +58,6 @@ public class PostFragment extends Fragment implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
             this.post = (Post) getArguments().getSerializable("post");
         }
     }
