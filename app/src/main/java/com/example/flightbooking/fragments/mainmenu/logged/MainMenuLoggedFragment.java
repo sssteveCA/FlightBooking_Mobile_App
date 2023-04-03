@@ -117,32 +117,11 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
         return view;
     }
 
-    /**
-     * Change menu visibility (show/hide) if orientation is portait
-     */
-    public void changeMenuVisibility(){
-        int status = this.mmlfm.getMenuStatus();
-        if(status == MainMenuLoggedFragmentModel.MENU_HIDDEN){
-            this.mmlfm.setMenuStatus(MainMenuLoggedFragmentModel.MENU_SHOWN);
-            this.mmlfv.getMenu().setVisibility(View.VISIBLE);
-            this.mmlpv.getElvProfile().setVisibility(View.VISIBLE);
-            this.imv.getElvInfo().setVisibility(View.VISIBLE);
-            this.mmlfv.getShowHide().setText("Chiudi il menu");
-        }//if(status == MainMenuModel.MENU_HIDDEN){
-        else{
-            this.mmlfm.setMenuStatus(MainMenuLoggedFragmentModel.MENU_HIDDEN);
-            this.mmlfv.getMenu().setVisibility(View.GONE);
-            this.mmlpv.getElvProfile().setVisibility(View.GONE);
-            this.imv.getElvInfo().setVisibility(View.GONE);
-            this.mmlfv.getShowHide().setText("Apri il menu");
-        }
-    }
-
     @Override
     public void onClick(View view) {
         switch(view.getId()){
             case R.id.main_menu_logged_frag_bt_1:
-                this.changeMenuVisibility();
+                MainMenuLoggedFragmentMethods.changeMenuVisibility(this.mmlfm,this.mmlfv,this.mmlpv,this.imv);
                 break;
         }
     }
@@ -152,7 +131,7 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
     public void onItemClick(AdapterView<?> adapterView, View view, int i, long l) {
         MenuItem mi = (MenuItem) adapterView.getItemAtPosition(i);
         String label = mi.getLabel();
-        this.changeMenuVisibility();
+        MainMenuLoggedFragmentMethods.changeMenuVisibility(this.mmlfm,this.mmlfv,this.mmlpv,this.imv);
         this.mmlfm.setLastLabelClicked(label);
         this.itemClickListener.mainMenuItemClick(label, null);
     }
@@ -183,7 +162,7 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
             });
         }}//if(label.equals(MainMenuLoggedProfileModel.items[2])){{
         else if(Arrays.asList(InformationMenuModel.items).contains(label)){
-            this.changeMenuVisibility();
+            MainMenuLoggedFragmentMethods.changeMenuVisibility(this.mmlfm,this.mmlfv,this.mmlpv,this.imv);
             this.mmlfm.setLastLabelClicked(label);
             this.itemClickListener.mainMenuItemClick(label, null);
         }
