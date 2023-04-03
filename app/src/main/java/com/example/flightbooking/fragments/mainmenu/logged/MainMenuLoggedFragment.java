@@ -77,6 +77,7 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         this.ctx = context;
+        this.mmlfm = new MainMenuLoggedFragmentModel(this.ctx);
     }
 
     @Override
@@ -105,10 +106,10 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
         ListView lv_1 = view.findViewById(R.id.main_menu_logged_frag_lv_1);
         ExpandableListView elv_profile = view.findViewById(R.id.main_menu_logged_frag_profile_elv);
         ExpandableListView elv_info = view.findViewById(R.id.main_menu_logged_information_elv);
-        this.setMenuItems(lv_1,bt_1);
+        MainMenuLoggedFragmentMethods.setMenuItems(lv_1,bt_1,this.mmlfm,this.mmlfv,this.ctx);
         this.setMenuProfileItems(elv_profile);
         this.setMenuInfoItems(elv_info);
-        this.setMenuItemsListeners();
+        MainMenuLoggedFragmentMethods.setMenuItemsListeners(this.mmlfv,this);
         return view;
     }
 
