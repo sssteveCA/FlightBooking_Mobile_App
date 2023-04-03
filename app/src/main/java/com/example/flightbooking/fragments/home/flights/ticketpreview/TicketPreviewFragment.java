@@ -63,9 +63,6 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
     // TODO: Rename and change types and number of parameters
     public static TicketPreviewFragment newInstance(FlightInfo fi) {
         TicketPreviewFragment fragment = new TicketPreviewFragment();
-        Bundle args = new Bundle();
-        args.putSerializable("flightinfo",fi);
-        fragment.setArguments(args);
         return fragment;
     }
 

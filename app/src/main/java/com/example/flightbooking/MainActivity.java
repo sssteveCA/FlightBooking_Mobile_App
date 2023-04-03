@@ -147,7 +147,16 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
     @Override
     public void fragmentChange(String oldFragmentLabel, String newFragmentLabel, boolean success, Bundle data){
         String nfl = newFragmentLabel;
-        this.setFragments(nfl,data);
+        if(data != null){
+            data.putSerializable(Globals.KEY_AUTH,this.auth);
+            this.setFragments(nfl,data);
+        }
+        else{
+            Bundle bundle = new Bundle();
+            bundle.putSerializable(Globals.KEY_AUTH,this.auth);
+            this.setFragments(nfl,bundle);
+        }
+
     }
 
     @Override

@@ -66,10 +66,6 @@ public class HotelInfoPreviewFragment extends Fragment implements View.OnClickLi
     // TODO: Rename and change types and number of parameters
     public static HotelInfoPreviewFragment newInstance(String param1, String param2) {
         HotelInfoPreviewFragment fragment = new HotelInfoPreviewFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 

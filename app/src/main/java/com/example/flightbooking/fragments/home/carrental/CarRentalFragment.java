@@ -19,7 +19,6 @@ import com.example.flightbooking.models.response.login.Auth;
  */
 public class CarRentalFragment extends Fragment {
 
-    private Auth auth = null;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -52,7 +51,6 @@ public class CarRentalFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            this.auth = (Auth) getArguments().getSerializable(Globals.KEY_AUTH);
         }
     }
 

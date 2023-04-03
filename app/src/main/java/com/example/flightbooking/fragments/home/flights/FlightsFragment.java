@@ -48,7 +48,6 @@ import java.util.Map;
  */
 public class FlightsFragment extends Fragment implements View.OnClickListener, RadioGroup.OnCheckedChangeListener, AdapterView.OnItemSelectedListener, DatePicker.DialogDate {
 
-    private Auth auth = null;
     private Context context;
     private FlightsFragmentModel ffm;
     private FlightsFragmentView ffv;
@@ -104,7 +103,6 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            this.auth = (Auth) getArguments().getSerializable(Globals.KEY_AUTH);
         }
     }
 
@@ -161,6 +159,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
      */
     private void flightInfoRequest(){
         Context this_context = this.context;
+        FlightsFragment this_ff = this;
         FlightsFragmentView this_ffv = this.ffv;
         FlightSearch fs = FlightsFragmentMethods.setFlightSearchBody(this_ffv);
         this_ffv.getPbSearch().setVisibility(View.VISIBLE);

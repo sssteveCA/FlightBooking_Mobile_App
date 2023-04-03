@@ -75,10 +75,6 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
     // TODO: Rename and change types and number of parameters
     public static HotelFragment newInstance(String param1, String param2) {
         HotelFragment fragment = new HotelFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -187,7 +183,6 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
                         Log.i("HotelFragment","hotelInfoRequest data price => "+hi.response.hotel.price);
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("hotelInfo",hi);
-                        bundle.putSerializable(Globals.KEY_AUTH,this_hf.auth);
                         this_hfv.getPbSearch().setVisibility(View.GONE);
                         this_hf.fc.fragmentChange(FragmentLabels.HOTELS.getLabelName(), FragmentLabels.HOTELINFO_PREVIEW.getLabelName(), true, bundle);
                     }//if(hi.done == true){
@@ -247,7 +242,6 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
             case R.id.frag_hotel_sp_cities:
                 country = (String) this.hfv.getSpCountries().getSelectedItem();
                 city = (String) adapterView.getItemAtPosition(i);
-
                 HotelFragmentMethods.setHotelsList(this.context,country,city,this.hfm,this.hfv);
                 break;
             case R.id.frag_hotel_sp_hotels:

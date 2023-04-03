@@ -39,7 +39,6 @@ import java.util.Map;
  */
 public class HomeFragment extends Fragment implements ChipGroup.OnCheckedChangeListener{
 
-    private Auth auth = null;
     private HomeFragmentModel hfm;
     private HomeFragmentView hfv;
     private MainActivity ma_ref; //Useful for execute fragment operations inside this fragment
@@ -68,10 +67,6 @@ public class HomeFragment extends Fragment implements ChipGroup.OnCheckedChangeL
     // TODO: Rename and change types and number of parameters
     public static HomeFragment newInstance(String param1, String param2) {
         HomeFragment fragment = new HomeFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -85,7 +80,6 @@ public class HomeFragment extends Fragment implements ChipGroup.OnCheckedChangeL
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            this.auth = (Auth) getArguments().getSerializable(Globals.KEY_AUTH);
         }
     }
 
@@ -105,32 +99,28 @@ public class HomeFragment extends Fragment implements ChipGroup.OnCheckedChangeL
     @Override
     public void onResume() {
         super.onResume();
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(Globals.KEY_AUTH,this.auth);
-        this.hfv.updateFragment(new FlightsFragment(),bundle);
+        this.hfv.updateFragment(new FlightsFragment(),null);
     }
 
     //ChipGroup.OnCheckedChangeListener
     @Override
     public void onCheckedChanged(ChipGroup group, int checkedId) {
-        Bundle bundle = new Bundle();
-        bundle.putSerializable(Globals.KEY_AUTH,this.auth);
         switch(checkedId){
             case R.id.frag_home_chip_flights:
                 //Log.i("HomeFragment","chip flights checked");
-                this.hfv.updateFragment(new FlightsFragment(),bundle);
+                this.hfv.updateFragment(new FlightsFragment(),null);
                 break;
             case R.id.frag_home_chip_crent:
                 //Log.i("HomeFragment","chip car rental checked");
-                this.hfv.updateFragment(new CarRentalFragment(),bundle);
+                this.hfv.updateFragment(new CarRentalFragment(),null);
                 break;
             case R.id.frag_home_chip_hotel:
                 //Log.i("HomeFragment","chip hotel checked");
-                this.hfv.updateFragment(new HotelFragment(),bundle);
+                this.hfv.updateFragment(new HotelFragment(),null);
                 break;
             case R.id.frag_home_chip_events:
                 //Log.i("HomeFragment","chip events checked");
-                this.hfv.updateFragment(new EventsFragment(),bundle);
+                this.hfv.updateFragment(new EventsFragment(),null);
                 break;
         }
     }

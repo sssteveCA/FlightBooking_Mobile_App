@@ -19,7 +19,9 @@ import com.example.flightbooking.R;
 import com.example.flightbooking.dialogs.MessageDialog;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.interfaces.FragmentChange;
+import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.response.Message;
+import com.example.flightbooking.models.response.login.Auth;
 
 import java.util.Map;
 import java.util.stream.Collectors;
@@ -62,10 +64,6 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
     // TODO: Rename and change types and number of parameters
     public static ContactsFragment newInstance(String param1, String param2) {
         ContactsFragment fragment = new ContactsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -94,8 +92,6 @@ public class ContactsFragment extends Fragment implements View.OnClickListener {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
         }
     }
 
