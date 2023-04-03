@@ -64,6 +64,7 @@ public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickL
     public void onAttach(@NonNull Context context) {
         super.onAttach(context);
         this.ctx = context;
+        this.mmnlfm = new MainMenuNotLoggedFragmentModel(this.ctx);
     }
 
     @Override
@@ -87,38 +88,14 @@ public class MainMenuNotLoggedFragment extends Fragment implements View.OnClickL
         View view = inflater.inflate(R.layout.fragment_main_menu_not_logged, container, false);
         Button bt_1 = view.findViewById(R.id.main_menu_frag_bt_1);
         ListView lv_1 = view.findViewById(R.id.main_menu_frag_lv_1);
-        ExpandableListView elv_info = view.findViewById(R.id.main_menu_information_elv);
-        this.setMenuItems(lv_1,bt_1);
-        this.setMenuInfoItems(elv_info);
-        this.setMenuItemsListeners();
-        return view;
-    }
-
-    /**
-     * Set the non information logged menu items part
-     * @param lv_1
-     * @param bt_1
-     */
-    private void setMenuItems(ListView lv_1, Button bt_1){
-        this.mmnlfm = new MainMenuNotLoggedFragmentModel(this.ctx);
-        this.mmnlfm.setMenuStatus(MainMenuNotLoggedFragmentModel.MENU_HIDDEN);
-        MainMenuNotLoggedFragmentAdapter mma = new MainMenuNotLoggedFragmentAdapter(this.ctx,R.layout.row,this.mmnlfm.getMenuItems());
         this.mmnlfv = new MainMenuNotLoggedFragmentView(lv_1,bt_1);
-        this.mmnlfv.getMenu().setAdapter(mma);
-    }
-
-    /**
-     * Set the information expandable menu item
-     * @param elv_info
-     */
-    private void setMenuInfoItems(ExpandableListView elv_info){
+        MainMenuNotLoggedFragmentMethods.setMenuItems(this.mmnlfm,this.mmnlfv,this.ctx);
+        ExpandableListView elv_info = view.findViewById(R.id.main_menu_information_elv);
         this.imm = new InformationMenuModel();
         this.imv = new InformationMenuView(elv_info);
-        HashMap<String, List<MenuItem>> infoMenuMap = this.imm.getInfoSubmenuItems();
-        List<String> infoMenuTitles = new ArrayList<String>(infoMenuMap.keySet());
-        InformationMenuAdapter ima = new InformationMenuAdapter(this.ctx, infoMenuTitles, infoMenuMap);
-        this.imv.getElvInfo().setAdapter(ima);
-        this.imv.getElvInfo().setOnChildClickListener(this);
+        MainMenuNotLoggedFragmentMethods.setMenuInfoItems(this.imm,this.imv,this.ctx,this);
+        this.setMenuItemsListeners();
+        return view;
     }
 
     /**
