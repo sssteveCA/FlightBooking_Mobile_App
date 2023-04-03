@@ -3,13 +3,11 @@ package com.example.flightbooking.fragments.mainmenu.logged;
 import android.app.Activity;
 import android.content.Context;
 import android.content.DialogInterface;
-import android.content.res.Configuration;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -46,8 +44,8 @@ import java.util.List;
  */
 public class MainMenuLoggedFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemClickListener, ExpandableListView.OnChildClickListener {
 
-    private MainMenuLoggedModel mmlm;
-    private MainMenuLoggedView mmlv;
+    private MainMenuLoggedFragmentModel mmlfm;
+    private MainMenuLoggedFragmentView mmlfv;
     private MainMenuLoggedProfileModel mmlpm;
     private MainMenuLoggedProfileView mmlpv;
     private InformationMenuModel imm;
@@ -120,11 +118,11 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
      * @param bt_1
      */
     private void setMenuItems(ListView lv_1, Button bt_1){
-        this.mmlm = new MainMenuLoggedModel(this.ctx);
-        this.mmlm.setMenuStatus(MainMenuLoggedModel.MENU_HIDDEN);
-        MainMenuLoggedAdapter mmla = new MainMenuLoggedAdapter(this.ctx, R.layout.row_logged,this.mmlm.getMenuItems());
-        this.mmlv = new MainMenuLoggedView(lv_1,bt_1);
-        this.mmlv.getMenu().setAdapter(mmla);
+        this.mmlfm = new MainMenuLoggedFragmentModel(this.ctx);
+        this.mmlfm.setMenuStatus(MainMenuLoggedFragmentModel.MENU_HIDDEN);
+        MainMenuLoggedFragmentAdapter mmla = new MainMenuLoggedFragmentAdapter(this.ctx, R.layout.row_logged,this.mmlfm.getMenuItems());
+        this.mmlfv = new MainMenuLoggedFragmentView(lv_1,bt_1);
+        this.mmlfv.getMenu().setAdapter(mmla);
     }
 
     /**
@@ -159,28 +157,28 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
      * Set listeners for menu item views
      */
     private void setMenuItemsListeners(){
-        this.mmlv.getShowHide().setOnClickListener(this);
-        this.mmlv.getMenu().setOnItemClickListener(this);
+        this.mmlfv.getShowHide().setOnClickListener(this);
+        this.mmlfv.getMenu().setOnItemClickListener(this);
     }
 
     /**
      * Change menu visibility (show/hide) if orientation is portait
      */
     public void changeMenuVisibility(){
-        int status = this.mmlm.getMenuStatus();
-        if(status == MainMenuLoggedModel.MENU_HIDDEN){
-            this.mmlm.setMenuStatus(MainMenuLoggedModel.MENU_SHOWN);
-            this.mmlv.getMenu().setVisibility(View.VISIBLE);
+        int status = this.mmlfm.getMenuStatus();
+        if(status == MainMenuLoggedFragmentModel.MENU_HIDDEN){
+            this.mmlfm.setMenuStatus(MainMenuLoggedFragmentModel.MENU_SHOWN);
+            this.mmlfv.getMenu().setVisibility(View.VISIBLE);
             this.mmlpv.getElvProfile().setVisibility(View.VISIBLE);
             this.imv.getElvInfo().setVisibility(View.VISIBLE);
-            this.mmlv.getShowHide().setText("Chiudi il menu");
+            this.mmlfv.getShowHide().setText("Chiudi il menu");
         }//if(status == MainMenuModel.MENU_HIDDEN){
         else{
-            this.mmlm.setMenuStatus(MainMenuLoggedModel.MENU_HIDDEN);
-            this.mmlv.getMenu().setVisibility(View.GONE);
+            this.mmlfm.setMenuStatus(MainMenuLoggedFragmentModel.MENU_HIDDEN);
+            this.mmlfv.getMenu().setVisibility(View.GONE);
             this.mmlpv.getElvProfile().setVisibility(View.GONE);
             this.imv.getElvInfo().setVisibility(View.GONE);
-            this.mmlv.getShowHide().setText("Apri il menu");
+            this.mmlfv.getShowHide().setText("Apri il menu");
         }
     }
 
@@ -199,7 +197,7 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
         MenuItem mi = (MenuItem) adapterView.getItemAtPosition(i);
         String label = mi.getLabel();
         this.changeMenuVisibility();
-        this.mmlm.setLastLabelClicked(label);
+        this.mmlfm.setLastLabelClicked(label);
         this.itemClickListener.mainMenuItemClick(label, null);
     }
 
@@ -230,7 +228,7 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
         }}//if(label.equals(MainMenuLoggedProfileModel.items[2])){{
         else if(Arrays.asList(InformationMenuModel.items).contains(label)){
             this.changeMenuVisibility();
-            this.mmlm.setLastLabelClicked(label);
+            this.mmlfm.setLastLabelClicked(label);
             this.itemClickListener.mainMenuItemClick(label, null);
         }
         return false;

@@ -15,8 +15,8 @@ import com.example.flightbooking.models.MenuItem;
 
 import java.util.List;
 
-public class MainMenuNotLoggedAdapter extends ArrayAdapter<MenuItem> {
-    public MainMenuNotLoggedAdapter(@NonNull Context context, int resource, @NonNull List<MenuItem> objects) {
+public class MainMenuNotLoggedFragmentAdapter extends ArrayAdapter<MenuItem> {
+    public MainMenuNotLoggedFragmentAdapter(@NonNull Context context, int resource, @NonNull List<MenuItem> objects) {
         super(context, resource, objects);
     }
 

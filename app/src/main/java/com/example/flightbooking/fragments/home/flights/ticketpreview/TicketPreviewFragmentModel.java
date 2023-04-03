@@ -1,5 +1,7 @@
 package com.example.flightbooking.fragments.home.flights.ticketpreview;
 
+import android.util.Log;
+
 import com.example.flightbooking.models.requests.flights.BookFlightRequest;
 import com.example.flightbooking.models.response.flights.BookFlightResponse;
 import com.example.flightbooking.models.response.flights.FlightInfo;
@@ -58,7 +60,8 @@ public class TicketPreviewFragmentModel {
      * @param bf_resi
      */
     public void bookFlightRequest(BookFlightRequest bf_req, BookFlightResponseInterface bf_resi){
-        String token = this.auth != null ? this.auth.token : "";
+        String token = this.auth != null ? "Bearer "+this.auth.token : "";
+        Log.d("TicketPreviewFragmentModel","bookFlightRequest token => "+token);
         this.tpfc.getTpfi().bookflight(token,bf_req).enqueue(new Callback<BookFlightResponse>() {
             @Override
             public void onResponse(Call<BookFlightResponse> call, Response<BookFlightResponse> response) {

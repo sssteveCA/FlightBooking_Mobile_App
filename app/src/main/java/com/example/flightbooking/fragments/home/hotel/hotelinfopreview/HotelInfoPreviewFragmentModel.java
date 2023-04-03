@@ -44,7 +44,6 @@ public class HotelInfoPreviewFragmentModel {
         this.hi = hi;
         this.hiptv = new HotelInfoPreviewTableValues();
         if(this.hi != null){
-            this.hi = hi;
             Log.i("HotelInfoPrevievFragmentModel","constructor hi done => "+this.hi.done);
             this.session_id = this.hi.response.session_id;
             this.hipfc = new HotelInfoPreviewFragmentClient();
@@ -63,7 +62,8 @@ public class HotelInfoPreviewFragmentModel {
      * @param bh_resi
      */
     public void bookHotelRequest(BookHotelRequest bh_req, BookHotelResponseInterface bh_resi){
-        String token = this.auth != null ? this.auth.token : "";
+        String token = this.auth != null ? "Bearer "+this.auth.token : "";
+        Log.d("HotelInfoPreviewFragmentModel","bookHotelRequest token => "+token);
         this.hipfc.getHipfi().bookhotel(token,bh_req).enqueue(new Callback<BookHotelResponse>() {
             @Override
             public void onResponse(Call<BookHotelResponse> call, Response<BookHotelResponse> response) {

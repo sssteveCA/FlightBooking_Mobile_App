@@ -79,6 +79,8 @@ public class HotelInfoPreviewFragment extends Fragment implements View.OnClickLi
         if (getArguments() != null) {
             this.hi = (HotelInfo) getArguments().getSerializable("hotelInfo");
             this.auth = (Auth) getArguments().getSerializable(Globals.KEY_AUTH);
+            if(this.auth != null)
+                Log.i("HotelInfoPreviewFragment","onCreate token key => "+this.auth.token);
         }
         Log.d("HotelInfoPreviewFragment","onCreate");
         this.hipfm = new HotelInfoPreviewFragmentModel(this.hi, this.auth);

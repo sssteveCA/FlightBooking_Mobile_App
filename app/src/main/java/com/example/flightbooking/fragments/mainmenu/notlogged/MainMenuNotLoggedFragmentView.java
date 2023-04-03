@@ -1,4 +1,4 @@
-package com.example.flightbooking.fragments.mainmenu.logged;
+package com.example.flightbooking.fragments.mainmenu.notlogged;
 
 import android.widget.Button;
 import android.widget.ListView;
@@ -7,9 +7,9 @@ import com.example.flightbooking.fragments.mainmenu.MenuView;
 
 import java.util.ArrayList;
 
-public class MainMenuLoggedView extends MenuView {
+public class MainMenuNotLoggedFragmentView extends MenuView {
 
-    public MainMenuLoggedView(ListView menuView, Button showHide){
+    public MainMenuNotLoggedFragmentView(ListView menuView, Button showHide){
         super(menuView, showHide);
     }
 

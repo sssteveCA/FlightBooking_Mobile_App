@@ -5,7 +5,7 @@ import android.content.Context;
 import com.example.flightbooking.fragments.mainmenu.MenuModel;
 import com.example.flightbooking.models.MenuItem;
 
-public class MainMenuLoggedModel extends MenuModel {
+public class MainMenuLoggedFragmentModel extends MenuModel {
 
     /**
      * Logged user menu item labels
@@ -14,9 +14,9 @@ public class MainMenuLoggedModel extends MenuModel {
             "Home","Chi siamo","News","Contatti"
     };
 
-    public MainMenuLoggedModel(Context ctx){
+    public MainMenuLoggedFragmentModel(Context ctx){
         super(ctx);
-        this.lastLabelClicked = MainMenuLoggedModel.items[0]; //Trigger menu item 'Home' click
+        this.lastLabelClicked = MainMenuLoggedFragmentModel.items[0]; //Trigger menu item 'Home' click
         this.setMenu();
     }
 
@@ -25,7 +25,7 @@ public class MainMenuLoggedModel extends MenuModel {
      */
     private void setMenu(){
         this.menuItems.clear();
-        for(String label: MainMenuLoggedModel.items){
+        for(String label: MainMenuLoggedFragmentModel.items){
             MenuItem mi = new MenuItem(label);
             this.menuItems.add(mi);
         }

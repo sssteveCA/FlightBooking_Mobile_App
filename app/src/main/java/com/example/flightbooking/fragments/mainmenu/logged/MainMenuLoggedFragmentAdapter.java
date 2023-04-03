@@ -12,12 +12,11 @@ import androidx.annotation.Nullable;
 
 import com.example.flightbooking.R;
 import com.example.flightbooking.models.MenuItem;
-import com.example.flightbooking.models.MenuLoggedItem;
 
 import java.util.List;
 
-public class MainMenuLoggedAdapter extends ArrayAdapter<MenuItem> {
-    public MainMenuLoggedAdapter(@NonNull Context context, int resource, @NonNull List<MenuItem> objects) {
+public class MainMenuLoggedFragmentAdapter extends ArrayAdapter<MenuItem> {
+    public MainMenuLoggedFragmentAdapter(@NonNull Context context, int resource, @NonNull List<MenuItem> objects) {
         super(context, resource, objects);
     }
 
