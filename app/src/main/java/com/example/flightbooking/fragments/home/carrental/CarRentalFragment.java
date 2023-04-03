@@ -9,6 +9,8 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.flightbooking.R;
+import com.example.flightbooking.interfaces.Globals;
+import com.example.flightbooking.models.response.login.Auth;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -16,6 +18,8 @@ import com.example.flightbooking.R;
  * create an instance of this fragment.
  */
 public class CarRentalFragment extends Fragment {
+
+    private Auth auth = null;
 
     // TODO: Rename parameter arguments, choose names that match
     // the fragment initialization parameters, e.g. ARG_ITEM_NUMBER
@@ -41,10 +45,6 @@ public class CarRentalFragment extends Fragment {
     // TODO: Rename and change types and number of parameters
     public static CarRentalFragment newInstance(String param1, String param2) {
         CarRentalFragment fragment = new CarRentalFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -52,8 +52,7 @@ public class CarRentalFragment extends Fragment {
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            this.auth = (Auth) getArguments().getSerializable(Globals.KEY_AUTH);
         }
     }
 

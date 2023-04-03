@@ -30,8 +30,10 @@ import com.example.flightbooking.dialogs.MessageDialog;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.exception.MissingValuesException;
 import com.example.flightbooking.interfaces.FragmentChange;
+import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.response.flights.FlightInfo;
 import com.example.flightbooking.models.requests.flights.FlightSearch;
+import com.example.flightbooking.models.response.login.Auth;
 import com.google.gson.JsonObject;
 
 import java.util.AbstractMap;
@@ -46,6 +48,7 @@ import java.util.Map;
  */
 public class FlightsFragment extends Fragment implements View.OnClickListener, RadioGroup.OnCheckedChangeListener, AdapterView.OnItemSelectedListener, DatePicker.DialogDate {
 
+    private Auth auth = null;
     private Context context;
     private FlightsFragmentModel ffm;
     private FlightsFragmentView ffv;
@@ -76,10 +79,6 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     // TODO: Rename and change types and number of parameters
     public static FlightsFragment newInstance(String param1, String param2) {
         FlightsFragment fragment = new FlightsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -110,8 +109,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            this.auth = (Auth) getArguments().getSerializable(Globals.KEY_AUTH);
         }
     }
 

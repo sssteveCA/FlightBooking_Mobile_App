@@ -22,7 +22,9 @@ import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
 import com.example.flightbooking.enums.FragmentLabels;
 import com.example.flightbooking.interfaces.FragmentChange;
+import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.response.flightevents.GetFlightEventsResponse;
+import com.example.flightbooking.models.response.login.Auth;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -31,6 +33,7 @@ import com.example.flightbooking.models.response.flightevents.GetFlightEventsRes
  */
 public class EventsFragment extends Fragment implements EventsFragmentAdapter.OnItemButtonClick {
 
+    private Auth auth = null;
     private Context context;
     private EventsFragmentModel efm;
     private EventsFragmentView efv;
@@ -61,10 +64,6 @@ public class EventsFragment extends Fragment implements EventsFragmentAdapter.On
     // TODO: Rename and change types and number of parameters
     public static EventsFragment newInstance(String param1, String param2) {
         EventsFragment fragment = new EventsFragment();
-        Bundle args = new Bundle();
-        args.putString(ARG_PARAM1, param1);
-        args.putString(ARG_PARAM2, param2);
-        fragment.setArguments(args);
         return fragment;
     }
 
@@ -84,8 +83,7 @@ public class EventsFragment extends Fragment implements EventsFragmentAdapter.On
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
-            mParam1 = getArguments().getString(ARG_PARAM1);
-            mParam2 = getArguments().getString(ARG_PARAM2);
+            this.auth = (Auth) getArguments().getSerializable(Globals.KEY_AUTH);
         }
     }
 
