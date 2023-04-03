@@ -107,59 +107,14 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
         ExpandableListView elv_profile = view.findViewById(R.id.main_menu_logged_frag_profile_elv);
         ExpandableListView elv_info = view.findViewById(R.id.main_menu_logged_information_elv);
         MainMenuLoggedFragmentMethods.setMenuItems(lv_1,bt_1,this.mmlfm,this.mmlfv,this.ctx);
-        this.setMenuProfileItems(elv_profile);
-        this.setMenuInfoItems(elv_info);
-        MainMenuLoggedFragmentMethods.setMenuItemsListeners(this.mmlfv,this);
-        return view;
-    }
-
-    /**
-     * Set the non profile/non information logged menu items part
-     * @param lv_1
-     * @param bt_1
-     */
-    private void setMenuItems(ListView lv_1, Button bt_1){
-        this.mmlfm = new MainMenuLoggedFragmentModel(this.ctx);
-        this.mmlfm.setMenuStatus(MainMenuLoggedFragmentModel.MENU_HIDDEN);
-        MainMenuLoggedFragmentAdapter mmla = new MainMenuLoggedFragmentAdapter(this.ctx, R.layout.row_logged,this.mmlfm.getMenuItems());
-        this.mmlfv = new MainMenuLoggedFragmentView(lv_1,bt_1);
-        this.mmlfv.getMenu().setAdapter(mmla);
-    }
-
-    /**
-     * Set the information expandable menu item
-     * @param elv_info
-     */
-    private void setMenuInfoItems(ExpandableListView elv_info){
-        this.imm = new InformationMenuModel();
-        this.imv = new InformationMenuView(elv_info);
-        HashMap<String, List<MenuItem>> infoMenuMap = this.imm.getInfoSubmenuItems();
-        List<String> infoMenuTitles = new ArrayList<String>(infoMenuMap.keySet());
-        InformationMenuAdapter ima = new InformationMenuAdapter(this.ctx, infoMenuTitles, infoMenuMap);
-        this.imv.getElvInfo().setAdapter(ima);
-        this.imv.getElvInfo().setOnChildClickListener(this);
-    }
-
-    /**
-     * Set the profile logged menu items part
-     * @param elv_profile
-     */
-    private void setMenuProfileItems(ExpandableListView elv_profile){
         this.mmlpm = new MainMenuLoggedProfileModel(this.auth);
         this.mmlpv = new MainMenuLoggedProfileView(elv_profile);
-        HashMap<String, List<MenuItem>> profileMenuMap = this.mmlpm.getProfileSubmenuItems();
-        List<String> profileMenuTitles = new ArrayList<String>(profileMenuMap.keySet());
-        MainMenuLoggedProfileAdapter mmlpa = new MainMenuLoggedProfileAdapter(this.ctx, profileMenuTitles, profileMenuMap);
-        this.mmlpv.getElvProfile().setAdapter(mmlpa);
-        this.mmlpv.getElvProfile().setOnChildClickListener(this);
-    }
-
-    /**
-     * Set listeners for menu item views
-     */
-    private void setMenuItemsListeners(){
-        this.mmlfv.getShowHide().setOnClickListener(this);
-        this.mmlfv.getMenu().setOnItemClickListener(this);
+        MainMenuLoggedFragmentMethods.setMenuProfileItems(this.mmlpm,this.mmlpv,this.ctx,this);
+        this.imm = new InformationMenuModel();
+        this.imv = new InformationMenuView(elv_info);
+        MainMenuLoggedFragmentMethods.setMenuInfoItems(this.imm,this.imv,this.ctx,this);
+        MainMenuLoggedFragmentMethods.setMenuItemsListeners(this.mmlfv,this);
+        return view;
     }
 
     /**
