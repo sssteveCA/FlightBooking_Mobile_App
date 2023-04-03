@@ -11,6 +11,8 @@ import android.widget.RadioGroup;
 import android.widget.Spinner;
 import android.widget.TextView;
 
+import androidx.annotation.NonNull;
+
 import com.example.flightbooking.R;
 import com.example.flightbooking.common.Generic;
 import com.example.flightbooking.models.requests.flights.FlightSearch;
@@ -60,6 +62,20 @@ public class FlightsFragmentMethods {
         ffv.getEtTeenagers().setText(savedInstanceState.getString("et_teenagers"));
         ffv.getEtChildrens().setText(savedInstanceState.getString("out_date"));
         ffv.getEtNewborns().setText(savedInstanceState.getString("out_date"));
+    }
+
+    /**
+     * Save the FligtsFragment input values in a bundle
+     * @param ffv the View that cointains the values
+     * @param outState the bundle when save the data
+     */
+    public static void saveState(FlightsFragmentView ffv, @NonNull Bundle outState){
+        outState.putString("out_date", ffv.getEtOutDate().getText().toString());
+        outState.putString("ret_date", ffv.getEtRetDate().getText().toString());
+        outState.putString("et_adults", ffv.getEtAdults().getText().toString());
+        outState.putString("et_teenagers", ffv.getEtTeenagers().getText().toString());
+        outState.putString("out_date", ffv.getEtChildrens().getText().toString());
+        outState.putString("out_date", ffv.getEtNewborns().getText().toString());
     }
 
     /**
