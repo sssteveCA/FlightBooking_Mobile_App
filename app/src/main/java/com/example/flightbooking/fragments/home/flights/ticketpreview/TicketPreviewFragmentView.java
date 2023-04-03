@@ -7,6 +7,7 @@ import android.view.Gravity;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 import android.widget.TableLayout;
 import android.widget.TableRow;
 import android.widget.TextView;
@@ -23,13 +24,15 @@ public class TicketPreviewFragmentView {
     private ArrayList<TableLayout> tables;
     private HashMap<String, TicketPreviewTableValues> flights_info_views = new HashMap<>();
     private Button bt_book, bt_back;
+    private ProgressBar pb;
 
-    public TicketPreviewFragmentView(Context ctx, LinearLayout ll_table, Button bt_book, Button bt_back){
+    public TicketPreviewFragmentView(Context ctx, LinearLayout ll_table, Button bt_book, Button bt_back, ProgressBar pb){
         this.context = ctx;
         this.ll_table = ll_table;
         this.tables = new ArrayList<>();
         this.bt_book = bt_book;
         this.bt_back = bt_back;
+        this.pb = pb;
     }
 
     public LinearLayout getLlTable(){return this.ll_table;}
@@ -37,6 +40,7 @@ public class TicketPreviewFragmentView {
     public HashMap<String, TicketPreviewTableValues> getFlightInfoViews(){return this.flights_info_views;}
     public Button getBtBook(){return this.bt_book;}
     public Button getBtBack(){return this.bt_back;}
+    public ProgressBar getPb(){return this.pb; }
 
     public void setFlightsInfoViews(HashMap<String, TicketPreviewTableValues> flights_info_views){this.flights_info_views = flights_info_views;}
 

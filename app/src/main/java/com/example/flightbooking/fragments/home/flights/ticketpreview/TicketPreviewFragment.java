@@ -12,6 +12,7 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.LinearLayout;
+import android.widget.ProgressBar;
 
 import com.example.flightbooking.MainActivity;
 import com.example.flightbooking.R;
@@ -100,7 +101,8 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
         LinearLayout ll_table = view.findViewById(R.id.frag_tprev_ll_table);
         Button bt_book = view.findViewById(R.id.frag_tprev_bt_book);
         Button bt_back = view.findViewById(R.id.frag_tprev_bt_back);
-        this.tpfv = new TicketPreviewFragmentView(this.context,ll_table,bt_book,bt_back);
+        ProgressBar pb = view.findViewById(R.id.frag_tprev_pb);
+        this.tpfv = new TicketPreviewFragmentView(this.context,ll_table,bt_book,bt_back,pb);
         TicketPreviewFragmentMethods.setTable(this.context,this.tpfm,this.tpfv);
         this.tpfv.getBtBook().setOnClickListener(this);
         this.tpfv.getBtBack().setOnClickListener(this);
@@ -117,13 +119,16 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
             Auth this_auth = this.auth;
             FragmentChange this_fc = this.fc;
             LoginObserver this_lo = this.lo;
+            TicketPreviewFragmentView this_ptfv = this.tpfv;
+            this_ptfv.getPb().setVisibility(View.VISIBLE);
             this.tpfm.bookFlightRequest(bfr, new TicketPreviewFragmentModel.BookFlightResponseInterface() {
                 @Override
                 public void bookFlightResponse(BookFlightResponse bfr) {
-
+                    this_ptfv.getPb().setVisibility(View.GONE);
                 }
                 @Override
                 public void bookFlightError() {
+                    this_ptfv.getPb().setVisibility(View.GONE);
                     Bundle bundle = new Bundle();
                     bundle.putString(Globals.KEY_OLDFRAGMENT,FragmentLabels.TICKET_PREVIEW.getLabelName());
                     this_lo.onLogout(FragmentLabels.LOGIN.getLabelName(),bundle);
