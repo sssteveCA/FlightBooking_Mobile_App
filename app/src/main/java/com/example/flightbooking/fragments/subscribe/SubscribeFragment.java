@@ -94,17 +94,8 @@ public class SubscribeFragment extends Fragment implements View.OnClickListener,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
         View view = inflater.inflate(R.layout.fragment_subscribe, container, false);
-        EditText et_username = view.findViewById(R.id.frag_subsc_et_username);
-        EditText et_email_address = view.findViewById(R.id.frag_subsc_et_email_address);
-        EditText et_email_address_conf = view.findViewById(R.id.frag_subsc_et_email_address_conf);
-        EditText et_password = view.findViewById(R.id.frag_subsc_et_password);
-        EditText et_password_conf = view.findViewById(R.id.frag_subsc_et_password_conf);
-        CheckBox cb_show_pass = view.findViewById(R.id.frag_subsc_cb_show_pass);
-        Button bt_subscribe = view.findViewById(R.id.frag_subsc_bt_subscribe);
-        Button bt_reset = view.findViewById(R.id.frag_subsc_bt_reset);
-        Button bt_back = view.findViewById(R.id.frag_subsc_bt_back);
-        ProgressBar pb = view.findViewById(R.id.frag_subsc_pb);
-        this.sfv = new SubscribeFragmentView(et_username,et_email_address,et_email_address_conf,et_password,et_password_conf,cb_show_pass,bt_subscribe,bt_reset,bt_back,pb);
+        Map<String, View> items = SubscribeFragmentMethods.subscribeItems(view);
+        this.sfv = new SubscribeFragmentView(items);
         if(savedInstanceState != null){
             this.sfv.getEtUsername().setText(savedInstanceState.getString("et_username"));
             this.sfv.getEtEmailAddress().setText(savedInstanceState.getString("et_email_address"));

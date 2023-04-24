@@ -20,17 +20,8 @@ public class SubscribeFragmentView {
     private Button bt_back;
     private ProgressBar pb;
 
-    public SubscribeFragmentView(EditText et_username,EditText et_email_address,EditText et_email_address_conf,EditText et_password,EditText et_password_conf,CheckBox cb_show_pass,Button bt_subscribe,Button bt_reset, Button bt_back, ProgressBar pb){
-        this.et_username = et_username;
-        this.et_email_address = et_email_address;
-        this.et_email_address_conf = et_email_address_conf;
-        this.et_password = et_password;
-        this.et_password_conf = et_password_conf;
-        this.cb_show_pass = cb_show_pass;
-        this.bt_subscribe = bt_subscribe;
-        this.bt_reset = bt_reset;
-        this.bt_back = bt_back;
-        this.pb = pb;
+    public SubscribeFragmentView(Map<String, View> items){
+        this.assignValues(items);
     }
 
     public EditText getEtUsername(){return this.et_username;}
