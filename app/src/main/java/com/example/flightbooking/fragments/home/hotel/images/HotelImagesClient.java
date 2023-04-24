@@ -24,7 +24,6 @@ public class HotelImagesClient {
     private RequestQueue queue;
 
     public HotelImagesClient(Context context){
-        //Log.d("HotelImagesClient","constructor");
         this.context = context;
         this.queue = Volley.newRequestQueue(this.context);
     }

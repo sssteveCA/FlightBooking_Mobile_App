@@ -41,8 +41,6 @@ public class PrivacyPolicyFragmentModel {
 
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-                Log.e("PrivacyPolicyFragmentModel", "getPrivacyPolicyRequest onFailure");
-                Log.e("PrivacyPolicyFragmentModel", t.getMessage());
                 gppr.getPrivacyPolicyError(Globals.ERR_PRIVACY_POLICY);
             }
         });

@@ -90,7 +90,6 @@ public class FlightsFragmentModel {
             if(val_str != ""){
                 //No class properties can be empty
                 String field_name = field.getName();
-                //Log.i("FlightFragmentModel","field name => "+field_name);
                 if(date_fields.contains(field_name)){
                     //Current field looped is date field
                     if(!RegEx.patternMatches(RegEx.PATTERN_DATE,val_str))return false;
@@ -101,7 +100,6 @@ public class FlightsFragmentModel {
                 }
             }//if(val_str != ""){
             else return false;
-            //Log.i("FlightFragmentModel","field val => "+field_val);
         }//if(field_val != null){
         return true;
     }
@@ -163,7 +161,6 @@ public class FlightsFragmentModel {
             public void onResponse(Call<JsonObject> call, Response<JsonObject> response) {
                 if(response.isSuccessful()){
                     this_ffm.airportsInfo = response.body();
-                    //Log.i("FlightsFragmentModel","getAirports airportsInfo => "+this_ffm.airportsInfo);
                     gai.airportsResponse(this_ffm.airportsInfo);
                 }
                 else{

@@ -146,7 +146,6 @@ public class NewsFragment extends Fragment implements  View.OnClickListener, New
     //NewsFragmentAdapter.PostItemClickListener
     @Override
     public void click(Post post) {
-        //Log.d("NewsFragment","Post item click index => "+index);
         Bundle data = new Bundle();
         data.putSerializable("post",post);
         this.fc.fragmentChange(FragmentLabels.NEWS.getLabelName(), FragmentLabels.POST.getLabelName(), true,data);

@@ -83,7 +83,6 @@ public class NoConnectionFragment extends Fragment implements View.OnClickListen
         int id = view.getId();
         switch(id){
             case R.id.no_conn_frag_bt_retry:
-                //Log.i("NoConnectionFragment","onClick label => "+this.label);
                 this.retryListener.retryClick(this.label);
                 break;
         }

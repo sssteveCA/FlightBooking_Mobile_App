@@ -30,7 +30,6 @@ public class HotelInfoPreviewFragmentModel {
     private HotelInfoPreviewFragmentClient hipfc;
 
     public HotelInfoPreviewFragmentModel(HotelInfo hi, Auth auth){
-        Log.i("HotelInfoPreviewFragmentModel","constructor");
         this.assignValues(hi,auth);
     }
 
@@ -44,7 +43,6 @@ public class HotelInfoPreviewFragmentModel {
         this.hi = hi;
         this.hiptv = new HotelInfoPreviewTableValues();
         if(this.hi != null){
-            Log.i("HotelInfoPrevievFragmentModel","constructor hi done => "+this.hi.done);
             this.session_id = this.hi.response.session_id;
             this.hipfc = new HotelInfoPreviewFragmentClient();
             try {
@@ -63,7 +61,6 @@ public class HotelInfoPreviewFragmentModel {
      */
     public void bookHotelRequest(BookHotelRequest bh_req, BookHotelResponseInterface bh_resi){
         String token = this.auth != null ? "Bearer "+this.auth.token : "";
-        Log.d("HotelInfoPreviewFragmentModel","bookHotelRequest token => "+token);
         this.hipfc.getHipfi().bookhotel(token,bh_req).enqueue(new Callback<BookHotelResponse>() {
             @Override
             public void onResponse(Call<BookHotelResponse> call, Response<BookHotelResponse> response) {
@@ -116,7 +113,6 @@ public class HotelInfoPreviewFragmentModel {
      */
     private HashMap<String, Object> setHotelInfoHashMap() throws IllegalAccessException {
         HashMap<String, Object> data = new HashMap<>();
-        Log.d("HotelInfoPreviewFragmentModel","setHotelInfoHashMap done => "+this.hi.done);
         Hotel hotel = this.hi.response.hotel;
         if(hotel != null){
             Class<?> hotel_class = hotel.getClass();

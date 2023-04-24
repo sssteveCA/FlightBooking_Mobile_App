@@ -80,10 +80,7 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
         if (getArguments() != null) {
             this.fi = (FlightInfo) getArguments().getSerializable("flightinfo");
             this.auth = (Auth) getArguments().getSerializable(Globals.KEY_AUTH);
-            if(this.auth != null)
-                Log.i("TicketPreviewFragment","onCreate token key => "+this.auth.token);
-            //Log.d("TicketPreviewFragment","onCreate FlightInfo flight_type => "+fi.flightType);
-            //Log.d("TicketPreviewFragment","onCreate flights HashMap => "+this.tpfm.getFlights());
+            if(this.auth != null){}
         }
         this.tpfm = new TicketPreviewFragmentModel(this.fi,this.auth);
     }
@@ -120,8 +117,6 @@ public class TicketPreviewFragment extends Fragment implements View.OnClickListe
                 @Override
                 public void bookFlightResponse(BookFlightResponse bfr) {
                     this_ptfv.getPb().setVisibility(View.INVISIBLE);
-                    Log.i("TicketPreviewFragment","bookFlightRequest response done => "+bfr.done);
-                    Log.i("TicketPreviewFragment","bookFlightRequest response message => "+bfr.message);
                 }
                 @Override
                 public void bookFlightError() {

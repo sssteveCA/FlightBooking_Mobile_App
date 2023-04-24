@@ -100,7 +100,6 @@ public class HotelFragmentModel {
                 }//if(joCities.has(hotel)){
             }//if(this.hotelsInfo.has(country)){
         }//if(this.hotelsInfo != null){
-        //Log.d("HotelFragmentModel","getHotelInfo info => "+info);
         return info;
     }
 

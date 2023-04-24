@@ -61,7 +61,6 @@ public class TicketPreviewFragmentModel {
      */
     public void bookFlightRequest(BookFlightRequest bf_req, BookFlightResponseInterface bf_resi){
         String token = this.auth != null ? "Bearer "+this.auth.token : "";
-        Log.d("TicketPreviewFragmentModel","bookFlightRequest token => "+token);
         this.tpfc.getTpfi().bookflight(token,bf_req).enqueue(new Callback<BookFlightResponse>() {
             @Override
             public void onResponse(Call<BookFlightResponse> call, Response<BookFlightResponse> response) {
@@ -85,7 +84,6 @@ public class TicketPreviewFragmentModel {
         Field[] fi_fields = flights_class.getDeclaredFields();
         for(Field field: fi_fields){
            String name = field.getName();
-           //Log.d("TicketPreviewFragmentModel","setHashMap name => "+ name);
            Object flight = field.get(this.fi.flights);
            if(flight != null){
                Class<?> flight_class = flight.getClass();
@@ -111,9 +109,7 @@ public class TicketPreviewFragmentModel {
         HashMap<String, Object> map_flight = new HashMap<>();
         for(Field fl_field: fl_fields){
             String fl_name = fl_field.getName();
-            //Log.d("TicketPreviewFragmentModel","setHashMap flight name => "+ fl_name);
             String row_name = this.setRowTitle(fl_name);
-            //Log.d("TicketPreviewFragmentModel","setHashMap row name => "+ row_name);
             Object flight_val = fl_field.get(flight);
             map_flight.put(row_name, flight_val);
         }//for(Field fl_field: fl_fields){

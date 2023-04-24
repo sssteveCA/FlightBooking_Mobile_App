@@ -43,7 +43,6 @@ public class HotelInfoPreviewFragment extends Fragment implements View.OnClickLi
     private HotelInfoPreviewFragmentView hipfv;
 
     public HotelInfoPreviewFragment() {
-        Log.d("HotelInfoPreviewFragment","constructor");
     }
 
     /**
@@ -79,10 +78,8 @@ public class HotelInfoPreviewFragment extends Fragment implements View.OnClickLi
         if (getArguments() != null) {
             this.hi = (HotelInfo) getArguments().getSerializable("hotelInfo");
             this.auth = (Auth) getArguments().getSerializable(Globals.KEY_AUTH);
-            if(this.auth != null)
-                Log.i("HotelInfoPreviewFragment","onCreate token key => "+this.auth.token);
+            if(this.auth != null){}
         }
-        Log.d("HotelInfoPreviewFragment","onCreate");
         this.hipfm = new HotelInfoPreviewFragmentModel(this.hi, this.auth);
     }
 
@@ -118,8 +115,6 @@ public class HotelInfoPreviewFragment extends Fragment implements View.OnClickLi
                 @Override
                 public void bookHotelResponse(BookHotelResponse bhr) {
                     this_hipfv.getPb().setVisibility(View.INVISIBLE);
-                    Log.i("HotelInfoPreviewFragment","bookFlightRequest response done => "+bhr.done);
-                    Log.i("HotelInfoPreviewFragment","bookFlightRequest response message => "+bhr.message);
                 }
                 @Override
                 public void bookHotelError() {

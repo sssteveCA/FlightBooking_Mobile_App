@@ -51,7 +51,6 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
 
     @Override
     public void onBackPressed() {
-        //Log.d("Main Activity", "On Back Pressed");
         ConfirmDialog cd = new ConfirmDialog(this,"Esci dall'applicazione","Sei sicuro di voler chiudere l'applicazione?");
         cd.setDialog(new DialogInterface.OnClickListener() {
             @Override
@@ -72,7 +71,6 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
     @Override
     public void retryClick(String label) {
         //NoConnection fragment Retry button clicked
-        //Log.i("MainActivity","retryClick");
         this.mav.removeFragment(R.id.main_activity_fragment_container);
         if(label != null){
             if(label.equalsIgnoreCase(FragmentLabels.FLIGHTS.getLabelName()) || label.equalsIgnoreCase(FragmentLabels.TICKET_PREVIEW.getLabelName())){
@@ -90,22 +88,18 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
      */
     public void setFragments(String label, Bundle data){
         String fragment_pkg = this.mam.getFragmentPackage(label);
-        Log.d("MainActivity","setFragment fragment package "+fragment_pkg);
         try {
             //Create fragment instance by string package
             Class<?> fragment_clazz = Class.forName(fragment_pkg);
             Constructor<?> frag_constr = fragment_clazz.getConstructor();
             boolean require_connection = this.mam.isConnectionRequired(label);
             if(require_connection){
-                //Log.i("MainActivity","setFragments require connection");
                 //For this item internet is required
                 boolean connected = this.mam.getConnectionStatus();
                 if(connected){
-                    //Log.i("MainActivity","setFragments connection connected");
                     this.mav.updateFragment(R.id.main_activity_fragment_container, (Fragment)frag_constr.newInstance(),data);
                 }//if(connected){
                 else{
-                    //Log.i("MainActivity","setFragments connection not connected");
                     if(label.equalsIgnoreCase(FragmentLabels.FLIGHTS.getLabelName()))
                         label = FragmentLabels.HOME.getLabelName();
                         Bundle noconnBund = new Bundle();
@@ -115,7 +109,6 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
                 }
             }//if(require_connection){
             else{
-                //Log.i("MainActivity","setFragments not require connection");
                 this.mav.updateFragment(R.id.main_activity_fragment_container, (Fragment)frag_constr.newInstance(),data);
             }//else di if(require_connection){
         } catch (ClassNotFoundException | NoSuchMethodException e) {
@@ -162,8 +155,6 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
     @Override
     public void onLogin(String label, Bundle auth_data) {
         this.auth = (Auth) auth_data.getSerializable(Globals.KEY_AUTH);
-        /*Log.d("MainActivity", "auth status => "+auth.status);
-        Log.d("MainActivity", "auth user name => "+auth.user.name);*/
         this.auth_data = auth_data;
         this.mam.setUserLogged(true);
         this.setMenu();
@@ -175,7 +166,6 @@ public class MainActivity extends AppCompatActivity implements NoConnectionFragm
         MainActivity this_ma = this;
         this.auth = (Auth)auth_data.getSerializable(Globals.KEY_AUTH);
         this.auth_data = auth_data;
-        //Log.d("MainActivity", "onLogout token => "+this.auth.token);
         String token = this.auth != null ? this.auth.token : "";
         LogoutModel lm = new LogoutModel(token);
         lm.logoutRequest(new LogoutModel.LogoutResponse() {

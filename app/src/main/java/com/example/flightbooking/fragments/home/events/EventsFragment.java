@@ -108,15 +108,12 @@ public class EventsFragment extends Fragment implements EventsFragmentAdapter.On
         this.efm.getEventsRequest(new EventsFragmentModel.GetEventsResponse() {
             @Override
             public void eventsSuccess(GetFlightEventsResponse gfer) {
-                /*Log.i("EventsFragment","eventsRequest eventsSuccess done => "+gfer.done);
-                Log.i("EventsFragment","eventsRequest eventsSuccess empty => "+gfer.empty);*/
                 this_efv.getPb().setVisibility(View.GONE);
                 EventsFragmentAdapter efa = new EventsFragmentAdapter(this_oibc,this_ef.context,R.layout.row_event_item,gfer.list);
                 this_efv.getGv().setAdapter(efa);
             }
             @Override
             public void eventsError(String message) {
-//                Log.e("EventsFragment", "eventsRequest eventsError => "+message);
                 this_efv.getPb().setVisibility(View.GONE);
                 this_efv.getTvMessage().setText(message);
             }
@@ -126,7 +123,6 @@ public class EventsFragment extends Fragment implements EventsFragmentAdapter.On
     //EventsFragmentAdapter.OnItemButtonClick
     @Override
     public void itemButtonClick(Bundle bundle) {
-        //Log.i("EventsFragment","itemButtonClick");
         this.fc.fragmentChange(FragmentLabels.EVENTS.getLabelName(), FragmentLabels.SINGLE_EVENT.getLabelName(), true,bundle);
     }
 }

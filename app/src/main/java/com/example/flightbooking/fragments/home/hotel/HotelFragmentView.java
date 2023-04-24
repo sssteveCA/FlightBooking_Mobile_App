@@ -185,7 +185,6 @@ public class HotelFragmentView {
             tr.addView(td);
             this.tl_info.addView(tr);
         }
-        //Log.d("HotelFragmentView","createHotelInfoTable end");
     }
 
 }

@@ -109,7 +109,6 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
             }//if(savedInstanceState != null){
             HotelFragmentMethods.setListeners(this.hfv,this);
         } catch (MissingValuesException e) {
-            Log.e("HotelFragment","MissingValuesException");
             e.printStackTrace();
         }
         return v;
@@ -128,9 +127,7 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
      * @param hotel
      */
     private void hotelImagesRequests(String country, String city, String hotel){
-        //Log.d("HotelFragment","HotelImagesRequests");
         HashMap<String, Object> hotelInfo = this.hfm.getHotelInfo(country,city,hotel);
-        //Log.d("HotelFragment","HotelImagesRequests hotelInfo => "+hotelInfo);
         if(!hotelInfo.isEmpty()){
             int nImages = (int)hotelInfo.get("images");
             this.him = new HotelImagesModel(this.context,country,city,hotel,nImages);
@@ -141,7 +138,6 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
                 @Override
                 public void onFinish(ArrayList<Bitmap> images) {
                     this_hfv.getPbShowImages().setVisibility(View.GONE);
-                    //Log.d("HotelFragment","hotelImagesRequests onFinish");
                     if(images.size() > 0){
                         ImagesDialog imagesDialog = new ImagesDialog(this_hf.context,this_hf.ma.getSupportFragmentManager(),"Immagini hotel",images);
                         imagesDialog.displayFullScreen();
@@ -170,8 +166,6 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
             public void hotelPreviewResponse(HotelInfo hi) {
                 try{
                     if(hi.done == true){
-                        Log.i("HotelFragment","hotelInfoRequest data hotel => "+hi.response.hotel);
-                        Log.i("HotelFragment","hotelInfoRequest data price => "+hi.response.hotel.price);
                         Bundle bundle = new Bundle();
                         bundle.putSerializable("hotelInfo",hi);
                         this_hfv.getPbSearch().setVisibility(View.GONE);
@@ -182,7 +176,6 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
                         this_hfv.getPbSearch().setVisibility(View.GONE);
                     }
                 }catch(Exception e){
-                    Log.e("HotelFragment", "hotelInfoRequest exception => "+e.getMessage());
                     MessageDialog md = new MessageDialog(this_hf.context,"Informazioni stanza albergo", Globals.ERR_REQUEST);
                     this_hfv.getPbSearch().setVisibility(View.GONE);
                 }
@@ -209,7 +202,6 @@ public class HotelFragment extends Fragment implements AdapterView.OnItemSelecte
                 ArrayAdapter<String> countriesAdapter = Generic.arrayAdapterFromList(hf_temp.context,countries);
                 hfv_temp.getSpCountries().setAdapter(countriesAdapter);
                 String initialCity = countries.getFirst();
-                //Log.d("HotelFragment","loadHotelsData initialCity => "+initialCity);
                 HotelFragmentMethods.setCitiesList(hf_temp.context,initialCity,hfm_temp,hfv_temp);
             }
             @Override

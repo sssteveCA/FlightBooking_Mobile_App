@@ -58,7 +58,6 @@ public class DatePicker extends DialogFragment implements DatePickerDialog.OnDat
         String month = (i1 < 10) ? "0" + i1 : String.valueOf(i1);
         String day = (i2 < 10) ? "0" + i2 : String.valueOf(i2);
         String date = i+"-"+month+"-"+day;
-        //Log.d("DatePicker","onDateSet date => "+date);
         this.dd.getDate(date,etd);
     }
 
@@ -90,7 +89,6 @@ public class DatePicker extends DialogFragment implements DatePickerDialog.OnDat
      */
     private void setEditTextDate(){
         String[] date_args = this.inputDate.split("-");
-        //Log.d("DatePicker","DatePicker setDate date_args => "+ Arrays.toString(date_args));
         this.year = Integer.valueOf(date_args[0]);
         if(date_args[1].startsWith("0"))
             date_args[1] = date_args[1].substring(1);

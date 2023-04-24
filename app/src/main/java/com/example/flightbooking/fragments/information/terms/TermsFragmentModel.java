@@ -42,8 +42,6 @@ public class TermsFragmentModel {
             }
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-                Log.e("TermsFragmentModel","getTermsRequest onFailure");
-                Log.e("TermsFragmentModel",t.getMessage());
                 gtr.getTermsError(Globals.ERR_TERMS);
             }
         });

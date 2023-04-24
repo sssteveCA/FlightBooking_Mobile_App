@@ -40,8 +40,6 @@ public class CookiePolicyFragmentModel {
             }
             @Override
             public void onFailure(Call<JsonObject> call, Throwable t) {
-                Log.e("CookiePolicyFragmentModel","getCookiePolicyRequest onFailure");
-                Log.e("CookiePolicyFragmentModel",t.getMessage());
                gcpr.getCookiePolicyError(Globals.ERR_COOKIE_POLICY);
             }
         });

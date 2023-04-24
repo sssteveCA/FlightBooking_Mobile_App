@@ -74,9 +74,6 @@ public class ContactsFragmentModel {
                 }
                 @Override
                 public void onFailure(Call<Message> call, Throwable t) {
-                   /* Log.d("ContactsFragmentModel", "contactsRequest onFailure message => "+t.getMessage());
-                    Log.d("ContactsFragmentModel", "contactsRequest onFailure request => "+call.request());
-                    Log.d("ContactsFragmentModel", "contactsRequest onFailure throwable => "+t.toString());*/
                     String message = Globals.ERR_CONTACTS;
                     cr.emailError(message);
                 }

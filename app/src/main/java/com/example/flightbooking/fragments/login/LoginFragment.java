@@ -122,8 +122,6 @@ public class LoginFragment extends Fragment implements View.OnClickListener, Com
                     @Override
                     public void loginResponse(Auth auth) {
                         this_lf.lfv.getPb().setVisibility(View.GONE);
-                        //Log.i("LoginFragment", "onClick loginResponse status => "+auth.status);
-                        //Log.i("LoginFragment", "onClick loginResponse token => "+auth.token);
                         if(auth.status.equals("OK")){
                             Bundle bund = new Bundle();
                             bund.putSerializable(Globals.KEY_AUTH,auth);

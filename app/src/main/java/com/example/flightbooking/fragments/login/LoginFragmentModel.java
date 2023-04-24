@@ -49,7 +49,6 @@ public class LoginFragmentModel {
                     else{
                         try {
                             String jsonString = response.errorBody().string();
-                            //Log.d("LoginFragmentModel","loginRequest errorBody => "+jsonString);
                             JsonElement je = JsonParser.parseString(jsonString);
                             JsonObject jo = je.getAsJsonObject();
                             String message = jo.get(Globals.KEY_MESSAGE).getAsString();

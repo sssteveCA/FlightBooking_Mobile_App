@@ -38,8 +38,8 @@ public class LoginFragmentView {
         this.bt_reset = (Button) views.get("bt_reset");
         this.bt_back = (Button) views.get("bt_back");
         this.pb = (ProgressBar) views.get("pb");
-        this.et_email.setText("user@mail.com");
-        this.et_password.setText("12345678");
+        /*this.et_email.setText("user@mail.com");
+        this.et_password.setText("12345678");*/
     }
 
     /**

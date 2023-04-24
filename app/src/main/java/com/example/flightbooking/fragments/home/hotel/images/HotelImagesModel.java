@@ -36,7 +36,6 @@ public class HotelImagesModel {
     private ArrayList<Bitmap> fetchedImages = new ArrayList<>();
 
     public HotelImagesModel(Context context,String country, String city, String hotel, int images){
-        //Log.d("HotelImagesModel","constructor");
         this.context = context;
         this.country = country;
         this.city = city;
@@ -66,18 +65,15 @@ public class HotelImagesModel {
      * Execute all the requests to get the images
      */
     public void executeRequests(RequestsFinish rf){
-        //Log.d("HotelImagesModel","executeRequests");
         this.fetched = 0;
         String prefix = this.urlImagesPrefix();
         prefix = Globals.BASE_URL+Globals.HOTEL_IMG_FOLDER+prefix;
-        //Log.d("HotelImagesModel","executeRequests prefix => "+prefix);
         HotelImagesModel this_him = this;
         for(int i = 1; i <= this.images; i++){
             String url = prefix+i+".jpg";
             this.hic.addRequest(url,new HotelImagesClient.HotelImagesListener() {
                 @Override
                 public void imageResponse(Bitmap image) {
-                    //Log.d("HotelImagesModel","addRequest listener "+url+" complete");
                     this_him.fetchedImages.add(image);
                     this_him.fetched++;
                     if(this_him.fetched >= this_him.images)
@@ -85,8 +81,6 @@ public class HotelImagesModel {
                 }
                 @Override
                 public void imageError(String message) {
-                    Log.e("HotelImagesModel","addRequest listener "+url+" error");
-                    Log.e("HotelImagesModel","executeRequests errore => "+message);
                     this_him.fetched++;
                     if(this_him.fetched >= this_him.images)
                         rf.onFinish(this_him.fetchedImages);

@@ -92,8 +92,6 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
             this.auth = (Auth) getArguments().getSerializable(Globals.KEY_AUTH);
-            //Log.d("MainMenuLoggedFragment", "auth status => "+auth.status);
-            //Log.d("MainMenuLoggedFragment", "auth user name => "+auth.user.name);
         }
     }
 
@@ -143,7 +141,6 @@ public class MainMenuLoggedFragment extends Fragment implements View.OnClickList
         MainMenuLoggedFragment this_mmlf = this;
         MenuItem mi = (MenuItem) expandableListView.getExpandableListAdapter().getChild(i,i1);
         String label = mi.getLabel();
-        //Log.d("MainMenuLoggedFragment", "on child click label => "+label);
         if(label.equals(MainMenuLoggedProfileModel.items[2])){{
             //Logout menu item click
             ConfirmDialog cd = new ConfirmDialog(this_mmlf.ctx,"Esci dalla sessione","Sei sicuro di voler chiudere la sessione?");

@@ -50,7 +50,6 @@ public class NewsFragmentModel {
         this.nfc.getNfi().getPosts().enqueue(new Callback<GetPosts>() {
             @Override
             public void onResponse(Call<GetPosts> call, Response<GetPosts> response) {
-                Log.i("NewsFragmentModel","postsRequest response status code => "+response.code());
                 if(response.isSuccessful()){
                     GetPosts gp = response.body();
                     gpr.getPostsSuccess(gp);
@@ -59,7 +58,6 @@ public class NewsFragmentModel {
                     String message = "";
                     try {
                         String jsonString = response.errorBody().string();
-                        Log.e("NewsFragmentModel", "postsRequest error body => "+jsonString);
                         JsonElement je = JsonParser.parseString(jsonString);
                         JsonObject jo = je.getAsJsonObject();
                         message = jo.get(Globals.KEY_MESSAGE).getAsString();
@@ -75,8 +73,6 @@ public class NewsFragmentModel {
 
             @Override
             public void onFailure(Call<GetPosts> call, Throwable t) {
-                Log.e("NewsFragmentModel","postsRequests onFailure");
-                Log.e("NewsFragmentModel",t.getMessage());
                 gpr.getPostsError(Globals.ERR_NEWS);
             }
         });

@@ -127,20 +127,17 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
      * Get the available flight companies list
      */
     private void companiesRequest(){
-        //Log.i("FlightsFragment","companiesRequest begin");
         FlightsFragmentModel ffm_temp = this.ffm;
         FlightsFragmentView ffv_temp = this.ffv;
         FlightsFragment ff_temp = this;
         ffm_temp.getCompanies(new FlightsFragmentModel.GetCompanies() {
             @Override
             public void companiesResponse(List<String> companies) {
-                //Log.d("FlightsFragment","companiesRequest getCompanies response => "+companies);
                 ArrayAdapter<String> companiesAdapter = Generic.arrayAdapterFromList(ff_temp.context,companies);
                 ffv_temp.getSpCompanies().setAdapter(companiesAdapter);
             }
             @Override
             public void companiesError(String message) {
-                Log.e("FlightsFragment","dataRequest getCompanies error => "+message);
             }
         });
     }
@@ -158,7 +155,6 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
             @Override
             public void getTicketPreviewResponse(FlightInfo fp) {
                 this_ffv.getPbSearch().setVisibility(View.GONE);
-                //Log.i("FlightsFragment","getTicketPreviewResponse");
                 if(fp != null){
                     if(fp.flightType != null && fp.flightType.equals("oneway")){
                     }
@@ -191,9 +187,7 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
         ffm_temp.getAirportsRequest(new FlightsFragmentModel.GetAirportsInfo() {
             @Override
             public void airportsResponse(JsonObject airports) {
-                //Log.i("FlightsFragment","loadAirportsData airports request => "+airports);
                 LinkedList<String> countries = ffm_temp.getAirportsCountries();
-                //Log.i("FlightsFragment","loadAirportsData airports request linkedlist => "+countries);
                 ArrayAdapter<String> countriesAdapter = Generic.arrayAdapterFromList(ff_temp.context, countries);
                 ffv_temp.getSpDepCountry().setAdapter(countriesAdapter);
                 ffv_temp.getSpArrCountry().setAdapter(countriesAdapter);
@@ -270,7 +264,6 @@ public class FlightsFragment extends Fragment implements View.OnClickListener, R
     //DatePicker.DialogDate
     @Override
     public void getDate(String date, FlightsFragmentModel.EditTextsDate editTextsDate) {
-        //Log.d("FlightsFragment","getDate => "+date);
         if(editTextsDate == FlightsFragmentModel.EditTextsDate.OUTDATE)
             this.ffv.getEtOutDate().setText(date);
         else

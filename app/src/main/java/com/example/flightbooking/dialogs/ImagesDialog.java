@@ -39,7 +39,6 @@ public class ImagesDialog extends DialogFragment implements DialogInterface.OnCl
     private ArrayList<Bitmap> bitmaps;
 
     public ImagesDialog(Context ctx,FragmentManager fm, String title, ArrayList<Bitmap> bitmaps){
-        //Log.d("ImagesDialog","constructor");
         this.context = ctx;
         this.fm = fm;
         this.title = title;
@@ -52,7 +51,6 @@ public class ImagesDialog extends DialogFragment implements DialogInterface.OnCl
     @NonNull
     @Override
     public Dialog onCreateDialog(@Nullable Bundle savedInstanceState) {
-        //Log.d("ImagesDialog","onCreateDialog");
         LayoutInflater li = requireActivity().getLayoutInflater();
         AlertDialog.Builder builder = new AlertDialog.Builder(getActivity());
         builder.setTitle(this.title);
@@ -86,7 +84,6 @@ public class ImagesDialog extends DialogFragment implements DialogInterface.OnCl
     }
 
     private void setReciclerView(View v){
-        //Log.d("ImagesDialog","setRecyclerView");
         this.rv_images = v.findViewById(R.id.dlg_img_rv);
         LinearLayoutManager llm = new LinearLayoutManager(this.context);
         this.rv_images.setLayoutManager(llm);

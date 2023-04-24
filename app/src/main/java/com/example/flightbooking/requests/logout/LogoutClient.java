@@ -27,7 +27,6 @@ public class LogoutClient {
 
     public LogoutClient(String token){
         this.token = token;
-        //Log.i("LogoutClient","constructor token => "+this.token);
         Gson gson = new GsonBuilder().setLenient().create();
         this.retrofit = new Retrofit.Builder()
                 .baseUrl(Globals.BASE_URL).addConverterFactory(GsonConverterFactory.create(gson))

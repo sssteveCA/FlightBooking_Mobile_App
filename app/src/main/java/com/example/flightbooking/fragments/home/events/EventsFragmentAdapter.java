@@ -71,7 +71,6 @@ public class EventsFragmentAdapter extends ArrayAdapter<FlightEvent> {
             vh = (ViewHolder) convertView.getTag();
         }
         FlightEvent fe = getItem(pos);
-        //Log.i("EventsFragmentAdapter","getViewOptimize fe name => "+fe.name);
         this.fetchImage(fe.image,vh.image);
         vh.name.setText(fe.name);
         vh.date.setText(fe.date);
@@ -97,7 +96,6 @@ public class EventsFragmentAdapter extends ArrayAdapter<FlightEvent> {
      */
     private void fetchImage(String filename,ImageView imageView){
         String url = Globals.BASE_URL+Globals.FLIGHT_EVENTS_IMG_FOLDER+"/"+filename;
-        //Log.i("EventsFragmentAdapter","fetchImage url => "+url);
         ImageRequest imageRequest = new ImageRequest(url, new Response.Listener<Bitmap>() {
             @Override
             public void onResponse(Bitmap response) {
@@ -106,7 +104,6 @@ public class EventsFragmentAdapter extends ArrayAdapter<FlightEvent> {
         }, 0, 0, ImageView.ScaleType.CENTER, null, new Response.ErrorListener() {
             @Override
             public void onErrorResponse(VolleyError error) {
-                Log.e("EventsFragmentAdapter","fetchImage error => "+error.getMessage());
             }
         });
         this.queue.add(imageRequest);
@@ -122,7 +119,6 @@ public class EventsFragmentAdapter extends ArrayAdapter<FlightEvent> {
         button.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View view) {
-                //Log.i("EventsFragmentAdapter", "onButtonClick");
                 Bundle bundle = new Bundle();
                 bundle.putSerializable("flightEvent",fe);
                 bundle.putParcelable("image",((BitmapDrawable)iv.getDrawable()).getBitmap());
