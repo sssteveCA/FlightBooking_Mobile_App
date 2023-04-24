@@ -30,7 +30,7 @@ public class LoginFragmentView {
     public Button getBtBack(){return this.bt_back;}
     public ProgressBar getPb(){return this.pb;}
 
-    public void assignViews(Map<String, View> views){
+    private void assignViews(Map<String, View> views){
         this.et_email = (EditText) views.get("et_email");
         this.et_password = (EditText) views.get("et_password");
         this.cb_show_pass = (CheckBox) views.get("cb_show_pass");
