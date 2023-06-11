@@ -16,7 +16,7 @@ public class CarRentalFragmentView {
     private Button bt_go;
 
     private static String[] itemsName = {
-            "rent_company","car","pickup_country","pickup_location","delivery_country","delivery_location","rentstart","rentend","age_band"
+            "rent_company","car","pickup_country","pickup_location","delivery_country","delivery_location","rentstart","rentend","age_band","go"
     };
 
     public CarRentalFragmentView(Map<String, View> items) throws MissingValuesException {
@@ -49,5 +49,6 @@ public class CarRentalFragmentView {
         this.et_rentstart = (EditText) items.get("rentstart");
         this.et_rentend = (EditText) items.get("rentend");
         this.sp_age_band = (Spinner) items.get("age_band");
+        this.bt_go = (Button)items.get("go");
     }
 }
