@@ -9,8 +9,11 @@ import android.view.View;
 import android.view.ViewGroup;
 
 import com.example.flightbooking.R;
+import com.example.flightbooking.exception.MissingValuesException;
 import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.response.login.Auth;
+
+import java.util.Map;
 
 /**
  * A simple {@link Fragment} subclass.
@@ -18,6 +21,8 @@ import com.example.flightbooking.models.response.login.Auth;
  * create an instance of this fragment.
  */
 public class CarRentalFragment extends Fragment {
+
+    private CarRentalFragmentView crfv;
 
     public CarRentalFragment() {
         // Required empty public constructor
@@ -48,6 +53,13 @@ public class CarRentalFragment extends Fragment {
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
-        return inflater.inflate(R.layout.fragment_car_rental, container, false);
+        View v = inflater.inflate(R.layout.fragment_car_rental, container, false);
+        Map<String,View> items = CarRentalFragmentMethods.carRentalItems(v);
+        try {
+            this.crfv = new CarRentalFragmentView(items);
+        } catch (MissingValuesException e) {
+            e.printStackTrace();
+        }
+        return v;
     }
 }
