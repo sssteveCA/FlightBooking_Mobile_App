@@ -94,6 +94,7 @@ public class CarRentalFragment extends Fragment implements View.OnClickListener{
                 LinkedList<int []> ageRanges = this_crf.crfm.getAgeRanges();
                 LinkedList<String> countries = this_crf.crfm.getCountries();
                 LinkedList<String> locations = this_crf.crfm.getCountryLocations("Italia");
+                LinkedList<String> companies = this_crf.crfm.getCompanies();
                 Log.i("CarRentalFragment","OK");
             }
 

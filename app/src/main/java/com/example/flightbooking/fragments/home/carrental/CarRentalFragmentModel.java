@@ -88,6 +88,25 @@ public class CarRentalFragmentModel {
     }
 
     /**
+     * Get the car rental companies list
+     * @return
+     */
+    public LinkedList<String> getCompanies(){
+        if(this.carRentalInfo != null){
+            if(this.carRentalInfo.has("companies_data")){
+                LinkedList<String> list = new LinkedList<>();
+                JsonObject joCd = this.carRentalInfo.getAsJsonObject("companies_data");
+                Set<Map.Entry<String, JsonElement>> entries = joCd.entrySet();
+                for(Map.Entry<String,JsonElement> entry: entries){
+                    list.add(entry.getKey());
+                }
+                return list;
+            }//if(this.carRentalInfo.has("companies_data")){
+        }
+        return null;
+    }
+
+    /**
      * Get the countries which the car rental service is available
      * @return
      */
