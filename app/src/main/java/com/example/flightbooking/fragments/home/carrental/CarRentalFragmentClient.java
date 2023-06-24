@@ -23,6 +23,7 @@ public class CarRentalFragmentClient {
                 .baseUrl(Globals.BASE_URL)
                 .addConverterFactory(GsonConverterFactory.create())
                 .build();
+        this.crfi = this.retrofit.create(CarRentalFragmentInterface.class);
     }
 
     public CarRentalFragmentInterface getCrfi(){ return this.crfi; }

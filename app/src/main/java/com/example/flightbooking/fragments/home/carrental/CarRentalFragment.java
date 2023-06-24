@@ -1,9 +1,12 @@
 package com.example.flightbooking.fragments.home.carrental;
 
+import android.content.Context;
 import android.os.Bundle;
 
+import androidx.annotation.NonNull;
 import androidx.fragment.app.Fragment;
 
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -12,6 +15,7 @@ import com.example.flightbooking.R;
 import com.example.flightbooking.exception.MissingValuesException;
 import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.response.login.Auth;
+import com.google.gson.JsonObject;
 
 import java.util.Map;
 
@@ -22,7 +26,9 @@ import java.util.Map;
  */
 public class CarRentalFragment extends Fragment implements View.OnClickListener{
 
+    private CarRentalFragmentModel crfm;
     private CarRentalFragmentView crfv;
+    private Context context;
 
     public CarRentalFragment() {
         // Required empty public constructor
@@ -43,6 +49,12 @@ public class CarRentalFragment extends Fragment implements View.OnClickListener{
     }
 
     @Override
+    public void onAttach(@NonNull Context context) {
+        super.onAttach(context);
+        this.context = context;
+    }
+
+    @Override
     public void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         if (getArguments() != null) {
@@ -53,6 +65,7 @@ public class CarRentalFragment extends Fragment implements View.OnClickListener{
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
         // Inflate the layout for this fragment
+        this.crfm = new CarRentalFragmentModel(this.context);
         View v = inflater.inflate(R.layout.fragment_car_rental, container, false);
         Map<String,View> items = CarRentalFragmentMethods.carRentalItems(v);
         try {
@@ -63,10 +76,28 @@ public class CarRentalFragment extends Fragment implements View.OnClickListener{
         return v;
     }
 
+    @Override
+    public void onResume() {
+        super.onResume();
+        this.loadCarRentalData();
+    }
+
     /**
      * Do the HTTP request to get the rentable cars info
      */
     private void loadCarRentalData(){
+        CarRentalFragment this_crf = this;
+        this_crf.crfm.getCarRentalInfoRequest(new CarRentalFragmentModel.GetCarRentalInfo() {
+            @Override
+            public void carRentalInfoResponse(JsonObject carRental) {
+                Log.i("CarRentalFragment","OK");
+            }
+
+            @Override
+            public void carRentalInfoError(String message) {
+                Log.i("CarRentalFragment","Error");
+            }
+        });
 
     }
 
