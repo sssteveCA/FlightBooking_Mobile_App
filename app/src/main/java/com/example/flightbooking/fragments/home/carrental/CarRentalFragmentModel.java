@@ -105,4 +105,27 @@ public class CarRentalFragmentModel {
         }
         return null;
     }
+
+    /**
+     * Get the available car rental location of a specific country
+     * @param country
+     * @return
+     */
+    public LinkedList<String> getCountryLocations(String country){
+        if(this.carRentalInfo != null){
+            if(this.carRentalInfo.has("available_locations")){
+                JsonObject joAl = this.carRentalInfo.getAsJsonObject("available_locations");
+                if(joAl.has(country)){
+                    LinkedList<String> list = new LinkedList<>();
+                    JsonObject joLocations = joAl.getAsJsonObject(country);
+                    Set<Map.Entry<String, JsonElement>> entries = joLocations.entrySet();
+                    for(Map.Entry<String, JsonElement> entry: entries){
+                        list.add(entry.getKey());
+                    }
+                    return list;
+                }
+            }//if(this.carRentalInfo.has("available_locations")){
+        }//if(this.carRentalInfo != null){
+        return null;
+    }
 }
