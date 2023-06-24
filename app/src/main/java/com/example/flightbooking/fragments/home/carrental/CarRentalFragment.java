@@ -96,6 +96,7 @@ public class CarRentalFragment extends Fragment implements View.OnClickListener{
                 LinkedList<String> locations = this_crf.crfm.getCountryLocations("Italia");
                 LinkedList<String> companies = this_crf.crfm.getCompanies();
                 LinkedList<String> cars = this_crf.crfm.getCompanyCars("Alamo");
+                JsonObject car = this_crf.crfm.getCarDetails("Alamo","Alfa Romeo Stelvio");
                 Log.i("CarRentalFragment","OK");
             }
 

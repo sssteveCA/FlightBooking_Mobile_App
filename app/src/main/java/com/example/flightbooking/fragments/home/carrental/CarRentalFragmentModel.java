@@ -65,6 +65,31 @@ public class CarRentalFragmentModel {
     }
 
     /**
+     * Retrieve the details about a particular car of a company
+     * @param company
+     * @param car
+     * @return
+     */
+    public JsonObject getCarDetails(String company,String car){
+        if(this.carRentalInfo != null){
+            if(this.carRentalInfo.has("companies_data")){
+                JsonObject joCd = this.carRentalInfo.getAsJsonObject("companies_data");
+                if(joCd.has(company)) {
+                    JsonObject joCompany = joCd.getAsJsonObject(company);
+                    if (joCompany.has("cars")) {
+                        JsonObject cars = joCompany.getAsJsonObject("cars");
+                        if (cars.has(car)) {
+                            JsonObject carInfo = cars.getAsJsonObject(car);
+                            return carInfo;
+                        }
+                    }//if(joCompany.has("cars")){
+                }
+            }//if(this.carRentalInfo.has("companies_data")){
+        }//if(this.carRentalInfo != null){
+        return null;
+    }
+
+    /**
      * Perform the HTTP request to get all available cars for rent
      * @param gcri
      */
