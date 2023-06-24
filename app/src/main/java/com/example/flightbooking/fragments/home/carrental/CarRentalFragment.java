@@ -17,6 +17,7 @@ import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.response.login.Auth;
 import com.google.gson.JsonObject;
 
+import java.util.LinkedList;
 import java.util.Map;
 
 /**
@@ -90,6 +91,7 @@ public class CarRentalFragment extends Fragment implements View.OnClickListener{
         this_crf.crfm.getCarRentalInfoRequest(new CarRentalFragmentModel.GetCarRentalInfo() {
             @Override
             public void carRentalInfoResponse(JsonObject carRental) {
+                LinkedList<int []> ageRanges = this_crf.crfm.getAgeRanges();
                 Log.i("CarRentalFragment","OK");
             }
 

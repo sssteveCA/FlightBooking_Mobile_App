@@ -3,7 +3,13 @@ package com.example.flightbooking.fragments.home.carrental;
 import android.content.Context;
 
 import com.example.flightbooking.common.Connection;
+import com.google.gson.JsonArray;
+import com.google.gson.JsonElement;
 import com.google.gson.JsonObject;
+
+import java.util.Iterator;
+import java.util.LinkedList;
+import java.util.Map;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -33,6 +39,29 @@ public class CarRentalFragmentModel {
         return Connection.checkInternet(this.context);
     }
     public JsonObject getCarRentalInfo(){ return this.carRentalInfo; }
+
+    /**
+     * Get the selectable age ranges for car rental
+     * @return
+     */
+    public LinkedList<int[]> getAgeRanges(){
+        if(this.carRentalInfo != null){
+            if(this.carRentalInfo.has("age_ranges")){
+                JsonArray ja = this.carRentalInfo.getAsJsonArray("age_ranges");
+                LinkedList<int[]> list = new LinkedList<>();
+                Iterator<JsonElement> jaIt = ja.iterator();
+                while(jaIt.hasNext()){
+                    JsonArray subJa = jaIt.next().getAsJsonArray();
+                    int[] listEl = {
+                            subJa.get(0).getAsInt(), subJa.get(1).getAsInt()
+                    };
+                    list.add(listEl);
+                }
+                return list;
+            }
+        }
+        return null;
+    }
 
     /**
      * Perform the HTTP request to get all available cars for rent
