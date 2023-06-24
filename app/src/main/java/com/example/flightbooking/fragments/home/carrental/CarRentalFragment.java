@@ -20,7 +20,7 @@ import java.util.Map;
  * Use the {@link CarRentalFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CarRentalFragment extends Fragment {
+public class CarRentalFragment extends Fragment implements View.OnClickListener{
 
     private CarRentalFragmentView crfv;
 
@@ -61,5 +61,14 @@ public class CarRentalFragment extends Fragment {
             e.printStackTrace();
         }
         return v;
+    }
+
+    //View.OnClickListener
+    @Override
+    public void onClick(View view) {
+        switch(view.getId()){
+            case R.id.frag_cr_bt_go:
+                break;
+        }
     }
 }
