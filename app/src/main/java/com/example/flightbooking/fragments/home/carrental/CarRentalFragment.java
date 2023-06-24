@@ -63,6 +63,13 @@ public class CarRentalFragment extends Fragment implements View.OnClickListener{
         return v;
     }
 
+    /**
+     * Do the HTTP request to get the rentable cars info
+     */
+    private void loadCarRentalData(){
+
+    }
+
     //View.OnClickListener
     @Override
     public void onClick(View view) {
