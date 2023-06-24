@@ -92,6 +92,7 @@ public class CarRentalFragment extends Fragment implements View.OnClickListener{
             @Override
             public void carRentalInfoResponse(JsonObject carRental) {
                 LinkedList<int []> ageRanges = this_crf.crfm.getAgeRanges();
+                LinkedList<String> countries = this_crf.crfm.getCountries();
                 Log.i("CarRentalFragment","OK");
             }
 

@@ -10,6 +10,7 @@ import com.google.gson.JsonObject;
 import java.util.Iterator;
 import java.util.LinkedList;
 import java.util.Map;
+import java.util.Set;
 
 import retrofit2.Call;
 import retrofit2.Callback;
@@ -84,5 +85,24 @@ public class CarRentalFragmentModel {
                 gcri.carRentalInfoError("Impossibile leggere i dati");
             }
         });
+    }
+
+    /**
+     * Get the countries which the car rental service is available
+     * @return
+     */
+    public LinkedList<String> getCountries(){
+        if(this.carRentalInfo != null){
+            if(this.carRentalInfo.has("available_locations")){
+                LinkedList<String> list = new LinkedList<>();
+                JsonObject joAl = this.carRentalInfo.getAsJsonObject("available_locations");
+                Set<Map.Entry<String, JsonElement>> entries = joAl.entrySet();
+                for(Map.Entry<String, JsonElement> entry: entries){
+                    list.add(entry.getKey());
+                }
+                return list;
+            }
+        }
+        return null;
     }
 }
