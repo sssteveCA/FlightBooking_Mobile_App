@@ -29,5 +29,5 @@
 <div>The features with '*' have not available yet</div>
 <br>
 <div>
-  <a href="https://user-images.githubusercontent.com/95185311/234084026-3fc245a1-4f85-471f-8ad9-dcd5881bc3ec.webm">Quick demo video</a> (24-04-2023)
+  <a href="https://user-images.githubusercontent.com/95185311/234084026-3fc245a1-4f85-471f-8ad9-dcd5881bc3ec.webm">Demo video</a> (24-04-2023)
 </div>
