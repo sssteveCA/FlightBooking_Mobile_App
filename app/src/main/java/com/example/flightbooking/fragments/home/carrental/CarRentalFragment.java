@@ -10,6 +10,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 
 import com.example.flightbooking.R;
@@ -27,7 +28,7 @@ import java.util.Map;
  * Use the {@link CarRentalFragment#newInstance} factory method to
  * create an instance of this fragment.
  */
-public class CarRentalFragment extends Fragment implements View.OnClickListener{
+public class CarRentalFragment extends Fragment implements View.OnClickListener, AdapterView.OnItemSelectedListener {
 
     private CarRentalFragmentModel crfm;
     private CarRentalFragmentView crfv;
@@ -111,5 +112,32 @@ public class CarRentalFragment extends Fragment implements View.OnClickListener{
             case R.id.frag_cr_bt_go:
                 break;
         }
+    }
+
+    //AdapterView.OnItemSelectedListener
+    @Override
+    public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        switch (view.getId()){
+            case R.id.frag_cr_sp_rent_company:
+                break;
+            case R.id.frag_cr_sp_car:
+                break;
+            case R.id.frag_cr_sp_pickup_country:
+                break;
+            case R.id.frag_cr_sp_pickup_location:
+                break;
+            case R.id.frag_cr_sp_delivery_country:
+                break;
+            case R.id.frag_cr_sp_delivery_location:
+                break;
+            case R.id.frag_cr_sp_age_band:
+                break;
+        }
+    }
+
+    //AdapterView.OnItemSelectedListener
+    @Override
+    public void onNothingSelected(AdapterView<?> adapterView) {
+
     }
 }
