@@ -39,6 +39,20 @@ public class CarRentalFragmentMethods {
     }
 
     /**
+     * Set the list location spinner on country spinner item change
+     * @param context
+     * @param crfm
+     * @param src
+     * @param dest
+     */
+    public static void setLocationsList(Context context, CarRentalFragmentModel crfm, Spinner src, Spinner dest){
+        String country = (String) src.getSelectedItem();
+        LinkedList<String> locations = crfm.getCountryLocations(country);
+        ArrayAdapter<String> destA = Generic.arrayAdapterFromList(context,locations);
+        dest.setAdapter(destA);
+    }
+
+    /**
      * Add the items to the spinners
      * @param context
      * @param crfm

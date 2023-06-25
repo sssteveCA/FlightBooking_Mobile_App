@@ -118,16 +118,20 @@ public class CarRentalFragment extends Fragment implements View.OnClickListener,
     //AdapterView.OnItemSelectedListener
     @Override
     public void onItemSelected(AdapterView<?> adapterView, View view, int i, long l) {
+        String company = "", car = "", country = "";
         switch (view.getId()){
             case R.id.frag_cr_sp_rent_company:
+
                 break;
             case R.id.frag_cr_sp_car:
                 break;
             case R.id.frag_cr_sp_pickup_country:
+                CarRentalFragmentMethods.setLocationsList(this.context,this.crfm,this.crfv.getSpPickupCountry(),this.crfv.getSpPickupLocation());
                 break;
             case R.id.frag_cr_sp_pickup_location:
                 break;
             case R.id.frag_cr_sp_delivery_country:
+                CarRentalFragmentMethods.setLocationsList(this.context,this.crfm,this.crfv.getSpDeliveryCountry(),this.crfv.getSpDeliveryLocation());
                 break;
             case R.id.frag_cr_sp_delivery_location:
                 break;
