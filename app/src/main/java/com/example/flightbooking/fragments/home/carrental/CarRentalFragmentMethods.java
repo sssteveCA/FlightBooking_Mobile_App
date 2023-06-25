@@ -1,13 +1,18 @@
 package com.example.flightbooking.fragments.home.carrental;
 
+import android.content.Context;
 import android.view.View;
+import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
 import android.widget.Spinner;
 
 import com.example.flightbooking.R;
+import com.example.flightbooking.common.Generic;
+import com.google.gson.JsonObject;
 
 import java.util.AbstractMap;
+import java.util.LinkedList;
 import java.util.Map;
 
 public class CarRentalFragmentMethods {
@@ -30,5 +35,49 @@ public class CarRentalFragmentMethods {
                 new AbstractMap.SimpleImmutableEntry<>("go",(Button)v.findViewById(R.id.frag_cr_bt_go))
         );
         return items;
+    }
+
+    /**
+     * Add the items to the spinners
+     * @param context
+     * @param crfm
+     * @param crfv
+     */
+    public static void setSpinnerAdapters(Context context, CarRentalFragmentModel crfm, CarRentalFragmentView crfv){
+        LinkedList<String> ageRanges = crfm.getAgeRanges();
+        if(ageRanges != null) {
+            ArrayAdapter<String> ageRangesA = Generic.arrayAdapterFromList(context, ageRanges);
+            crfv.getSpAgeBand().setAdapter(ageRangesA);
+        }
+        LinkedList<String> countries = crfm.getCountries();
+        if(countries != null) {
+            ArrayAdapter<String> countriesA = Generic.arrayAdapterFromList(context, countries);
+            crfv.getSpPickupCountry().setAdapter(countriesA);
+            crfv.getSpDeliveryCountry().setAdapter(countriesA);
+            String firstCountry = countries.getFirst();
+            if (firstCountry != null) {
+                LinkedList<String> locations = crfm.getCountryLocations(firstCountry);
+                ArrayAdapter<String> locationsA = Generic.arrayAdapterFromList(context, locations);
+                crfv.getSpPickupLocation().setAdapter(locationsA);
+                crfv.getSpDeliveryLocation().setAdapter(locationsA);
+            }
+        }//if(countries != null) {
+        LinkedList<String> companies = crfm.getCompanies();
+        if(companies != null){
+            ArrayAdapter<String> companiesA = Generic.arrayAdapterFromList(context, companies);
+            crfv.getSpRentCompany().setAdapter(companiesA);
+            String firstCompany = companies.getFirst();
+            if(firstCompany != null){
+                LinkedList<String> cars = crfm.getCompanyCars(firstCompany);
+                if(cars != null){
+                    ArrayAdapter<String> carsA = Generic.arrayAdapterFromList(context, cars);
+                    crfv.getSpCar().setAdapter(carsA);
+                    String firstCar = cars.getFirst();
+                    if(firstCar != null) {
+                        JsonObject car = crfm.getCarDetails("Alamo","Alfa Romeo Stelvio");
+                    }
+                }//if(cars != null){
+            }//if(firstCompany != null){
+        }//if(companies != null){
     }
 }

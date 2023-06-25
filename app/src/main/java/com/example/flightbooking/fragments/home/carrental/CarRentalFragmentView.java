@@ -32,11 +32,11 @@ public class CarRentalFragmentView {
     public EditText getEtRentStart(){ return this.et_rentstart; }
     public EditText getEtRentEnd(){ return this.et_rentend; }
     public Spinner getSpAgeBand(){ return this.sp_age_band; }
-    public Button getSpGo(){ return this.bt_go; }
+    public Button getBtGo(){ return this.bt_go; }
 
     private void assignItems(Map<String, View> items) throws MissingValuesException {
         for(String item: CarRentalFragmentView.itemsName){
-            if(items.containsKey(item)){
+            if(!items.containsKey(item)){
                 throw new MissingValuesException("Impossibile trovare uno o più dati richiesti");
             }
         }

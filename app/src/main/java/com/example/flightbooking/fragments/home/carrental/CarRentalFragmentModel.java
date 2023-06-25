@@ -9,6 +9,7 @@ import com.google.gson.JsonObject;
 
 import java.util.Iterator;
 import java.util.LinkedList;
+import java.util.List;
 import java.util.Map;
 import java.util.Set;
 
@@ -45,18 +46,16 @@ public class CarRentalFragmentModel {
      * Get the selectable age ranges for car rental
      * @return
      */
-    public LinkedList<int[]> getAgeRanges(){
+    public LinkedList<String> getAgeRanges(){
         if(this.carRentalInfo != null){
             if(this.carRentalInfo.has("age_ranges")){
+                LinkedList<String> list = new LinkedList<>();
                 JsonArray ja = this.carRentalInfo.getAsJsonArray("age_ranges");
-                LinkedList<int[]> list = new LinkedList<>();
                 Iterator<JsonElement> jaIt = ja.iterator();
                 while(jaIt.hasNext()){
                     JsonArray subJa = jaIt.next().getAsJsonArray();
-                    int[] listEl = {
-                            subJa.get(0).getAsInt(), subJa.get(1).getAsInt()
-                    };
-                    list.add(listEl);
+                    String item = subJa.get(0).getAsString()+"-"+subJa.get(1).getAsString()+" anni";
+                    list.add(item);
                 }
                 return list;
             }

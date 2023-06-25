@@ -10,8 +10,10 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.ArrayAdapter;
 
 import com.example.flightbooking.R;
+import com.example.flightbooking.common.Generic;
 import com.example.flightbooking.exception.MissingValuesException;
 import com.example.flightbooking.interfaces.Globals;
 import com.example.flightbooking.models.response.login.Auth;
@@ -91,13 +93,7 @@ public class CarRentalFragment extends Fragment implements View.OnClickListener{
         this_crf.crfm.getCarRentalInfoRequest(new CarRentalFragmentModel.GetCarRentalInfo() {
             @Override
             public void carRentalInfoResponse(JsonObject carRental) {
-                LinkedList<int []> ageRanges = this_crf.crfm.getAgeRanges();
-                LinkedList<String> countries = this_crf.crfm.getCountries();
-                LinkedList<String> locations = this_crf.crfm.getCountryLocations("Italia");
-                LinkedList<String> companies = this_crf.crfm.getCompanies();
-                LinkedList<String> cars = this_crf.crfm.getCompanyCars("Alamo");
-                JsonObject car = this_crf.crfm.getCarDetails("Alamo","Alfa Romeo Stelvio");
-                Log.i("CarRentalFragment","OK");
+                CarRentalFragmentMethods.setSpinnerAdapters(this_crf.context, this_crf.crfm,this_crf.crfv);
             }
 
             @Override
