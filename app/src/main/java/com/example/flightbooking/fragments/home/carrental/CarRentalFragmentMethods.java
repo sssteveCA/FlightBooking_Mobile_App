@@ -38,6 +38,15 @@ public class CarRentalFragmentMethods {
         return items;
     }
 
+    public static void setCarsList(Context context, CarRentalFragmentModel crfm, Spinner src, Spinner dest){
+        String company = (String) src.getSelectedItem();
+        LinkedList<String> cars = crfm.getCompanyCars(company);
+        if(cars != null){
+            ArrayAdapter<String> carsA = Generic.arrayAdapterFromList(context,cars);
+            dest.setAdapter(carsA);
+        }
+    }
+
     /**
      * Set the list location spinner on country spinner item change
      * @param context
@@ -48,8 +57,10 @@ public class CarRentalFragmentMethods {
     public static void setLocationsList(Context context, CarRentalFragmentModel crfm, Spinner src, Spinner dest){
         String country = (String) src.getSelectedItem();
         LinkedList<String> locations = crfm.getCountryLocations(country);
-        ArrayAdapter<String> destA = Generic.arrayAdapterFromList(context,locations);
-        dest.setAdapter(destA);
+        if(locations != null){
+            ArrayAdapter<String> destA = Generic.arrayAdapterFromList(context,locations);
+            dest.setAdapter(destA);
+        }
     }
 
     /**
