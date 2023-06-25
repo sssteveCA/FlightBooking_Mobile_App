@@ -2,6 +2,7 @@ package com.example.flightbooking.fragments.home.carrental;
 
 import android.content.Context;
 import android.view.View;
+import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Button;
 import android.widget.EditText;
@@ -79,5 +80,21 @@ public class CarRentalFragmentMethods {
                 }//if(cars != null){
             }//if(firstCompany != null){
         }//if(companies != null){
+    }
+
+    /**
+     * Set the listeners to the CarRentalFragment views
+     * @param crf
+     * @param crfv
+     */
+    public static void setViewListeners(CarRentalFragment crf, CarRentalFragmentView crfv){
+        crfv.getSpRentCompany().setOnItemSelectedListener(crf);
+        crfv.getSpCar().setOnItemSelectedListener(crf);
+        crfv.getSpPickupCountry().setOnItemSelectedListener(crf);
+        crfv.getSpPickupLocation().setOnItemSelectedListener(crf);
+        crfv.getSpDeliveryCountry().setOnItemSelectedListener(crf);
+        crfv.getSpDeliveryLocation().setOnItemSelectedListener(crf);
+        crfv.getSpAgeBand().setOnItemSelectedListener(crf);
+        crfv.getBtGo().setOnClickListener(crf);
     }
 }

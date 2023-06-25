@@ -95,6 +95,7 @@ public class CarRentalFragment extends Fragment implements View.OnClickListener,
             @Override
             public void carRentalInfoResponse(JsonObject carRental) {
                 CarRentalFragmentMethods.setSpinnerAdapters(this_crf.context, this_crf.crfm,this_crf.crfv);
+                CarRentalFragmentMethods.setViewListeners(this_crf,this_crf.crfv);
             }
 
             @Override
